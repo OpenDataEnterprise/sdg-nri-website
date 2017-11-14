@@ -1,5 +1,6 @@
 backend:
-    name: git-gateway
+  name: git-gateway
+  branch: master
 
 media_folder: "img/uploads"
 
@@ -16,9 +17,9 @@ collections:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Organization", name: "organization", widget: "string" }
       - { label: "Date Published", name: "date_published", widget: "datetime" }
-      - { label: "Description", name: "description", widget: "markdown" }
+      - { label: "Description", name: "description", widget: "markdown", required: false }
       - { label: "Link", name: "url", widget: "string" }
-      - { label: "Featured Image", name: "image", widget: "image" }
+      - { label: "Featured Image", name: "image", widget: "image", required: false }
       - { label: "Regions/Countries", name: "geographical_units", widget: "list" }
       - { label: "Languages", name: "languages", widget: "list" }
       - { label: "Type", name: "type", widget: "string" }
