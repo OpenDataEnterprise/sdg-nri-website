@@ -9,10 +9,6 @@ collections:
     label: "Resources"
     folder: "_resources"
     create: true
-    filter: {
-      field: "published",
-      value: "true",
-    }
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Organization", name: "organization", widget: "string" }
