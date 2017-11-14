@@ -42,6 +42,11 @@ plugins:
 #   - vendor/gems/
 #   - vendor/ruby/
 
+backend:
+  name: github
+  repo: squeakyspacebar/sdg-prototype
+  branch: develop
+
 collections:
   - name: "resources"
     label: "Resources"
