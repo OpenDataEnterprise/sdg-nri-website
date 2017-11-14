@@ -41,31 +41,3 @@ plugins:
 #   - vendor/cache/
 #   - vendor/gems/
 #   - vendor/ruby/
-
-backend:
-  name: github
-  repo: squeakyspacebar/sdg-prototype
-  branch: develop
-
-collections:
-  - name: "resources"
-    label: "Resources"
-    folder: "_resources"
-    create: true
-    filter: {
-      field: "published"
-      value: "true"
-    }
-    fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Organization", name: "organization", widget: "string" }
-      - { label: "Date Published", name: "date_published", widget: "datetime" }
-      - { label: "Description", name: "description", widget: "markdown" }
-      - { label: "Link", name: "url", widget: "string" }
-      - { label: "Featured Image", name: "image", widget: "image" }
-      - { label: "Regions/Countries", name: "geographical_units", widget: "list" }
-      - { label: "Languages", name: "languages", widget: "list" }
-      - { label: "Type", name: "type", widget: "string" }
-      - { label: "Date Added", name: "created", widget: "datetime" }
-      - { label: "Last Updated", name: "last_modified", widget: "datetime" }
-      - { label: "Published", name: "published", widget: "boolean" }
