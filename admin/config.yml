@@ -11,8 +11,8 @@ collections:
     folder: "_resources"
     create: true
     filter: {
-      field: "published"
-      value: "true"
+      field: "published",
+      value: "true",
     }
     fields:
       - { label: "Title", name: "title", widget: "string" }
