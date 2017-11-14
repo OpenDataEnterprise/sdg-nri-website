@@ -1,7 +1,5 @@
 backend:
-  name: github
-  repo: squeakyspacebar/sdg-prototype
-  branch: develop
+    name: git-gateway
 
 media_folder: "img/uploads"
 
