@@ -1,0 +1,47 @@
+---
+hide_body: false
+fields:
+- type: text
+  name: title
+  label: Title
+  config:
+    required: true
+  description: Title of the published resource.
+- type: text
+  label: Organization
+  name: organization
+  config:
+    required: true
+  description: Publishing organization of the resource.
+- type: datetime
+  name: date_published
+  label: Date Published
+  config:
+    date_format: YYYY/MM
+- type: textarea
+  name: description
+  label: Description
+  config:
+    wysiwyg: false
+- type: text
+  label: Link
+  name: url
+  description: A link to the resource.
+  config:
+    required: true
+- type: file
+  name: featured_image
+  label: Featured Image
+- type: list
+  label: Regions
+  name: regions
+- type: list
+  label: Languages
+  name: languages
+- type: text
+  label: Type
+  name: type
+  description: Type of resource.
+- type: tag_list
+  label: Tags
+  name: tags
