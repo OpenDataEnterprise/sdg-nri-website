@@ -12,5 +12,5 @@ type: Guidelines
 tags:
 - SDG Reporting
 description: ''
-featured_image: ''
+featured_image: "/uploads/2017/11/15/nyan-cat512.jpg"
 ---
