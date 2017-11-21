@@ -1,0 +1,93 @@
+header[role="banner"] {
+  box-sizing: border-box;
+  padding: 5em 5em 15em;
+  background-image: url('/assets/img/banner_background.jpg');
+  font-family: Lato;
+  font-style: normal;
+  color: #fdfdfd;
+  text-align: center;
+}
+
+.banner-header {
+  font-size: 2.8em;
+  font-weight: 400;
+}
+
+.banner-text {
+  font-size: 2em;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  line-height: 1.4em;
+  color: #fdfdfd;
+}
+
+.intro {
+  box-sizing: border-box;
+  padding: 5em 10em;
+  text-align: center;
+}
+
+.intro-text {
+  margin-bottom: 2em;
+  font-family: Lato;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  color: #020b4f;
+
+  a {
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: rgba(2,11,79,.3);
+    text-decoration: none;
+  }
+}
+
+.feature-list {
+  $single-grid: (
+    columns: 12,
+    gutter: 2em,
+    media: 320px,
+  );
+
+  $full-grid: (
+    columns: 12,
+    gutter: 2em,
+    media: 1080px,
+  );
+
+  box-sizing: border-box;
+  margin-bottom: 1.2em;
+  padding: 0;
+  overflow: hidden;
+  text-align: center;
+  list-style: none;
+
+  .feature {
+    @include grid-media($single-grid) {
+      @include grid-column(12);
+    }
+
+    @include grid-media($full-grid) {
+      @include grid-column(4);
+    }
+  }
+
+  .feature-icon {
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .feature-description {
+    padding: 1.2em;
+
+    .feature-header {
+      font-family: Oswald;
+      text-transform: uppercase;
+    }
+
+    p {
+      font-family: Lato;
+      font-weight: 300;
+    }
+  }
+}

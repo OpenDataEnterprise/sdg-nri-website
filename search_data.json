@@ -1,0 +1,13 @@
+---
+layout: null
+---
+[
+  {% for resource in site.resources %}{
+      "title": "{{ resource.title }}",
+      "organization": "{{ resource.organization }}",
+      "date_published": "{{ resource.date_published }}",
+      "url": "{{ resource.url }}",
+      "type": "{{ resource.type }}"
+  }{% unless forloop.last %},{% endunless %}
+  {% endfor %}
+]
