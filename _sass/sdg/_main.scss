@@ -1,7 +1,10 @@
 header[role="banner"] {
   box-sizing: border-box;
-  padding: 5em 5em 15em;
   background-image: url('/assets/img/banner_background.jpg');
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center -10em;
   font-family: Lato;
   font-style: normal;
   color: #fdfdfd;
@@ -12,6 +15,14 @@ header[role="banner"] {
   color: #fff;
   text-align: center;
   background-color: rgba(255,255,255,0.25);
+}
+
+.banner-content {
+  padding: 8.375em 5em 20em;
+}
+
+.banner-stripe {
+  width: 35em;
 }
 
 .banner-header {
