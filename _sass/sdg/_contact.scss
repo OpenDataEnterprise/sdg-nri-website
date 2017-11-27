@@ -1,0 +1,98 @@
+.contact-form-wrapper {
+  padding: 5em 12em;
+  font-size: 1.125em;
+  letter-spacing: 0.03em;
+  background-image: url('/assets/img/happy_children.jpg');
+}
+
+.color-bar {
+  display: block;
+  margin: 0 auto 2em;
+}
+
+.contact-form-header {
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-align: center;
+}
+
+#contact-form {
+  fieldset {
+    margin: 0 0 1.5em 0;
+    border: none;
+    padding: 0;
+  }
+
+  label {
+    display: block;
+  }
+
+  select {
+    font: inherit;
+  }
+
+  textarea {
+    min-height: 6.25em;
+    resize: vertical;
+  }
+
+  input[type=checkbox] {
+    margin: 0.375em 0.5em 0.375em 0;
+  }
+
+  input[type=submit] {
+    display: block;
+    margin: 0 auto;
+    border-radius: 0;
+    border-color: #34a8fc;
+    padding: 1em 2.5em;
+    text-align: center;
+    color: #020b4f;
+    font-family: Oswald;
+    font-weight: 700;
+    font-size: 0.75em;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    background-color: #34a8fc;
+  }
+
+  .name-fieldset {
+    margin-left: -2%;
+
+    .field {
+      width: 48%;
+      margin-left: 2%;
+      float: left;
+
+      label {
+        font-size: 0.75em;
+      }
+
+      input[type=text] {
+        margin-bottom: 0.375em;
+      }
+    }
+  }
+
+  .caption {
+    padding: 0.4em 0;
+    font-size: 0.75em;
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  .checkbox-label {
+    padding: 0.25em 0;
+    font-size: 0.9em;
+  }
+
+  .field-element {
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0.375em 0 1.5em;
+    border: 1px solid #ccc;
+    border-radius: 0.125em;
+    padding: 0.5em;
+    font-size: 1em;
+    background: #fafafa;
+  }
+}

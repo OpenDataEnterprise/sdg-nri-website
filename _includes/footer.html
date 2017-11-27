@@ -2,42 +2,40 @@
 
   <div class="wrapper">
 
-    <h2 class="footer-heading">{{ site.title | escape }}</h2>
-
     <div class="footer-col-wrapper">
-      <div class="footer-col footer-col-1">
-        <ul class="contact-list">
-          <li>
-            {% if site.author %}
-              {{ site.author | escape }}
-            {% else %}
-              {{ site.title | escape }}
-            {% endif %}
-            </li>
-            {% if site.email %}
-            <li><a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
-            {% endif %}
-        </ul>
-      </div>
-
-      <div class="footer-col footer-col-2">
-        <ul class="social-media-list">
-          {% if site.github_username %}
-          <li>
-            {% include icon-github.html username=site.github_username %}
-          </li>
+        <address class="contact-info">
+          {% if site.ode_email %}
+          <div class="contact-email">
+            <a href="mailto:{{ site.ode_email }}">{{ site.ode_email }}</a>
+          </div>
           {% endif %}
-
-          {% if site.twitter_username %}
-          <li>
-            {% include icon-twitter.html username=site.twitter_username %}
-          </li>
+          {% if site.ode_website %}
+          <div class="contact-website">
+            <a  href="{{ site.ode_website }}">OpenDataEnterprise.org</a>
+          </div>
           {% endif %}
-        </ul>
-      </div>
+          <div class="contact-address">OpenGov Hub, 1110 Vermont Ave NW, Washington, D.C. 20005</div>
+        </address>
 
-      <div class="footer-col footer-col-3">
-        <p>{{ site.description | escape }}</p>
+      <div class="sponsors">
+        <img class="sponsor-logos" src="/assets/img/opendata_enterprise_and_hewlett_foundation_logos.png">
+      </div>
+    </div>
+
+    <div class="footer-links-wrapper">
+      <ul class="footer-links">
+        <li class="footer-link">
+          <a href="terms-and-conditions">Terms & Conditions</a>
+        </li>
+        <li class="footer-link">
+          <a href="privacy-policy">Privacy Policy</a>
+        </li>
+        <li class="footer-link">
+          <a href="sitemap">Sitemap</a>
+        </li>
+      </ul>
+      <div class="cc-icon">
+        <img src="/assets/img/cc-by_icon.png">
       </div>
     </div>
 
