@@ -1,5 +1,7 @@
 <section class="site-header">
 
+  <div class="under-construction-warning">This website is a work in progress.</div>
+
   <div class="wrapper">
     {% assign default_paths = site.pages | sort: "navigation_weight" | map: "path" %}
     {% assign page_paths = site.header_pages | default: default_paths %}
