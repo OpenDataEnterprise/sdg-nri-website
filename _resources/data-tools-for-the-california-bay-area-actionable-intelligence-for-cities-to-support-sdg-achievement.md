@@ -1,8 +1,8 @@
 ---
-title: 'DATA TOOLS FOR THE CALIFORNIA BAY AREA: ACTIONABLE INTELLIGENCE FOR CITIES
-  TO SUPPORT SDG ACHIEVEMENT'
+title: 'Data Tools for the California Bay Area: Actionable Intelligence for Cities
+  to Support SDG Achievement'
 organization: SDSN / Stanford University
-date_published: 2017-08-00
+date_published: August 2017
 url: http://unsdsn.org/wp-content/uploads/2017/09/170913-trends-brief-sanjose-sdg-platform.pdf
 geographical_units:
 - United States
@@ -13,6 +13,6 @@ created: 2017-11-14 18:24:40 +0000
 last_modified: 2017-11-14 18:24:40 +0000
 published: true
 date: 2017-11-15 13:53:18 -0600
-link: http://unsdsn.org/wp-content/uploads/2017/09/170913-trends-brief-sanjose-sdg-platform.pdf
+link: http://unsdsn.org/resources/publications/data-tools-for-the-california-bay-area-actionable-intelligence-for-cities-to-support-sdg-achievement/
 ---
 
