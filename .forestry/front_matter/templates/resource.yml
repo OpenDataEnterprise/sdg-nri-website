@@ -42,9 +42,9 @@ fields:
 - type: list
   label: Regions
   name: regions
-- type: list
-  label: Languages
+- type: tag_list
   name: languages
+  label: Languages
 - type: text
   label: Type
   name: type
