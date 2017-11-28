@@ -1,9 +1,47 @@
 ---
 layout: default
-jquery: true
+vue: true
+table: true
 ---
 
+<script type="text/x-template" id="directory-table-template">
+  <table>
+    <thead>
+      <tr>
+        <th v-for="key in columns"
+          @click="sortBy(key)"
+          :class="{ active: sortKey == key }">
+          (( key | capitalize ))
+          <span class="arrow" :class="sortOrders[key] > 0 ? 'asc' : 'dsc'">
+          </span>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-for="entry in filteredData">
+        <td v-for="key in columns">
+          (( entry[key] ))
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</script>
+
 <div id="directory">
+  <form class="search-bar" role="search">
+    <input type="search" placeholder="Enter Search" v-model="searchQuery">
+    <input type="submit" value="Search Resources">
+  </form>
+  <div class="directory-table_wrapper">
+    <directory-table
+      :data="resources"
+      :columns="gridColumns"
+      :filter-key="searchQuery">
+    </directory-table>
+  </div>
+</div>
+
+<!--<div id="directory">
   <table id="directory-table">
     <caption>Directory of Resources</caption>
     <thead>
@@ -33,4 +71,4 @@ jquery: true
       </tr>
     </tfoot>
   </table>
-</div>
+</div>-->
