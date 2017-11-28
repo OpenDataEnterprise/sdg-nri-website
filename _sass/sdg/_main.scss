@@ -26,6 +26,7 @@
 
 header[role="banner"] {
   box-sizing: border-box;
+  min-height: 42em;
   background-image: url('/assets/img/banner_background.jpg');
   background-size: cover;
   background-attachment: fixed;
@@ -38,9 +39,9 @@ header[role="banner"] {
 }
 
 .under-construction-warning {
+  background-color: rgba(255, 255, 255, 0.25);
   color: #fff;
   text-align: center;
-  background-color: rgba(255, 255, 255, 0.25);
   line-height: 3em;
 }
 

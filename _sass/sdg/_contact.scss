@@ -21,12 +21,6 @@
 }
 
 #contact-form {
-  fieldset {
-    margin: 0 0 1.5em 0;
-    border: none;
-    padding: 0;
-  }
-
   label {
     display: block;
   }
@@ -60,22 +54,35 @@
     background-color: #34a8fc;
   }
 
+  .name-fieldset, .interests-fieldset {
+    margin: 0 0 1.5em 0;
+    border: none;
+    padding: 0;
+  }
+
   .name-fieldset {
     margin-left: -2%;
+  }
 
-    .field {
-      width: 48%;
-      margin-left: 2%;
-      float: left;
+  .name-field, .email-field {
+    margin-left: 2%;
+    float: left;
 
-      label {
-        font-size: 0.75em;
-      }
-
-      input[type=text] {
-        margin-bottom: 0.375em;
-      }
+    label {
+      font-size: 0.75em;
     }
+
+    input[type=text] {
+      margin-bottom: 0.375em;
+    }
+  }
+
+  .name-field {
+    width: 48%;
+  }
+
+  .email-field {
+    width: 98%;
   }
 
   .caption {
