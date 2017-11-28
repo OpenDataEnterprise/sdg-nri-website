@@ -27,7 +27,7 @@ fields:
     wysiwyg: false
 - type: text
   label: Link
-  name: url
+  name: link
   description: A link to the resource.
   config:
     required: true
