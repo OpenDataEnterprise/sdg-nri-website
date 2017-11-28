@@ -1,0 +1,36 @@
+---
+layout: default
+jquery: true
+---
+
+<div id="directory">
+  <table id="directory-table">
+    <caption>Directory of Resources</caption>
+    <thead>
+      <tr>
+        <th scope="col">Title</th>
+        <th scope="col">Organization</th>
+        <th scope="col">Type</th>
+        <th scope="col">URL</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for resource in site.resources %}
+      <tr>
+        <td>{{ resource.title }}</td>
+        <td>{{ resource.organization }}</td>
+        <td>{{ resource.type }}</td>
+        <td>{{ resource.link }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+    <tfoot>
+      <tr>
+        <th scope="col">Title</th>
+        <th scope="col">Organization</th>
+        <th scope="col">Type</th>
+        <th scope="col">URL</th>
+      </tr>
+    </tfoot>
+  </table>
+</div>

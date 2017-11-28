@@ -12,6 +12,27 @@
     #A7A891,
     #BDCC97,
     #979EA0;
+  $grid-item-placeholders:
+    "01.jpg",
+    "02.jpg",
+    "03.jpg",
+    "04.jpg",
+    "05.jpg",
+    "06.jpg",
+    "07.jpg",
+    "08.jpg",
+    "09.jpg",
+    "10.jpg",
+    "11.jpg",
+    "12.jpg",
+    "13.jpg",
+    "14.jpg",
+    "15.jpg",
+    "16.jpg",
+    "17.jpg",
+    "18.jpg",
+    "19.jpg",
+    "20.jpg";
   $grid-item-height: $spacing-unit * 14;
   $featured-image-height: $spacing-unit * 6;
 
@@ -59,24 +80,35 @@
     }
 
     box-sizing: border-box;
-    margin-bottom: 1.2em;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    padding: 0;
     max-width: 24em;
     height: $grid-item-height;
-    cursor: pointer;
+    margin-bottom: 2em;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 0.3em;
+    padding: 0;
+    background-color: #fff;
     outline: none;
     overflow: hidden;
     text-align: center;
     text-decoration: none;
-    transition: all 0.3s ease-in-out;
+    transition: all 0.2s ease-in-out;
 
     &:focus,
     &:hover {
-      background-color: darken(#fdfdfd, 3%);
-      background-position: top;
-      background-repeat: no-repeat;
-      background-size: cover;
+      background-color: darken(#fff, 3%);
+    }
+
+    @for $i from 1 through length($grid-item-placeholders) { 
+      &:nth-child(#{$i}) {
+        $img-from-list: nth($grid-item-placeholders, $i);
+
+        .featured-image {
+          background-image: url("/assets/img/placeholders/#{$img-from-list}");
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: cover;
+        }
+      }
     }
   }
 
@@ -99,93 +131,88 @@
   }
 }
 
-#search {
-  input[type=search] {
-    display: block;
-    width: 50%;
-    margin: 0 auto $spacing-unit;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    padding: .5em;
-    font-size: 1.4em;
-  }
+#directory-table_wrapper {
+  padding-right: 10em;
+  padding-left: 10em;
 }
 
 #directory {
-  padding-top: 2em;
-  //font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  padding: 8.375em 0 5em;
+  background-image: url('/assets/img/happy_children.jpg');
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center;
   font-family: Lato;
   font-weight: 300;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
-  clear: both;
 
-  table {
-    border: 2px solid #42b983;
-    border-radius: 3px;
-    border-collapse: collapse;
-    background-color: #fff;
-  }
+  //table {
+  //  border: 2px solid #42b983;
+  //  border-radius: 3px;
+  //  border-collapse: collapse;
+  //  background-color: #fff;
+  //}
 
-  thead {
-    tr {
-      display: block;
-      position: relative;
-    }
+  //thead {
+  //  tr {
+  //    display: block;
+  //    position: relative;
+  //  }
 
-    th {
-      background-color: #42b983;
-      color: rgba(255,255,255,0.66);
-      cursor: pointer;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-    }
+  //  th {
+  //    background-color: #42b983;
+  //    color: rgba(255,255,255,0.66);
+  //    cursor: pointer;
+  //    -webkit-user-select: none;
+  //    -moz-user-select: none;
+  //    -ms-user-select: none;
+  //    user-select: none;
+  //  }
 
-    th.active {
-      color: #fff;
-    }
+  //  th.active {
+  //    color: #fff;
+  //  }
 
-    th.active .arrow {
-      opacity: 1;
-    }
+  //  th.active .arrow {
+  //    opacity: 1;
+  //  }
 
-    .arrow {
-      display: inline-block;
-      vertical-align: middle;
-      width: 0;
-      height: 0;
-      margin-left: 5px;
-      opacity: 0.66;
-    }
+  //  .arrow {
+  //    display: inline-block;
+  //    vertical-align: middle;
+  //    width: 0;
+  //    height: 0;
+  //    margin-left: 5px;
+  //    opacity: 0.66;
+  //  }
 
-    .arrow.asc {
-      border-left: 4px solid transparent;
-      border-right: 4px solid transparent;
-      border-bottom: 4px solid #fff;
-    }
+  //  .arrow.asc {
+  //    border-left: 4px solid transparent;
+  //    border-right: 4px solid transparent;
+  //    border-bottom: 4px solid #fff;
+  //  }
 
-    .arrow.dsc {
-      border-left: 4px solid transparent;
-      border-right: 4px solid transparent;
-      border-top: 4px solid #fff;
-    }
-  }
+  //  .arrow.dsc {
+  //    border-left: 4px solid transparent;
+  //    border-right: 4px solid transparent;
+  //    border-top: 4px solid #fff;
+  //  }
+  //}
 
-  tbody {
-    display: block;
-    width: 100%;
-    height: $table_body_height;
-    overflow: auto;
-  }
+  //tbody {
+  //  display: block;
+  //  width: 100%;
+  //  height: $table_body_height;
+  //  overflow: auto;
+  //}
 
-  td {
-    background-color: #f9f9f9;
-  }
+  //td {
+  //  background-color: #f9f9f9;
+  //}
 
-  th, td {
-    min-width: 120px;
-    padding: 10px 20px;
-  }
+  //th, td {
+  //  min-width: 120px;
+  //  padding: 10px 20px;
+  //}
 }

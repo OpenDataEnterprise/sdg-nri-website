@@ -3,30 +3,12 @@ layout: default
 title: Resources
 permalink: /resources/
 navigation_weight: 2
-vue: true
-search: true
+jquery: true
 ---
 
-<script type="text/x-template" id="directory-list-template">
-  <ul class="grid-list">
-    <li class="grid-item" v-for="resource in filteredData">
-      <img class="featured-image" src="/assets/img/default-placeholder.jpg">
-      <section class="description">
-        <h3 class="title">
-            <a :title="resource.title">(( resource.title ))</a>
-        </h3>
-        <p class="organization">(( resource.organization ))</p>
-      </section>
-    </li>
-  </ul>
-</script>
-
-<div id="directory">
-  <form class="search-bar" id="search" role="search">
-    <input type="search" placeholder="Enter Search" v-model="searchQuery">
-  </form>
-  <directory-list
-    :data="resources"
-    :filter-key="searchQuery">
-  </directory-list>
+<div>
+<ul style="margin: 0 auto; padding: 8.375em 5em 5em; list-style: none; text-align: center;">
+  <li><a href="/resources1.html">Table</a></li>
+  <li><a href="/resources2.html">Grid</a></li>
+</ul>
 </div>

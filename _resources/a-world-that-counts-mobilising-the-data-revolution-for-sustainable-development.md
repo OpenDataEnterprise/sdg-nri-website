@@ -6,7 +6,7 @@ organization: >-
   UN Independent Expert Advisory Group on a Data Revolution for Sustainable
   Development (IAEG-SDGs)
 date_published: '2014'
-url: >-
+link: >-
   http://www.undatarevolution.org/wp-content/uploads/2014/11/A-World-That-Counts.pdf
 geographical_units:
   - Global

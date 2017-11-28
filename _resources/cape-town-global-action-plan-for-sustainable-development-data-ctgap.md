@@ -2,7 +2,7 @@
 title: Cape Town Global Action Plan for Sustainable Development Data (CTGAP)
 organization: UN STATS
 date_published: '2017-01-00'
-url: 'https://unstats.un.org/sdgs/hlg/Cape-Town-Global-Action-Plan/'
+link: 'https://unstats.un.org/sdgs/hlg/Cape-Town-Global-Action-Plan/'
 geographical_units:
   - South Africa
   - Africa

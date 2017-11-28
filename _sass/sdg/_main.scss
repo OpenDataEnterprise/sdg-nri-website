@@ -1,10 +1,36 @@
+.search-bar {
+  text-align: center;
+
+  input[type=search] {
+    display: inline-block;
+    width: 50%;
+    margin: 0 auto $spacing-unit;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 0.75em;
+    font-size: 1.4em;
+  }
+
+  input[type=search]::placeholder {
+    color: black;
+  }
+
+  input[type=submit] {
+    display: inline-block;
+    border-radius: 0;
+    padding: 0.75em;
+    font-family: Lato;
+    font-weight: 300;
+    font-size: 1.4em;
+  }
+}
+
 header[role="banner"] {
   box-sizing: border-box;
   background-image: url('/assets/img/banner_background.jpg');
   background-size: cover;
   background-attachment: fixed;
   background-repeat: no-repeat;
-  background-position: center -10em;
+  background-position: center;
   font-family: Lato;
   font-style: normal;
   color: #fdfdfd;
@@ -14,11 +40,12 @@ header[role="banner"] {
 .under-construction-warning {
   color: #fff;
   text-align: center;
-  background-color: rgba(255,255,255,0.25);
+  background-color: rgba(255, 255, 255, 0.25);
+  line-height: 3em;
 }
 
 .banner-content {
-  padding: 8.375em 5em 20em;
+  padding: 8.375em 5em 15em;
 }
 
 .banner-stripe {
@@ -39,6 +66,23 @@ header[role="banner"] {
   line-height: 1.4em;
   color: #fdfdfd;
   text-shadow: 0.05em 0.05em #000000;
+}
+
+.banner-search {
+  margin-top: 3em;
+
+  input[type=search] {
+    background-color: rgba(255, 255, 255, 0.6);
+    font-family: Lato;
+    font-weight: 300;
+  }
+}
+
+.learn-more-call {
+  color: #fff;
+  font-size: 2em;
+  line-height: 2em;
+  text-align: center;
 }
 
 .intro {
@@ -90,6 +134,15 @@ header[role="banner"] {
     @include grid-media($full-grid) {
       @include grid-column(4);
     }
+
+    a {
+      color: rgba(0, 0, 0, 1);
+    }
+
+    a:hover {
+      color: rgba(0, 0, 0, 0.5);
+      text-decoration: none;
+    }
   }
 
   .feature-icon {
@@ -99,17 +152,14 @@ header[role="banner"] {
     object-fit: cover;
   }
 
+  .feature-description-header {
+    font-family: Oswald;
+    font-size: 1.5em;
+    text-transform: uppercase;
+  }
+
   .feature-description {
-    padding: 1.2em;
-
-    .feature-description-header {
-      font-family: Oswald;
-      font-size: 1.5em;
-      text-transform: uppercase;
-    }
-
-    p {
-      font-size: 1.125em;
-    }
+    padding: 0 1.2em;
+    font-size: 1.125em;
   }
 }

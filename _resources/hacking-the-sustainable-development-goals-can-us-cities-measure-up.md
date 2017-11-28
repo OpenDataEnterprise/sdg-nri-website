@@ -2,7 +2,7 @@
 title: 'Hacking the Sustainable Development Goals: Can US Cities Measure Up?'
 organization: Urban Institute
 date_published: '2017-00-00'
-url: >-
+link: >-
   https://www.urban.org/research/publication/hacking-sustainable-development-goals/view/full_report
 geographical_units:
   - United States

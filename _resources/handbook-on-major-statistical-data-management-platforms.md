@@ -2,7 +2,7 @@
 title: Handbook on Major Statistical Data Management Platforms
 organization: UNECA
 date_published: 2011-10-00
-url: http://nsdsguidelines.paris21.org/sites/default/files/EDITED_Handbook_SDMS_final_2-edited-clean.doc
+link: http://nsdsguidelines.paris21.org/sites/default/files/EDITED_Handbook_SDMS_final_2-edited-clean.doc
 geographical_units:
 - Africa
 languages:
