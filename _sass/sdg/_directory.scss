@@ -1,9 +1,28 @@
+$grid-item-placeholders:
+  "01.jpg",
+  "02.jpg",
+  "03.jpg",
+  "04.jpg",
+  "05.jpg",
+  "06.jpg",
+  "07.jpg",
+  "08.jpg",
+  "09.jpg",
+  "10.jpg",
+  "11.jpg",
+  "12.jpg",
+  "13.jpg",
+  "14.jpg",
+  "15.jpg",
+  "16.jpg",
+  "17.jpg",
+  "18.jpg",
+  "19.jpg",
+  "20.jpg";
+
 .grid-list {
   @include grid-container;
   $action-color: #477DCA !default;
-  $base-background-color: white !default;
-  $grid-items-background: $base-background-color;
-  $grid-item-background: desaturate($action-color, 30%);
   $grid-item-colors:
     desaturate($action-color, 30%),
     #3581A5,
@@ -12,27 +31,9 @@
     #A7A891,
     #BDCC97,
     #979EA0;
-  $grid-item-placeholders:
-    "01.jpg",
-    "02.jpg",
-    "03.jpg",
-    "04.jpg",
-    "05.jpg",
-    "06.jpg",
-    "07.jpg",
-    "08.jpg",
-    "09.jpg",
-    "10.jpg",
-    "11.jpg",
-    "12.jpg",
-    "13.jpg",
-    "14.jpg",
-    "15.jpg",
-    "16.jpg",
-    "17.jpg",
-    "18.jpg",
-    "19.jpg",
-    "20.jpg";
+  $base-background-color: white !default;
+  $grid-items-background: $base-background-color;
+  $grid-item-background: desaturate($action-color, 30%);
   $grid-item-height: $spacing-unit * 14;
   $featured-image-height: $spacing-unit * 6;
 
@@ -119,6 +120,90 @@
   }
 
   .description {
+    padding: 1.2em;
+  }
+
+  .title {
+    font-weight: 300;
+  }
+
+  .organization {
+    font-size: 0.8em;
+  }
+}
+
+.resource-list {
+  @include grid-container;
+  $action-color: #477DCA !default;
+  $base-background-color: white !default;
+  $grid-items-background: $base-background-color;
+  $grid-item-background: desaturate($action-color, 30%);
+  $grid-item-height: $spacing-unit * 7;
+  $featured-image-height: $spacing-unit * 6;
+
+  $img-placeholders:
+    "01.jpg",
+    "02.jpg",
+    "03.jpg",
+    "04.jpg",
+    "05.jpg",
+    "06.jpg",
+    "07.jpg",
+    "08.jpg",
+    "09.jpg",
+    "10.jpg",
+    "11.jpg",
+    "12.jpg",
+    "13.jpg",
+    "14.jpg",
+    "15.jpg",
+    "16.jpg",
+    "17.jpg",
+    "18.jpg",
+    "19.jpg",
+    "20.jpg";
+
+  margin: 0;
+  padding: 0 10em;
+
+  .resource-list-item {
+    @include grid-column(12);
+
+    display: flex;
+    box-sizing: border-box;
+    height: $grid-item-height;
+    margin-bottom: 2em;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 0.3em;
+    padding: 0;
+    background-color: #fff;
+    outline: none;
+    overflow: hidden;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+
+    @for $i from 1 through length($img-placeholders) { 
+      &:nth-child(#{$i}) {
+        $img-from-list: nth($img-placeholders, $i);
+
+        .featured-image {
+          background-image: url("/assets/img/placeholders/#{$img-from-list}");
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: cover;
+        }
+      }
+    }
+  }
+
+  .featured-image {
+    width: 30%;
+    object-fit: cover;
+  }
+
+  .description {
+    width: 70%;
     padding: 1.2em;
   }
 
