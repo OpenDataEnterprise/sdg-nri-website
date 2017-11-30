@@ -2,29 +2,116 @@
 layout: default
 vue: true
 search: true
+jquery: true
 ---
 
 <script type="text/x-template" id="directory-list-template">
   <ul class="grid-list">
     <li class="grid-item" v-for="(resource, index) in filteredData">
-      <img class="featured-image">
-      <section class="description">
-        <h3 class="title">
-            <a :title="resource.title">(( resource.title ))</a>
+      <img class="resource-image">
+      <section class="resource-description">
+        <h3 class="resource-title">
+            <a :href="(( resource.url ))">(( resource.title ))</a>
         </h3>
-        <p class="organization">(( resource.organization ))</p>
+        <div class="resource-organization">(( resource.organization ))</div>
+        <div class="resource-date-published">
+          <span class="resource-date-published-label">Published </span>
+          <span >(( resource.date_published.substring(0,7) ))</span>
+        </div>
+        <div class="resource-languages" v-if="(( resource.languages.length > 0 ))">
+          <span class="resource-languages-label">Language(s)</span>
+          <ul class="resource-languages-list">
+            <li class="language-tag" v-for="lang in resource.languages">(( lang ))</li>
+          </ul>
+        </div>
+        <div class="resource-tags" v-if="(( resource.tags.length > 0 ))">
+          <span class="resource-tags-label">Tags</span>
+          <ul class="resource-tags-list">
+            <li class="subject-tag" v-for="tag in resource.tags">(( tag ))</li>
+          </ul>
+        </div>
       </section>
     </li>
   </ul>
 </script>
 
+<script type="text/x-template" id="lang-filter-template">
+  <div class="filter">
+    <label>Language</label>
+    <div class="filter-select" v-bind:class="{ 'hide-options': !visible }" v-on:click="visible = true">
+      <label class="summary" data-role="summary">(( checkedLanguages.length > 0 ? checkedLanguages : 'None' ))</label>
+      <button class="clear" type="button" v-on:click="clear">Clear</button>
+      <ol class="filter-list">
+        <li>
+          <input id="lang-en" type="checkbox" value="en" v-model="checkedLanguages">
+        <label for="lang-en">English</label>
+        </li>
+        <li>
+          <input id="lang-fr" type="checkbox" value="fr" v-model="checkedLanguages">
+          <label for="lang-fr">French</label>
+        </li>
+        <li>
+          <input id="lang-es" type="checkbox" value="es" v-model="checkedLanguages">
+          <label for="lang-es">Spanish</label>
+        </li>
+      </ol>
+    </div>
+  </div>
+</script>
+
+<script type="text/x-template" id="year-filter-template">
+  <div class="filter">
+    <label>Publication Year</label>
+    <div class="filter-select" v-bind:class="{ 'hide-options': !visible }" v-on:click="visible = true">
+      <label class="summary" data-role="summary">(( checkedYears.length > 0 ? checkedYears : 'None' ))</label>
+      <button class="clear" type="button">Clear</button>
+      <ol class="filter-list">
+        <li>
+          <input id="year-2011" type="checkbox" value="2011" v-model="checkedYears">
+        <label for="year-2011">2011</label>
+        </li>
+        <li>
+          <input id="year-2017" type="checkbox" value="2017" v-model="checkedYears">
+          <label for="year-2017">2017</label>
+        </li>
+      </ol>
+    </div>
+  </div>
+</script>
+
 <div id="directory">
+
   <form class="search-bar" role="search">
     <input type="search" placeholder="Enter Search" v-model="searchQuery">
     <input type="submit" value="Search Resources">
   </form>
+
+  <div class="search-tools">
+    <div class="filters">
+      <div class="filter">
+        <label>Organization</label>
+        <div class="filter-select" v-bind:class="{ 'hide-options': !visible }" v-on:click="visible = true">
+          <label class="summary" data-role="summary">None</label>
+          <button class="clear" type="button">Clear</button>
+          <ol class="filter-list">
+            </li>
+          </ol>
+        </div>
+      </div>
+      <year-filter>
+      </year-filter>
+      <lang-filter>
+      </lang-filter>
+      <div class="filter trigger">
+        <button>Update</button>
+      </div>
+    </div>
+  </div>
+
   <directory-list
     :data="resources"
-    :filter-key="searchQuery">
+    :filter-key="searchQuery"
+    :lang-filters="checkedLanguages">
   </directory-list>
+
 </div>

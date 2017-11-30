@@ -20,6 +20,38 @@ $grid-item-placeholders:
   "19.jpg",
   "20.jpg";
 
+.resource-date-published {
+  margin-bottom: 1em;
+}
+
+.resource-languages-label,
+.resource-tags-label {
+  display: inline-block;
+  min-width: 6em;
+}
+
+.resource-languages,
+.resource-tags {
+  margin: 0;
+  line-height: 2em;
+  text-align: left;
+  list-style: none;
+}
+
+.resource-languages-list,
+.resource-tags-list {
+  display: inline-block;
+  margin: 0;
+}
+
+.language-tag,
+.subject-tag {
+  display: inline-block;
+  margin: 0.1em;
+  padding: 0.3em 0.4em;
+  background-color: gainsboro;
+}
+
 .grid-list {
   @include grid-container;
   $action-color: #477DCA !default;
@@ -57,12 +89,6 @@ $grid-item-placeholders:
     media: 900px,
   );
 
-  $large-grid: (
-    columns: 12,
-    gutter: 2em,
-    media: 1200px,
-  );
-
   .grid-item {
     @include grid-media($x-small-grid) {
       @include grid-column(12);
@@ -76,13 +102,9 @@ $grid-item-placeholders:
       @include grid-column(4);
     }
 
-    @include grid-media($large-grid) {
-      @include grid-column(3);
-    }
-
     box-sizing: border-box;
     max-width: 24em;
-    height: $grid-item-height;
+    height: 32em;
     margin-bottom: 2em;
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 0.3em;
@@ -90,7 +112,7 @@ $grid-item-placeholders:
     background-color: #fff;
     outline: none;
     overflow: hidden;
-    text-align: center;
+    text-align: left;
     text-decoration: none;
     transition: all 0.2s ease-in-out;
 
@@ -103,7 +125,7 @@ $grid-item-placeholders:
       &:nth-child(#{$i}) {
         $img-from-list: nth($grid-item-placeholders, $i);
 
-        .featured-image {
+        .resource-image {
           background-image: url("/assets/img/placeholders/#{$img-from-list}");
           background-position: center;
           background-repeat: no-repeat;
@@ -113,21 +135,14 @@ $grid-item-placeholders:
     }
   }
 
-  .featured-image {
+  .resource-image {
     width: 100%;
     height: $featured-image-height;
     object-fit: cover;
   }
 
-  .description {
+  .resource-description {
     padding: 1.2em;
-  }
-
-  .title {
-    font-weight: 300;
-  }
-
-  .organization {
     font-size: 0.8em;
   }
 }

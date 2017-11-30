@@ -26,6 +26,8 @@
         this.field('date_published');
         this.field('url');
         this.field('type');
+        this.field('languages');
+        this.field('tags');
 
         documents.forEach(function (doc, index) {
           this.add(Object.assign({ 'id': index }, doc));
@@ -49,11 +51,70 @@
       idx = result;
     });
 
+    Vue.component('year-filter', {
+      template: '#year-filter-template',
+      data: function () {
+        return {
+          visible: false,
+          checkedYears: []
+        }
+      },
+      methods: {
+        documentClick: function (e) {
+          let el = this.$el;
+          let target = e.target;
+          if ((el !== target) && !el.contains(target)) {
+            this.visible = false;
+          }
+        },
+        clear: function () {
+	  this.checkedYears = [];
+        }
+      },
+      created () {
+        document.addEventListener('click', this.documentClick)
+      },
+      destroyed () {
+        document.removeEventListener('click', this.documentClick)
+      },
+      delimiters: ['((', '))']
+    });
+
+    Vue.component('lang-filter', {
+      template: '#lang-filter-template',
+      data: function () {
+        return {
+          visible: false,
+          checkedLanguages: []
+        }
+      },
+      methods: {
+        documentClick: function (e) {
+          let el = this.$el;
+          let target = e.target;
+          if ((el !== target) && !el.contains(target)) {
+            this.visible = false;
+          }
+        },
+        clear: function () {
+	  this.checkedLanguages = [];
+        }
+      },
+      created () {
+        document.addEventListener('click', this.documentClick)
+      },
+      destroyed () {
+        document.removeEventListener('click', this.documentClick)
+      },
+      delimiters: ['((', '))']
+    });
+
     Vue.component('directory-list', {
       template: "#directory-list-template",
       props: {
         data: Array,
-        filterKey: String
+        filterKey: String,
+        langFilters: Array,
       },
       data: function () {
         return {
@@ -62,6 +123,8 @@
       },
       computed: {
         filteredData: function () {
+	  console.log(this.langFilters);
+
           var data = [];
           var resources = this.resources;
           var filterKey = this.filterKey && this.filterKey.toLowerCase();
@@ -154,6 +217,7 @@
       el: '#directory',
       data: {
         searchQuery: '',
+        checkedLanguages: [],
         resources: resources
       }
     });
