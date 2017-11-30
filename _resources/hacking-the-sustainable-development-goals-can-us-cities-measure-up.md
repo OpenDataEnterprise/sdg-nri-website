@@ -16,6 +16,8 @@ link: https://www.urban.org/research/publication/hacking-sustainable-development
 description: ''
 featured_image: ''
 regions: []
-tags: []
+tags:
+- subnational
+- cities
 ---
 
