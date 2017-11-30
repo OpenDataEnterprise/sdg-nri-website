@@ -6,7 +6,7 @@ url: https://www.urban.org/research/publication/hacking-sustainable-development-
 geographical_units:
 - United States
 languages:
-- EN
+- English
 type: Report
 created: 2017-11-14 15:28:49 -0600
 last_modified: 2017-11-14 15:28:49 -0600

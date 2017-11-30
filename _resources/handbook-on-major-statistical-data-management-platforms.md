@@ -6,7 +6,7 @@ url: http://nsdsguidelines.paris21.org/sites/default/files/EDITED_Handbook_SDMS_
 geographical_units:
 - Africa
 languages:
-- EN
+- English
 type: Handbook
 created: 2017-11-14 21:29:57 +0000
 last_modified: 2017-11-14 21:29:57 +0000

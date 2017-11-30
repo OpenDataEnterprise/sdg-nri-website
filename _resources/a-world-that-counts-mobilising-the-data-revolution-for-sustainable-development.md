@@ -11,7 +11,7 @@ link: >-
 geographical_units:
   - Global
 languages:
-  - EN
+  - English
 type: Report
 created: 2017-11-14T18:23:34.747Z
 last_modified: 2017-11-14T18:23:34.747Z

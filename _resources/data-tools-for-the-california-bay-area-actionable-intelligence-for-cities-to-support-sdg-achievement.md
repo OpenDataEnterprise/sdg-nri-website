@@ -7,7 +7,7 @@ url: http://unsdsn.org/wp-content/uploads/2017/09/170913-trends-brief-sanjose-sd
 geographical_units:
 - United States
 languages:
-- EN
+- English
 type: Report
 created: 2017-11-14 18:24:40 +0000
 last_modified: 2017-11-14 18:24:40 +0000

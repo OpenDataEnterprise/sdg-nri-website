@@ -7,7 +7,7 @@ geographical_units:
 - South Africa
 - Africa
 languages:
-- EN
+- English
 type: Action Plan
 created: 2017-11-14 22:26:14 +0000
 last_modified: 2017-11-14 22:26:14 +0000
