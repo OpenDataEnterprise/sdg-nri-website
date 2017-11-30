@@ -33,5 +33,7 @@ type: Report
 description: ''
 featured_image: ''
 regions: []
-tags: []
+tags:
+- big data
+- internet of things
 ---
