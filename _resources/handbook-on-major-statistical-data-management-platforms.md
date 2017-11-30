@@ -16,6 +16,9 @@ link: http://nsdsguidelines.paris21.org/sites/default/files/EDITED_Handbook_SDMS
 description: ''
 featured_image: ''
 regions: []
-tags: []
+tags:
+- data management
+- platforms
+- Africa
 ---
 
