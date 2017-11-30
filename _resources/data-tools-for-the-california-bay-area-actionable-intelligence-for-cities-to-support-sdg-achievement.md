@@ -17,6 +17,8 @@ link: http://unsdsn.org/resources/publications/data-tools-for-the-california-bay
 description: ''
 featured_image: ''
 regions: []
-tags: []
+tags:
+- subnational
+- cities
 ---
 
