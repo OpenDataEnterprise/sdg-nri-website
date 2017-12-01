@@ -35,44 +35,15 @@ jquery: true
   </ul>
 </script>
 
-<script type="text/x-template" id="lang-filter-template">
+<script type="text/x-template" id="filter-template">
   <div class="filter">
-    <label>Language</label>
     <div class="filter-select" v-bind:class="{ 'hide-options': !visible }" v-on:click="visible = true">
-      <label class="summary" data-role="summary">(( checkedLanguages.length > 0 ? checkedLanguages : 'None' ))</label>
+      <label class="summary" data-role="summary">(( filterType ))</label>
       <button class="clear" type="button" v-on:click="clear">Clear</button>
       <ol class="filter-list">
-        <li>
-          <input id="lang-en" type="checkbox" value="en" v-model="checkedLanguages">
-        <label for="lang-en">English</label>
-        </li>
-        <li>
-          <input id="lang-fr" type="checkbox" value="fr" v-model="checkedLanguages">
-          <label for="lang-fr">French</label>
-        </li>
-        <li>
-          <input id="lang-es" type="checkbox" value="es" v-model="checkedLanguages">
-          <label for="lang-es">Spanish</label>
-        </li>
-      </ol>
-    </div>
-  </div>
-</script>
-
-<script type="text/x-template" id="year-filter-template">
-  <div class="filter">
-    <label>Publication Year</label>
-    <div class="filter-select" v-bind:class="{ 'hide-options': !visible }" v-on:click="visible = true">
-      <label class="summary" data-role="summary">(( checkedYears.length > 0 ? checkedYears : 'None' ))</label>
-      <button class="clear" type="button">Clear</button>
-      <ol class="filter-list">
-        <li>
-          <input id="year-2011" type="checkbox" value="2011" v-model="checkedYears">
-        <label for="year-2011">2011</label>
-        </li>
-        <li>
-          <input id="year-2017" type="checkbox" value="2017" v-model="checkedYears">
-          <label for="year-2017">2017</label>
+        <li v-for="option in options">
+          <input :id="'f-' + (( option ))" type="checkbox" :value="(( option ))" v-model="filterValues">
+          <label :for="'f-' + (( option ))">(( option ))</label>
         </li>
       </ol>
     </div>
@@ -88,20 +59,22 @@ jquery: true
 
   <div class="search-tools">
     <div class="filters">
-      <div class="filter">
-        <label>Organization</label>
-        <div class="filter-select" v-bind:class="{ 'hide-options': !visible }" v-on:click="visible = true">
-          <label class="summary" data-role="summary">None</label>
-          <button class="clear" type="button">Clear</button>
-          <ol class="filter-list">
-            </li>
-          </ol>
-        </div>
-      </div>
-      <year-filter>
+
+      <org-filter
+         v-bind:filter-type="'Organization'"
+         v-bind:options=[]>
+      </org-filter>
+
+      <year-filter
+         v-bind:filter-type="'Year'"
+         v-bind:options=[2011,2017]>
       </year-filter>
-      <lang-filter>
+
+      <lang-filter
+         v-bind:filter-type="'Language'"
+         v-bind:options=['English','French','Spanish']>
       </lang-filter>
+
       <div class="filter trigger">
         <button>Update</button>
       </div>
@@ -111,7 +84,7 @@ jquery: true
   <directory-list
     :data="resources"
     :filter-key="searchQuery"
-    :lang-filters="checkedLanguages">
+    :filters="filterSelection">
   </directory-list>
 
 </div>
