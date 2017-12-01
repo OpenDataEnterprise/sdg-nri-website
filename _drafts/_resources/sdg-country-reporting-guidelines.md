@@ -7,7 +7,7 @@ url: https://unstats.un.org/sdgs/files/meetings/sdg-inter-agency-meeting-2017/8.
 regions:
 - Global
 languages:
-- EN
+- English
 type: Guidelines
 tags:
 - SDG Reporting
