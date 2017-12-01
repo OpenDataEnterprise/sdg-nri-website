@@ -7,24 +7,83 @@ search: true
 <script type="text/x-template" id="directory-list-template">
   <ul class="resource-list">
     <li class="resource-list-item" v-for="(resource, index) in filteredData">
-      <img class="featured-image">
-      <section class="description">
-        <h3 class="title">
+      <img class="resource-image">
+      <section class="resource-description">
+        <h3 class="resource-title">
             <a :title="resource.title">(( resource.title ))</a>
         </h3>
-        <p class="organization">(( resource.organization ))</p>
+        <div class="resource-organization">(( resource.organization ))</div>
+        <div class="resource-date-published">
+          <span class="resource-date-published-label">Published </span>
+          <span >(( resource.date_published.substring(0,7) ))</span>
+        </div>
+        <div class="resource-languages" v-if="(( resource.languages.length > 0 ))">
+          <span class="resource-languages-label">Language(s)</span>
+          <ul class="resource-languages-list">
+            <li class="language-tag" v-for="lang in resource.languages">(( lang ))</li>
+          </ul>
+        </div>
+        <div class="resource-tags" v-if="(( resource.tags.length > 0 ))">
+          <span class="resource-tags-label">Tags</span>
+          <ul class="resource-tags-list">
+            <li class="subject-tag" v-for="tag in resource.tags">(( tag ))</li>
+          </ul>
+        </div>
       </section>
     </li>
   </ul>
 </script>
 
+<script type="text/x-template" id="filter-template">
+  <div class="filter">
+    <div class="filter-select" v-bind:class="{ 'hide-options': !visible }" v-on:click="visible = true">
+      <label class="summary" data-role="summary">(( filterType ))</label>
+      <button class="clear" type="button" v-on:click="clear">Clear</button>
+      <ol class="filter-list">
+        <li v-for="option in options">
+          <input :id="'f-' + (( option ))" type="checkbox" :value="(( option ))" v-model="filterValues">
+          <label :for="'f-' + (( option ))">(( option ))</label>
+        </li>
+      </ol>
+    </div>
+  </div>
+</script>
+
 <div id="directory">
+
   <form class="search-bar" role="search">
     <input type="search" placeholder="Enter Search" v-model="searchQuery">
     <input type="submit" value="Search Resources">
   </form>
+
+  <div class="search-tools">
+    <div class="filters">
+
+      <org-filter
+         v-bind:filter-type="'Organization'"
+         v-bind:options=[]>
+      </org-filter>
+
+      <year-filter
+         v-bind:filter-type="'Year'"
+         v-bind:options=[2011,2017]>
+      </year-filter>
+
+      <lang-filter
+         v-bind:filter-type="'Language'"
+         v-bind:options=['English','French','Spanish']>
+      </lang-filter>
+
+      <div class="filter trigger">
+        <button>Update</button>
+      </div>
+    </div>
+  </div>
+
   <directory-list
     :data="resources"
-    :filter-key="searchQuery">
+    :filter-key="searchQuery"
+    :filters="filterSelection">
   </directory-list>
+
 </div>

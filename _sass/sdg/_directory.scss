@@ -52,6 +52,15 @@ $grid-item-placeholders:
   background-color: gainsboro;
 }
 
+.resource-image {
+  object-fit: cover;
+}
+
+.resource-description {
+  padding: 1.2em;
+  font-size: 0.8em;
+}
+
 .grid-list {
   @include grid-container;
   $action-color: #477DCA !default;
@@ -138,12 +147,6 @@ $grid-item-placeholders:
   .resource-image {
     width: 100%;
     height: $featured-image-height;
-    object-fit: cover;
-  }
-
-  .resource-description {
-    padding: 1.2em;
-    font-size: 0.8em;
   }
 }
 
@@ -202,7 +205,7 @@ $grid-item-placeholders:
       &:nth-child(#{$i}) {
         $img-from-list: nth($img-placeholders, $i);
 
-        .featured-image {
+        .resource-image {
           background-image: url("/assets/img/placeholders/#{$img-from-list}");
           background-position: center;
           background-repeat: no-repeat;
@@ -212,22 +215,12 @@ $grid-item-placeholders:
     }
   }
 
-  .featured-image {
+  .resource-image {
     width: 30%;
-    object-fit: cover;
   }
 
-  .description {
+  .resource-description {
     width: 70%;
-    padding: 1.2em;
-  }
-
-  .title {
-    font-weight: 300;
-  }
-
-  .organization {
-    font-size: 0.8em;
   }
 }
 
