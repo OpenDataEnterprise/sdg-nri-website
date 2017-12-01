@@ -5,8 +5,7 @@ date_published: 2011-10-01 00:00:00 -0500
 url: http://nsdsguidelines.paris21.org/sites/default/files/EDITED_Handbook_SDMS_final_2-edited-clean.doc
 geographical_units:
 - Africa
-languages:
-- EN
+languages: []
 type: Handbook
 created: 2017-11-14 21:29:57 +0000
 last_modified: 2017-11-14 21:29:57 +0000
