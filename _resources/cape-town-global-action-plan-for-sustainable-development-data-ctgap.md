@@ -6,7 +6,8 @@ link: https://unstats.un.org/sdgs/hlg/Cape-Town-Global-Action-Plan/
 geographical_units:
 - South Africa
 - Africa
-languages: []
+languages:
+- English
 type: Action Plan
 created: 2017-11-14 22:26:14 +0000
 last_modified: 2017-11-14 22:26:14 +0000
