@@ -5,7 +5,8 @@ date_published: 2017-09-01 00:00:00 -0500
 url: https://www.urban.org/research/publication/hacking-sustainable-development-goals/view/full_report
 geographical_units:
 - United States
-languages: []
+languages:
+- English
 type: Report
 created: 2017-11-14 15:28:49 -0600
 last_modified: 2017-11-14 15:28:49 -0600
