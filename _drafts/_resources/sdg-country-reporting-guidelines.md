@@ -7,11 +7,14 @@ url: https://unstats.un.org/sdgs/files/meetings/sdg-inter-agency-meeting-2017/8.
 regions:
 - Global
 languages:
-- English
+- EN
 type: Guidelines
 tags:
 - SDG Reporting
-description: ''
+description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras in nibh
+  et est porta auctor sed ac nunc. Fusce magna arcu, euismod quis urna elementum,
+  semper maximus elit. Nullam molestie eros efficitur semper suscipit. Curabitur eleifend
+  velit orci, sed posuere enim fermentum eget.
 featured_image: ''
 link: https://unstats.un.org/sdgs/files/meetings/sdg-inter-agency-meeting-2017/8.UNDG%20WG%20on%20SD-SDG%20Country%20Reporting%20Guidelines.pdf
 ---
