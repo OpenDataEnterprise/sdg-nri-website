@@ -57,6 +57,7 @@
       idx = result;
     });
 
+    // Shared state storage container.
     var store = {
         selectedFilters: {}
     };

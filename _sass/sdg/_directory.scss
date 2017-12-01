@@ -225,7 +225,7 @@ $grid-item-placeholders:
 }
 
 .directory-table_wrapper {
-  padding: 0 10em;
+  padding: 0 5em;
 }
 
 #directory {
@@ -235,19 +235,16 @@ $grid-item-placeholders:
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-position: center;
-  font-family: Lato;
-  font-weight: 300;
-  color: #2c3e50;
 
   table {
-    //border: 1px solid #020b4f;
     border-radius: 3px;
     border-collapse: collapse;
+    font-size: 0.8em;
+    color: #2c3e50;
   }
 
   thead {
     tr {
-      //display: block;
       position: relative;
     }
 

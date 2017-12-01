@@ -2,22 +2,16 @@
     <script src="https://unpkg.com/vue"></script>
     <script src="https://unpkg.com/vue-multiselect@2.0.6"></script>
 {% endif %}
-
+{% if page.jquery %}
+    <script src="https://unpkg.com/jquery@3.2.1/dist/jquery.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+{% endif %}
 {% if page.search %}
     <script src="https://unpkg.com/lunr/lunr.js"></script>
     <script src="/assets/js/search.js"></script>
 {% endif %}
-
-{% if page.jquery %}
-    <script src="https://unpkg.com/jquery@3.2.1/dist/jquery.js"></script>
-{% endif %}
-
-{% if page.filters %}
-    <script src="/assets/js/filter.js"></script>
-{% endif %}
-
 {% if page.table %}
-    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
     <script src="/assets/js/table.js"></script>
 {% endif %}
 

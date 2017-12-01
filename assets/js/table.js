@@ -24,11 +24,19 @@
         this.field('title');
         this.field('organization');
         this.field('date_published');
+        this.field('year');
         this.field('url');
         this.field('type');
+        this.field('languages');
+        this.field('tags');
 
         documents.forEach(function (doc, index) {
-          this.add(Object.assign({ 'id': index }, doc));
+          indexed_doc = Object.assign({ 'id': index }, doc);
+
+          // Index year explicitly out of publication date.
+          indexed_doc['year'] = doc['date_published'].substring(0,4);
+
+          this.add(indexed_doc);
         }, this);
       });
 
@@ -49,12 +57,18 @@
       idx = result;
     });
 
+    // Shared state storage container.
+    var store = {
+        selectedFilters: {}
+    };
+
     Vue.component('directory-table', {
       template: "#directory-table-template",
       props: {
         data: Array,
         columns: Array,
-        filterKey: String
+        filterKey: String,
+        filters: Array
       },
       data: function () {
         var sortOrders = {}
@@ -68,25 +82,30 @@
       },
       computed: {
         filteredData: function () {
-          var sortKey = this.sortKey
-          var filterKey = this.filterKey && this.filterKey.toLowerCase()
-          var order = this.sortOrders[sortKey] || 1
-          var data = this.data
-          if (filterKey) {
+          var data = this.data;
+          var order = this.sortOrders[sortKey] || 1;
+          var sortKey = this.sortKey;
+          var filterKey = this.filterKey && this.filterKey.toLowerCase();
+          var filters = this.filters.join(' ').toLowerCase();
+          var query = filterKey + filters;
+
+          if (query) {
             data = data.filter(function (row) {
               return Object.keys(row).some(function (key) {
-                return String(row[key]).toLowerCase().indexOf(filterKey) > -1
-              })
-            })
+                return String(row[key]).toLowerCase().indexOf(query) > -1;
+              });
+            });
           }
+
           if (sortKey) {
             data = data.slice().sort(function (a, b) {
-              a = a[sortKey]
-              b = b[sortKey]
-              return (a === b ? 0 : a > b ? 1 : -1) * order
+              a = a[sortKey];
+              b = b[sortKey];
+              return (a === b ? 0 : a > b ? 1 : -1) * order;
             })
           }
-          return data
+
+          return data;
         }
       },
       filters: {
@@ -103,6 +122,45 @@
       delimiters: ['((', '))']
     });
 
+    var Filter = {
+      template: '#filter-template',
+      props: {
+        filterType: String,
+        options: Array
+      },
+      data: function () {
+        return {
+          visible: false,
+          filterValues: [],
+          sharedState: store
+        }
+      },
+      watch: {
+        filterValues: function (v) {
+          Vue.set(this.sharedState.selectedFilters, this.filterType, v);
+        }
+      },
+      methods: {
+        documentClick: function (e) {
+          let el = this.$el;
+          let target = e.target;
+          if ((el !== target) && !el.contains(target)) {
+            this.visible = false;
+          }
+        },
+        clear: function () {
+	  this.filterValues = [];
+        }
+      },
+      created () {
+        document.addEventListener('click', this.documentClick)
+      },
+      destroyed () {
+        document.removeEventListener('click', this.documentClick)
+      },
+      delimiters: ['((', '))']
+    };
+
     var search_app = new Vue({
       el: '#directory',
       data: {
@@ -110,9 +168,33 @@
         gridColumns: [
           'title',
           'organization',
-          'description'
+          'date_published',
+          'description',
+          'languages',
+          'tags'
         ], 
-        resources: resources
+        resources: resources,
+        filterSelection: [],
+        sharedState: store
+      },
+      watch: {
+        sharedState: {
+          handler: function () {
+            let selectedFilters = [];
+            let filterSets = this.sharedState.selectedFilters;
+            for (var key in filterSets) {
+              selectedFilters = selectedFilters.concat(filterSets[key]);
+            }
+
+            this.filterSelection = selectedFilters;
+          },
+          deep: true,
+        }
+      },
+      components: {
+        'org-filter': Filter,
+        'year-filter': Filter,
+        'lang-filter': Filter
       }
     });
   });
