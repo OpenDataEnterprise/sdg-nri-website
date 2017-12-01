@@ -19,9 +19,9 @@ table: true
     </thead>
     <tbody>
       <tr v-for="entry in filteredData">
-        <td v-for="key in columns">
-          (( entry[key] ))
-        </td>
+        <td><a href="(( entry['url'] ))">(( entry['title'] ))</td>
+        <td>(( entry['organization'] ))</td>
+        <td>(( entry['description'] ))</td>
       </tr>
     </tbody>
   </table>

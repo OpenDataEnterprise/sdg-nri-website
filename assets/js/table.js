@@ -1,7 +1,3 @@
-/*$(document).ready(function(){
-  $('#directory-table').DataTable();
-});*/
-
 (function () {
   function loadJSON(filepath) {
     return new Promise(function (resolve, reject) {
@@ -114,7 +110,7 @@
         gridColumns: [
           'title',
           'organization',
-          'url'
+          'description'
         ], 
         resources: resources
       }
