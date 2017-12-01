@@ -82,7 +82,8 @@
       },
       computed: {
         filteredData: function () {
-          var data = this.data;
+          var data = [];
+          var resources = this.data;
           var order = this.sortOrders[sortKey] || 1;
           var sortKey = this.sortKey;
           var filterKey = this.filterKey && this.filterKey.toLowerCase();
@@ -90,11 +91,16 @@
           var query = filterKey + filters;
 
           if (query) {
-            data = data.filter(function (row) {
-              return Object.keys(row).some(function (key) {
-                return String(row[key]).toLowerCase().indexOf(query) > -1;
+            var results = idx.search(query);
+
+            if (results) {
+              results.forEach(function (result) {
+                var index = parseInt(result.ref);
+                data.push(resources[index]);
               });
-            });
+            }
+          } else {
+            data = resources;
           }
 
           if (sortKey) {
