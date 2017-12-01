@@ -7,7 +7,7 @@ link: http://www.undatarevolution.org/wp-content/uploads/2014/11/A-World-That-Co
 geographical_units:
 - Global
 languages:
-- EN
+- English
 type: Report
 created: 2017-11-14 18:23:34 +0000
 last_modified: 2017-11-14 18:23:34 +0000
