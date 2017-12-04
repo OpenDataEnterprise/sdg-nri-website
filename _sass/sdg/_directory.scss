@@ -40,7 +40,7 @@ $grid-item-placeholders:
 
 .resource-languages-list,
 .resource-tags-list {
-  display: inline-block;
+  display: inline;
   margin: 0;
 }
 
@@ -113,14 +113,14 @@ $grid-item-placeholders:
 
     box-sizing: border-box;
     max-width: 24em;
-    height: 32em;
+    height: 27em;
     margin-bottom: 2em;
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 0.3em;
     padding: 0;
     background-color: #fff;
     outline: none;
-    overflow: hidden;
+    overflow-y: scroll;
     text-align: left;
     text-decoration: none;
     transition: all 0.2s ease-in-out;
@@ -189,7 +189,7 @@ $grid-item-placeholders:
 
     display: flex;
     box-sizing: border-box;
-    height: $grid-item-height;
+    min-height: $grid-item-height;
     margin-bottom: 2em;
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 0.3em;
