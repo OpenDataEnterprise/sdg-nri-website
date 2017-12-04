@@ -23,5 +23,6 @@ tags:
 - data management
 - platforms
 - Africa
+subject: Official statistics for SDGs
 ---
 
