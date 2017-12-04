@@ -15,4 +15,5 @@ tags:
 - US
 featured_image: ''
 regions: []
+subject: Developing local indicators
 ---
