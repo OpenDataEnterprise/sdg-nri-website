@@ -15,6 +15,8 @@ type: Report
 subject: Official statistics for SDGs
 featured_image: ''
 regions: []
-languages: []
-tags: []
+languages:
+- English
+tags:
+- NSO
 ---
