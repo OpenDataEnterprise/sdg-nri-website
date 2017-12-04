@@ -54,3 +54,6 @@ fields:
 - type: tag_list
   label: Tags
   name: tags
+- type: text
+  name: subject
+  label: Subject
