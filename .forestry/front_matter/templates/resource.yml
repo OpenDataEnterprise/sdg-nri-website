@@ -1,5 +1,7 @@
 ---
 pages:
+- _resources/localizing-the-sustainable-development-goals-for-san-jose-the-bay-area.md
+- _resources/guidelines-for-national-sdg-indicators-reporting-mechanisms.md
 - _resources/sdg-indicators-global-database.md
 - _resources/conference-of-european-statisticians-road-map-on-statistics-for-sustainable-development-goals-first-edition.md
 - _resources/strategic-and-managerial-issues-of-official-statistics.md
@@ -11,8 +13,6 @@ pages:
 - _resources/making-data-portals-work-for-sdgs-a-view-on-deployment-design-and-technology.md
 - _resources/description-of-national-reporting-platforms.md
 - _resources/getting-to-grips-with-platforms.md
-- _resources/guidelines-for-national-sdg-indicators-reporting-mechanisms.md
-- _resources/localizing-the-sustainable-development-goals-for-san-jose-the-bay-area.md
 - _resources/cape-town-global-action-plan-for-sustainable-development-data-ctgap.md
 - _resources/development-co-operation-report-2017.md
 - _resources/a-world-that-counts-mobilising-the-data-revolution-for-sustainable-development.md
