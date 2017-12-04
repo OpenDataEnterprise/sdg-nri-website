@@ -3,7 +3,7 @@ title: 'Data for Development: A Needs Assessment for SDG Monitoring and Statisti
   Capacity Development'
 date: 2017-12-04 11:26:47 +0000
 organization: SDSN
-date_published: 2015-04-01 00:00:00 -0500
+date_published: 2015-04-01 05:00:00 +0000
 description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eleifend
   vitae mi nec sodales. Etiam id sem id augue ornare vehicula. Quisque lacinia sem
   a accumsan faucibus. Nullam feugiat mi ligula, cursus accumsan tortor pharetra sit
