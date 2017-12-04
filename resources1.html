@@ -21,7 +21,7 @@ table: true
       <tr v-for="resource in filteredData">
         <td><a :href="(( resource.url ))">(( resource.title ))</a></td>
         <td>(( resource.organization ))</td>
-        <td>(( resource.date_published.substring(0,7) ))</td>
+        <td>(( resource.date_published ? resource.date_published.substring(0,7) : 'N/A' ))</td>
         <td>(( resource.description ))</td>
         <td>
           <ul class="resource-languages-list">
