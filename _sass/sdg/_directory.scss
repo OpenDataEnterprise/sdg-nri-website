@@ -221,7 +221,7 @@ $grid-item-placeholders:
   .resource-list-item,
   .resource-list-group-head {
     box-sizing: border-box;
-    min-height: $grid-item-height;
+    height: $grid-item-height;
     padding: 0;
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 0.3em;
@@ -264,6 +264,7 @@ $grid-item-placeholders:
 
   .resource-info {
     width: 70%;
+    overflow-y: scroll;
   }
 
   .resource-description {
