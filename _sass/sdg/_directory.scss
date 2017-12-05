@@ -83,8 +83,8 @@ $grid-item-placeholders:
 }
 
 .resource-description {
-  padding: 1.2em;
-  font-size: 1.2em;
+  margin-bottom: 1em;
+  //padding: 1.2em;
 }
 
 .grid-list {
@@ -101,8 +101,8 @@ $grid-item-placeholders:
   $base-background-color: white !default;
   $grid-items-background: $base-background-color;
   $grid-item-background: desaturate($action-color, 30%);
-  $grid-item-height: $spacing-unit * 14;
-  $featured-image-height: $spacing-unit * 6;
+  $grid-item-height: $spacing-unit * 15;
+  $image-height: $spacing-unit * 6;
 
   margin: 0;
 
@@ -139,17 +139,17 @@ $grid-item-placeholders:
 
     box-sizing: border-box;
     max-width: 24em;
-    height: 27em;
+    height: $grid-item-height;
     margin-bottom: 2em;
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 0.3em;
     padding: 0;
     background-color: #fff;
     outline: none;
-    overflow-y: scroll;
     text-align: left;
     text-decoration: none;
     transition: all 0.2s ease-in-out;
+    overflow: hidden;
 
     &:focus,
     &:hover {
@@ -172,7 +172,13 @@ $grid-item-placeholders:
 
   .resource-image {
     width: 100%;
-    height: $featured-image-height;
+    height: $image-height;
+  }
+  
+  .resource-info {
+    box-sizing: border-box;
+    height: $grid-item-height - $image-height;
+    overflow-y: scroll;
   }
 }
 
@@ -212,19 +218,14 @@ $grid-item-placeholders:
     "19.jpg",
     "20.jpg";
 
-  padding: 0 10em;
-
   .resource-list-item,
   .resource-list-group-head {
-    @include grid-column(12);
-
     box-sizing: border-box;
     min-height: $grid-item-height;
     padding: 0;
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 0.3em;
     background-color: #fff;
-    outline: none;
     overflow: hidden;
     text-align: center;
     text-decoration: none;
@@ -267,7 +268,7 @@ $grid-item-placeholders:
 }
 
 .resource-list {
-  margin: 0;
+  margin: 0 10em;
 }
 
 .resource-list-group {
