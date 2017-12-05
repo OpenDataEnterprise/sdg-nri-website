@@ -1,0 +1,32 @@
+---
+layout: default
+vue: true
+guide: true
+---
+<div id="directory">
+
+  {% assign groups = site.resources | group_by: "subject" %}
+  {% for group in groups %}
+  {% if group.name != "" %}
+  <ul class="resource-list-group">
+    <li class="resource-list-group-head">
+      <h1 style="display: block;">{{ group.name }}</h1>
+      <input class="resource-list-toggle" type="button" value="Learn More">
+    </li>
+    {% for resource in group.items %}
+    <li class="resource-list-item hide-resource">
+      <img class="resource-image">
+      <section class="resource-info">
+        <h3 class="resource-title">
+            <a :title="resource.title">{{ resource.title }}</a>
+        </h3>
+        <div class="resource-organization">{{ resource.organization }}</div>
+        <div class="resource-description">{{ resource.description }}</div>
+      </section>
+    </li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+  {% endfor %}
+
+</div>

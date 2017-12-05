@@ -20,6 +20,27 @@ $grid-item-placeholders:
   "19.jpg",
   "20.jpg";
 
+.hide-resource {
+  display: none !important;
+}
+
+.resource-list-toggle {
+  display: block;
+  margin: 0 auto;
+  border-radius: 0;
+  border-color: #34a8fc;
+  padding: 1em 2.5em;
+  background-color: #34a8fc;
+  text-align: center;
+  color: #020b4f;
+  font-family: Oswald;
+  font-weight: 700;
+  font-size: 0.75em;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
 .resource-date-published {
   margin-bottom: 1em;
 }
@@ -56,9 +77,14 @@ $grid-item-placeholders:
   object-fit: cover;
 }
 
-.resource-description {
+.resource-info {
   padding: 1.2em;
   font-size: 0.8em;
+}
+
+.resource-description {
+  padding: 1.2em;
+  font-size: 1.2em;
 }
 
 .grid-list {
@@ -150,7 +176,12 @@ $grid-item-placeholders:
   }
 }
 
-.resource-list {
+.resource-list-group {
+
+}
+
+.resource-list,
+.resource-list-group {
   @include grid-container;
   $action-color: #477DCA !default;
   $base-background-color: white !default;
@@ -181,19 +212,17 @@ $grid-item-placeholders:
     "19.jpg",
     "20.jpg";
 
-  margin: 0;
   padding: 0 10em;
 
-  .resource-list-item {
+  .resource-list-item,
+  .resource-list-group-head {
     @include grid-column(12);
 
-    display: flex;
     box-sizing: border-box;
     min-height: $grid-item-height;
-    margin-bottom: 2em;
+    padding: 0;
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 0.3em;
-    padding: 0;
     background-color: #fff;
     outline: none;
     overflow: hidden;
@@ -215,12 +244,37 @@ $grid-item-placeholders:
     }
   }
 
+  .resource-list-item {
+    display: flex;
+    margin-bottom: 2em;
+  }
+
+  .resource-list-group-head {
+    display: block;
+    margin-bottom: 0.3em;
+    border-radius: 0.3em;
+    padding: 3em;
+    background-color: darken(#fff, 10%);
+  }
+
   .resource-image {
     width: 30%;
   }
 
-  .resource-description {
+  .resource-info {
     width: 70%;
+  }
+}
+
+.resource-list {
+  margin: 0;
+}
+
+.resource-list-group {
+  margin-bottom: 2em;
+
+  .resource-list-item {
+    margin-bottom: 0.3em;
   }
 }
 

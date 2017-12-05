@@ -52,14 +52,24 @@
   var documentsRequest = loadJSON(filepath);
 
   documentsRequest.then(function (documents) {
+    // Build resource index.
     resources = documents;
-    buildIndex(documents).then(function (result) {
+    buildIndex(resources).then(function (result) {
       idx = result;
     });
 
+    // Build list of subjects.
+    var subjects = [];
+    for (var i = 0; i < resources.length; i++) {
+      let subject = resources[i]['subject'];
+      if (subject) {
+        subjects[subject] = '';
+      }
+    }
+
     // Shared state storage container.
     var store = {
-        selectedFilters: {}
+        selectedFilters: {},
     };
 
     Vue.component('directory-list', {
