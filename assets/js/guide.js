@@ -17,7 +17,14 @@
   }
 
   function toggleResources (event) {
-    console.log('Toggle triggered');
+    // Toggle button text.
+    event.target.classList.toggle('active');
+    if (event.target.classList.contains('active')) {
+        event.target.setAttribute('value', 'Hide Resources');
+    } else {
+        event.target.setAttribute('value', 'Learn More');
+    }
+
     // Get list node at the top of this group.
     var groupEl = event.target.parentNode.parentNode;
 
