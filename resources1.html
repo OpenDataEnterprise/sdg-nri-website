@@ -39,7 +39,7 @@ table: true
 </script>
 
 <script type="text/x-template" id="filter-template">
-  <div class="filter">
+  <li class="filter">
     <div class="filter-select" v-bind:class="{ 'hide-options': !visible }" v-on:click="visible = true">
       <label class="summary" data-role="summary">(( filterType ))</label>
       <button class="clear" type="button" v-on:click="clear">Clear</button>
@@ -50,18 +50,19 @@ table: true
         </li>
       </ol>
     </div>
-  </div>
+  </li>
 </script>
 
 <div id="directory">
 
-  <form class="search-bar" role="search">
-    <input type="search" placeholder="Enter Search" v-model="searchQuery">
-    <input type="submit" value="Search Resources">
-  </form>
-
   <div class="search-tools">
-    <div class="filters">
+
+    <form class="search-bar" role="search">
+      <input type="search" placeholder="Enter Search" v-model="searchQuery">
+      <input type="submit" value="Search Resources">
+    </form>
+
+    <ul class="filters">
 
       <org-filter
          v-bind:filter-type="'Organization'"
@@ -78,10 +79,10 @@ table: true
          v-bind:options=['English','French','Spanish']>
       </lang-filter>
 
-      <div class="filter trigger">
+      <li class="filter trigger">
         <button>Update</button>
-      </div>
-    </div>
+      </li>
+    </ul>
   </div>
 
   <div class="directory-table_wrapper">

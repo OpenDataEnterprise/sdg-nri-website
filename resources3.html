@@ -52,12 +52,13 @@ search: true
 
 <div id="directory">
 
-  <form class="search-bar" role="search">
-    <input type="search" placeholder="Enter Search" v-model="searchQuery">
-    <input type="submit" value="Search Resources">
-  </form>
-
   <div class="search-tools">
+
+    <form class="search-bar" role="search">
+      <input type="search" placeholder="Enter Search" v-model="searchQuery">
+      <input type="submit" value="Search Resources">
+    </form>
+
     <div class="filters">
 
       <org-filter
