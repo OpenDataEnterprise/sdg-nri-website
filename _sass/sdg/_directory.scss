@@ -217,7 +217,7 @@ $grid-item-placeholders:
   .resource-list-item,
   .resource-list-group-head {
     box-sizing: border-box;
-    height: $grid-item-height;
+    min-height: $grid-item-height;
     padding: 0;
     box-shadow: 0 18px 47px -5px rgba(0,0,0,0.27);
     background-color: #fff;
@@ -276,15 +276,71 @@ $grid-item-placeholders:
 }
 
 .resource-list-group {
-  margin-bottom: 2em;
+  margin: 0 5em 2em;
 
   .resource-list-item {
     margin-bottom: 0.3em;
   }
 }
 
+.directory-heading {
+  display: block;
+  padding: 0.5em 0;
+  background-color: rgba(255,255,255,0.5);
+  font-size: 3em;
+  text-align: center;
+}
+
+.directory-listing {
+  width: 20%;
+  margin: 0 0 0 5em;
+
+  ul {
+    margin: 0;
+    list-style: none;
+
+    li {
+      margin-bottom: 2em;
+      font-size: 1.2em;
+    }
+  }
+}
+
+.directory-group {
+  display: flex;
+  clear: both;
+}
+
+.resource-groups-container {
+  width: 80%;
+}
+
 .directory-table_wrapper {
   padding: 0 5em;
+}
+
+.help-nav {
+  margin: 0 10rem 4rem;
+  font-size: 2em;
+  text-align: center;
+
+  div {
+    margin-bottom: 2rem;
+  }
+
+  ul {
+    display: flex;
+
+    li {
+      width: 33.33%;
+
+      a {
+        display: inline-block;
+        padding: 0.5em 1.5em;
+        background-color: rgba(255,255,255,0.5);
+      }
+    }
+  }
 }
 
 #directory {
