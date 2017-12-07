@@ -4,8 +4,9 @@
 .site-header {
   float: left;
   width: 100%;
-  background-color: rgba(160, 160, 160, 0.5);
   min-height: $base-line-height * $base-font-size * 2.25;
+  margin-bottom: 2em;
+  background-color: rgba(160, 160, 160, 0.5);
 
   // Positioning context for the mobile navigation icon
   position: relative;
