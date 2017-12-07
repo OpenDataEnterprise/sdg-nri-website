@@ -1,4 +1,6 @@
 ---
+pages:
+- _news/center-for-open-data-enterprise.md
 hide_body: false
 fields:
 - type: text
