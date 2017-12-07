@@ -1,0 +1,27 @@
+---
+hide_body: false
+fields:
+- type: text
+  name: title
+  label: Title
+  config:
+    required: true
+- type: datetime
+  name: date
+  label: Date
+  description: The date on which the event is scheduled to occur.
+  config:
+    date_format: YYYY-MM-DD
+    required: true
+- type: text
+  name: link
+  label: Link
+- type: tag_list
+  name: locations
+  label: Locations
+- type: boolean
+  label: CODE Participation
+  name: code_participation
+- type: tag_list
+  name: tags
+  label: Tags
