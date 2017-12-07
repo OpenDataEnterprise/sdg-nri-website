@@ -1,3 +1,29 @@
 ---
 hide_body: false
-fields: []
+fields:
+- type: text
+  name: title
+  label: Title
+  config:
+    required: true
+- type: text
+  name: author
+  label: Author
+  config:
+    required: true
+- type: datetime
+  name: date
+  label: Date
+  config:
+    date_format: YYYY-MM-DD
+- type: text
+  name: link
+  label: Link
+- type: textarea
+  name: description
+  label: Description
+  config:
+    wysiwyg: false
+- type: tag_list
+  name: tags
+  label: Tags
