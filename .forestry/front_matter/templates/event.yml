@@ -9,9 +9,9 @@ fields:
   config:
     required: true
 - type: datetime
-  name: date
-  label: Date
-  description: The date on which the event is scheduled to occur.
+  name: start_date
+  label: Start Date
+  description: The date on which the event is scheduled to begin.
   config:
     date_format: YYYY-MM-DD
     required: true
@@ -27,3 +27,10 @@ fields:
 - type: tag_list
   name: tags
   label: Tags
+- type: datetime
+  name: end_date
+  label: End Date
+  description: The date on which the event is scheduled to end.
+  config:
+    date_format: YYYY-MM-DD
+    required: true
