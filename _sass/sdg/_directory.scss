@@ -260,6 +260,7 @@ $grid-item-placeholders:
 
 .directory-heading {
   display: block;
+  margin-bottom: 3rem;
   padding: 0.5em 0;
   background-color: rgba(255,255,255,0.5);
   font-size: 3em;
@@ -320,7 +321,6 @@ $grid-item-placeholders:
 }
 
 #directory {
-  padding: 0 5em;
   background-image: url('/assets/img/happy_children.jpg');
   background-size: cover;
   background-attachment: fixed;
