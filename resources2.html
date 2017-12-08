@@ -14,10 +14,7 @@ jquery: true
             <a :href="(( resource.url ))">(( resource.title ))</a>
         </h3>
         <div class="resource-organization">(( resource.organization ))</div>
-        <div class="resource-date-published">
-          <span class="resource-date-published-label">Published </span>
-          <span >(( resource.date_published.substring(0,7) ))</span>
-        </div>
+        <div class="resource-date-published" v-if="(( resource.date_published ))">Published (( resource.date_published ))</div>
         <div class="resource-description">(( resource.description ))</div>
         <div class="resource-languages" v-if="(( resource.languages.length > 0 ))">
           <span class="resource-languages-label">Language(s)</span>

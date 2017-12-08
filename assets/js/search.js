@@ -44,6 +44,12 @@
     });
   }
 
+  function getPublicationMonth (dateObject) {
+    var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    var datestring = months[dateObject.getMonth()] + ' ' + dateObject.getFullYear();
+    return datestring;
+  }
+
   var idx;
   var resources;
 
@@ -61,9 +67,19 @@
     // Build list of subjects.
     var subjects = [];
     for (var i = 0; i < resources.length; i++) {
-      let subject = resources[i]['subject'];
+      var subject = resources[i]['subject'];
+
       if (subject) {
         subjects[subject] = '';
+      }
+
+      // Piggybacking on this loop, format publication dates.
+      if (resources[i]['date_published']) {
+        var date = new Date(resources[i]['date_published']);
+        console.log(date);
+        if (date != 'Invalid Date') {
+          resources[i]['date_published'] = getPublicationMonth(date);
+        }
       }
     }
 

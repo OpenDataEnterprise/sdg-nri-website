@@ -1,4 +1,4 @@
-$grid-item-placeholders:
+$img-placeholders:
   "01.jpg",
   "02.jpg",
   "03.jpg",
@@ -18,6 +18,10 @@ $grid-item-placeholders:
   "17.jpg",
   "18.jpg",
   "19.jpg",
+  "20.jpg",
+  "21.jpg",
+  "22.jpg",
+  "23.jpg",
   "20.jpg";
 
 .hide-resource {
@@ -41,8 +45,21 @@ $grid-item-placeholders:
   cursor: pointer;
 }
 
-.resource-date-published {
+.resource-image {
+  object-fit: cover;
+}
+
+.resource-info {
+  padding: 1.2em;
+  font-size: 0.8em;
+}
+
+.resource-title {
   margin-bottom: 1em;
+}
+
+.resource-description {
+  margin: 1em 0;
 }
 
 .resource-languages-label,
@@ -71,19 +88,6 @@ $grid-item-placeholders:
   margin: 0.1em;
   padding: 0.3em 0.4em;
   background-color: gainsboro;
-}
-
-.resource-image {
-  object-fit: cover;
-}
-
-.resource-info {
-  padding: 1.2em;
-  font-size: 0.8em;
-}
-
-.resource-description {
-  margin-bottom: 1em;
 }
 
 .grid-list {
@@ -123,9 +127,9 @@ $grid-item-placeholders:
       background-color: darken(#fff, 3%);
     }
 
-    @for $i from 1 through length($grid-item-placeholders) { 
+    @for $i from 1 through length($img-placeholders) { 
       &:nth-child(#{$i}) {
-        $img-from-list: nth($grid-item-placeholders, $i);
+        $img-from-list: nth($img-placeholders, $i);
 
         .resource-image {
           background-image: url("/assets/img/placeholders/#{$img-from-list}");
@@ -158,28 +162,6 @@ $grid-item-placeholders:
   $grid-item-background: desaturate($action-color, 30%);
   $grid-item-height: $spacing-unit * 7;
   $featured-image-height: $spacing-unit * 6;
-
-  $img-placeholders:
-    "01.jpg",
-    "02.jpg",
-    "03.jpg",
-    "04.jpg",
-    "05.jpg",
-    "06.jpg",
-    "07.jpg",
-    "08.jpg",
-    "09.jpg",
-    "10.jpg",
-    "11.jpg",
-    "12.jpg",
-    "13.jpg",
-    "14.jpg",
-    "15.jpg",
-    "16.jpg",
-    "17.jpg",
-    "18.jpg",
-    "19.jpg",
-    "20.jpg";
 
   @media screen and (min-width: $small-screen) {
     margin: 0 2em;
@@ -252,10 +234,10 @@ $grid-item-placeholders:
 
 .resource-list-group {
   margin: 0 5em 2em;
+}
 
-  .resource-list-item {
-    margin-bottom: 0.3em;
-  }
+.resource-list-item {
+  margin-bottom: 0.3em;
 }
 
 .directory-heading {
@@ -321,7 +303,7 @@ $grid-item-placeholders:
 }
 
 #directory {
-  padding-top: 8.375em;
+  padding: 8.375em 0 2em;
   background-image: url('/assets/img/happy_children.jpg');
   background-size: cover;
   background-attachment: fixed;
