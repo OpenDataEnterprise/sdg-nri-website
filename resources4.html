@@ -17,6 +17,10 @@ guide: true
     </ul>
   </nav>
 
+  <aside class="contribute-resource-call-out">
+      Do you have a resource you would like to contribute? Please visit our <a href="/submit-form">submission form</a>.
+  </aside>
+
   <section id="policy-section">
 
     <h1 class="directory-heading">For Policy Makers</h1>
@@ -41,7 +45,7 @@ guide: true
         <ul class="resource-list-group">
           <li id="{{ group.name | downcase | replace: ' ', '-' }}" class="resource-list-group-head">
             <h1>{{ group.name }}</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <p class="resource-list-group-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
             <input class="resource-list-toggle" type="button" value="Learn More">
           </li>
           {% for resource in group.items %}
@@ -88,7 +92,7 @@ guide: true
         <ul class="resource-list-group">
           <li id="{{ group.name | downcase | replace: ' ', '-' }}" class="resource-list-group-head">
             <h1>{{ group.name }}</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <p class="resource-list-group-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
             <input class="resource-list-toggle" type="button" value="Learn More">
           </li>
           {% for resource in group.items %}
@@ -136,7 +140,7 @@ guide: true
         <ul class="resource-list-group">
           <li id="{{ group.name | downcase | replace: ' ', '-' }}" class="resource-list-group-head">
             <h1>{{ group.name }}</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <p class="resource-list-group-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
             <input class="resource-list-toggle" type="button" value="Learn More">
           </li>
           {% for resource in group.items %}

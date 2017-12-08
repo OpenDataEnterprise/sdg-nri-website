@@ -24,6 +24,24 @@ $img-placeholders:
   "23.jpg",
   "20.jpg";
 
+aside.contribute-resource-call-out {
+  @include med-small-screen {
+    width: 30em;
+  }
+
+  @include med-screen {
+    width: 50em;
+  }
+
+  box-sizing: border-box;
+  width: 20em;
+  margin: 0 auto 2em;
+  border: 1px solid red;
+  padding: 1em;
+  background-color: rgba(255,255,255,0.7);
+  text-align: center;
+}
+
 .hide-resource {
   display: none !important;
 }
@@ -39,7 +57,7 @@ $img-placeholders:
   color: #020b4f;
   font-family: Oswald;
   font-weight: 700;
-  font-size: 0.75em;
+  font-size: 0.8em;
   letter-spacing: .05em;
   text-transform: uppercase;
   cursor: pointer;
@@ -91,22 +109,21 @@ $img-placeholders:
 }
 
 .grid-list {
-  @include grid-container;
   $grid-item-height: $spacing-unit * 15;
   $image-height: $spacing-unit * 6;
+
+  @include grid-container;
 
   margin: 0 auto;
 
   .grid-item {
-    @media screen and (min-width: $small-screen) {
-      @include grid-column(12);
-    }
+    @include grid-column(12);
 
-    @media screen and (min-width: $med-large-screen) {
+    @include med-screen {
       @include grid-column(6);
     }
 
-    @media screen and (min-width: $large-screen) {
+    @include large-screen {
       @include grid-column(4);
     }
 
@@ -155,7 +172,6 @@ $img-placeholders:
 
 .resource-list,
 .resource-list-group {
-  @include grid-container;
   $action-color: #477DCA !default;
   $base-background-color: white !default;
   $grid-items-background: $base-background-color;
@@ -163,17 +179,17 @@ $img-placeholders:
   $grid-item-height: $spacing-unit * 7;
   $featured-image-height: $spacing-unit * 6;
 
-  @media screen and (min-width: $small-screen) {
-    margin: 0 2em;
-  }
+  @include grid-container;
 
-  @media screen and (min-width: $med-screen) {
+  @include med-screen {
     margin: 0 5em;
   }
 
-  @media screen and (min-width: $large-screen) {
+  @include large-screen {
     margin: 0 10em;
   }
+
+  margin: 0 2em;
 
   .resource-list-item,
   .resource-list-group-head {
@@ -236,6 +252,10 @@ $img-placeholders:
   margin: 0 5em 2em;
 }
 
+.resource-list-group-description {
+  padding: 1em 0 1.5em;
+}
+
 .resource-list-item {
   margin-bottom: 0.3em;
 }
@@ -288,15 +308,22 @@ $img-placeholders:
 
   ul {
     display: flex;
+    justify-content: center;
 
     li {
-      width: 33.33%;
+      margin: 0 1em;
 
       a {
-        display: inline-block;
-        padding: 0.5em 1.5em;
-        background-color: rgba(255,255,255,0.5);
+        display: block;
+        width: 7em;
+        padding: 1em;
+        background-color: rgba(230, 230, 230, 0.7);
+        font-size: 0.8em;
         text-decoration: none;
+
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.7);     
+        }
       }
     }
   }

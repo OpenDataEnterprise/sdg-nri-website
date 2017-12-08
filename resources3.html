@@ -6,11 +6,11 @@ search: true
 
 <script type="text/x-template" id="directory-list-template">
   <ul class="resource-list">
-    <li class="resource-list-item" v-for="(resource, index) in filteredData">
+    <li class="resource-list-item" v-for="(resource, index) in filteredData" tabindex="0">
       <img class="resource-image">
       <section class="resource-info">
         <h3 class="resource-title">
-            <a :title="resource.title">(( resource.title ))</a>
+            <a href="(( resource.url ))">(( resource.title ))</a>
         </h3>
         <div class="resource-organization">(( resource.organization ))</div>
         <div class="resource-date-published" v-if="(( resource.date_published ))">Published (( resource.date_published ))</div>
@@ -76,8 +76,12 @@ search: true
       <div class="filter trigger">
         <button>Update</button>
       </div>
+
     </div>
+
   </div>
+
+  <aside class="contribute-resource-call-out">Do you have a resource you would like to contribute? Please visit our <a href="/submit-form">submission form</a>.</aside>
 
   <directory-list
     :data="resources"

@@ -4,8 +4,15 @@ layout: default
 
 <div class="news-wrapper">
 
-  <ul class="categories">
+  <div class="twitter-timeline-container">
+    <div class="category-title">
+      <h2>Twitter</h2>
+    </div>
+    <a class="twitter-timeline" data-dnt="true" href="https://twitter.com/hashtag/SDGs" data-chrome="nofooter transparent noheader" data-widget-id="938913200308965376">#SDGs Tweets</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+  </div>
 
+  <ul class="categories-2">
     <li class="category">
       <input type="checkbox" name="tabs" checked="checked" id="tab1" class="bottom">
       <label for="tab1" class="category-title"><h2>News</h2></label>
@@ -24,9 +31,8 @@ layout: default
         </ul>
       </div>
     </li>
-
     <li class="category">
-      <input type="checkbox" name="tabs" id="tab2" class="bottom">
+      <input type="checkbox" name="tabs" checked="checked" id="tab2" class="bottom">
       <label for="tab2" class="category-title"><h2>Events</h2></label>
       <div id="tab-content2" class="content">
         <ul>
@@ -47,17 +53,6 @@ layout: default
           </li>
           {% endfor %}
         </ul>
-      </div>
-    </li>
-
-    <li class="category">
-      <input type="checkbox" name="tabs" id="tab4" class="bottom">
-      <label for="tab4" class="category-title"><h2>Twitter</h2></label>
-      <div id="tab-content4" class="content">
-        <div class="twitter-timeline-container">
-          <a class="twitter-timeline" data-dnt="true" href="https://twitter.com/hashtag/SDGs" data-widget-id="938913200308965376">#SDGs Tweets</a>
-          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-        </div>
       </div>
     </li>
   </ul>

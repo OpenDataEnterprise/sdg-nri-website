@@ -27,7 +27,19 @@ $on-laptop:        800px !default;
 $table_body_height: 300px;
 $table_width: 500px;
 
-$small-screen: 0px;
-$med-screen: 900px;
-$med-large-screen: 1000px;
-$large-screen: 1200px;
+@mixin small-screen {
+  @media (max-width: 599px) { @content; }
+}
+
+@mixin med-small-screen {
+  @media (min-width: 600px) { @content; }
+}
+@mixin med-screen {
+  @media (min-width: 900px) { @content; }
+}
+@mixin large-screen {
+  @media (min-width: 1200px) { @content; }
+}
+@mixin xlarge-screen {
+  @media (min-width: 1800px) { @content; }
+}

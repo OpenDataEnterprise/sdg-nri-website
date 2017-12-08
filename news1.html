@@ -9,12 +9,14 @@ layout: default
       <ul>
         {% for news in site.news %}
         <li class="news">
-          <a href="{{ news.link }}">
-            <h3 class="news-header">{{ news.title }}</h3>
-          </a>
-          <p class="news-author">{{ news.author }}</p>
-          <p class="news-date">{{ news.date | date_to_long_string }}</p>
-          <p class="news-description">{{ news.description }}</p>
+          <article tabindex="0">
+            <a href="{{ news.link }}">
+              <h3 class="news-header">{{ news.title }}</h3>
+            </a>
+            <p class="news-author">{{ news.author }}</p>
+            <p class="news-date">{{ news.date | date_to_long_string }}</p>
+            <p class="news-description">{{ news.description }}</p>
+          </article>
         </li>
         {% endfor %}
       </ul>
@@ -40,10 +42,6 @@ layout: default
         </li>
         {% endfor %}
       </ul>
-    </div>
-    <input type="radio" name="tabs" id="tab3" class="tab-input">
-    <label for="tab3" class="tab-label"><h2>Site Updates</h2></label>
-    <div id="tab-content3" class="tab-content">
     </div>
     <input type="radio" name="tabs" id="tab4" class="tab-input">
     <label for="tab4" class="tab-label"><h2>Twitter</h2></label>

@@ -1,5 +1,4 @@
-.news-wrapper,
-.categories {
+.news-wrapper {
   padding: 8.375em 10em 2em;
   background-image: url('/assets/img/happy_children.jpg');
   background-size: cover;
@@ -10,9 +9,22 @@
 
 .tabs {
   display: flex;
-  flex-wrap: wrap;
   background: #efefef;
+  flex-wrap: wrap;
   box-shadow: 0 48px 80px -32px rgba(0,0,0,0.3);
+}
+
+.categories,
+.categories-2 {
+  display: inline-block;
+}
+
+.categories {
+  width: 100%;
+}
+
+.categories-2 {
+  width: 50%;
 }
 
 .category {
@@ -22,32 +34,18 @@
     opacity: 0;
   }
 
-  label {
-    position: relative;
-    box-sizing: border-box;
-    display: inline-block;
-    margin: 0;
-    padding: 2em;
-    background-color: rgba(160, 160, 160, 0.5);
-    font: inherit;
-    text-transform: uppercase;
-    color: #fff;
-    cursor: pointer;
-  }
-
   .content {
     display: none;
     box-sizing: border-box;
   }
 
-  input:focus ~ label,
-  input:hover ~ label {
+  input:focus + label,
+  input:hover + label {
    background-color: lighten(rgba(160, 160, 160, 0.5), 10%);
   }
 
-  [id^="tab"]:checked label {
-    background: #303030;
-    color: #F5F5F5;
+  [id^="tab"]:checked ~ label {
+    background-color: #34A8FC;
   }
 
   [id^="tab"]:checked ~ [id^="tab-content"] {
@@ -55,14 +53,22 @@
   }
 }
 
-.category {
-  label {
-    width: 100%;
-  }
-}
-
 .category:not(:last-child) {
   margin-bottom: 1em;
+}
+
+.category-title {
+  position: relative;
+  box-sizing: border-box;
+  display: inline-block;
+  width: 100%;
+  margin: 0;
+  padding: 2em;
+  background-color: rgba(160, 160, 160, 0.5);
+  font: inherit;
+  text-transform: uppercase;
+  color: #fff;
+  cursor: pointer;
 }
 
 .tab-input {
@@ -70,13 +76,13 @@
   opacity: 0;
 }
 
-.tab-input:focus ~ label,
-.tab-input:hover ~ label {
+.tab-input:focus + label,
+.tab-input:hover + label {
   background-color: lighten(rgba(160, 160, 160, 0.5), 10%);
 }
 
 .tab-input:checked + .tab-label {
-  background: #303030;
+  background-color: #34A8FC;
 }
 
 .tab-input:checked + .tab-label + .tab-content {
@@ -96,8 +102,8 @@
   cursor: pointer;
   transition: background 0.1s, color 0.1s;
 
-  @media screen and (min-width: $med-screen) {
-    width: 25%;
+  @include med-screen {
+    width: 33.33%;
   }
 }
 
@@ -107,7 +113,7 @@
   width: 100%;
 }
 
-@media screen and (min-width: $med-screen) {
+@include med-screen {
   .tab-content {
     order: 99;
   }
@@ -145,8 +151,15 @@
 }
 
 .twitter-timeline-container {
-  padding: 2em;
-  background-color: rgba(212, 212, 212, 0.6);
+  display: inline-block;
+  width: 45%;
+  margin-right: 4%;
+  background-color: rgba(255, 255, 255, 0.6);
+  vertical-align: top;
+
+  .category-title {
+    background-color: #34A8FC;
+  }
 }
 
 .twitter-timeline {
