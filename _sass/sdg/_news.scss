@@ -8,8 +8,7 @@
 }
 
 .tab {
-  display: block;
-  margin: 0.5em 0;
+  margin-bottom: 1em;
 
   input {
     position: absolute;
@@ -52,23 +51,31 @@
   }
 }
 
-.news-header,
-.event-header {
-  margin-bottom: 1em;
-}
-
 .news,
 .event {
   box-sizing: border-box;
   margin-bottom: 1px;
   padding: 2em;
-  background-color: rgba(212, 212, 212, 0.6);
+  background-color: rgba(212, 212, 212, 0.5);
 }
 
 .news:last-child,
 .event:last-child {
   margin: 0;
   border: none;
+}
+
+.news-header,
+.event-header {
+  margin-bottom: 1rem;
+}
+
+.news-date {
+  margin-bottom: 1rem;
+}
+
+.event-end {
+  margin-bottom: 1rem;
 }
 
 .event-locations {
@@ -79,4 +86,14 @@
   display: inline;
   padding: 0.2em 0.4em;
   background-color: rgba(212, 212, 212, 0.6);
+}
+
+.twitter-timeline-container {
+  padding: 2em;
+  background-color: rgba(212, 212, 212, 0.6);
+}
+
+.twitter-timeline {
+  display: block !important;
+  margin: 0 auto;
 }
