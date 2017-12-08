@@ -18,7 +18,7 @@ navigation_weight: 2
             <h3 class="news-header">{{ news.title }}</h3>
           </a>
           <p class="news-author">{{ news.author }}</p>
-          <p class="news-date">{{ news.date | slice: 0,10 }}</p>
+          <p class="news-date">{{ news.date | date_to_long_string }}</p>
           <p class="news-description">{{ news.description }}</p>
         </li>
         {% endfor %}
@@ -36,8 +36,8 @@ navigation_weight: 2
           <a href="{{ event.link }}">
             <h3 class="event-header">{{ event.title }}</h3>
           </a>
-          <p class="event-start">Start: {{ event.start_date | slice: 0,10 }}</p>
-          <p class="event-end">End: {{ event.end_date | slice: 0,10 }}</p>
+          <p class="event-start">Start: {{ event.start_date | date_to_long_string }}</p>
+          <p class="event-end">End: {{ event.end_date | date_to_long_string }}</p>
           <p>{{ event.description }}</p>
           <span>Locations</span>
           <ul class="event-locations">

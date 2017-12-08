@@ -33,7 +33,6 @@
   .content {
     display: none;
     box-sizing: border-box;
-    color: #fff;
   }
 
   input:focus ~ label,
@@ -56,7 +55,7 @@
   box-sizing: border-box;
   margin-bottom: 1px;
   padding: 2em;
-  background-color: rgba(212, 212, 212, 0.5);
+  background-color: rgba(255, 255, 255, 0.6);
 }
 
 .news:last-child,
@@ -66,14 +65,8 @@
 }
 
 .news-header,
-.event-header {
-  margin-bottom: 1rem;
-}
-
-.news-date {
-  margin-bottom: 1rem;
-}
-
+.event-header,
+.news-date,
 .event-end {
   margin-bottom: 1rem;
 }
