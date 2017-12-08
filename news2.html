@@ -1,0 +1,68 @@
+---
+layout: default
+---
+
+<ul class="categories">
+  
+  <li class="category">
+    <input type="checkbox" name="tabs" checked="checked" id="tab1" class="bottom">
+    <label for="tab1"><h2>News</h2></label>
+    <div id="tab-content1" class="content">
+      <ul>
+        {% for news in site.news %}
+        <li class="news">
+          <a href="{{ news.link }}">
+            <h3 class="news-header">{{ news.title }}</h3>
+          </a>
+          <p class="news-author">{{ news.author }}</p>
+          <p class="news-date">{{ news.date | date_to_long_string }}</p>
+          <p class="news-description">{{ news.description }}</p>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </li>
+  
+  <li class="category">
+    <input type="checkbox" name="tabs" id="tab2" class="bottom">
+    <label for="tab2"><h2>Events</h2></label>
+    <div id="tab-content2" class="content">
+      <ul>
+        {% for event in site.events %}
+        <li class="event">
+          <a href="{{ event.link }}">
+            <h3 class="event-header">{{ event.title }}</h3>
+          </a>
+          <p class="event-start">Start: {{ event.start_date | date_to_long_string }}</p>
+          <p class="event-end">End: {{ event.end_date | date_to_long_string }}</p>
+          <p>{{ event.description }}</p>
+          <span>Locations</span>
+          <ul class="event-locations">
+            {% for location in event.locations %}
+            <li class="event-location">{{ location }}</li>
+            {% endfor %}
+          </ul>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </li>
+
+  <li class="category">
+    <input type="checkbox" name="tabs" id="tab3" class="bottom">
+    <label for="tab3"><h2>Site Updates</h2></label>
+    <div id="tab-content3" class="content">
+    </div>
+  </li>
+
+  <li class="category">
+    <input type="checkbox" name="tabs" id="tab4" class="bottom">
+    <label for="tab4"><h2>Twitter</h2></label>
+    <div id="tab-content4" class="content">
+      <div class="twitter-timeline-container">
+        <a class="twitter-timeline" data-dnt="true" href="https://twitter.com/hashtag/SDGs" data-widget-id="938913200308965376">#SDGs Tweets</a>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+      </div>
+    </div>
+  </li>
+</ul>

@@ -1,5 +1,6 @@
-.tabs {
-  padding: 0 10em 2em;
+.news-wrapper,
+.categories {
+  padding: 8.375em 10em 2em;
   background-image: url('/assets/img/happy_children.jpg');
   background-size: cover;
   background-attachment: fixed;
@@ -7,9 +8,14 @@
   background-position: center;
 }
 
-.tab {
-  margin-bottom: 1em;
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  background: #efefef;
+  box-shadow: 0 48px 80px -32px rgba(0,0,0,0.3);
+}
 
+.category {
   input {
     position: absolute;
     left: -9999px;
@@ -20,7 +26,6 @@
     position: relative;
     box-sizing: border-box;
     display: inline-block;
-    width: 100%;
     margin: 0;
     padding: 2em;
     background-color: rgba(160, 160, 160, 0.5);
@@ -47,6 +52,64 @@
 
   [id^="tab"]:checked ~ [id^="tab-content"] {
     display: block;
+  }
+}
+
+.category {
+  label {
+    width: 100%;
+  }
+}
+
+.category:not(:last-child) {
+  margin-bottom: 1em;
+}
+
+.tab-input {
+  position: absolute;
+  opacity: 0;
+}
+
+.tab-input:focus ~ label,
+.tab-input:hover ~ label {
+  background-color: lighten(rgba(160, 160, 160, 0.5), 10%);
+}
+
+.tab-input:checked + .tab-label {
+  background: #303030;
+}
+
+.tab-input:checked + .tab-label + .tab-content {
+  display: block;
+}
+
+.tab-label {
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0;
+  padding: 2em;
+  background-color: rgba(160, 160, 160, 0.5);
+  font: inherit;
+  text-align: center;
+  text-transform: uppercase;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.1s, color 0.1s;
+
+  @media screen and (min-width: $med-screen) {
+    width: 25%;
+  }
+}
+
+.tab-content {
+  display: none;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+@media screen and (min-width: $med-screen) {
+  .tab-content {
+    order: 99;
   }
 }
 
