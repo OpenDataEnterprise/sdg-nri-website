@@ -20,7 +20,8 @@
   width: 50%;
 }
 
-.tabs {
+.tabs,
+.tabs-2 {
   display: flex;
   background: #efefef;
   flex-wrap: wrap;
@@ -124,7 +125,15 @@
   color: #fff;
   cursor: pointer;
   transition: background 0.1s, color 0.1s;
+}
 
+.tabs .tab-label {
+  @include med-screen {
+    width: 33.33%;
+  }
+}
+
+.tabs-2 .tab-label {
   @include med-screen {
     width: 50%;
   }
