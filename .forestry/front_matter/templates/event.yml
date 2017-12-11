@@ -11,7 +11,7 @@ fields:
   config:
     required: true
 - type: datetime
-  name: start_date
+  name: date
   label: Start Date
   description: The date on which the event is scheduled to begin.
   config:
