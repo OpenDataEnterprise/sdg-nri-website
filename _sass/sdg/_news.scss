@@ -1,10 +1,18 @@
-.news-wrapper {
-  padding: 8.375em 10em 2em;
+.news-wrapper,
+.news-wrapper-2 {
   background-image: url('/assets/img/happy_children.jpg');
   background-size: cover;
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-position: center;
+}
+
+.news-wrapper {
+  padding: 8.375em 10em 2em;
+}
+
+.news-wrapper-2 {
+  padding: 8.375em 5em 2em;
 }
 
 .tabs {
@@ -48,6 +56,11 @@
     background-color: #34A8FC;
   }
 
+  [id^="tab"]:checked ~ label:focus,
+  [id^="tab"]:checked ~ label:hover {
+    background-color: lighten(#34A8FC, 10%);
+  }
+
   [id^="tab"]:checked ~ [id^="tab-content"] {
     display: block;
   }
@@ -76,9 +89,14 @@
   opacity: 0;
 }
 
-.tab-input:focus + label,
-.tab-input:hover + label {
+.tab-input:focus + .tab-label,
+.tab-input:hover + .tab-label {
   background-color: lighten(rgba(160, 160, 160, 0.5), 10%);
+}
+
+.tab-input:checked + .tab-label:focus,
+.tab-input:checked + .tab-label:hover {
+  background-color: lighten(#34A8FC, 10%);
 }
 
 .tab-input:checked + .tab-label {
@@ -153,6 +171,7 @@
 .twitter-timeline-container {
   display: inline-block;
   width: 45%;
+  min-height: 43.750em;
   margin-right: 4%;
   background-color: rgba(255, 255, 255, 0.6);
   vertical-align: top;

@@ -35,9 +35,10 @@ layout: default
             <a href="{{ event.link }}">
               <h3 class="event-header">{{ event.title }}</h3>
             </a>
-            <p class="event-start">Start: {{ event.start_date | date_to_long_string }}</p>
-            <p class="event-end">End: {{ event.end_date | date_to_long_string }}</p>
-            <p>{{ event.description }}</p>
+            <span class="event-start">{{ event.date | date_to_long_string }}</span>
+            {% if event.end_date %} - 
+            <span class="event-end">{{ event.end_date | date_to_long_string }}</span>
+            {% endif %}            <p>{{ event.description }}</p>
             <span>Locations</span>
             <ul class="event-locations">
               {% for location in event.locations %}
