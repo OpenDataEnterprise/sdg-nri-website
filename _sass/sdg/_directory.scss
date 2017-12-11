@@ -115,6 +115,7 @@ aside.contribute-resource-call-out {
   @include grid-container;
 
   margin: 0 auto;
+  min-height: 32em;
 
   .grid-item {
     @include grid-column(12);
@@ -130,6 +131,7 @@ aside.contribute-resource-call-out {
     box-sizing: border-box;
     max-width: 24em;
     height: $grid-item-height;
+    min-height: $grid-item-height;
     margin-bottom: 2em;
     padding: 0;
     box-shadow: 0 18px 47px -5px rgba(0,0,0,0.27);
@@ -331,7 +333,7 @@ aside.contribute-resource-call-out {
 
 #directory {
   padding: 8.375em 0 2em;
-  background-image: url('/assets/img/happy_children.jpg');
+  background: rgba(233, 248, 255, 1) url('/assets/img/happy_children.jpg');
   background-size: cover;
   background-attachment: fixed;
   background-repeat: no-repeat;

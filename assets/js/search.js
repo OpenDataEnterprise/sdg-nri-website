@@ -76,7 +76,6 @@
       // Piggybacking on this loop, format publication dates.
       if (resources[i]['date_published']) {
         var date = new Date(resources[i]['date_published']);
-        console.log(date);
         if (date != 'Invalid Date') {
           resources[i]['date_published'] = getPublicationMonth(date);
         }
@@ -127,7 +126,7 @@
       delimiters: ['((', '))']
     });
 
-    var Filter = {
+    Vue.component('search-filter', {
       template: '#filter-template',
       props: {
         filterType: String,
@@ -164,7 +163,7 @@
         document.removeEventListener('click', this.documentClick)
       },
       delimiters: ['((', '))']
-    };
+    });
 
     var search_app = new Vue({
       el: '#directory',
@@ -188,11 +187,13 @@
           deep: true,
         }
       },
-      components: {
+      /*components: {
         'org-filter': Filter,
         'year-filter': Filter,
         'lang-filter': Filter
-      }
+      }*/
     });
+
+
   });
 })();

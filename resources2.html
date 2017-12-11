@@ -59,22 +59,34 @@ jquery: true
 
     <div class="filters">
 
-      <org-filter
-         v-bind:filter-type="'Organization'"
-         v-bind:options=[]>
-      </org-filter>
+      <div class="filter"
+        is="search-filter"
+        v-bind:filter-type="'Organization'"
+        v-bind:options=[]>
+        <div class="filter-select">
+          <label class="summary" data-role="summary">Organization</label>
+        </div>
+      </div>
 
-      <year-filter
-         v-bind:filter-type="'Year'"
-         v-bind:options=[2011,2017]>
-      </year-filter>
+      <div class="filter"
+        is="search-filter"
+        v-bind:filter-type="'Year'"
+        v-bind:options=[2011,2017]>
+        <div class="filter-select">
+          <label class="summary" data-role="summary">Year</label>
+        </div>
+      </div>
 
-      <lang-filter
-         v-bind:filter-type="'Language'"
-         v-bind:options=['English','French','Spanish']>
-      </lang-filter>
+      <div class="filter"
+        is="search-filter"
+        v-bind:filter-type="'Language'"
+        v-bind:options=['English','French','Spanish']>
+        <div class="filter-select">
+          <label class="summary" data-role="summary">Language</label>
+        </div>
+      </div>
 
-      <div class="filter trigger">
+      <div class="filter-update">
         <button>Update</button>
       </div>
     </div>
@@ -83,10 +95,12 @@ jquery: true
 
   <aside class="contribute-resource-call-out">Do you have a resource you would like to contribute? Please visit our <a href="/submit-form">submission form</a>.</aside>
 
-  <directory-list
+  <ul class="grid-list"
+    is="directory-list"
     :data="resources"
     :filter-key="searchQuery"
     :filters="filterSelection">
-  </directory-list>
+    <li class="grid-item"></li>
+  </ul>
 
 </div>

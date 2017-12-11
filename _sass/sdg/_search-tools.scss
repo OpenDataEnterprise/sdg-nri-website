@@ -1,3 +1,17 @@
+$base-border-color: gainsboro !default;
+$base-border-radius: 3px !default;
+$base-line-height: 1.5em !default;
+$base-spacing: 1.5em !default;
+$action-color: #477DCA !default;
+
+$dark-gray: #333 !default;
+$large-screen: 53.75em !default;
+$base-font-color: $dark-gray !default;
+$clear-button-width: 4em;
+$search-tools-border-color: $base-border-color;
+$search-tools-background: lighten($search-tools-border-color, 10%);
+$gutter: 1.2em;
+
 .search-bar {
   @include med-screen {
     display: flex;
@@ -42,20 +56,6 @@
 }
 
 .search-tools {
-  $base-border-color: gainsboro !default;
-  $base-border-radius: 3px !default;
-  $base-line-height: 1.5em !default;
-  $base-spacing: 1.5em !default;
-  $action-color: #477DCA !default;
-
-  $dark-gray: #333 !default;
-  $large-screen: 53.75em !default;
-  $base-font-color: $dark-gray !default;
-  $clear-button-width: 4em;
-  $search-tools-border-color: $base-border-color;
-  $search-tools-background: lighten($search-tools-border-color, 10%);
-  $gutter: 1.2em;
-
   @include clearfix;
 
   @include med-screen {
@@ -71,89 +71,96 @@
   li {
     list-style: none;
   }
+}
 
-  .filters {
-    @include large-screen {
-      flex-direction: row;
-    }
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 100%;
-    margin: 0 0 2em;
-
+.filters {
+  @include large-screen {
+    flex-direction: row;
   }
 
-  .filter {
-    @include large-screen {
-      margin-bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  margin: 0 0 2em;
 
-      &:first-child {
-        margin: 0 0.2em 0 0;
-      }
-    
-      &:last-child {
-        margin: 0 0 0 0.2em;
-      }
+}
+
+.filter {
+  @include large-screen {
+    margin-bottom: 0;
+
+    &:first-child {
+      margin: 0 0.2em 0 0;
     }
 
-    flex-grow: 1;
-    margin: 0 0.2em;
-
-    > div {
-      box-sizing: border-box;
-      border: none;
-      border-radius: 0;
-      padding: 0.75em;
-      background-color: rgba(255, 255, 255, 0.75);
-      transition: border-color;
-
-      &:focus,
-      &:hover {
-        border-color: darken($base-border-color, 10%);
-      }
-
-      label {
-        cursor: pointer;
-        margin-bottom: 0;
-      }
-    }
-
-    .filter-list {
-      margin: 1em 0 0;
-      padding: 0;
-
-      label {
-        display: inline;
-      }
-    }
-
-    button.clear {
-      @include position(absolute, 5px 5px auto auto);
-      font-size: 0.7em;
-      max-width: $clear-button-width;
-    }
-
-    .hide-options {
-      margin-bottom: 0;
-
-      ol, button {
-        display: none;
-      }
+    &:last-child {
+      margin: 0 0 0 0.2em;
     }
   }
 
-  .trigger {
-    button {
+  position: relative;
+  flex-grow: 1;
+  margin: 0 0.2em;
+
+  > div {
+    box-sizing: border-box;
+    border: none;
+    border-radius: 0;
+    padding: 0.75em;
+    background-color: rgba(255, 255, 255, 0.75);
+    transition: border-color;
+
+    &:focus,
+    &:hover {
+      border-color: darken($base-border-color, 10%);
+    }
+
+    label {
+      cursor: pointer;
+      margin-bottom: 0;
+    }
+  }
+
+  .filter-list {
+    margin: 1em 0 0;
+    padding: 0;
+
+    label {
+      display: inline;
+    }
+  }
+
+  .clear {
+    float: right;
+    border: none;
+    padding: 0 0.6em;
+    background-color: rgba(52, 168, 252, 1);
+    font: inherit;
+    color: #fff;
+  }
+
+  .hide-options {
+    margin-bottom: 0;
+
+    ol, button {
+      display: none;
+    }
+  }
+}
+
+.filter-update {
+  flex-grow: 1;
+  margin: 0 0.2em;
+
+  button {
       width: 100%;
-      border: none;
-      border-radius: 0;
-      padding: 0.75em;
-      background-color: rgba(52, 168, 252, 1);
-      color: #fff;
-      font: inherit;
-      text-align: center;
-    }
+  border: none;
+  border-radius: 0;
+  padding: 0.75em;
+  background-color: rgba(52, 168, 252, 1);
+  color: #fff;
+  font: inherit;
+  text-align: center;
   }
 }
