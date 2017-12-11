@@ -15,6 +15,11 @@
   padding: 8.375em 5em 2em;
 }
 
+.tab-menu-wrapper {
+  display: inline-block;
+  width: 50%;
+}
+
 .tabs {
   display: flex;
   background: #efefef;
@@ -121,7 +126,7 @@
   transition: background 0.1s, color 0.1s;
 
   @include med-screen {
-    width: 33.33%;
+    width: 50%;
   }
 }
 
