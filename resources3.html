@@ -10,7 +10,7 @@ search: true
       <img class="resource-image">
       <section class="resource-info">
         <h3 class="resource-title">
-            <a href="(( resource.url ))">(( resource.title ))</a>
+            <a :href="(( resource.url ))">(( resource.title ))</a>
         </h3>
         <div class="resource-organization">(( resource.organization ))</div>
         <div class="resource-date-published" v-if="(( resource.date_published ))">Published (( resource.date_published ))</div>

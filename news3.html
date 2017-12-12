@@ -14,7 +14,7 @@ layout: default
 
   <ul class="categories-2">
     <li class="category">
-      <input type="checkbox" name="tabs" checked="checked" id="tab1" class="bottom">
+      <input type="checkbox" name="tabs" checked="checked" id="tab1" class="news-input">
       <label for="tab1" class="category-title"><h2>News</h2></label>
       <div id="tab-content1" class="content">
         <ul>
@@ -24,7 +24,7 @@ layout: default
               <h3 class="news-header">{{ news.title }}</h3>
             </a>
             <p class="news-author">{{ news.author }}</p>
-            <p class="news-date">{{ news.date | date_to_long_string }}</p>
+            <p class="news-date">Published on {{ news.date | date_to_long_string }}</p>
             <p class="news-description">{{ news.description }}</p>
           </li>
           {% endfor %}
@@ -32,7 +32,7 @@ layout: default
       </div>
     </li>
     <li class="category">
-      <input type="checkbox" name="tabs" checked="checked" id="tab2" class="bottom">
+      <input type="checkbox" name="tabs" checked="checked" id="tab2" class="news-input">
       <label for="tab2" class="category-title"><h2>Events</h2></label>
       <div id="tab-content2" class="content">
         <ul>
@@ -41,6 +41,7 @@ layout: default
             <a href="{{ event.link }}">
               <h3 class="event-header">{{ event.title }}</h3>
             </a>
+            <p class="event-date">Published on {{ event.date | date_to_long_string }}</p>
             <span class="event-start">{{ event.date | date_to_long_string }}</span>
             {% if event.end_date %} - 
             <span class="event-end">{{ event.end_date | date_to_long_string }}</span>

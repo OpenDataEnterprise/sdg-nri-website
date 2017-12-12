@@ -29,21 +29,27 @@
     return all_tokens;
   }
 
-  function buildIndex(documents) {
+  function buildNewsfeedIndex(documents) {
     return new Promise(function (resolve, reject) {
       // Build Lunr index.
       var idx = lunr(function () {
         this.ref('id');
         this.field('title');
-        this.field('organization');
-        this.field('date_published');
-        this.field('year');
-        this.field('type');
-        this.field('languages');
+        this.field('author');
+        this.field('date');
+        this.field('start_date');
+        this.field('end_date');
+        this.field('locations');
+        this.field('description');
         this.field('tags');
 
         documents.forEach(function (doc, index) {
           indexed_doc = Object.assign({ 'id': index }, doc);
+
+          if ('locations' in indexed_doc) {
+            indexed_doc['locations'] = tokenizeArray(indexed_doc['locations']);
+          }
+
           this.add(indexed_doc);
         }, this);
       });
@@ -53,50 +59,71 @@
   }
 
   function getPublicationMonth (dateObject) {
-    var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-    var datestring = months[dateObject.getMonth()] + ' ' + dateObject.getFullYear();
+    var months = [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December'
+    ];
+
+    var datestring = dateObject.getDate() + ' ' + months[dateObject.getMonth()]
+      + ' ' + dateObject.getFullYear();
+
     return datestring;
   }
 
-  var idx;
-  var resources;
+  var newsfeedIdx;
+  var newsfeed;
 
   // Load JSON data into Lunr index.
-  var filepath = '/search_data.json';
-  var documentsRequest = loadJSON(filepath);
+  var newsPath = '/news_data.json';
+  var eventsPath = '/events_data.json';
+  var newsRequest = loadJSON(newsPath);
+  var eventsRequest = loadJSON(eventsPath);
 
-  documentsRequest.then(function (documents) {
-    // Build resource index.
-    resources = documents;
-    buildIndex(resources).then(function (result) {
-      idx = result;
+  Promise.all([newsRequest, eventsRequest]).then(function (documents) {
+    newsfeed = documents[0].concat(documents[1]);
+
+    newsfeed.sort(function(a, b) {
+        a = new Date(a['date']);
+        b = new Date(b['date']);
+        return (a > b) ? -1 : ((a < b) ? 1 : 0);
     });
 
-    // Build list of subjects.
-    var subjects = [];
-    for (var i = 0; i < resources.length; i++) {
-      var subject = resources[i]['subject'];
-
-      if (subject) {
-        subjects[subject] = '';
-      }
-
-      // Piggybacking on this loop, format publication dates.
-      if (resources[i]['date_published']) {
-        var date = new Date(resources[i]['date_published']);
-        if (date != 'Invalid Date') {
-          resources[i]['date_published'] = getPublicationMonth(date);
+    // Format dates before indexing.
+    for (var i = 0; i < newsfeed.length; i++) {
+      var fields = ['date', 'start_date', 'end_date'];
+      for (var j = 0; j < fields.length; j++) {
+        var field = fields[j];
+        if (field in newsfeed[i]) {
+          var date = new Date(newsfeed[i][field]);
+          if (date != 'Invalid Date') {
+            newsfeed[i][field] = getPublicationMonth(date);
+          }
         }
       }
     }
+
+    // Build newsfeed index.
+    buildNewsfeedIndex(newsfeed).then(function (result) {
+      newsfeedIdx = result;
+    });
 
     // Shared state storage container.
     var store = {
         selectedFilters: {},
     };
 
-    Vue.component('directory-list', {
-      template: "#directory-list-template",
+    Vue.component('news-feed', {
+      template: "#news-feed-template",
       props: {
         data: Array,
         filterKey: String,
@@ -104,28 +131,28 @@
       },
       data: function () {
         return {
-          resources: resources
+          newsfeed: newsfeed
         };
       },
       computed: {
         filteredData: function () {
           var data = [];
-          var resources = this.resources;
+          var newsfeed = this.newsfeed;
           var filterKey = this.filterKey;
           var filters = this.filters.join(' ');
           var query = [filterKey, filters].filter(function (val) { return val.toLowerCase(); }).join(' ');
   
           if (query) {
-            var results = idx.search(query);
+            var results = newsfeedIdx.search(query);
 
             if (results) {
               results.forEach(function (result) {
                 var index = parseInt(result.ref);
-                data.push(resources[index]);
+                data.push(newsfeed[index]);
               });
             }
           } else {
-            data = this.resources;
+            data = this.newsfeed;
           }
  
           return data;
@@ -174,10 +201,10 @@
     });
 
     var search_app = new Vue({
-      el: '#directory',
+      el: '#news-feed',
       data: {
         searchQuery: '',
-        resources: resources,
+        newsfeed: newsfeed,
         filterSelection: [],
         sharedState: store
       },
@@ -194,12 +221,7 @@
           },
           deep: true,
         }
-      },
-      /*components: {
-        'org-filter': Filter,
-        'year-filter': Filter,
-        'lang-filter': Filter
-      }*/
+      }
     });
 
 

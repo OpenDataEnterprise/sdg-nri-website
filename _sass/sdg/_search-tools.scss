@@ -12,22 +12,22 @@ $search-tools-border-color: $base-border-color;
 $search-tools-background: lighten($search-tools-border-color, 10%);
 $gutter: 1.2em;
 
-.search-bar {
+.news-search {
+  padding: 1em;
+  background-color: rgba(160, 160, 160, 0.5);
+}
+
+.search-bar,
+.news-search-bar {
   @include med-screen {
     display: flex;
   }
 
   display: flex 0 0 100%;
-  margin-bottom: $spacing-unit;
   text-align: center;
 
   input[type=search] {
-    @include med-screen {
-      width: 76%;
-    }
-
     width: 100%;
-    margin: 0 0.4em 0 0;
     border: none;
     padding: 0.75em;
     background-color: rgba(255, 255, 255, 0.75);
@@ -55,6 +55,18 @@ $gutter: 1.2em;
   }
 }
 
+.search-bar {
+  margin-bottom: 2em;
+
+  input[type=search] {
+    @include med-screen {
+      width: 76%;
+    }
+
+    margin-right: 0.4em;
+  }
+}
+
 .search-tools {
   @include clearfix;
 
@@ -73,7 +85,8 @@ $gutter: 1.2em;
   }
 }
 
-.filters {
+.filters,
+.news-filters {
   @include large-screen {
     flex-direction: row;
   }
@@ -82,8 +95,10 @@ $gutter: 1.2em;
   flex-direction: column;
   justify-content: space-between;
   width: 100%;
-  margin: 0 0 2em;
+}
 
+.filters {
+  margin-bottom: 2em;
 }
 
 .filter {
@@ -151,16 +166,16 @@ $gutter: 1.2em;
 
 .filter-update {
   flex-grow: 1;
-  margin: 0 0.2em;
+  margin: 0 0 0 0.2em;
 
   button {
-      width: 100%;
-  border: none;
-  border-radius: 0;
-  padding: 0.75em;
-  background-color: rgba(52, 168, 252, 1);
-  color: #fff;
-  font: inherit;
-  text-align: center;
+    width: 100%;
+    border: none;
+    border-radius: 0;
+    padding: 0.75em;
+    background-color: rgba(52, 168, 252, 1);
+    color: #fff;
+    font: inherit;
+    text-align: center;
   }
 }

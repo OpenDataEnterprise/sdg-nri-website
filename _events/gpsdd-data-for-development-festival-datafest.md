@@ -1,6 +1,6 @@
 ---
 title: 'GPSDD: Data for Development Festival - ''DataFEst'''
-date: 2018-03-21 05:00:00 +0000
+date: 2017-11-21 05:00:00 +0000
 locations:
 - Bristol, UK
 end_date: 2018-03-23 00:00:00 -0500

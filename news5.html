@@ -25,7 +25,7 @@ layout: default
                 <h3 class="news-header">{{ news.title }}</h3>
               </a>
               <p class="news-author">{{ news.author }}</p>
-              <p class="news-date">{{ news.date | date_to_long_string }}</p>
+              <p class="news-date">Published on {{ news.date | date_to_long_string }}</p>
               <p class="news-description">{{ news.description }}</p>
             </article>
           </li>
@@ -41,6 +41,7 @@ layout: default
             <a href="{{ event.link }}">
               <h3 class="event-header">{{ event.title }}</h3>
             </a>
+            <p class="event-date">Published on {{ event.date | date_to_long_string }}</p>
             <span class="event-start">{{ event.date | date_to_long_string }}</span>
             {% if event.end_date %} - 
             <span class="event-end">{{ event.end_date | date_to_long_string }}</span>
