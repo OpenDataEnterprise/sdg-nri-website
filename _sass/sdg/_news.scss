@@ -186,12 +186,11 @@
 .twitter-timeline-container,
 .twitter-timeline-container-tab {
   display: inline-block;
-  min-height: 43.750em;
   margin-right: 4%;
-  background-color: rgba(255, 255, 255, 0.6);
 
-  .category-title {
-    background-color: #34A8FC;
+  .content {
+    min-height: 37.5em;
+    background-color: rgba(255, 255, 255, 0.6);
   }
 }
 
