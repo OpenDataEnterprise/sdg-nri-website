@@ -5,7 +5,7 @@
       <h3 class="news-header">(( item.title ))</h3>
     </a>
     <p class="news-author" v-if="(( item.author ))">(( item.author ))</p>
-    <p class="news-date" v-if="(( item.date ))">Published on (( item.date ))</p>
+    <p class="news-date" v-if="(( !item.start_date ))">(( item.date ))</p>
     <span class="event-start" v-if="(( item.start_date ))">On (( item.start_date ))</span>
     <span class="event-end" v-if="(( item.end_date ))"> - (( item.end_date ))</span>
     <br v-if="(( item.start_date ))">
