@@ -1,0 +1,34 @@
+<script type="text/x-template" id="news-feed-template">
+<ul>
+  <li class="news" v-for="(item, index) in filteredData" tab-index="0">
+    <a :href="(( item.link ))">
+      <h3 class="news-header">(( item.title ))</h3>
+    </a>
+    <p class="news-author" v-if="(( item.author ))">(( item.author ))</p>
+    <p class="news-date" v-if="(( item.date ))">Published on (( item.date ))</p>
+    <span class="event-start" v-if="(( item.start_date ))">On (( item.start_date ))</span>
+    <span class="event-end" v-if="(( item.end_date ))"> - (( item.end_date ))</span>
+    <br v-if="(( item.start_date ))">
+    <p class="news-description" v-if="(( item.description ))">(( item.description ))</p>
+    <span v-if="(( item.locations ))">Locations</span>
+    <ul class="event-locations" v-if="(( item.locations ))">
+      <li class="event-location" v-for="location in item.locations">(( location ))</li>
+    </ul>
+  </li>
+</ul>
+</script>
+
+<script type="text/x-template" id="filter-template">
+  <div class="filter">
+    <div class="filter-select" v-bind:class="{ 'hide-options': !visible }" v-on:click="visible = true">
+      <label class="summary" data-role="summary">(( filterType ))</label>
+      <button class="clear" type="button" v-on:click="clear">Clear</button>
+      <ol class="filter-list">
+        <li v-for="option in options">
+          <input :id="'f-' + (( option ))" type="checkbox" :value="(( option ))" v-model="filterValues">
+          <label :for="'f-' + (( option ))">(( option ))</label>
+        </li>
+      </ol>
+    </div>
+  </div>
+</script>
