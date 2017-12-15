@@ -1,0 +1,199 @@
+---
+layout: default
+vue: true
+guide: true
+---
+
+{% assign groups = site.resources | group_by: "subject" %}
+
+<div id="directory">
+
+  {% include submission_call.html %}
+
+  <div class="subject-menu-wrapper">
+
+    <div class="subject-menu-header">
+      <h1>Resources by Topic</h1>
+    </div>
+
+    <div class="subject-tabs">
+
+      <input type="radio" name="tabs" checked="checked" id="tab1" class="tab-input">
+      <label for="tab1" class="tab-label"><h2>Policy</h2></label>
+
+      <div id="tab-content1" class="tab-content">
+          <p style="width: 100%; line-height: 35em; text-align: center;">INSERT CONTENT HERE</p>
+      </div>
+
+      <input type="radio" name="tabs" id="tab2" class="tab-input">
+      <label for="tab2" class="tab-label"><h2>Data</h2></label>
+
+      <div id="tab-content2" class="tab-content">
+          <p style="width: 100%; line-height: 35em; text-align: center;">INSERT CONTENT HERE</p>
+      </div>
+
+      <input type="radio" name="tabs" id="tab3" class="tab-input">
+      <label for="tab3" class="tab-label"><h2>Development</h2></label>
+
+      <div id="tab-content3" class="tab-content">
+          <p style="width: 100%; line-height: 35em; text-align: center;">INSERT CONTENT HERE</p>
+      </div>
+
+
+    </div>
+
+  </div>
+
+  <nav class="help-nav">
+    <div>Looking for more help? Check out our guides for </div>
+    <ul>
+      <li><a href="#policy-section">Policy Makers</a></li>
+      <li><a href="#data-section">Statisticians</a></li>
+      <li><a href="#development-section">Developers</a></li>
+    </ul>
+  </nav>
+
+  <section id="policy-section">
+
+    <h1 class="directory-heading">For Policy Makers</h1>
+
+    <div class="directory-group">
+
+      <nav class="directory-listing">
+        <ul>
+          {% for group in groups %}
+          {% if group.name != "" %}
+          <li>
+              <a href="#{{ group.name | downcase | replace: ' ', '-' }}">{{ group.name }}</a>
+          </li>
+          {% endif %}
+          {% endfor %}
+        </ul>
+      </nav>
+
+      <div class="resource-groups-container">
+        {% for group in groups %}
+        {% if group.name != "" %}
+        <ul class="resource-list-group">
+          <li id="{{ group.name | downcase | replace: ' ', '-' }}" class="resource-list-group-head">
+            <h1>{{ group.name }}</h1>
+            <p class="resource-list-group-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <input class="resource-list-toggle" type="button" value="Learn More">
+          </li>
+          {% for resource in group.items %}
+          <li class="resource-list-item hide-resource">
+            <img class="resource-image">
+            <section class="resource-info">
+              <h3 class="resource-title">
+                  <a href="{{ resource.link }}" target="_blank">{{ resource.title }}</a>
+              </h3>
+              <div class="resource-organization">{{ resource.organization }}</div>
+              <div class="resource-description">{{ resource.description }}</div>
+            </section>
+          </li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+        {% endfor %}
+      </div>
+
+    </div>
+
+  </section>
+
+  <section id="data-section">
+
+    <h1 class="directory-heading">For Statisticians</h1>
+
+    <div class="directory-group">
+      <nav class="directory-listing">
+        <ul>
+          {% for group in groups %}
+          {% if group.name != "" %}
+          <li>
+              <a href="#{{ group.name | downcase | replace: ' ', '-' }}">{{ group.name }}</a>
+          </li>
+          {% endif %}
+          {% endfor %}
+        </ul>
+      </nav>
+
+      <div class="resource-groups-container">
+        {% for group in groups %}
+        {% if group.name != "" %}
+        <ul class="resource-list-group">
+          <li id="{{ group.name | downcase | replace: ' ', '-' }}" class="resource-list-group-head">
+            <h1>{{ group.name }}</h1>
+            <p class="resource-list-group-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <input class="resource-list-toggle" type="button" value="Learn More">
+          </li>
+          {% for resource in group.items %}
+          <li class="resource-list-item hide-resource">
+            <img class="resource-image">
+            <section class="resource-info">
+              <h3 class="resource-title">
+                  <a href="{{ resource.link }}" target="_blank">{{ resource.title }}</a>
+              </h3>
+              <div class="resource-organization">{{ resource.organization }}</div>
+              <div class="resource-description">{{ resource.description }}</div>
+            </section>
+          </li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+        {% endfor %}
+      </div>
+
+    </div>
+
+  </section>
+
+  <section id="development-section">
+
+    <h1 class="directory-heading">For Developers</h1>
+
+    <div class="directory-group">
+
+      <nav class="directory-listing">
+        <ul>
+          {% for group in groups %}
+          {% if group.name != "" %}
+          <li>
+              <a href="#{{ group.name | downcase | replace: ' ', '-' }}">{{ group.name }}</a>
+          </li>
+          {% endif %}
+          {% endfor %}
+        </ul>
+      </nav>
+
+      <div class="resource-groups-container">
+        {% for group in groups %}
+        {% if group.name != "" %}
+        <ul class="resource-list-group">
+          <li id="{{ group.name | downcase | replace: ' ', '-' }}" class="resource-list-group-head">
+            <h1>{{ group.name }}</h1>
+            <p class="resource-list-group-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <input class="resource-list-toggle" type="button" value="Learn More">
+          </li>
+          {% for resource in group.items %}
+          <li class="resource-list-item hide-resource">
+            <img class="resource-image">
+            <section class="resource-info">
+              <h3 class="resource-title">
+                  <a href="{{ resource.link }}" target="_blank">{{ resource.title }}</a>
+              </h3>
+              <div class="resource-organization">{{ resource.organization }}</div>
+              <div class="resource-description">{{ resource.description }}</div>
+            </section>
+          </li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+        {% endfor %}
+      </div>
+
+    </div>
+
+  </section>
+
+</div>
