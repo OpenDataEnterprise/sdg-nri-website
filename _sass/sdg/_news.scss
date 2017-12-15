@@ -186,7 +186,6 @@
 .twitter-timeline-container,
 .twitter-timeline-container-tab {
   display: inline-block;
-  margin-left: 4%;
 
   .content {
     min-height: 37.5em;
@@ -196,6 +195,7 @@
 
 .twitter-timeline-container {
   width: 30%;
+  margin-left: 4%;
   vertical-align: top;
 }
 

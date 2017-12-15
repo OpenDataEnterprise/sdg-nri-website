@@ -1,7 +1,7 @@
 <script type="text/x-template" id="news-feed-template">
 <ul>
   <li class="news" v-for="(item, index) in filteredData" tab-index="0">
-    <a :href="(( item.link ))">
+    <a :href="(( item.link ))" target="_blank">
       <h3 class="news-header">(( item.title ))</h3>
     </a>
     <p class="news-author" v-if="(( item.author ))">(( item.author ))</p>

@@ -3,15 +3,18 @@ layout: default
 ---
 
 <div class="news-wrapper">
+
   <div class="tabs">
+
     <input type="radio" name="tabs" checked="checked" id="tab1" class="tab-input">
     <label for="tab1" class="tab-label"><h2>News</h2></label>
+
     <div id="tab-content1" class="tab-content">
       <ul>
         {% for news in site.news %}
         <li class="news">
           <article tabindex="0">
-            <a href="{{ news.link }}">
+            <a href="{{ news.link }}" target="_blank">
               <h3 class="news-header">{{ news.title }}</h3>
             </a>
             <p class="news-author">{{ news.author }}</p>
@@ -22,13 +25,15 @@ layout: default
         {% endfor %}
       </ul>
     </div>
+
     <input type="radio" name="tabs" id="tab2" class="tab-input">
     <label for="tab2" class="tab-label"><h2>Events</h2></label>
+
     <div id="tab-content2" class="tab-content">
       <ul>
         {% for event in site.events %}
         <li class="event">
-          <a href="{{ event.link }}">
+          <a href="{{ event.link }}" target="_blank">
             <h3 class="event-header">{{ event.title }}</h3>
           </a>
           <p class="event-date">Published on {{ event.date | date_to_long_string }}</p>
@@ -47,13 +52,19 @@ layout: default
         {% endfor %}
       </ul>
     </div>
+
     <input type="radio" name="tabs" id="tab4" class="tab-input">
     <label for="tab4" class="tab-label"><h2>Twitter</h2></label>
+
     <div id="tab-content4" class="tab-content">
+
       <div class="twitter-timeline-container-tab">
-        <a class="twitter-timeline" data-dnt="true" href="https://twitter.com/hashtag/SDGs" data-widget-id="938913200308965376">#SDGs Tweets</a>
+        <a class="twitter-timeline" data-dnt="true" href="https://twitter.com/hashtag/SDGs" data-chrome="nofooter transparent" data-widget-id="938913200308965376">#SDGs Tweets</a>
         <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
       </div>
+
     </div>
+
   </div>
+
 </div>

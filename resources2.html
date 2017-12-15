@@ -11,7 +11,7 @@ jquery: true
       <img class="resource-image">
       <section class="resource-info">
         <h3 class="resource-title">
-            <a :href="(( resource.url ))">(( resource.title ))</a>
+            <a :href="(( resource.url ))" target="_blank">(( resource.title ))</a>
         </h3>
         <div class="resource-organization">(( resource.organization ))</div>
         <div class="resource-date-published" v-if="(( resource.date_published ))">Published (( resource.date_published ))</div>
@@ -93,7 +93,7 @@ jquery: true
 
   </div>
 
-  <aside class="contribute-resource-call-out">Do you have a resource you would like to contribute? Please visit our <a href="/submit-form">submission form</a>.</aside>
+  {% include submission_call.html %}
 
   <ul class="grid-list"
     is="directory-list"

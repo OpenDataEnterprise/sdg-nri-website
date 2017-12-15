@@ -19,7 +19,7 @@ table: true
     </thead>
     <tbody>
       <tr v-for="resource in filteredData">
-        <td><a :href="(( resource.url ))">(( resource.title ))</a></td>
+        <td><a :href="(( resource.url ))" target="_blank">(( resource.title ))</a></td>
         <td>(( resource.organization ))</td>
         <td>(( resource.date_published ? resource.date_published.substring(0,7) : 'N/A' ))</td>
         <td>(( resource.description ))</td>
@@ -98,7 +98,7 @@ table: true
 
   </div>
 
-  <aside class="contribute-resource-call-out">Do you have a resource you would like to contribute? Please visit our <a href="/submit-form">submission form</a>.</aside>
+  {% include submission_call.html %}
 
   <div class="directory-table_wrapper">
     <directory-table
