@@ -4,51 +4,9 @@ vue: true;
 news: true;
 ---
 
-<script type="text/x-template" id="news-feed-template">
-<ul>
-  <li class="news" v-for="(item, index) in filteredData" tab-index="0">
-    <a :href="(( item.link ))">
-      <h3 class="news-header">(( item.title ))</h3>
-    </a>
-    <p class="news-author" v-if="(( item.author ))">(( item.author ))</p>
-    <p class="news-date" v-if="(( item.date ))">Published on (( item.date ))</p>
-    <span class="event-start" v-if="(( item.start_date ))">On (( item.start_date ))</span>
-    <span class="event-end" v-if="(( item.end_date ))"> - (( item.end_date ))</span>
-    <br v-if="(( item.start_date ))">
-    <p class="news-description" v-if="(( item.description ))">(( item.description ))</p>
-    <span v-if="(( item.locations ))">Locations</span>
-    <ul class="event-locations" v-if="(( item.locations ))">
-      <li class="event-location" v-for="location in item.locations">(( location ))</li>
-    </ul>
-  </li>
-</ul>
-</script>
-
-<script type="text/x-template" id="filter-template">
-  <div class="filter">
-    <div class="filter-select" v-bind:class="{ 'hide-options': !visible }" v-on:click="visible = true">
-      <label class="summary" data-role="summary">(( filterType ))</label>
-      <button class="clear" type="button" v-on:click="clear">Clear</button>
-      <ol class="filter-list">
-        <li v-for="option in options">
-          <input :id="'f-' + (( option ))" type="checkbox" :value="(( option ))" v-model="filterValues">
-          <label :for="'f-' + (( option ))">(( option ))</label>
-        </li>
-      </ol>
-    </div>
-  </div>
-</script>
+{% include templates.html %}
 
 <div class="news-wrapper-2">
-
-  <div class="category twitter-timeline-container">
-    <input type="checkbox" name="tabs" checked="checked" id="tab1" class="news-input">
-    <label for="tab1" class="category-title"><h2>Twitter</h2></label>
-    <div id="tab-content1" class="content">
-      <a class="twitter-timeline" data-dnt="true" href="https://twitter.com/hashtag/SDGs" data-chrome="nofooter transparent noheader" data-widget-id="938913200308965376">#SDGs Tweets</a>
-      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-    </div>
-  </div>
 
   <ul id="news-feed" class="categories-2">
     <li class="category">
@@ -101,5 +59,14 @@ news: true;
       </div>
     </li>
   </ul>
+
+  <div class="category twitter-timeline-container">
+    <input type="checkbox" name="tabs" checked="checked" id="tab1" class="news-input">
+    <label for="tab1" class="category-title"><h2>Twitter</h2></label>
+    <div id="tab-content1" class="content">
+      <a class="twitter-timeline" data-dnt="true" href="https://twitter.com/hashtag/SDGs" data-chrome="nofooter transparent noheader" data-widget-id="938913200308965376">#SDGs Tweets</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    </div>
+  </div>
 
 </div>
