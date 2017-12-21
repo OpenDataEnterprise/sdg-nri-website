@@ -1,0 +1,35 @@
+BEGIN;
+
+INSERT INTO sdg.region (m49, hierarchy, name) VALUES
+('001', '001', 'World'), 
+('002', '001.002', 'Africa'),
+('015', '001.015', 'Northern Africa'),
+('202', '001.202', 'Sub-Saharan Africa'),
+('014', '001.202.014', 'Eastern Africa'),
+('017', '001.202.017', 'Middle Africa'),
+('018', '001.202.018', 'Southern Africa'),
+('011', '001.202.011', 'Western Africa'),
+('019', '001.019', 'The Americas'),
+('419', '001.019.419', 'Latin America and the Caribbean'),
+('029', '001.019.419.029', 'Caribbean'),
+('013', '001.019.419.013', 'Central America'),
+('005', '001.019.419.005', 'South America'),
+('021', '001.019.021', 'Northern America'),
+('142', '001.142', 'Asia'),
+('143', '001.142.143', 'Central Asia'),
+('030', '001.142.030', 'Eastern Asia'),
+('035', '001.142.035', 'South-eastern Asia'),
+('034', '001.142.034', 'Southern Asia'),
+('145', '001.142.145', 'Western Asia'),
+('150', '001.150', 'Europe'),
+('151', '001.150.151', 'Eastern Europe'),
+('154', '001.150.154', 'Northern Europe'),
+('039', '001.150.039', 'Southern Europe'),
+('155', '001.150.155', 'Western Europe'),
+('009', '001.009', 'Oceania'),
+('053', '001.009.053', 'Australia and New Zealand'),
+('054', '001.009.054', 'Melanesia'),
+('057', '001.009.057', 'Micronesia'),
+('061', '001.009.061', 'Polynesia');
+
+COMMIT;
