@@ -1,6 +1,6 @@
 BEGIN;
 
-INSERT INTO sdg.country (iso_alpha3, region_m49, name) VALUES
+INSERT INTO sdg.country (iso_alpha3, region_id, name) VALUES
 ('AFG', '034', 'Afghanistan'),
 ('ALB', '039', 'Albania'),
 ('DZA', '015', 'Algeria'),

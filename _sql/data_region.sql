@@ -1,6 +1,6 @@
 BEGIN;
 
-INSERT INTO sdg.region (m49, hierarchy, name) VALUES
+INSERT INTO sdg.region (m49, path, name) VALUES
 ('001', '001', 'World'), 
 ('002', '001.002', 'Africa'),
 ('015', '001.015', 'Northern Africa'),
