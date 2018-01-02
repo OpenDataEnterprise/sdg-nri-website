@@ -24,6 +24,16 @@ $content-width:    800px !default;
 $on-palm:          600px !default;
 $on-laptop:        800px !default;
 
+$col-3: (
+  columns: 3,
+  gutter: 2em,
+);
+
+$col-4: (
+  columns: 4,
+  gutter: 2em,
+);
+
 $table_body_height: 300px;
 $table_width: 500px;
 

@@ -25,64 +25,35 @@ $gutter: 1.2em;
 
   display: flex 0 0 100%;
   text-align: center;
-
-  input[type=search] {
-    width: 100%;
-    border: none;
-    padding: 0.75em;
-    background-color: rgba(255, 255, 255, 0.75);
-    font: inherit;
-  }
-
-  input[type=search]::placeholder {
-    color: black;
-  }
-
-  input[type=submit] {
-    @include med-screen {
-      display: inline-block;
-      width: 23.5%;
-    }
-
-    display: block;
-    width: 100%;
-    border: none;
-    border-radius: 0;
-    padding: 0.5em;
-    background-color: rgba(52, 168, 252, 1);
-    color: #fff;
-    font: inherit;
-  }
 }
 
 .search-bar {
+  @include grid-column(4, $col-4);
+  display: flex;
+
   margin-bottom: 2em;
-
-  input[type=search] {
-    @include med-screen {
-      width: 76%;
-    }
-
-    margin-right: 0.4em;
-  }
 }
 
-.search-tools {
-  @include clearfix;
+.search-field {
+  width: 100%;
+  border: none;
+  padding: 0.75em;
+  background-color: rgba(255, 255, 255, 0.75);
+  font: inherit;
+}
 
-  @include med-screen {
-    margin: 0 5em;
-  }
+.search-field::placeholder {
+  color: black;
+}
 
-  @include large-screen {
-    margin: 0 10em;
-  }
-
-  margin: 0 2em;
-
-  li {
-    list-style: none;
-  }
+.search-submit {
+  display: block;
+  border: none;
+  border-radius: 0;
+  padding: 0.5em;
+  background-color: rgba(52, 168, 252, 1);
+  color: #fff;
+  font: inherit;
 }
 
 .filters,
@@ -97,8 +68,67 @@ $gutter: 1.2em;
   width: 100%;
 }
 
+.filter-sidebar {
+  @include grid-column(1, $col-4);
+}
+
 .filters {
   margin-bottom: 2em;
+}
+
+.filter-handle {
+  box-sizing: border-box;
+  border: none;
+  border-radius: 0;
+  padding: 0.75em;
+  background-color: rgba(255, 255, 255, 0.75);
+  transition: border-color;
+  cursor: pointer;
+
+  &.active,
+  &:focus,
+  &:hover {
+    background-color: rgba(200, 200, 200, 0.7);
+    border-color: darken($base-border-color, 10%);
+  }
+}
+
+.filter-label {
+  display: inline;
+}
+
+.filter-clear,
+.filter-clear-all {
+  float: right;
+  border: none;
+  padding: 0 0.6em;
+  background-color: rgba(52, 168, 252, 1);
+  font: inherit;
+  color: #fff;
+}
+
+.filter-clear-all {
+  position: relative;
+  transform: translateY(25%);
+}
+
+.filter-list {
+  margin: 0;
+  padding: 0.5em;
+  background-color: rgba(255, 255, 255, 0.75);
+}
+
+.filter-option {
+  padding: 0.1em 0.25em;
+}
+
+.hide-options {
+  margin-bottom: 0;
+
+  .filter-list,
+  .filter-clear {
+    display: none;
+  }
 }
 
 .filter {
@@ -113,60 +143,11 @@ $gutter: 1.2em;
       margin: 0 0 0 0.2em;
     }
   }
-
-  position: relative;
-  flex-grow: 1;
-  margin: 0 0.2em;
-
-  > div {
-    box-sizing: border-box;
-    border: none;
-    border-radius: 0;
-    padding: 0.75em;
-    background-color: rgba(255, 255, 255, 0.75);
-    transition: border-color;
-
-    &:focus,
-    &:hover {
-      border-color: darken($base-border-color, 10%);
-    }
-
-    label {
-      cursor: pointer;
-      margin-bottom: 0;
-    }
-  }
-
-  .filter-list {
-    margin: 1em 0 0;
-    padding: 0;
-
-    label {
-      display: inline;
-    }
-  }
-
-  .clear {
-    float: right;
-    border: none;
-    padding: 0 0.6em;
-    background-color: rgba(52, 168, 252, 1);
-    font: inherit;
-    color: #fff;
-  }
-
-  .hide-options {
-    margin-bottom: 0;
-
-    ol, button {
-      display: none;
-    }
-  }
 }
 
-.filter-update {
+.filter-update,
+.sidebar-filter-update {
   flex-grow: 1;
-  margin: 0 0 0 0.2em;
 
   button {
     width: 100%;
@@ -178,4 +159,12 @@ $gutter: 1.2em;
     font: inherit;
     text-align: center;
   }
+}
+
+.filter-update {
+  margin: 0 0 0 0.2em;
+}
+
+.item {
+  margin-left: 1em;
 }

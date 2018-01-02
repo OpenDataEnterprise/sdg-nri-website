@@ -1,0 +1,21 @@
+<nav class="topic-directory">
+  <h1 class="topic-directory-header">Resources by Topic</h1>
+  <div class="topic-directory-body">
+    <ul class="topic-list">
+      {% for topic in site.data.topics %}
+      <li class="topic">
+        <h2 class="topic-heading">{{ topic.name }}</h2>
+        {% if topic.subtopics %}
+        <ul>
+          {% for subtopic in topic.subtopics %}
+          <li class="subtopic">
+              <h3><a href="#" target="_blank">{{ subtopic.name }}</a></h3>
+          </li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</nav>

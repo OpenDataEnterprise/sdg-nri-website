@@ -8,50 +8,16 @@ guide: true
 
 <div id="directory">
 
-  {% include submission_call.html %}
-
-  <div class="subject-menu-wrapper">
-
-    <div class="subject-menu-header">
-      <h1>Resources by Topic</h1>
-    </div>
-
-    <div class="subject-tabs">
-
-      <input type="radio" name="tabs" checked="checked" id="tab1" class="tab-input">
-      <label for="tab1" class="tab-label"><h2>Policy</h2></label>
-
-      <div id="tab-content1" class="tab-content">
-          <p style="width: 100%; line-height: 35em; text-align: center;">INSERT CONTENT HERE</p>
-      </div>
-
-      <input type="radio" name="tabs" id="tab2" class="tab-input">
-      <label for="tab2" class="tab-label"><h2>Data</h2></label>
-
-      <div id="tab-content2" class="tab-content">
-          <p style="width: 100%; line-height: 35em; text-align: center;">INSERT CONTENT HERE</p>
-      </div>
-
-      <input type="radio" name="tabs" id="tab3" class="tab-input">
-      <label for="tab3" class="tab-label"><h2>Development</h2></label>
-
-      <div id="tab-content3" class="tab-content">
-          <p style="width: 100%; line-height: 35em; text-align: center;">INSERT CONTENT HERE</p>
-      </div>
-
-
-    </div>
-
-  </div>
-
   <nav class="help-nav">
-    <div>Looking for more help? Check out our guides for </div>
+    <div>I am looking for help with</div>
     <ul>
-      <li><a href="#policy-section">Policy Makers</a></li>
-      <li><a href="#data-section">Statisticians</a></li>
-      <li><a href="#development-section">Developers</a></li>
+      <li><a href="#policy-section">Policy</a></li>
+      <li><a href="#data-section">Data</a></li>
+      <li><a href="#development-section">Development</a></li>
     </ul>
   </nav>
+
+  {% include submission-call.html %}
 
   <section id="policy-section">
 

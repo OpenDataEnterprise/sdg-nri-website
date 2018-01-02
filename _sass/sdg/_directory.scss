@@ -103,15 +103,20 @@ aside.contribute-resource-call-out {
 .language-tag,
 .subject-tag {
   display: inline-block;
-  margin: 0.1em;
+  margin: 0 0 0 0.3em;
   padding: 0.3em 0.4em;
   background-color: gainsboro;
+
+  &:first-child {
+    margin: 0;
+  }
 }
 
 .grid-list {
   $grid-item-height: $spacing-unit * 15;
   $image-height: $spacing-unit * 6;
 
+  @include grid-column(3, $col-4);
   @include grid-container;
 
   margin: 0 auto;
@@ -120,12 +125,8 @@ aside.contribute-resource-call-out {
   .grid-item {
     @include grid-column(12);
 
-    @include med-screen {
-      @include grid-column(6);
-    }
-
     @include large-screen {
-      @include grid-column(4);
+      @include grid-column(6);
     }
 
     box-sizing: border-box;
@@ -160,9 +161,9 @@ aside.contribute-resource-call-out {
     }
   }
 
-  .resource-image {
+  resource-image {
     width: 100%;
-    height: $image-height;
+eight: $image-height;
   }
   
   .resource-info {
@@ -181,17 +182,8 @@ aside.contribute-resource-call-out {
   $grid-item-height: $spacing-unit * 7;
   $featured-image-height: $spacing-unit * 6;
 
+  @include grid-column(3, $col-4);
   @include grid-container;
-
-  @include med-screen {
-    margin: 0 5em;
-  }
-
-  @include large-screen {
-    margin: 0 10em;
-  }
-
-  margin: 0 2em;
 
   .resource-list-item,
   .resource-list-group-head {
@@ -331,7 +323,9 @@ aside.contribute-resource-call-out {
   }
 }
 
-#directory {
+.search-directory {
+  @include grid-container;
+
   padding: 8.375em 0 2em;
   background: rgba(233, 248, 255, 1) url('/assets/img/happy_children.jpg');
   background-size: cover;
@@ -423,7 +417,6 @@ aside.contribute-resource-call-out {
   text-align: center;
   text-transform: uppercase;
   color: #fff;
-  cursor: pointer;
   transition: background 0.1s, color 0.1s;
 }
 

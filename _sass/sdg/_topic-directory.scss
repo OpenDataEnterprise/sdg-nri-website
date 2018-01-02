@@ -1,0 +1,45 @@
+.topic-directory {
+  display: block;
+  margin: 0 auto;
+  padding: 0 10em 5em;
+}
+
+.topic-directory-header {
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0;
+  padding: 2rem;
+  background-color: #34A8FC;
+  font: inherit;
+  text-align: center;
+  text-transform: uppercase;
+  color: #fff;
+  font-size: 1.5em;
+  transition: background 0.1s, color 0.1s;
+}
+
+.topic-directory-body {
+  padding: 2em;
+  background: #efefef;
+  box-shadow: 0 48px 80px -32px rgba(0,0,0,0.3);
+}
+
+.topic-list {
+  column-count: 2;
+
+  a {
+    text-decoration: none;
+  }
+}
+
+.topic {
+  margin-bottom: 2em;
+}
+
+.topic-heading {
+  margin-bottom: 0.5em;
+}
+
+.subtopic {
+  margin-left: 1em;
+}

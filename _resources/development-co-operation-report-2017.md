@@ -28,7 +28,7 @@ languages:
 - Slovenian
 - Swedish
 - Spanish
-- Turkey
+- Turkish
 type: Report
 description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras in nibh
   et est porta auctor sed ac nunc. Fusce magna arcu, euismod quis urna elementum,

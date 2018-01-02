@@ -2,7 +2,7 @@
 
   <div class="under-construction-warning">This website is a work in progress.</div>
 
-  <div class="wrapper">
+  <div class="site-nav-wrapper">
     {% assign default_paths = site.pages | sort: "navigation_weight" | map: "path" %}
     {% assign page_paths = site.header_pages | default: default_paths %}
     <a class="site-title" href="{{ "/" | relative_url }}">{{ site.title | escape }}</a>

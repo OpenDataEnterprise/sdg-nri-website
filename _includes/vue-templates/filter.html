@@ -1,0 +1,28 @@
+<script type="text/x-template" id="filter-template">
+<div
+  class="sidebar-filter"
+  v-bind:class="{ 'hide-options': !visible }"
+  v-on:filter-update="updateFilter">
+  <div
+    class="filter-handle"
+    v-bind:class="{ 'active': visible }"
+    v-on:click="visible = !visible">
+    <label class="filter-label">(( filterType ))</label>
+    <button
+      class="filter-clear"
+      type="button"
+      v-on:click="clear">Clear</button>
+  </div>
+  <ul class="filter-list">
+    <item
+      class="filter-option"
+      v-bind:label-field="labelField"
+      v-bind:value-field="valueField"
+      v-bind:children-field="childrenField"
+      v-bind:model="option"
+      v-for="option in options"
+      v-bind:key="option[labelField]">
+    </item>
+  </ul>
+</div>
+</script>

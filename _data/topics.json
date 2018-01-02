@@ -1,0 +1,85 @@
+[
+  {
+    "name": "Why SDG Reporting",
+    "subtopics": [
+      {
+        "name": "The SDGs and the Data Revolution"
+      },
+      {
+        "name": "The Global SDG indicators"
+      },
+      {
+        "name": "National reporting on the SDGs"
+      },
+      {
+        "name": "Data-driven decision-making"
+      },
+      {
+        "name": "Key stakeholders"
+      }
+    ]
+  },
+  {
+    "name": "Data & Technical",
+    "subtopics": [
+      {
+        "name": "Types of technology platform"
+      },
+      {
+        "name": "Identifying data sources & gaps"
+      },
+      {
+        "name": "Data & Metadata Standards"
+      },
+      {
+        "name": "Privacy"
+      },
+      {
+        "name": "Security"
+      }
+    ]
+  },
+  {
+    "name": "Open source NRP solutions",
+    "subtopics": [
+      {
+        "name": "Overview of NRPs"
+      },
+      {
+        "name": "Intro to Github"
+      },
+      {
+        "name": "Forking an NRP"
+      },
+      {
+        "name": "Adding data to the NRP"
+      },
+      {
+        "name": "Customizing language and branding"
+      },
+      {
+        "name": "Visualizations"
+      },
+      {
+        "name": "Additional features"
+      }
+    ]
+  },
+  {
+    "name": "Assessing reporting priorities and needs",
+    "subtopics": [
+      {
+        "name": "Policy considerations"
+      },
+      {
+        "name": "Stakeholder engagement"
+      },
+      {
+        "name": "Institutional & legal"
+      },
+      {
+        "name": "Financing SDG reporting"
+      }
+    ]
+  }
+]

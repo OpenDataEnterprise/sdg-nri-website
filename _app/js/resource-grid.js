@@ -1,11 +1,27 @@
 (function () {
+  // Parse parameters from URL.
+  var qs = (function(paramstrings) {
+    if (paramstrings == '') {
+      return {};
+    }
+    var params = {};
+    for (var i = 0; i < paramstrings.length; ++i) {
+      var param = paramstrings[i].split('=', 2);
+      if (param.length == 1)
+        params[param[0]] = '';
+      else
+        params[param[0]] = decodeURIComponent(param[1].replace(/\+/g, ' '));
+    }
+    return params;
+  })(window.location.search.substr(1).split('&'));
+
   function loadJSON(filepath) {
     return new Promise(function (resolve, reject) {
       var xhr = new XMLHttpRequest();
-      xhr.overrideMimeType("application/json");
+      xhr.overrideMimeType('application/json');
       xhr.open('GET', filepath, true);
       xhr.onload = function () {
-        if (xhr.status == "200") {
+        if (xhr.status == '200') {
   	      resolve(JSON.parse(xhr.responseText));
         } else {
           reject(xhr.statusText);
@@ -62,10 +78,20 @@
   var resources;
 
   // Load JSON data into Lunr index.
-  var filepath = '/search_data.json';
-  var documentsRequest = loadJSON(filepath);
+  var requestPromises = [];
+  requestPromises.push(loadJSON('/search_data.json'));
+  requestPromises.push(loadJSON('/mock_api/countries.json'));
+  requestPromises.push(loadJSON('/mock_api/regions.json'));
+  requestPromises.push(loadJSON('/mock_api/languages.json'));
+  requestPromises.push(loadJSON('/mock_api/topics.json'));
 
-  documentsRequest.then(function (documents) {
+  Promise.all(requestPromises).then(function (results) {
+    var documents = results[0];
+    var countries = results[1];
+    var regions = results[2];
+    var languages = results[3];
+    var topics = results[4];
+
     // Build resource index.
     resources = documents;
     buildIndex(resources).then(function (result) {
@@ -92,94 +118,27 @@
 
     // Shared state storage container.
     var store = {
-        selectedFilters: {},
+      selectedFilters: {},
+      countries: countries,
+      regions: regions,
+      languages: languages,
+      topics: topics
     };
-
-    Vue.component('directory-list', {
-      template: "#directory-list-template",
-      props: {
-        data: Array,
-        filterKey: String,
-        filters: Array,
-      },
-      data: function () {
-        return {
-          resources: resources
-        };
-      },
-      computed: {
-        filteredData: function () {
-          var data = [];
-          var resources = this.resources;
-          var filterKey = this.filterKey;
-          var filters = this.filters.join(' ');
-          var query = [filterKey, filters].filter(function (val) { return val.toLowerCase(); }).join(' ');
-  
-          if (query) {
-            var results = idx.search(query);
-
-            if (results) {
-              results.forEach(function (result) {
-                var index = parseInt(result.ref);
-                data.push(resources[index]);
-              });
-            }
-          } else {
-            data = this.resources;
-          }
- 
-          return data;
-        }
-      },
-      delimiters: ['((', '))']
-    });
-
-    Vue.component('search-filter', {
-      template: '#filter-template',
-      props: {
-        filterType: String,
-        options: Array
-      },
-      data: function () {
-        return {
-          visible: false,
-          filterValues: [],
-          sharedState: store
-        }
-      },
-      watch: {
-        filterValues: function (v) {
-          Vue.set(this.sharedState.selectedFilters, this.filterType, v);
-        }
-      },
-      methods: {
-        documentClick: function (e) {
-          let el = this.$el;
-          let target = e.target;
-          if ((el !== target) && !el.contains(target)) {
-            this.visible = false;
-          }
-        },
-        clear: function () {
-	  this.filterValues = [];
-        }
-      },
-      created () {
-        document.addEventListener('click', this.documentClick)
-      },
-      destroyed () {
-        document.removeEventListener('click', this.documentClick)
-      },
-      delimiters: ['((', '))']
-    });
 
     var search_app = new Vue({
       el: '#directory',
-      data: {
-        searchQuery: '',
-        resources: resources,
-        filterSelection: [],
-        sharedState: store
+      data: function () {
+        return {
+          searchQuery: '',
+          resources: resources,
+          filterSelection: [],
+          sharedState: store
+        };
+      },
+      methods: {
+        clearAll: function () {
+	  this.sharedState.filterValues = [];
+        }
       },
       watch: {
         sharedState: {
@@ -195,13 +154,6 @@
           deep: true,
         }
       },
-      /*components: {
-        'org-filter': Filter,
-        'year-filter': Filter,
-        'lang-filter': Filter
-      }*/
     });
-
-
   });
 })();
