@@ -58,11 +58,6 @@ export default {
       filterValues: [],
     }
   },
-  /*watch: {
-    filterValues: function (v) {
-      Vue.set(this.sharedState.selectedFilters, this.filterType, v);
-    }
-  },*/
   methods: {
     updateFilter: function (value) {
       console.log("Detected " + value + "!");

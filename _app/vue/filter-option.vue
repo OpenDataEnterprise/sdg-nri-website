@@ -28,7 +28,6 @@
 </template>
 
 <script>
-import Vuex from 'vuex';
 import { store } from 'js/global-store';
 
 export default {
@@ -77,18 +76,16 @@ export default {
     },
     emitFilterUpdate: function (e) {
       var value = this.model[this.valueField];
-      var flag = e.target.checked;
       var category = this.filterType;
-      console.log("Selected " + value + ":" + flag + " in " + category);
 
       var filter = {
         value: value,
-        flag: flag,
         category: category
       };
 
       store.commit('toggleFilter', filter);
-      console.log(store.state.selectedFilters);
+      //console.log("Selected " + value + " in " + category);
+      //console.log(store.state.selectedFilters);
     }
   }
 };

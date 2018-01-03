@@ -8,30 +8,28 @@ import * as Utility from 'js/utility';
 
 (function () {
   function buildIndex(documents) {
-    return new Promise(function (resolve, reject) {
-      // Build Lunr index.
-      var index = lunr(function () {
-        this.ref('id');
-        this.field('title');
-        this.field('organization');
-        this.field('date_published');
-        this.field('year');
-        this.field('type');
-        this.field('languages');
-        this.field('tags');
+    // Build Lunr index.
+    var index = lunr(function () {
+      this.ref('id');
+      this.field('title');
+      this.field('organization');
+      this.field('date_published');
+      this.field('year');
+      this.field('type');
+      this.field('languages');
+      this.field('tags');
 
-        documents.forEach(function (doc, index) {
-          var indexed_doc = Object.assign({ 'id': index }, doc);
-          this.add(indexed_doc);
-        }, this);
-      });
-
-      resolve(index);
+      documents.forEach(function (doc, index) {
+        var indexed_doc = Object.assign({ 'id': index }, doc);
+        this.add(indexed_doc);
+      }, this);
     });
+
+    return index;
   }
 
-  var index;
   var resources;
+  var index;
 
   // Load data from JSON files.
   var requestPromises = [];
@@ -48,17 +46,8 @@ import * as Utility from 'js/utility';
     var languages = results[3];
     var topics = results[4];
 
-    // Initialize global storage.
-    store.commit('setTopics', topics);
-    store.commit('setCountries', countries);
-    store.commit('setRegions', regions);
-    store.commit('setLanguages', languages);
-
     // Build resource index.
     resources = documents;
-    buildIndex(resources).then(function (result) {
-      index = result;
-    });
 
     // Build list of subjects.
     var subjects = [];
@@ -77,6 +66,19 @@ import * as Utility from 'js/utility';
         }
       }
     }
+
+    // Build search indices.
+    index = buildIndex(resources);
+    console.log(index);
+
+    // Initialize global storage.
+    store.commit('setResources', resources);
+    store.commit('setIndex', index);
+    store.commit('setTopics', topics);
+    store.commit('setCountries', countries);
+    store.commit('setRegions', regions);
+    store.commit('setLanguages', languages);
+    console.log(store.state);
 
     new Vue({
       el: '#directory',
@@ -97,6 +99,9 @@ import * as Utility from 'js/utility';
       components: {
         'resource-list': ResourceList,
         'resource-filter': Filter
+      },
+      mounted: function () {
+
       }
     });
   });

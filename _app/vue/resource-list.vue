@@ -19,36 +19,15 @@
 </template>
 
 <script>
+import { store } from 'js/global-store';
+import { mapGetters } from 'vuex';
+
 export default {
-  props: {
-    resources: Array,
-    index: Object,
-    filterKey: String,
-    filters: Array,
-  },
+  store,
   computed: {
     filteredData: function () {
-      var data = [];
-      var resources = this.resources;
-      var filterKey = this.filterKey;
-      var filters = this.filters.join(' ');
-      var query = [filterKey, filters].filter(function (val) { return val.toLowerCase(); }).join(' ');
-  
-      if (query) {
-        var results = index.search(query);
-
-        if (results) {
-          results.forEach(function (result) {
-            var index = parseInt(result.ref);
-            data.push(resources[index]);
-          });
-        }
-      } else {
-        data = this.resources;
-      }
- 
-      return data;
+      return this.$store.getters.filteredResources;
     }
-  },
+  }
 };
 </script>
