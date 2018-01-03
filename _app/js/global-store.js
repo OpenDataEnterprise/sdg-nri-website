@@ -65,7 +65,6 @@ export const store = new Vuex.Store({
         }
       }
 
-      console.log(selectedFilters);
       return selectedFilters;
     },
     filteredResources: function (state, getters) {
@@ -73,10 +72,8 @@ export const store = new Vuex.Store({
       var resources = state.resources;
       var filterKey = state.searchText;
       var filters = getters.filters.join(' ');
-      console.log(filters);
       var query = [filterKey, filters].filter(function (val) { return val.toLowerCase(); }).join(' ');
 
-      //console.log(query);
       if (query) {
         var results = state.index.search(query);
 

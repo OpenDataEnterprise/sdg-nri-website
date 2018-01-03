@@ -6,7 +6,7 @@ export {
 }
 
 // Parse parameters from URL.
-function getUrlParameters () {
+function getURLParameters () {
   var paramstrings = window.location.search.substr(1).split('&');
 
   if (paramstrings == '') {

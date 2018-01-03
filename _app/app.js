@@ -69,7 +69,6 @@ import * as Utility from 'js/utility';
 
     // Build search indices.
     index = buildIndex(resources);
-    console.log(index);
 
     // Initialize global storage.
     store.commit('setResources', resources);
@@ -78,7 +77,6 @@ import * as Utility from 'js/utility';
     store.commit('setCountries', countries);
     store.commit('setRegions', regions);
     store.commit('setLanguages', languages);
-    console.log(store.state);
 
     new Vue({
       el: '#directory',
@@ -92,6 +90,9 @@ import * as Utility from 'js/utility';
         };
       },
       methods: {
+        search: function () {
+          store.commit('setSearch', this.searchQuery);
+        },
         clearAll: function () {
           store.commit('clearFilters');
         }
@@ -99,9 +100,6 @@ import * as Utility from 'js/utility';
       components: {
         'resource-list': ResourceList,
         'resource-filter': Filter
-      },
-      mounted: function () {
-
       }
     });
   });

@@ -1,4 +1,4 @@
-    <form class="search-bar" role="search">
+    <form class="search-bar" role="search" v-on:submit.prevent>
       <input type="search" class="search-field" placeholder="Enter Search" v-model="searchQuery">
-      <input type="submit" class="search-submit" value="Search Resources">
+      <input type="submit" class="search-submit" value="Search Resources" v-on:click="search">
     </form>
