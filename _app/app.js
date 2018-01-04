@@ -28,30 +28,6 @@ import * as Utility from 'js/utility';
     return index;
   }
 
-  function buildHierarchy(docs, labelField, valueField, pathField) {
-    let hierarchy = {};
-
-    const docsCount = docs.length;
-    for (let i = 0; i < docsCount; i++) {
-      const path = docs[i][pathField];
-      const pathTokens = path.split('.');
-      const pathTokenCount = pathTokens.length;
-
-      let currentPath = hierarchy;
-      for (let j = 0; j < pathTokenCount; j++) {
-        let pathToken = pathTokens[j];
-        if (!(pathToken in currentPath)) {
-          if (!children in currentPath) {
-            currentPath.children = {};
-          }
-          currentPath.children[pathToken] = true;
-        }
-      }
-    }
-
-    console.log(hierarchy);
-  }
-
   var resources;
   var index;
 
@@ -69,8 +45,6 @@ import * as Utility from 'js/utility';
     var regions = results[2];
     var languages = results[3];
     var topics = results[4];
-
-    //buildHierarchy(topics, 'path');
 
     // Build resource index.
     resources = documents;
