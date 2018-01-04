@@ -39,6 +39,6 @@ regions: []
 tags:
 - big data
 - internet of things
-topic: assessment.policy
+topic: policy
 subject: ''
 ---
