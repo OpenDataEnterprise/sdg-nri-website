@@ -17,5 +17,5 @@ featured_image: ''
 regions: []
 languages: []
 tags: []
-topic: assessment.policy
+topic: policy
 ---
