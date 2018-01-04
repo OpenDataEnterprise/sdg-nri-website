@@ -12,5 +12,5 @@ description: ''
 featured_image: ''
 regions: []
 tags: []
-topic: data.sourcing
+topic: sourcing
 ---
