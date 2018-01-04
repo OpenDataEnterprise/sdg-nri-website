@@ -22,5 +22,7 @@ regions: []
 tags:
 - subnational
 - cities
+topic: assessment.capacity
+subject: ''
 ---
 

@@ -1,5 +1,6 @@
 ---
 pages:
+- _resources/hacking-the-sustainable-development-goals-can-us-cities-measure-up.md
 - _resources/cape-town-global-action-plan-for-sustainable-development-data-ctgap.md
 - _resources/localizing-the-sustainable-development-goals-for-san-jose-the-bay-area.md
 - _resources/handbook-on-major-statistical-data-management-platforms.md
@@ -20,7 +21,6 @@ pages:
 - _resources/a-world-that-counts-mobilising-the-data-revolution-for-sustainable-development.md
 - _resources/data-tools-for-the-california-bay-area-actionable-intelligence-for-cities-to-support-sdg-achievement.md
 - _resources/sdg-country-reporting-guidelines.md
-- _resources/hacking-the-sustainable-development-goals-can-us-cities-measure-up.md
 hide_body: false
 fields:
 - type: text
