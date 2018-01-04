@@ -1,8 +1,7 @@
 <template>
 <div
   class="sidebar-filter"
-  v-bind:class="{ 'hide-options': !visible }"
-  v-on:filter-update="updateFilter">
+  v-bind:class="{ 'hide-options': !visible }">
   <div
     class="filter-handle"
     v-bind:class="{ 'active': visible }"
@@ -30,8 +29,11 @@
 
 <script>
 import FilterOption from 'vue/filter-option.vue';
+import { store } from 'js/global-store';
+import { getURLParameters } from 'js/utility';
 
 export default {
+  store,
   props: {
     valueField: {
       type: String,
@@ -48,27 +50,77 @@ export default {
     filterType: {
       type: String
     },
-    filterOptions: {
+    initialOptions: {
       type: Array
+    },
+    nested: {
+      type: Boolean,
+      default: false
     }
   },
   data: function () {
     return {
       visible: false,
-      filterValues: [],
+      filterOptions: this.initialOptions,
     }
   },
   methods: {
-    updateFilter: function (value) {
-      console.log("Detected " + value + "!");
-      this.filterValues.push(value);
+    buildHierarchy: function (pathField) {
+      let filters = [];
+
+      const docsCount = this.filterOptions.length;
+      for (let i = 0; i < docsCount; i++) {
+        const doc = this.filterOptions[i];
+        const path = doc[pathField];
+        const pathTokens = path.split('.');
+        const pathTokenCount = pathTokens.length;
+
+        let filter = {};
+        filters.push(filter);
+        let currentPath = filter;
+        for (let j = 0; j < pathTokenCount; j++) {
+          let pathToken = pathTokens[j];
+
+          if (!(pathToken in currentPath)) {
+            currentPath[pathToken] = {};
+            currentPath[pathToken][this.labelField] = doc[this.labelField];
+            currentPath[pathToken][this.valueField] = doc[this.valueField];
+          }
+
+          if (!('children' in currentPath[pathToken])) {
+            currentPath[pathToken].children = [];
+          }
+    
+          currentPath = currentPath[pathToken].children;
+        }
+      }
+
+      return filters;
     },
     clear: function () {
-      this.filterValues = [];
+      store.commit('clearFilterType', this.filterType);
     }
   },
   components: {
     'filter-option': FilterOption
+  },
+  mounted: function () {
+    /*if (this.nested) {
+      this.filterOptions = this.buildHierarchy('path');
+      console.log(this.filterOptions);
+    }*/
+
+    let params = getURLParameters();
+    let type = this.filterType.toLowerCase();
+
+    if (type in params) {
+      let filters = params[type].split(',');
+      for (let i = 0; i < filters.length; i++) {
+        let filterId = 'f-' + filters[i];
+        let f = document.getElementById(filterId);
+        f.setAttribute('checked', 'checked');
+      }
+    }
   }
 };
 </script>

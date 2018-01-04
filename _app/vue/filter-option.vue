@@ -59,8 +59,8 @@ export default {
   },
   computed: {
     isExpandable: function () {
-      if (!this.childrenField ||
-        !(this.childrenField in this.model)) {
+      if (!(this.childrenField in this.model)
+        || !this.childrenField) {
         return false;
       }
 
@@ -84,8 +84,6 @@ export default {
       };
 
       store.commit('toggleFilter', filter);
-      //console.log("Selected " + value + " in " + category);
-      //console.log(store.state.selectedFilters);
     }
   }
 };

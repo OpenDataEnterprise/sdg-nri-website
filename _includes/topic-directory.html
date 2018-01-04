@@ -1,15 +1,20 @@
+{% assign base_url = "/resources-list" %}
 <nav class="topic-directory">
   <h1 class="topic-directory-header">Resources by Topic</h1>
   <div class="topic-directory-body">
     <ul class="topic-list">
-      {% for topic in site.data.topics %}
+      {% for topic in site.data.topic_dump %}
       <li class="topic">
-        <h2 class="topic-heading">{{ topic.name }}</h2>
+        <h2 class="topic-heading">
+          <a href="{{ base_url }}?topic={{ topic.tag }}" target="_blank">{{ topic.label }}</a>
+        </h2>
         {% if topic.subtopics %}
         <ul>
           {% for subtopic in topic.subtopics %}
           <li class="subtopic">
-              <h3><a href="#" target="_blank">{{ subtopic.name }}</a></h3>
+            <h3>
+              <a href="{{ base_url }}?topic={{ subtopic.tag }}" target="_blank">{{ subtopic.label }}</a>
+            </h3>
           </li>
           {% endfor %}
         </ul>

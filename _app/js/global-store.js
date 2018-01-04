@@ -12,7 +12,25 @@ export const store = new Vuex.Store({
     countries: [],
     regions: [],
     languages: [],
-    topics: []
+    topics: [],
+    types: [
+      {
+        'label': 'Report / Article',
+        'type': 'report'
+      },
+      {
+        'label': 'Guide / Assessment',
+        'type': 'guide'
+      },
+      {
+        'label': 'Webinar / Presentation',
+        'type': 'presentation'
+      },
+      {
+        'label': 'Website',
+        'type': 'website'
+      }
+    ]
   },
   mutations: {
     toggleFilter: function (state, filter) {
@@ -26,6 +44,11 @@ export const store = new Vuex.Store({
       } else {
         Vue.set(filterCategory, filter.value, true);
       }
+    },
+    clearFilterType: function (state, type) {
+      console.log('clearing ' + type);
+      Vue.delete(state.selectedFilters, type);
+      console.log(state.selectedFilters);
     },
     clearFilters: function (state) {
       state.selectedFilters = {};

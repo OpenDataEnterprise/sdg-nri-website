@@ -13,7 +13,8 @@
         v-bind:label-field="'label'"
         v-bind:value-field="'tag'"
         v-bind:children-field="'subtopics'"
-        v-bind:filter-options="sharedState.topics">
+        v-bind:initial-options="sharedState.topics"
+        v-bind:nested="true">
         <div class="filter-handle">
           <span class="filter-label">Topic</span>
         </div>
@@ -21,10 +22,21 @@
     
       <div class="sidebar-filter"
         is="resource-filter"
+        v-bind:filter-type="'Resource Type'"
+        v-bind:label-field="'label'"
+        v-bind:value-field="'type'"
+        v-bind:initial-options="sharedState.types">
+        <div class="filter-handle">
+          <span class="filter-label">Resource Type</span>
+        </div>
+      </div>
+
+      <div class="sidebar-filter"
+        is="resource-filter"
         v-bind:filter-type="'Country'"
         v-bind:label-field="'name'"
         v-bind:value-field="'iso_alpha3'"
-        v-bind:filter-options="sharedState.countries">
+        v-bind:initial-options="sharedState.countries">
         <div class="filter-handle">
           <span class="filter-label">Country</span>
         </div>
@@ -35,7 +47,7 @@
         v-bind:filter-type="'Language'"
         v-bind:label-field="'label'"
         v-bind:value-field="'name'"
-        v-bind:filter-options="sharedState.languages">
+        v-bind:initial-options="sharedState.languages">
         <div class="filter-handle">
           <span class="filter-label">Language</span>
         </div>
