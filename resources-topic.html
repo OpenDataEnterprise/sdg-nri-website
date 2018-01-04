@@ -1,165 +1,22 @@
 ---
 layout: default
-vue: true
-guide: true
+resources-topic: true
 ---
 
 {% assign groups = site.resources | group_by: "subject" %}
 
-<div id="directory">
-
-  <nav class="help-nav">
-    <div>I am looking for help with</div>
-    <ul>
-      <li><a href="#policy-section">Policy</a></li>
-      <li><a href="#data-section">Data</a></li>
-      <li><a href="#development-section">Development</a></li>
-    </ul>
-  </nav>
+<div id="directory" class="search-directory">
 
   {% include submission-call.html %}
 
-  <section id="policy-section">
+  <div class="search-directory-wrapper">
 
-    <h1 class="directory-heading">For Policy Makers</h1>
+    {% include topic-sidebar.html %}
 
-    <div class="directory-group">
+    <ul class="resource-list"
+      is="resource-list">
+    </ul>
 
-      <nav class="directory-listing">
-        <ul>
-          {% for group in groups %}
-          {% if group.name != "" %}
-          <li>
-              <a href="#{{ group.name | downcase | replace: ' ', '-' }}">{{ group.name }}</a>
-          </li>
-          {% endif %}
-          {% endfor %}
-        </ul>
-      </nav>
-
-      <div class="resource-groups-container">
-        {% for group in groups %}
-        {% if group.name != "" %}
-        <ul class="resource-list-group">
-          <li id="{{ group.name | downcase | replace: ' ', '-' }}" class="resource-list-group-head">
-            <h1>{{ group.name }}</h1>
-            <p class="resource-list-group-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-            <input class="resource-list-toggle" type="button" value="Learn More">
-          </li>
-          {% for resource in group.items %}
-          <li class="resource-list-item hide-resource">
-            <img class="resource-image">
-            <section class="resource-info">
-              <h3 class="resource-title">
-                  <a href="{{ resource.link }}" target="_blank">{{ resource.title }}</a>
-              </h3>
-              <div class="resource-organization">{{ resource.organization }}</div>
-              <div class="resource-description">{{ resource.description }}</div>
-            </section>
-          </li>
-          {% endfor %}
-        </ul>
-        {% endif %}
-        {% endfor %}
-      </div>
-
-    </div>
-
-  </section>
-
-  <section id="data-section">
-
-    <h1 class="directory-heading">For Statisticians</h1>
-
-    <div class="directory-group">
-      <nav class="directory-listing">
-        <ul>
-          {% for group in groups %}
-          {% if group.name != "" %}
-          <li>
-              <a href="#{{ group.name | downcase | replace: ' ', '-' }}">{{ group.name }}</a>
-          </li>
-          {% endif %}
-          {% endfor %}
-        </ul>
-      </nav>
-
-      <div class="resource-groups-container">
-        {% for group in groups %}
-        {% if group.name != "" %}
-        <ul class="resource-list-group">
-          <li id="{{ group.name | downcase | replace: ' ', '-' }}" class="resource-list-group-head">
-            <h1>{{ group.name }}</h1>
-            <p class="resource-list-group-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-            <input class="resource-list-toggle" type="button" value="Learn More">
-          </li>
-          {% for resource in group.items %}
-          <li class="resource-list-item hide-resource">
-            <img class="resource-image">
-            <section class="resource-info">
-              <h3 class="resource-title">
-                  <a href="{{ resource.link }}" target="_blank">{{ resource.title }}</a>
-              </h3>
-              <div class="resource-organization">{{ resource.organization }}</div>
-              <div class="resource-description">{{ resource.description }}</div>
-            </section>
-          </li>
-          {% endfor %}
-        </ul>
-        {% endif %}
-        {% endfor %}
-      </div>
-
-    </div>
-
-  </section>
-
-  <section id="development-section">
-
-    <h1 class="directory-heading">For Developers</h1>
-
-    <div class="directory-group">
-
-      <nav class="directory-listing">
-        <ul>
-          {% for group in groups %}
-          {% if group.name != "" %}
-          <li>
-              <a href="#{{ group.name | downcase | replace: ' ', '-' }}">{{ group.name }}</a>
-          </li>
-          {% endif %}
-          {% endfor %}
-        </ul>
-      </nav>
-
-      <div class="resource-groups-container">
-        {% for group in groups %}
-        {% if group.name != "" %}
-        <ul class="resource-list-group">
-          <li id="{{ group.name | downcase | replace: ' ', '-' }}" class="resource-list-group-head">
-            <h1>{{ group.name }}</h1>
-            <p class="resource-list-group-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-            <input class="resource-list-toggle" type="button" value="Learn More">
-          </li>
-          {% for resource in group.items %}
-          <li class="resource-list-item hide-resource">
-            <img class="resource-image">
-            <section class="resource-info">
-              <h3 class="resource-title">
-                  <a href="{{ resource.link }}" target="_blank">{{ resource.title }}</a>
-              </h3>
-              <div class="resource-organization">{{ resource.organization }}</div>
-              <div class="resource-description">{{ resource.description }}</div>
-            </section>
-          </li>
-          {% endfor %}
-        </ul>
-        {% endif %}
-        {% endfor %}
-      </div>
-
-    </div>
-
-  </section>
+  </div>
 
 </div>

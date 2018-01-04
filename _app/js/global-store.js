@@ -95,19 +95,6 @@ export const store = new Vuex.Store({
       var filters = getters.filters.join(' ');
       var query = [filterKey, filters].filter(function (val) { return val.toLowerCase(); }).join(' ');
 
-      /*if ('Topic' in state.selectedFilters &&
-        state.selectedFilters['Topic']) {
-        let selectedFilters = [];
-  
-        for (let filter in state.selectedFilters['Topics']) {
-          selectedFilters.push(filter);
-        }
-
-        let topicFilters = getters.filters.join(' ');
-        let topicResults = state.index.search('topic:' + topicFilters);
-        console.log(topicResults);
-      }*/
-
       if (query) {
         let results = state.index.search(filterKey);
 

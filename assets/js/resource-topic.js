@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 19);
+/******/ 	return __webpack_require__(__webpack_require__.s = 20);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -15077,7 +15077,8 @@ if (false) {
 }
 
 /***/ }),
-/* 19 */
+/* 19 */,
+/* 20 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -15119,6 +15120,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     });
 
     return index;
+  }
+
+  function parseTopic() {
+    let params = __WEBPACK_IMPORTED_MODULE_6_js_utility__["b" /* getURLParameters */]();
+    let filters = params['topic'].split(',');
+
+    for (let i = 0; i < filters.length; i++) {
+      let filterObj = {
+        value: filters[i],
+        category: 'Topic'
+      };
+
+      console.log('toggling', filterObj);
+      __WEBPACK_IMPORTED_MODULE_3_js_global_store__["a" /* store */].commit('toggleFilter', filterObj);
+      console.log(__WEBPACK_IMPORTED_MODULE_3_js_global_store__["a" /* store */].state.selectedFilters);
+    }
   }
 
   var resources;
@@ -15170,6 +15187,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     __WEBPACK_IMPORTED_MODULE_3_js_global_store__["a" /* store */].commit('setCountries', countries);
     __WEBPACK_IMPORTED_MODULE_3_js_global_store__["a" /* store */].commit('setRegions', regions);
     __WEBPACK_IMPORTED_MODULE_3_js_global_store__["a" /* store */].commit('setLanguages', languages);
+
+    parseTopic();
 
     new __WEBPACK_IMPORTED_MODULE_1_vue__["a" /* default */]({
       el: '#directory',

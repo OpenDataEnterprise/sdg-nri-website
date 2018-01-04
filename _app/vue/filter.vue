@@ -7,10 +7,6 @@
     v-bind:class="{ 'active': visible }"
     v-on:click="visible = !visible">
     <label class="filter-label">{{ filterType }}</label>
-    <button
-      class="filter-clear"
-      type="button"
-      v-on:click="clear">Clear</button>
   </div>
   <ul class="filter-list">
     <filter-option

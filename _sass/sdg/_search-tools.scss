@@ -68,7 +68,8 @@ $gutter: 1.2em;
   width: 100%;
 }
 
-.filter-sidebar {
+.filter-sidebar,
+.topic-sidebar {
   @include grid-column(1, $col-4);
 }
 

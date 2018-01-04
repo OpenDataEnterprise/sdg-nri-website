@@ -58,6 +58,15 @@ export default {
     };
   },
   computed: {
+    check: function () {
+      if (store.state.selectedFilters[this.filterType][this.valueField]) {
+        this.$attrs.checked = 'checked';
+      } else {
+        delete this.$attrs.checked;
+      }
+
+      return true;
+    },
     isExpandable: function () {
       if (!(this.childrenField in this.model)
         || !this.childrenField) {

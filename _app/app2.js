@@ -29,6 +29,22 @@ import * as Utility from 'js/utility';
     return index;
   }
 
+  function parseTopic() {
+    let params = Utility.getURLParameters();
+    let filters = params['topic'].split(',');
+
+    for (let i = 0; i < filters.length; i++) {
+      let filterObj = {
+        value: filters[i],
+        category: 'Topic'
+      };
+
+      console.log('toggling', filterObj);
+      store.commit('toggleFilter', filterObj);
+      console.log(store.state.selectedFilters);
+    }
+  }
+
   var resources;
   var index;
 
@@ -78,6 +94,8 @@ import * as Utility from 'js/utility';
     store.commit('setCountries', countries);
     store.commit('setRegions', regions);
     store.commit('setLanguages', languages);
+
+    parseTopic();
 
     new Vue({
       el: '#directory',
