@@ -28,7 +28,7 @@ languages:
 - Slovenian
 - Swedish
 - Spanish
-- Turkish
+- Turkey
 type: Report
 description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras in nibh
   et est porta auctor sed ac nunc. Fusce magna arcu, euismod quis urna elementum,
@@ -39,4 +39,6 @@ regions: []
 tags:
 - big data
 - internet of things
+topic: assessment.policy
+subject: ''
 ---
