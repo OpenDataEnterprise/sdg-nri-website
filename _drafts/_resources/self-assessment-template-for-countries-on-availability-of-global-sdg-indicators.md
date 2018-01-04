@@ -15,5 +15,5 @@ subject: Official statistics for SDGs
 featured_image: ''
 regions: []
 tags: []
-topic: assessment.capacity
+topic: capacity
 ---
