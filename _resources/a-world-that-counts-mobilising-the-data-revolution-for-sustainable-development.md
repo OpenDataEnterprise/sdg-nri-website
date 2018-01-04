@@ -21,5 +21,7 @@ featured_image: ''
 regions: []
 tags:
 - UN
+topic: approaches.technology
+subject: ''
 ---
 
