@@ -1,5 +1,6 @@
 ---
 pages:
+- _resources/development-co-operation-report-2017.md
 - _resources/conference-of-european-statisticians’-road-map-on-statistics-for-sustainable-development-goals-first-edition.md
 - _resources/conference-of-european-statisticians-road-map-on-statistics-for-sustainable-development-goals-first-edition.md
 - _resources/data-for-development-a-needs-assessment-for-sdg-monitoring-and-statistical-capacity-development.md
@@ -15,7 +16,6 @@ pages:
 - _resources/value-of-official-statistics-recommendations-on-promoting-measuring-and-communicating-the-value-of-official-statistics.md
 - _resources/technical-assessment-of-open-data-platforms-for-nsos.md
 - _resources/cape-town-global-action-plan-for-sustainable-development-data-ctgap.md
-- _resources/development-co-operation-report-2017.md
 - _resources/a-world-that-counts-mobilising-the-data-revolution-for-sustainable-development.md
 - _resources/handbook-on-major-statistical-data-management-platforms.md
 - _resources/data-tools-for-the-california-bay-area-actionable-intelligence-for-cities-to-support-sdg-achievement.md
@@ -70,3 +70,6 @@ fields:
 - type: text
   name: subject
   label: Subject
+- type: text
+  name: topic
+  label: Topic
