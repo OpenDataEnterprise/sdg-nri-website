@@ -23,7 +23,7 @@ regions: []
 tags:
 - subnational
 - cities
-topic: approaches.technology
+topic: technology
 subject: ''
 ---
 
