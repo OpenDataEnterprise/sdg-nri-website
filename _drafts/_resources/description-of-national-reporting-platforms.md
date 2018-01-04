@@ -14,5 +14,5 @@ subject: Platforms & Portals
 featured_image: ''
 regions: []
 tags: []
-topic: sdg.intro
+topic: intro
 ---
