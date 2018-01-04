@@ -16,5 +16,5 @@ tags:
 subject: Platforms & Portals
 featured_image: ''
 regions: []
-topic: opensource.features
+topic: features
 ---
