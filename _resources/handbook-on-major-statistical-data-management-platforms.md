@@ -24,5 +24,6 @@ tags:
 - platforms
 - Africa
 subject: Official statistics for SDGs
+topic: approaches.technology
 ---
 

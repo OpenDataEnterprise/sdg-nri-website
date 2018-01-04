@@ -1,5 +1,6 @@
 ---
 pages:
+- _resources/handbook-on-major-statistical-data-management-platforms.md
 - _resources/guidelines-for-national-sdg-indicators-reporting-mechanisms.md
 - _resources/value-of-official-statistics-recommendations-on-promoting-measuring-and-communicating-the-value-of-official-statistics.md
 - _resources/technical-assessment-of-open-data-platforms-for-nsos.md
@@ -17,7 +18,6 @@ pages:
 - _resources/strategic-and-managerial-issues-of-official-statistics.md
 - _resources/cape-town-global-action-plan-for-sustainable-development-data-ctgap.md
 - _resources/a-world-that-counts-mobilising-the-data-revolution-for-sustainable-development.md
-- _resources/handbook-on-major-statistical-data-management-platforms.md
 - _resources/data-tools-for-the-california-bay-area-actionable-intelligence-for-cities-to-support-sdg-achievement.md
 - _resources/sdg-country-reporting-guidelines.md
 - _resources/hacking-the-sustainable-development-goals-can-us-cities-measure-up.md
