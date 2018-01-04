@@ -23,5 +23,7 @@ regions: []
 tags:
 - subnational
 - cities
+topic: approaches.technology
+subject: ''
 ---
 
