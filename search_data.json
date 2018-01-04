@@ -9,6 +9,7 @@ layout: null
     "url": "{{ resource.link }}",
     "type": "{{ resource.type }}",
     "description": "{{ resource.description }}",
+    "topic": "{{ resource.topic }}",
     "languages": [{% for language in resource.languages %}
       "{{ language }}"{% unless forloop.last %},{% endunless %}{% endfor %}
     ],

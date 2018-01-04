@@ -1,13 +1,25 @@
 ---
-layout: default
 title: Resources
 permalink: /resources/
 navigation_weight: 1
-jquery: true
+layout: default
+resources-list: true
 ---
 
-<div>
-  <ul style="padding: 8.375em 0 5em; list-style: none; text-align: center;">
-    <li><a href="/resources-list.html">List</a></li>
-  </ul>
+<div id="directory" class="search-directory">
+
+  {% include submission-call.html %}
+
+  <div class="search-directory-wrapper">
+
+    {% include search-bar.html %}
+
+    {% include filter-sidebar.html %}
+
+    <ul class="resource-list"
+      is="resource-list">
+    </ul>
+
+  </div>
+
 </div>

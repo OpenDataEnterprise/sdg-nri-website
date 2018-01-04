@@ -102,7 +102,7 @@ const store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
   mutations: {
     toggleFilter: function (state, filter) {
       if (!(filter.category in state.selectedFilters)) {
-        __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */].set(state.selectedFilters, filter.category, []);
+        __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */].set(state.selectedFilters, filter.category, {});
       }
 
       var filterCategory = state.selectedFilters[filter.category];
@@ -113,9 +113,7 @@ const store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
       }
     },
     clearFilterType: function (state, type) {
-      console.log('clearing ' + type);
       __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */].delete(state.selectedFilters, type);
-      console.log(state.selectedFilters);
     },
     clearFilters: function (state) {
       state.selectedFilters = {};
@@ -166,8 +164,39 @@ const store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
         return val.toLowerCase();
       }).join(' ');
 
+      /*if ('Topic' in state.selectedFilters &&
+        state.selectedFilters['Topic']) {
+        let selectedFilters = [];
+           for (let filter in state.selectedFilters['Topics']) {
+          selectedFilters.push(filter);
+        }
+         let topicFilters = getters.filters.join(' ');
+        let topicResults = state.index.search('topic:' + topicFilters);
+        console.log(topicResults);
+      }*/
+
       if (query) {
-        var results = state.index.search(query);
+        let results = state.index.search(filterKey);
+
+        for (let filterType in state.selectedFilters) {
+          let selectedFilters = [];
+
+          for (let filter in state.selectedFilters[filterType]) {
+            selectedFilters.push(filter);
+          }
+
+          if (!(selectedFilters.length > 0)) {
+            continue;
+          }
+
+          if (filterType == 'Language') {
+            filterType = 'languages';
+          }
+
+          const filterQuery = filterType.toLowerCase() + ':' + selectedFilters.join(' ');
+          let filterResults = state.index.search(filterQuery);
+          results = results.concat(filterResults);
+        }
 
         if (results) {
           results.forEach(function (result) {
@@ -11340,7 +11369,6 @@ module.exports = g;
 
 
 /* harmony default export */ __webpack_exports__["a"] = ({
-  store: __WEBPACK_IMPORTED_MODULE_1_js_global_store__["a" /* store */],
   props: {
     valueField: {
       type: String,
@@ -11422,10 +11450,18 @@ module.exports = g;
 
     if (type in params) {
       let filters = params[type].split(',');
+      console.log(filters);
       for (let i = 0; i < filters.length; i++) {
         let filterId = 'f-' + filters[i];
         let f = document.getElementById(filterId);
         f.setAttribute('checked', 'checked');
+
+        let filterObj = {
+          value: filters[i],
+          category: this.filterType
+        };
+
+        __WEBPACK_IMPORTED_MODULE_1_js_global_store__["a" /* store */].commit('toggleFilter', filterObj);
       }
     }
   }
@@ -11512,15 +11548,12 @@ module.exports = g;
       }
     },
     emitFilterUpdate: function (e) {
-      var value = this.model[this.valueField];
-      var category = this.filterType;
-
-      var filter = {
-        value: value,
-        category: category
+      let filterObj = {
+        value: this.model[this.valueField],
+        category: this.filterType
       };
 
-      __WEBPACK_IMPORTED_MODULE_0_js_global_store__["a" /* store */].commit('toggleFilter', filter);
+      __WEBPACK_IMPORTED_MODULE_0_js_global_store__["a" /* store */].commit('toggleFilter', filterObj);
     }
   }
 });
@@ -11624,6 +11657,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.field('type');
       this.field('languages');
       this.field('tags');
+      this.field('topic');
 
       documents.forEach(function (doc, index) {
         var indexed_doc = Object.assign({ 'id': index }, doc);
@@ -11632,30 +11666,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     });
 
     return index;
-  }
-
-  function buildHierarchy(docs, labelField, valueField, pathField) {
-    let hierarchy = {};
-
-    const docsCount = docs.length;
-    for (let i = 0; i < docsCount; i++) {
-      const path = docs[i][pathField];
-      const pathTokens = path.split('.');
-      const pathTokenCount = pathTokens.length;
-
-      let currentPath = hierarchy;
-      for (let j = 0; j < pathTokenCount; j++) {
-        let pathToken = pathTokens[j];
-        if (!(pathToken in currentPath)) {
-          if (!children in currentPath) {
-            currentPath.children = {};
-          }
-          currentPath.children[pathToken] = true;
-        }
-      }
-    }
-
-    console.log(hierarchy);
   }
 
   var resources;
@@ -11675,8 +11685,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     var regions = results[2];
     var languages = results[3];
     var topics = results[4];
-
-    //buildHierarchy(topics, 'path');
 
     // Build resource index.
     resources = documents;

@@ -75,15 +75,12 @@ export default {
       }
     },
     emitFilterUpdate: function (e) {
-      var value = this.model[this.valueField];
-      var category = this.filterType;
-
-      var filter = {
-        value: value,
-        category: category
+      let filterObj = {
+        value: this.model[this.valueField],
+        category: this.filterType
       };
 
-      store.commit('toggleFilter', filter);
+      store.commit('toggleFilter', filterObj);
     }
   }
 };

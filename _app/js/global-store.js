@@ -35,7 +35,7 @@ export const store = new Vuex.Store({
   mutations: {
     toggleFilter: function (state, filter) {
       if (!(filter.category in state.selectedFilters)) {
-        Vue.set(state.selectedFilters, filter.category, []);
+        Vue.set(state.selectedFilters, filter.category, {});
       }
 
       var filterCategory = state.selectedFilters[filter.category];
@@ -46,9 +46,7 @@ export const store = new Vuex.Store({
       }
     },
     clearFilterType: function (state, type) {
-      console.log('clearing ' + type);
       Vue.delete(state.selectedFilters, type);
-      console.log(state.selectedFilters);
     },
     clearFilters: function (state) {
       state.selectedFilters = {};
@@ -97,8 +95,41 @@ export const store = new Vuex.Store({
       var filters = getters.filters.join(' ');
       var query = [filterKey, filters].filter(function (val) { return val.toLowerCase(); }).join(' ');
 
+      /*if ('Topic' in state.selectedFilters &&
+        state.selectedFilters['Topic']) {
+        let selectedFilters = [];
+  
+        for (let filter in state.selectedFilters['Topics']) {
+          selectedFilters.push(filter);
+        }
+
+        let topicFilters = getters.filters.join(' ');
+        let topicResults = state.index.search('topic:' + topicFilters);
+        console.log(topicResults);
+      }*/
+
       if (query) {
-        var results = state.index.search(query);
+        let results = state.index.search(filterKey);
+
+        for (let filterType in state.selectedFilters) {
+          let selectedFilters = [];
+  
+          for (let filter in state.selectedFilters[filterType]) {
+            selectedFilters.push(filter);
+          }
+
+          if (!(selectedFilters.length > 0)) {
+            continue;
+          }
+
+          if (filterType == 'Language') {
+            filterType = 'languages';
+          }
+
+          const filterQuery = filterType.toLowerCase() + ':' + selectedFilters.join(' ');
+          let filterResults = state.index.search(filterQuery);
+          results = results.concat(filterResults);
+        }
 
         if (results) {
           results.forEach(function (result) {

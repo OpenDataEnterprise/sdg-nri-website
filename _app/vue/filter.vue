@@ -33,7 +33,6 @@ import { store } from 'js/global-store';
 import { getURLParameters } from 'js/utility';
 
 export default {
-  store,
   props: {
     valueField: {
       type: String,
@@ -115,10 +114,18 @@ export default {
 
     if (type in params) {
       let filters = params[type].split(',');
+      console.log(filters);
       for (let i = 0; i < filters.length; i++) {
         let filterId = 'f-' + filters[i];
         let f = document.getElementById(filterId);
         f.setAttribute('checked', 'checked');
+
+        let filterObj = {
+          value: filters[i],
+          category: this.filterType
+        };
+
+        store.commit('toggleFilter', filterObj);
       }
     }
   }

@@ -18,6 +18,7 @@ import * as Utility from 'js/utility';
       this.field('type');
       this.field('languages');
       this.field('tags');
+      this.field('topic');
 
       documents.forEach(function (doc, index) {
         var indexed_doc = Object.assign({ 'id': index }, doc);

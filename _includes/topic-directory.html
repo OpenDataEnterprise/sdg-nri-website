@@ -6,14 +6,14 @@
       {% for topic in site.data.topic_dump %}
       <li class="topic">
         <h2 class="topic-heading">
-          <a href="{{ base_url }}?topic={{ topic.tag }}" target="_blank">{{ topic.label }}</a>
+          <a href="{{ base_url }}?topic={{ topic.tag }}">{{ topic.label }}</a>
         </h2>
         {% if topic.subtopics %}
         <ul>
           {% for subtopic in topic.subtopics %}
           <li class="subtopic">
             <h3>
-              <a href="{{ base_url }}?topic={{ subtopic.tag }}" target="_blank">{{ subtopic.label }}</a>
+              <a href="{{ base_url }}?topic={{ subtopic.tag }}">{{ subtopic.label }}</a>
             </h3>
           </li>
           {% endfor %}
