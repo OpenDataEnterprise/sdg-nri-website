@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import { loadJSON } from 'js/utility';
 
 Vue.use(Vuex);
 
@@ -8,29 +9,14 @@ export const store = new Vuex.Store({
     resources: [],
     index: {},
     searchText: '',
+    filterOptions: {
+      country: [],
+      region: [],
+      language: [],
+      topic: [],
+      type: [],
+    },
     selectedFilters: {},
-    countries: [],
-    regions: [],
-    languages: [],
-    topics: [],
-    types: [
-      {
-        'label': 'Report / Article',
-        'type': 'report'
-      },
-      {
-        'label': 'Guide / Assessment',
-        'type': 'guide'
-      },
-      {
-        'label': 'Webinar / Presentation',
-        'type': 'presentation'
-      },
-      {
-        'label': 'Website',
-        'type': 'website'
-      }
-    ]
   },
   mutations: {
     toggleFilter: function (state, filter) {
@@ -38,18 +24,26 @@ export const store = new Vuex.Store({
         Vue.set(state.selectedFilters, filter.category, {});
       }
 
-      var filterCategory = state.selectedFilters[filter.category];
+      let filterCategory = state.selectedFilters[filter.category];
       if (filter.value in filterCategory) {
         Vue.delete(filterCategory, filter.value);
+
+        // If there are no filters selected, remove the category.
+        if (!Object.keys(filterCategory).length) {
+          Vue.delete(state.selectedFilters, filter.category);
+        }
       } else {
         Vue.set(filterCategory, filter.value, true);
       }
     },
-    clearFilterType: function (state, type) {
-      Vue.delete(state.selectedFilters, type);
+    clearFilterCategory: function (state, category) {
+      Vue.delete(state.selectedFilters, category);
     },
     clearFilters: function (state) {
-      state.selectedFilters = {};
+      for (let category in state.selectedFilters) {
+        Vue.delete(state.selectedFilters, category);
+      }
+      //Vue.set(state, 'selectedFilters', {});
     },
     setSearch: function (state, text) {
       state.searchText = text;
@@ -58,26 +52,29 @@ export const store = new Vuex.Store({
       state.searchText = '';
     },
     setResources: function (state, resources) {
-      state.resources = resources;
+      Vue.set(state, 'resources', resources);
     },
     setIndex: function (state, index) {
       state.index = index;
     },
     setTopics: function (state, topics) {
-      state.topics = topics;
+      state.filterOptions.topic = topics;
     },
     setCountries: function (state, countries) {
-      state.countries = countries;
+      state.filterOptions.country = countries;
     },
     setRegions: function (state, regions) {
-      state.regions = regions;
+      state.filterOptions.region = regions;
     },
     setLanguages: function (state, languages) {
-      state.languages = languages;
+      state.filterOptions.language = languages;
+    },
+    setTypes: function (state, types) {
+      state.filterOptions.type = types;
     }
   },
   getters: {
-    filters: function (state) {
+    filters: (state) => {
       let selectedFilters = [];
 
       for (let category in state.selectedFilters) {
@@ -88,47 +85,50 @@ export const store = new Vuex.Store({
 
       return selectedFilters;
     },
-    filteredResources: function (state, getters) {
-      let data = [];
-      var resources = state.resources;
-      var filterKey = state.searchText;
-      var filters = getters.filters.join(' ');
-      var query = [filterKey, filters].filter(function (val) { return val.toLowerCase(); }).join(' ');
+    getQueryString: (state) => {
+      let queryString = '';
 
-      if (query) {
-        let results = state.index.search(filterKey);
+      const categories = Object.keys(state.selectedFilters);
+      const categoryCount = categories.length;
 
-        for (let filterType in state.selectedFilters) {
-          let selectedFilters = [];
-  
-          for (let filter in state.selectedFilters[filterType]) {
-            selectedFilters.push(filter);
-          }
+      for (let i = 0; i < categoryCount; ++i) {
+        const category = categories[i];
+        const selectedOptions = Object.keys(state.selectedFilters[category]);
+        const selectedOptionsCount = selectedOptions.length;
 
-          if (!(selectedFilters.length > 0)) {
-            continue;
-          }
-
-          if (filterType == 'Language') {
-            filterType = 'languages';
-          }
-
-          const filterQuery = filterType.toLowerCase() + ':' + selectedFilters.join(' ');
-          let filterResults = state.index.search(filterQuery);
-          results = results.concat(filterResults);
+        if (!selectedOptions.length) {
+          continue;
         }
 
-        if (results) {
-          results.forEach(function (result) {
-            var index = parseInt(result.ref);
-            data.push(resources[index]);
-          });
+        if (i === 0) {
+          queryString += '?';
+        } else {
+          queryString += '&';
         }
-      } else {
-        data = resources;
+
+        queryString = queryString + category + '=';
+
+        for (let j = 0; j < selectedOptionsCount; j++) {
+          if (j > 0) {
+            queryString += ',';
+          }
+
+          queryString = queryString + selectedOptions[j];
+        }
       }
- 
-      return data;
-    }
+
+      return queryString;
+    },
+  },
+  actions: {
+    filterResources: async (context) => {
+      let queryString = context.getters.getQueryString;
+      console.log(queryString);
+
+      const resourcePath = 'http://localhost:3000/api/v1/resources';
+      const results = await loadJSON(resourcePath + queryString);
+
+      context.commit('setResources', results);
+    },
   }
 });

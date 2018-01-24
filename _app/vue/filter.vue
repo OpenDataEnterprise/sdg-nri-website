@@ -6,11 +6,12 @@
     class="filter-handle"
     v-bind:class="{ 'active': visible }"
     v-on:click="visible = !visible">
-    <label class="filter-label">{{ filterType }}</label>
+    <label class="filter-label">{{ filterLabel }}</label>
   </div>
   <ul class="filter-list">
     <filter-option
       class="filter-option"
+      v-bind:filter-label="filterLabel"
       v-bind:filter-type="filterType"
       v-bind:label-field="labelField"
       v-bind:value-field="valueField"
@@ -30,28 +31,27 @@ import { getURLParameters } from 'js/utility';
 
 export default {
   props: {
-    valueField: {
+    filterLabel: {
       type: String,
-      default: ''
+    },
+    filterType: {
+      type: String,
     },
     labelField: {
       type: String,
-      default: ''
+      default: '',
+    },
+    valueField: {
+      type: String,
+      default: '',
     },
     childrenField: {
       type: String,
-      default: ''
-    },
-    filterType: {
-      type: String
+      default: '',
     },
     initialOptions: {
-      type: Array
+      type: Array,
     },
-    nested: {
-      type: Boolean,
-      default: false
-    }
   },
   data: function () {
     return {
@@ -60,65 +60,27 @@ export default {
     }
   },
   methods: {
-    buildHierarchy: function (pathField) {
-      let filters = [];
-
-      const docsCount = this.filterOptions.length;
-      for (let i = 0; i < docsCount; i++) {
-        const doc = this.filterOptions[i];
-        const path = doc[pathField];
-        const pathTokens = path.split('.');
-        const pathTokenCount = pathTokens.length;
-
-        let filter = {};
-        filters.push(filter);
-        let currentPath = filter;
-        for (let j = 0; j < pathTokenCount; j++) {
-          let pathToken = pathTokens[j];
-
-          if (!(pathToken in currentPath)) {
-            currentPath[pathToken] = {};
-            currentPath[pathToken][this.labelField] = doc[this.labelField];
-            currentPath[pathToken][this.valueField] = doc[this.valueField];
-          }
-
-          if (!('children' in currentPath[pathToken])) {
-            currentPath[pathToken].children = [];
-          }
-    
-          currentPath = currentPath[pathToken].children;
-        }
-      }
-
-      return filters;
-    },
     clear: function () {
-      store.commit('clearFilterType', this.filterType);
+      store.commit('clearFilterCategory', this.filterOptions[filterType]);
     }
   },
   components: {
-    'filter-option': FilterOption
+    'filter-option': FilterOption,
   },
   mounted: function () {
-    /*if (this.nested) {
-      this.filterOptions = this.buildHierarchy('path');
-      console.log(this.filterOptions);
-    }*/
+    const urlParams = getURLParameters();
 
-    let params = getURLParameters();
-    let type = this.filterType.toLowerCase();
+    if (this.filterType in urlParams) {
+      let filters = urlParams[this.filterType].split(',');
 
-    if (type in params) {
-      let filters = params[type].split(',');
-      console.log(filters);
       for (let i = 0; i < filters.length; i++) {
-        let filterId = 'f-' + filters[i];
-        let f = document.getElementById(filterId);
+        const filterId = 'f-' + filters[i];
+        const f = document.getElementById(filterId);
         f.setAttribute('checked', 'checked');
 
         let filterObj = {
           value: filters[i],
-          category: this.filterType
+          category: this.filterType,
         };
 
         store.commit('toggleFilter', filterObj);

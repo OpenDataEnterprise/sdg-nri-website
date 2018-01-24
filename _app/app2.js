@@ -51,10 +51,7 @@ import * as Utility from 'js/utility';
   // Load data from JSON files.
   var requestPromises = [];
   requestPromises.push(Utility.loadJSON('/search_data.json'));
-  requestPromises.push(Utility.loadJSON('/mock_api/countries.json'));
-  requestPromises.push(Utility.loadJSON('/mock_api/regions.json'));
-  requestPromises.push(Utility.loadJSON('/mock_api/languages.json'));
-  requestPromises.push(Utility.loadJSON('/mock_api/topics.json'));
+  requestPromises.push(Utility.loadJSON('/api/v1/topics'));
 
   Promise.all(requestPromises).then(function (results) {
     var documents = results[0];

@@ -1,28 +1,31 @@
 .topic-directory {
   display: block;
   margin: 0 auto;
-  padding: 0 10em 5em;
+  padding: 5em 8em 5em;
+  background: rgba(233, 248, 255, 1) url('/assets/img/happy_children.jpg');
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .topic-directory-header {
   box-sizing: border-box;
   width: 100%;
-  margin: 0;
-  padding: 2rem;
-  background-color: #34A8FC;
-  font: inherit;
+  margin-bottom: 2em;
+  font-family: Oswald;
+  font-size: 1.5em;
   text-align: center;
   text-transform: uppercase;
-  color: #fff;
-  font-size: 1.5em;
+  color: rgba(0, 0, 0, 1);
   transition: background 0.1s, color 0.1s;
 }
 
-.topic-directory-body {
-  padding: 2em;
-  background: #efefef;
-  box-shadow: 0 48px 80px -32px rgba(0,0,0,0.3);
+.topic-directory-heading-stripe {
+  width: 17.6em;
 }
+
+.topic-directory-body {}
 
 .topic-list {
   column-count: 2;
@@ -41,5 +44,6 @@
 }
 
 .subtopic {
-  margin-left: 1em;
+  margin-left: 1.5em;
+  margin-bottom: 1em;
 }

@@ -31,5 +31,6 @@ module.exports = {
       path.resolve('./node_modules')
     ],
     alias: { 'vue$': 'vue/dist/vue.esm.js' }
-  }
+  },
+  watch: true
 };

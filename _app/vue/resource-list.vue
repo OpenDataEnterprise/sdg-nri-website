@@ -1,6 +1,6 @@
 <template>
 <ul class="resource-list">
-  <li class="resource-list-item" v-for="(resource, index) in filteredData" tabindex="0">
+  <li class="resource-list-item" v-for="(resource, index) in resources" tabindex="0">
     <img class="resource-image">
     <section class="resource-info">
       <h1 class="resource-title">
@@ -23,10 +23,9 @@ import { store } from 'js/global-store';
 import { mapGetters } from 'vuex';
 
 export default {
-  store,
   computed: {
-    filteredData: function () {
-      return this.$store.getters.filteredResources;
+    resources: function () {
+      return this.$store.state.resources;
     }
   }
 };

@@ -7,48 +7,25 @@ import Filter from 'vue/filter.vue';
 import * as Utility from 'js/utility';
 
 (function () {
-  function buildIndex(documents) {
-    // Build Lunr index.
-    var index = lunr(function () {
-      this.ref('id');
-      this.field('title');
-      this.field('organization');
-      this.field('date_published');
-      this.field('year');
-      this.field('type');
-      this.field('languages');
-      this.field('tags');
-      this.field('topic');
-
-      documents.forEach(function (doc, index) {
-        var indexed_doc = Object.assign({ 'id': index }, doc);
-        this.add(indexed_doc);
-      }, this);
-    });
-
-    return index;
-  }
-
   var resources;
-  var index;
 
   // Load data from JSON files.
   var requestPromises = [];
-  requestPromises.push(Utility.loadJSON('/search_data.json'));
-  requestPromises.push(Utility.loadJSON('/mock_api/countries.json'));
-  requestPromises.push(Utility.loadJSON('/mock_api/regions.json'));
-  requestPromises.push(Utility.loadJSON('/mock_api/languages.json'));
-  requestPromises.push(Utility.loadJSON('/mock_api/topics.json'));
+  var basePath = 'http://localhost:3000';
+  requestPromises.push(Utility.loadJSON(basePath + '/api/v1/resources'));
+  requestPromises.push(Utility.loadJSON(basePath + '/api/v1/countries'));
+  requestPromises.push(Utility.loadJSON(basePath + '/api/v1/regions'));
+  requestPromises.push(Utility.loadJSON(basePath + '/api/v1/languages'));
+  requestPromises.push(Utility.loadJSON(basePath + '/api/v1/topics'));
+  requestPromises.push(Utility.loadJSON(basePath + '/api/v1/resource_types'));
 
   Promise.all(requestPromises).then(function (results) {
-    var documents = results[0];
+    var resources = results[0];
     var countries = results[1];
     var regions = results[2];
     var languages = results[3];
     var topics = results[4];
-
-    // Build resource index.
-    resources = documents;
+    var resource_types = results[5];
 
     // Build list of subjects.
     var subjects = [];
@@ -68,42 +45,43 @@ import * as Utility from 'js/utility';
       }
     }
 
-    // Build search indices.
-    index = buildIndex(resources);
-
-    // Initialize global storage.
-    store.commit('setResources', resources);
-    store.commit('setIndex', index);
-    store.commit('setTopics', topics);
-    store.commit('setCountries', countries);
-    store.commit('setRegions', regions);
-    store.commit('setLanguages', languages);
-
     new Vue({
+      store,
       el: '#directory',
-      data: function () {
+      data: () => {
         return {
           resources: resources,
-          index: index,
           searchQuery: '',
           filterSelection: [],
-          sharedState: store.state
+          sharedState: store.state,
         };
       },
       methods: {
-        search: function () {
+        search: () => {
           store.commit('setSearch', this.searchQuery);
         },
-        clearAll: function () {
+        submitFilters: async () => {
+          await store.dispatch('filterResources');
+        },
+        clearAll: () => {
           console.log('Clearing filters.');
           store.commit('clearFilters');
-          console.log(store.state.selectedFilters);
-        }
+          console.log(store.state);
+        },
+      },
+      beforeCreate: () => {
+        // Initialize global storage.
+        store.commit('setResources', resources);
+        store.commit('setTopics', topics);
+        store.commit('setCountries', countries);
+        store.commit('setRegions', regions);
+        store.commit('setLanguages', languages);
+        store.commit('setTypes', resource_types);
       },
       components: {
         'resource-list': ResourceList,
-        'resource-filter': Filter
-      }
+        'resource-filter': Filter,
+      },
     });
   });
 })();

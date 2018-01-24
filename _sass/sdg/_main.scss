@@ -1,13 +1,13 @@
 header[role="banner"] {
   box-sizing: border-box;
   min-height: 42em;
+  padding: 8em 8em 15em;
   background-image: url('/assets/img/banner_background.jpg');
   background-size: cover;
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-position: center;
   font-family: Lato;
-  font-style: normal;
   color: #fdfdfd;
   text-align: center;
 }
@@ -19,8 +19,8 @@ header[role="banner"] {
   line-height: 3em;
 }
 
-.banner-content {
-  margin: 2em 5em 15em;
+.heading-stripe {
+  width: 17.6em;
 }
 
 .banner-stripe {
@@ -36,11 +36,11 @@ header[role="banner"] {
 }
 
 .banner-text {
-  font-size: 2.625em;
-  letter-spacing: 0.03em;
+  font-size: 3em;
+  letter-spacing: 0.02em;
   line-height: 1.4em;
   color: #fdfdfd;
-  text-shadow: 0.05em 0.05em #000000;
+  text-shadow: 0.04em 0.04em #000000;
 }
 
 .banner-search {
@@ -68,8 +68,8 @@ header[role="banner"] {
 }
 
 .intro-text {
-  margin-bottom: 3em;
-  font-size: 1.5em;
+  margin: 0 1em 1em;
+  font-size: 1.8em;
   letter-spacing: 0.02em;
   color: #020b4f;
 
@@ -79,6 +79,10 @@ header[role="banner"] {
     border-bottom-color: rgba(2,11,79,.3);
     text-decoration: none;
   }
+}
+
+.offering-text {
+  margin-bottom: 3em;
 }
 
 .feature-list {
@@ -128,8 +132,9 @@ header[role="banner"] {
   }
 
   .feature-description-header {
+    margin-bottom: 1rem;
     font-family: Oswald;
-    font-size: 1.5em;
+    font-size: 1.75em;
     text-transform: uppercase;
   }
 

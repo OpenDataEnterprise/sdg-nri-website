@@ -9,23 +9,25 @@
 
       <div class="sidebar-filter"
         is="resource-filter"
-        v-bind:filter-type="'Topic'"
-        v-bind:label-field="'label'"
+        v-bind:filter-label="'Topic'"
+        v-bind:filter-type="'topic'"
+        v-bind:label-field="'name'"
         v-bind:value-field="'tag'"
         v-bind:children-field="'subtopics'"
-        v-bind:initial-options="sharedState.topics"
+        v-bind:initial-options="sharedState.filterOptions.topic"
         v-bind:nested="true">
         <div class="filter-handle">
           <span class="filter-label">Topic</span>
         </div>
       </div>
-    
+
       <div class="sidebar-filter"
         is="resource-filter"
-        v-bind:filter-type="'Resource Type'"
-        v-bind:label-field="'label'"
-        v-bind:value-field="'type'"
-        v-bind:initial-options="sharedState.types">
+        v-bind:filter-label="'Resource Type'"
+        v-bind:filter-type="'type'"
+        v-bind:label-field="'name'"
+        v-bind:value-field="'name'"
+        v-bind:initial-options="sharedState.filterOptions.type">
         <div class="filter-handle">
           <span class="filter-label">Resource Type</span>
         </div>
@@ -33,10 +35,11 @@
 
       <div class="sidebar-filter"
         is="resource-filter"
-        v-bind:filter-type="'Country'"
+        v-bind:filter-label="'Country'"
+        v-bind:filter-type="'country'"
         v-bind:label-field="'name'"
         v-bind:value-field="'iso_alpha3'"
-        v-bind:initial-options="sharedState.countries">
+        v-bind:initial-options="sharedState.filterOptions.country">
         <div class="filter-handle">
           <span class="filter-label">Country</span>
         </div>
@@ -44,17 +47,18 @@
 
       <div class="sidebar-filter"
         is="resource-filter"
-        v-bind:filter-type="'Language'"
+        v-bind:filter-label="'Language'"
+        v-bind:filter-type="'language'"
         v-bind:label-field="'label'"
-        v-bind:value-field="'name'"
-        v-bind:initial-options="sharedState.languages">
+        v-bind:value-field="'ietf_tag'"
+        v-bind:initial-options="sharedState.filterOptions.language">
         <div class="filter-handle">
           <span class="filter-label">Language</span>
         </div>
       </div>
-    
+
       <div class="sidebar-filter-update">
-        <button>Update</button>
+        <button v-on:click="submitFilters">Update</button>
       </div>
-    
+
     </section>

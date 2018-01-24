@@ -2,10 +2,38 @@
 layout: default
 ---
 
-<div>
-<ul style="margin: 0 auto; padding: 8.375em 5em 5em; list-style: none; text-align: center;">
-  <li><a href="/landing1.html">Original Landing Page</a></li>
-  <li><a href="/landing2.html">Landing Page w/ Topic Directory (Search Page)</a></li>
-  <li><a href="/landing3.html">Landing Page w/ Topic Directory (Topic Pages)</a></li>
-</ul>
-</div>
+<header role="banner" class="banner">
+  <div class="banner-content">
+    <span class="banner-text">Supporting government reporting on the <strong>Sustainable Development Goals</strong> for data-driven policymaking</span>
+  </div>
+</header>
+
+<section class="intro">
+  <p class="intro-text">The <strong>SDG National Reporting Initiative</strong>, supported by the William and Flora Hewlett Foundation, is a two-year effort to support government reporting on the SDGs by leveraging international, regional, and local learned lessons.</p>
+  <p class="offering-text">The core offerings of this initiative include:</p>
+  <ul class="feature-list">
+    <li class="feature">
+      <a href="/resources">
+        <img class="feature-icon" src="/assets/img/options_icon.png">
+        <h2 class="feature-description-header">Assess Your Options</h2>
+      </a>
+      <p class="feature-description">Review options for national reporting on the SDGs to meet your country’s needs.</p>
+    </li>
+    <li class="feature">
+      <a href="/">
+        <img class="feature-icon" src="/assets/img/build_icon.png">
+        <h2 class="feature-description-header">Build</h2>
+      </a>
+      <p class="feature-description">Use open-source code for SDG national reporting.</p>
+    </li>
+    <li class="feature">
+      <a href="/news">
+        <img class="feature-icon" src="/assets/img/news_icon.png">
+        <h2 class="feature-description-header">News & Updates</h2>
+      </a>
+      <p class="feature-description">Stay up-to-date with new developments on SDG reporting from countries around the world.</p>
+    </li>
+  </ul>
+</section>
+
+{% include topic-directory2.html %}

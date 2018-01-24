@@ -1,12 +1,21 @@
 <section class="site-header">
 
-  <div class="under-construction-warning">This website is a work in progress.</div>
+  <!--<div class="under-construction-warning">This website is a work in progress.</div>-->
 
   <div class="site-nav-wrapper">
     {% assign default_paths = site.pages | sort: "navigation_weight" | map: "path" %}
     {% assign page_paths = site.header_pages | default: default_paths %}
-    <a class="site-title" href="{{ "/" | relative_url }}">{{ site.title | escape }}</a>
-  
+    <div class="site-title">
+      <img class="site-title-stripe" src="/assets/img/stripe.jpg">
+      <a class="site-title-heading" href="{{ "/" | relative_url }}">{{ site.title | upcase }}</a>
+    </div>
+
+    <!--
+    <div>
+      <h1 class="banner-header">SDG NATIONAL REPORTING INITIATIVE</h1>
+    </div>
+    -->
+
     {% if page_paths %}
       <nav class="site-nav">
         <input type="checkbox" id="nav-trigger" class="nav-trigger" />

@@ -7,16 +7,16 @@ export {
 
 // Parse parameters from URL.
 function getURLParameters () {
-  var paramstrings = window.location.search.substr(1).split('&');
+  let paramstrings = window.location.search.substr(1).split('&');
 
   if (paramstrings == '') {
     return {};
   }
 
-  var params = {};
+  let params = {};
 
-  for (var i = 0; i < paramstrings.length; ++i) {
-    var param = paramstrings[i].split('=', 2);
+  for (let i = 0; i < paramstrings.length; ++i) {
+    let param = paramstrings[i].split('=', 2);
     if (param.length == 1)
       params[param[0]] = '';
     else
@@ -27,13 +27,13 @@ function getURLParameters () {
 }
 
 function loadJSON(filepath) {
-  return new Promise(function (resolve, reject) {
-    var xhr = new XMLHttpRequest();
+  return new Promise((resolve, reject) => {
+    let xhr = new XMLHttpRequest();
     xhr.overrideMimeType('application/json');
     xhr.open('GET', filepath, true);
     xhr.onload = function () {
       if (xhr.status == '200') {
-            resolve(JSON.parse(xhr.responseText));
+        resolve(JSON.parse(xhr.responseText));
       } else {
         reject(xhr.statusText);
       }
@@ -45,11 +45,11 @@ function loadJSON(filepath) {
 
 function tokenizeArray(array) {
   // Tokenizes array of strings, splitting on commas and whitespace.
-  var all_tokens = [];
-  var arrayCount = array.length;
+  let all_tokens = [];
+  const arrayCount = array.length;
 
-  for (var i = 0; i < arrayCount; i++) {
-    var string_tokens = array[i].split(/,?\s+/);
+  for (let i = 0; i < arrayCount; i++) {
+    const string_tokens = array[i].split(/,?\s+/);
     all_tokens = all_tokens.concat(string_tokens);
   }
 
@@ -57,7 +57,22 @@ function tokenizeArray(array) {
 }
 
 function getPublicationMonth (dateObject) {
-  var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-  var datestring = months[dateObject.getMonth()] + ' ' + dateObject.getFullYear();
+  const months = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
+
+  const datestring = months[dateObject.getMonth()] + ' ' + dateObject.getFullYear();
+
   return datestring;
 }

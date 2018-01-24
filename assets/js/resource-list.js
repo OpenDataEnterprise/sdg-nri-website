@@ -68,8 +68,10 @@
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_js_utility__ = __webpack_require__(3);
+
 
 
 
@@ -80,24 +82,14 @@ const store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
     resources: [],
     index: {},
     searchText: '',
-    selectedFilters: {},
-    countries: [],
-    regions: [],
-    languages: [],
-    topics: [],
-    types: [{
-      'label': 'Report / Article',
-      'type': 'report'
-    }, {
-      'label': 'Guide / Assessment',
-      'type': 'guide'
-    }, {
-      'label': 'Webinar / Presentation',
-      'type': 'presentation'
-    }, {
-      'label': 'Website',
-      'type': 'website'
-    }]
+    filterOptions: {
+      country: [],
+      region: [],
+      language: [],
+      topic: [],
+      type: []
+    },
+    selectedFilters: {}
   },
   mutations: {
     toggleFilter: function (state, filter) {
@@ -105,18 +97,26 @@ const store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
         __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */].set(state.selectedFilters, filter.category, {});
       }
 
-      var filterCategory = state.selectedFilters[filter.category];
+      let filterCategory = state.selectedFilters[filter.category];
       if (filter.value in filterCategory) {
         __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */].delete(filterCategory, filter.value);
+
+        // If there are no filters selected, remove the category.
+        if (!Object.keys(filterCategory).length) {
+          __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */].delete(state.selectedFilters, filter.category);
+        }
       } else {
         __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */].set(filterCategory, filter.value, true);
       }
     },
-    clearFilterType: function (state, type) {
-      __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */].delete(state.selectedFilters, type);
+    clearFilterCategory: function (state, category) {
+      __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */].delete(state.selectedFilters, category);
     },
     clearFilters: function (state) {
-      state.selectedFilters = {};
+      for (let category in state.selectedFilters) {
+        __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */].delete(state.selectedFilters, category);
+      }
+      //Vue.set(state, 'selectedFilters', {});
     },
     setSearch: function (state, text) {
       state.searchText = text;
@@ -125,26 +125,29 @@ const store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
       state.searchText = '';
     },
     setResources: function (state, resources) {
-      state.resources = resources;
+      __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */].set(state, 'resources', resources);
     },
     setIndex: function (state, index) {
       state.index = index;
     },
     setTopics: function (state, topics) {
-      state.topics = topics;
+      state.filterOptions.topic = topics;
     },
     setCountries: function (state, countries) {
-      state.countries = countries;
+      state.filterOptions.country = countries;
     },
     setRegions: function (state, regions) {
-      state.regions = regions;
+      state.filterOptions.region = regions;
     },
     setLanguages: function (state, languages) {
-      state.languages = languages;
+      state.filterOptions.language = languages;
+    },
+    setTypes: function (state, types) {
+      state.filterOptions.type = types;
     }
   },
   getters: {
-    filters: function (state) {
+    filters: state => {
       let selectedFilters = [];
 
       for (let category in state.selectedFilters) {
@@ -155,49 +158,50 @@ const store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
 
       return selectedFilters;
     },
-    filteredResources: function (state, getters) {
-      let data = [];
-      var resources = state.resources;
-      var filterKey = state.searchText;
-      var filters = getters.filters.join(' ');
-      var query = [filterKey, filters].filter(function (val) {
-        return val.toLowerCase();
-      }).join(' ');
+    getQueryString: state => {
+      let queryString = '';
 
-      if (query) {
-        let results = state.index.search(filterKey);
+      const categories = Object.keys(state.selectedFilters);
+      const categoryCount = categories.length;
 
-        for (let filterType in state.selectedFilters) {
-          let selectedFilters = [];
+      for (let i = 0; i < categoryCount; ++i) {
+        const category = categories[i];
+        const selectedOptions = Object.keys(state.selectedFilters[category]);
+        const selectedOptionsCount = selectedOptions.length;
 
-          for (let filter in state.selectedFilters[filterType]) {
-            selectedFilters.push(filter);
-          }
-
-          if (!(selectedFilters.length > 0)) {
-            continue;
-          }
-
-          if (filterType == 'Language') {
-            filterType = 'languages';
-          }
-
-          const filterQuery = filterType.toLowerCase() + ':' + selectedFilters.join(' ');
-          let filterResults = state.index.search(filterQuery);
-          results = results.concat(filterResults);
+        if (!selectedOptions.length) {
+          continue;
         }
 
-        if (results) {
-          results.forEach(function (result) {
-            var index = parseInt(result.ref);
-            data.push(resources[index]);
-          });
+        if (i === 0) {
+          queryString += '?';
+        } else {
+          queryString += '&';
         }
-      } else {
-        data = resources;
+
+        queryString = queryString + category + '=';
+
+        for (let j = 0; j < selectedOptionsCount; j++) {
+          if (j > 0) {
+            queryString += ',';
+          }
+
+          queryString = queryString + selectedOptions[j];
+        }
       }
 
-      return data;
+      return queryString;
+    }
+  },
+  actions: {
+    filterResources: async context => {
+      let queryString = context.getters.getQueryString;
+      console.log(queryString);
+
+      const resourcePath = 'http://localhost:3000/api/v1/resources';
+      const results = await Object(__WEBPACK_IMPORTED_MODULE_2_js_utility__["c" /* loadJSON */])(resourcePath + queryString);
+
+      context.commit('setResources', results);
     }
   }
 });
@@ -1356,6 +1360,73 @@ var index_esm = {
 
 /***/ }),
 /* 3 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return getURLParameters; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return loadJSON; });
+/* unused harmony export tokenizeArray */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return getPublicationMonth; });
+
+
+// Parse parameters from URL.
+function getURLParameters() {
+  let paramstrings = window.location.search.substr(1).split('&');
+
+  if (paramstrings == '') {
+    return {};
+  }
+
+  let params = {};
+
+  for (let i = 0; i < paramstrings.length; ++i) {
+    let param = paramstrings[i].split('=', 2);
+    if (param.length == 1) params[param[0]] = '';else params[param[0]] = decodeURIComponent(param[1].replace(/\+/g, ' '));
+  }
+
+  return params;
+}
+
+function loadJSON(filepath) {
+  return new Promise((resolve, reject) => {
+    let xhr = new XMLHttpRequest();
+    xhr.overrideMimeType('application/json');
+    xhr.open('GET', filepath, true);
+    xhr.onload = function () {
+      if (xhr.status == '200') {
+        resolve(JSON.parse(xhr.responseText));
+      } else {
+        reject(xhr.statusText);
+      }
+    };
+    xhr.onerror = () => reject(xhr.statusText);
+    xhr.send();
+  });
+}
+
+function tokenizeArray(array) {
+  // Tokenizes array of strings, splitting on commas and whitespace.
+  let all_tokens = [];
+  const arrayCount = array.length;
+
+  for (let i = 0; i < arrayCount; i++) {
+    const string_tokens = array[i].split(/,?\s+/);
+    all_tokens = all_tokens.concat(string_tokens);
+  }
+
+  return all_tokens;
+}
+
+function getPublicationMonth(dateObject) {
+  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+  const datestring = months[dateObject.getMonth()] + ' ' + dateObject.getFullYear();
+
+  return datestring;
+}
+
+/***/ }),
+/* 4 */
 /***/ (function(module, exports) {
 
 /* globals __VUE_SSR_CONTEXT__ */
@@ -1464,7 +1535,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11248,10 +11319,10 @@ function getOuterHTML(el) {
 Vue$3.compile = compileToFunctions;
 
 /* harmony default export */ __webpack_exports__["a"] = (Vue$3);
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1), __webpack_require__(5), __webpack_require__(11).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1), __webpack_require__(6), __webpack_require__(11).setImmediate))
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports) {
 
 var g;
@@ -11276,7 +11347,7 @@ try {
 module.exports = g;
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11307,22 +11378,22 @@ module.exports = g;
 
 
 /* harmony default export */ __webpack_exports__["a"] = ({
-  store: __WEBPACK_IMPORTED_MODULE_0_js_global_store__["a" /* store */],
   computed: {
-    filteredData: function () {
-      return this.$store.getters.filteredResources;
+    resources: function () {
+      return this.$store.state.resources;
     }
   }
 });
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_filter_option_vue__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_js_global_store__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_js_utility__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_js_utility__ = __webpack_require__(3);
+//
 //
 //
 //
@@ -11355,11 +11426,17 @@ module.exports = g;
 
 /* harmony default export */ __webpack_exports__["a"] = ({
   props: {
-    valueField: {
+    filterLabel: {
+      type: String
+    },
+    filterType: {
+      type: String
+    },
+    labelField: {
       type: String,
       default: ''
     },
-    labelField: {
+    valueField: {
       type: String,
       default: ''
     },
@@ -11367,15 +11444,8 @@ module.exports = g;
       type: String,
       default: ''
     },
-    filterType: {
-      type: String
-    },
     initialOptions: {
       type: Array
-    },
-    nested: {
-      type: Boolean,
-      default: false
     }
   },
   data: function () {
@@ -11385,60 +11455,22 @@ module.exports = g;
     };
   },
   methods: {
-    buildHierarchy: function (pathField) {
-      let filters = [];
-
-      const docsCount = this.filterOptions.length;
-      for (let i = 0; i < docsCount; i++) {
-        const doc = this.filterOptions[i];
-        const path = doc[pathField];
-        const pathTokens = path.split('.');
-        const pathTokenCount = pathTokens.length;
-
-        let filter = {};
-        filters.push(filter);
-        let currentPath = filter;
-        for (let j = 0; j < pathTokenCount; j++) {
-          let pathToken = pathTokens[j];
-
-          if (!(pathToken in currentPath)) {
-            currentPath[pathToken] = {};
-            currentPath[pathToken][this.labelField] = doc[this.labelField];
-            currentPath[pathToken][this.valueField] = doc[this.valueField];
-          }
-
-          if (!('children' in currentPath[pathToken])) {
-            currentPath[pathToken].children = [];
-          }
-
-          currentPath = currentPath[pathToken].children;
-        }
-      }
-
-      return filters;
-    },
     clear: function () {
-      __WEBPACK_IMPORTED_MODULE_1_js_global_store__["a" /* store */].commit('clearFilterType', this.filterType);
+      __WEBPACK_IMPORTED_MODULE_1_js_global_store__["a" /* store */].commit('clearFilterCategory', this.filterOptions[filterType]);
     }
   },
   components: {
     'filter-option': __WEBPACK_IMPORTED_MODULE_0_vue_filter_option_vue__["a" /* default */]
   },
   mounted: function () {
-    /*if (this.nested) {
-      this.filterOptions = this.buildHierarchy('path');
-      console.log(this.filterOptions);
-    }*/
+    const urlParams = Object(__WEBPACK_IMPORTED_MODULE_2_js_utility__["b" /* getURLParameters */])();
 
-    let params = Object(__WEBPACK_IMPORTED_MODULE_2_js_utility__["b" /* getURLParameters */])();
-    let type = this.filterType.toLowerCase();
+    if (this.filterType in urlParams) {
+      let filters = urlParams[this.filterType].split(',');
 
-    if (type in params) {
-      let filters = params[type].split(',');
-      console.log(filters);
       for (let i = 0; i < filters.length; i++) {
-        let filterId = 'f-' + filters[i];
-        let f = document.getElementById(filterId);
+        const filterId = 'f-' + filters[i];
+        const f = document.getElementById(filterId);
         f.setAttribute('checked', 'checked');
 
         let filterObj = {
@@ -11453,7 +11485,7 @@ module.exports = g;
 });
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11551,71 +11583,6 @@ module.exports = g;
     }
   }
 });
-
-/***/ }),
-/* 9 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return getURLParameters; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return loadJSON; });
-/* unused harmony export tokenizeArray */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return getPublicationMonth; });
-
-
-// Parse parameters from URL.
-function getURLParameters() {
-  var paramstrings = window.location.search.substr(1).split('&');
-
-  if (paramstrings == '') {
-    return {};
-  }
-
-  var params = {};
-
-  for (var i = 0; i < paramstrings.length; ++i) {
-    var param = paramstrings[i].split('=', 2);
-    if (param.length == 1) params[param[0]] = '';else params[param[0]] = decodeURIComponent(param[1].replace(/\+/g, ' '));
-  }
-
-  return params;
-}
-
-function loadJSON(filepath) {
-  return new Promise(function (resolve, reject) {
-    var xhr = new XMLHttpRequest();
-    xhr.overrideMimeType('application/json');
-    xhr.open('GET', filepath, true);
-    xhr.onload = function () {
-      if (xhr.status == '200') {
-        resolve(JSON.parse(xhr.responseText));
-      } else {
-        reject(xhr.statusText);
-      }
-    };
-    xhr.onerror = () => reject(xhr.statusText);
-    xhr.send();
-  });
-}
-
-function tokenizeArray(array) {
-  // Tokenizes array of strings, splitting on commas and whitespace.
-  var all_tokens = [];
-  var arrayCount = array.length;
-
-  for (var i = 0; i < arrayCount; i++) {
-    var string_tokens = array[i].split(/,?\s+/);
-    all_tokens = all_tokens.concat(string_tokens);
-  }
-
-  return all_tokens;
-}
-
-function getPublicationMonth(dateObject) {
-  var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-  var datestring = months[dateObject.getMonth()] + ' ' + dateObject.getFullYear();
-  return datestring;
-}
 
 /***/ }),
 /* 10 */
@@ -14725,18 +14692,18 @@ exports.clearImmediate = clearImmediate;
     attachTo.setImmediate = setImmediate;
     attachTo.clearImmediate = clearImmediate;
 })(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self);
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5), __webpack_require__(1)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6), __webpack_require__(1)))
 
 /***/ }),
 /* 13 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_resource_list_vue__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_resource_list_vue__ = __webpack_require__(7);
 /* unused harmony namespace reexport */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_01004655_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_resource_list_vue__ = __webpack_require__(14);
 var disposed = false
-var normalizeComponent = __webpack_require__(3)
+var normalizeComponent = __webpack_require__(4)
 /* script */
 
 
@@ -14791,7 +14758,7 @@ var render = function() {
   return _c(
     "ul",
     { staticClass: "resource-list" },
-    _vm._l(_vm.filteredData, function(resource, index) {
+    _vm._l(_vm.resources, function(resource, index) {
       return _c(
         "li",
         { staticClass: "resource-list-item", attrs: { tabindex: "0" } },
@@ -14848,11 +14815,11 @@ if (false) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_filter_vue__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_filter_vue__ = __webpack_require__(8);
 /* unused harmony namespace reexport */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_42fc36d0_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_filter_vue__ = __webpack_require__(18);
 var disposed = false
-var normalizeComponent = __webpack_require__(3)
+var normalizeComponent = __webpack_require__(4)
 /* script */
 
 
@@ -14900,11 +14867,11 @@ if (false) {(function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_filter_option_vue__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_filter_option_vue__ = __webpack_require__(9);
 /* unused harmony namespace reexport */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_183d9d7c_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_filter_option_vue__ = __webpack_require__(17);
 var disposed = false
-var normalizeComponent = __webpack_require__(3)
+var normalizeComponent = __webpack_require__(4)
 /* script */
 
 
@@ -15040,7 +15007,7 @@ var render = function() {
         },
         [
           _c("label", { staticClass: "filter-label" }, [
-            _vm._v(_vm._s(_vm.filterType))
+            _vm._v(_vm._s(_vm.filterLabel))
           ])
         ]
       ),
@@ -15053,6 +15020,7 @@ var render = function() {
             key: option[_vm.labelField],
             staticClass: "filter-option",
             attrs: {
+              "filter-label": _vm.filterLabel,
               "filter-type": _vm.filterType,
               "label-field": _vm.labelField,
               "value-field": _vm.valueField,
@@ -15084,12 +15052,12 @@ if (false) {
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lunr__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lunr___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_lunr__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_js_global_store__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vue_resource_list_vue__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vue_filter_vue__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_js_utility__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_js_utility__ = __webpack_require__(3);
 
 
 
@@ -15099,48 +15067,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 (function () {
-  function buildIndex(documents) {
-    // Build Lunr index.
-    var index = __WEBPACK_IMPORTED_MODULE_0_lunr___default()(function () {
-      this.ref('id');
-      this.field('title');
-      this.field('organization');
-      this.field('date_published');
-      this.field('year');
-      this.field('type');
-      this.field('languages');
-      this.field('tags');
-      this.field('topic');
-
-      documents.forEach(function (doc, index) {
-        var indexed_doc = Object.assign({ 'id': index }, doc);
-        this.add(indexed_doc);
-      }, this);
-    });
-
-    return index;
-  }
-
   var resources;
-  var index;
 
   // Load data from JSON files.
   var requestPromises = [];
-  requestPromises.push(__WEBPACK_IMPORTED_MODULE_6_js_utility__["c" /* loadJSON */]('/search_data.json'));
-  requestPromises.push(__WEBPACK_IMPORTED_MODULE_6_js_utility__["c" /* loadJSON */]('/mock_api/countries.json'));
-  requestPromises.push(__WEBPACK_IMPORTED_MODULE_6_js_utility__["c" /* loadJSON */]('/mock_api/regions.json'));
-  requestPromises.push(__WEBPACK_IMPORTED_MODULE_6_js_utility__["c" /* loadJSON */]('/mock_api/languages.json'));
-  requestPromises.push(__WEBPACK_IMPORTED_MODULE_6_js_utility__["c" /* loadJSON */]('/mock_api/topics.json'));
+  var basePath = 'http://localhost:3000';
+  requestPromises.push(__WEBPACK_IMPORTED_MODULE_6_js_utility__["c" /* loadJSON */](basePath + '/api/v1/resources'));
+  requestPromises.push(__WEBPACK_IMPORTED_MODULE_6_js_utility__["c" /* loadJSON */](basePath + '/api/v1/countries'));
+  requestPromises.push(__WEBPACK_IMPORTED_MODULE_6_js_utility__["c" /* loadJSON */](basePath + '/api/v1/regions'));
+  requestPromises.push(__WEBPACK_IMPORTED_MODULE_6_js_utility__["c" /* loadJSON */](basePath + '/api/v1/languages'));
+  requestPromises.push(__WEBPACK_IMPORTED_MODULE_6_js_utility__["c" /* loadJSON */](basePath + '/api/v1/topics'));
+  requestPromises.push(__WEBPACK_IMPORTED_MODULE_6_js_utility__["c" /* loadJSON */](basePath + '/api/v1/resource_types'));
 
   Promise.all(requestPromises).then(function (results) {
-    var documents = results[0];
+    var resources = results[0];
     var countries = results[1];
     var regions = results[2];
     var languages = results[3];
     var topics = results[4];
-
-    // Build resource index.
-    resources = documents;
+    var resource_types = results[5];
 
     // Build list of subjects.
     var subjects = [];
@@ -15160,37 +15105,38 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }
     }
 
-    // Build search indices.
-    index = buildIndex(resources);
-
-    // Initialize global storage.
-    __WEBPACK_IMPORTED_MODULE_3_js_global_store__["a" /* store */].commit('setResources', resources);
-    __WEBPACK_IMPORTED_MODULE_3_js_global_store__["a" /* store */].commit('setIndex', index);
-    __WEBPACK_IMPORTED_MODULE_3_js_global_store__["a" /* store */].commit('setTopics', topics);
-    __WEBPACK_IMPORTED_MODULE_3_js_global_store__["a" /* store */].commit('setCountries', countries);
-    __WEBPACK_IMPORTED_MODULE_3_js_global_store__["a" /* store */].commit('setRegions', regions);
-    __WEBPACK_IMPORTED_MODULE_3_js_global_store__["a" /* store */].commit('setLanguages', languages);
-
     new __WEBPACK_IMPORTED_MODULE_1_vue__["a" /* default */]({
+      store: __WEBPACK_IMPORTED_MODULE_3_js_global_store__["a" /* store */],
       el: '#directory',
-      data: function () {
+      data: () => {
         return {
           resources: resources,
-          index: index,
           searchQuery: '',
           filterSelection: [],
           sharedState: __WEBPACK_IMPORTED_MODULE_3_js_global_store__["a" /* store */].state
         };
       },
       methods: {
-        search: function () {
+        search: () => {
           __WEBPACK_IMPORTED_MODULE_3_js_global_store__["a" /* store */].commit('setSearch', this.searchQuery);
         },
-        clearAll: function () {
+        submitFilters: async () => {
+          await __WEBPACK_IMPORTED_MODULE_3_js_global_store__["a" /* store */].dispatch('filterResources');
+        },
+        clearAll: () => {
           console.log('Clearing filters.');
           __WEBPACK_IMPORTED_MODULE_3_js_global_store__["a" /* store */].commit('clearFilters');
-          console.log(__WEBPACK_IMPORTED_MODULE_3_js_global_store__["a" /* store */].state.selectedFilters);
+          console.log(__WEBPACK_IMPORTED_MODULE_3_js_global_store__["a" /* store */].state);
         }
+      },
+      beforeCreate: () => {
+        // Initialize global storage.
+        __WEBPACK_IMPORTED_MODULE_3_js_global_store__["a" /* store */].commit('setResources', resources);
+        __WEBPACK_IMPORTED_MODULE_3_js_global_store__["a" /* store */].commit('setTopics', topics);
+        __WEBPACK_IMPORTED_MODULE_3_js_global_store__["a" /* store */].commit('setCountries', countries);
+        __WEBPACK_IMPORTED_MODULE_3_js_global_store__["a" /* store */].commit('setRegions', regions);
+        __WEBPACK_IMPORTED_MODULE_3_js_global_store__["a" /* store */].commit('setLanguages', languages);
+        __WEBPACK_IMPORTED_MODULE_3_js_global_store__["a" /* store */].commit('setTypes', resource_types);
       },
       components: {
         'resource-list': __WEBPACK_IMPORTED_MODULE_4_vue_resource_list_vue__["a" /* default */],
