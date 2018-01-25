@@ -1,9 +1,9 @@
 .news-wrapper {
-  padding: 10em 2em;
+  padding: 4em 12em;
 }
 
 .news-wrapper-2 {
-  padding: 4em 8em;
+  padding: 4em 12em;
 }
 
 .tab-menu-wrapper {
@@ -14,9 +14,7 @@
 .tabs,
 .tabs-2 {
   display: flex;
-  background: #efefef;
   flex-wrap: wrap;
-  box-shadow: 0 48px 80px -32px rgba(0,0,0,0.3);
 }
 
 .categories,
@@ -82,16 +80,14 @@
 
 .tab-input:focus + .tab-label,
 .tab-input:hover + .tab-label {
-  background-color: lighten(rgba(160, 160, 160, 0.5), 10%);
-}
-
-.tab-input:checked + .tab-label:focus,
-.tab-input:checked + .tab-label:hover {
-  background-color: lighten(#34A8FC, 10%);
+  background-color: darken(rgba(220, 220, 220, 1), 10%);
 }
 
 .tab-input:checked + .tab-label {
-  background-color: #34A8FC;
+  border-width: 3px 3px 0 3px;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 1);
+  background-color: rgba(255, 255, 255, 1);
 }
 
 .tab-input:checked + .tab-label + .tab-content {
@@ -100,27 +96,23 @@
 
 .tab-label {
   box-sizing: border-box;
-  width: 100%;
-  margin: 0;
-  padding: 2em;
-  background-color: rgba(160, 160, 160, 0.5);
+  margin: 0 2em 0 0;
+  padding: 0.5em 1em;
+  background-color: rgba(220, 220, 220, 1);
   font: inherit;
+  font-family: Oswald;
   text-align: center;
   text-transform: uppercase;
-  color: #fff;
+  color: rgba(0, 0, 0, 1);
   cursor: pointer;
   transition: background 0.1s, color 0.1s;
-}
 
-.tabs .tab-label {
-  @include med-screen {
-    width: 33.33%;
+  .fa {
+    vertical-align: 15%;
   }
-}
 
-.tabs-2 .tab-label {
-  @include med-screen {
-    width: 50%;
+  h2 {
+    display: inline-block;
   }
 }
 

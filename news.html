@@ -25,7 +25,8 @@ news: true;
           :data="newsfeed"
           :filter-key="searchQuery"
           :filters="filterSelection">
-          {% for item in site.news | sort: 'date' %}
+          {% assign newsfeed = site.news | sort: 'date' %}
+          {% for item in newsfeed %}
           <li class="news">
             <p class="news-date">News | {{ item.date | date_to_long_string }}</p>
             <h3 class="news-header">
@@ -43,7 +44,8 @@ news: true;
   <div class="category twitter-timeline-container">
     <h2 class="events-heading">EVENTS</h2>
     <ul>
-      {% for item in site.events | sort: 'date' %}
+      {% assign events = site.events | sort: 'date' %}
+      {% for item in events %}
       <li class="event">
         <div class="event-header">
           <a href="{{ item.link }}" target="_blank">{{ item.title }}</a>

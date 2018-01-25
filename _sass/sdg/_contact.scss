@@ -1,5 +1,5 @@
 .contact-form-wrapper {
-  padding: 5em 12em;
+  padding-top: 2rem;
   letter-spacing: 0.03em;
 }
 
@@ -12,6 +12,12 @@
   font-weight: 600;
   letter-spacing: 0.04em;
   text-align: center;
+}
+
+.contact-form-heading {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  color: rgba(0, 0, 0, 1);
 }
 
 .contact-form-intro {
@@ -54,6 +60,7 @@
 .caption {
   padding: 0.4em 0;
   font-size: 0.75em;
+  font-style: italic;
   color: rgba(0, 0, 0, 0.6);
 }
 
@@ -80,6 +87,11 @@
 }
 
 .message-textarea {
+  min-height: 10em;
+  resize: vertical;
+}
+
+.description-textarea {
   min-height: 10em;
   resize: vertical;
 }
