@@ -1,10 +1,11 @@
 <template>
 <ul class="resource-list">
+  <span>Showing {{ resources.length }} of {{ resources.length }} resources</span>
   <li class="resource-list-item" v-for="(resource, index) in resources" tabindex="0">
-    <img class="resource-image">
-    <section class="resource-info">
+    <article class="resource-card">
+      <img class="resource-image">
       <h1 class="resource-title">
-          <a :href="(( resource.url ))" target="_blank">{{ resource.title }}</a>
+        <a :href="(( resource.url ))" target="_blank">{{ resource.title }}</a>
       </h1>
       <div class="resource-organization">{{ resource.organization }}</div>
       <div class="resource-description">{{ resource.description }}</div>
@@ -13,7 +14,7 @@
           <li class="subject-tag" v-for="tag in resource.tags">{{ tag }}</li>
         </ul>
       </div>
-    </section>
+    </article>
   </li>
 </ul>
 </template>

@@ -1,11 +1,6 @@
-    <section class="filter-sidebar">
+    <aside class="filter-sidebar">
 
-      <div class="sidebar-filter">
-        <div class="filter-handle">
-          <h1 class="filter-label">Filters</h1>
-          <button class="filter-clear-all" type="button" v-on:click="clearAll">Clear All</button>
-        </div>
-      </div>
+      <h1 class="filters-heading">FILTER RESOURCES</h1>
 
       <div class="sidebar-filter"
         is="resource-filter"
@@ -17,19 +12,19 @@
         v-bind:initial-options="sharedState.filterOptions.topic"
         v-bind:nested="true">
         <div class="filter-handle">
-          <span class="filter-label">Topic</span>
+          <h2 class="filter-label">Topic</h2>
         </div>
       </div>
 
       <div class="sidebar-filter"
         is="resource-filter"
-        v-bind:filter-label="'Resource Type'"
+        v-bind:filter-label="'Type'"
         v-bind:filter-type="'type'"
         v-bind:label-field="'name'"
         v-bind:value-field="'name'"
         v-bind:initial-options="sharedState.filterOptions.type">
         <div class="filter-handle">
-          <span class="filter-label">Resource Type</span>
+          <h2 class="filter-label">Type</h2>
         </div>
       </div>
 
@@ -41,7 +36,7 @@
         v-bind:value-field="'iso_alpha3'"
         v-bind:initial-options="sharedState.filterOptions.country">
         <div class="filter-handle">
-          <span class="filter-label">Country</span>
+          <h2 class="filter-label">Country</h2>
         </div>
       </div>
 
@@ -53,12 +48,11 @@
         v-bind:value-field="'ietf_tag'"
         v-bind:initial-options="sharedState.filterOptions.language">
         <div class="filter-handle">
-          <span class="filter-label">Language</span>
+          <h2 class="filter-label">Language</h2>
         </div>
       </div>
 
-      <div class="sidebar-filter-update">
-        <button v-on:click="submitFilters">Update</button>
-      </div>
+      <button class="filter-update" v-on:click="submitFilters">FILTER RESOURCES</button>
+      <button class="filter-clearall" v-on:click="clearAll">CLEAR ALL</button>
 
-    </section>
+    </aside>

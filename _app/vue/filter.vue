@@ -6,7 +6,7 @@
     class="filter-handle"
     v-bind:class="{ 'active': visible }"
     v-on:click="visible = !visible">
-    <label class="filter-label">{{ filterLabel }}</label>
+    <h2 class="filter-label">{{ filterLabel }}</h2>
   </div>
   <ul class="filter-list">
     <filter-option

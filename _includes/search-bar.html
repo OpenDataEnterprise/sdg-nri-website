@@ -1,4 +1,9 @@
-    <form class="search-bar" role="search" v-on:submit.prevent>
-      <input type="search" class="search-field" placeholder="Enter Search" v-model="searchQuery">
-      <input type="submit" class="search-submit" value="Search Resources" v-on:click="search">
-    </form>
+<div class="search-bar">
+  <form class="search-bar-controls" role="search" v-on:submit.prevent>
+    <input type="search" class="search-field" placeholder="Enter Search" v-model="searchQuery">
+    <button class="search-submit" v-on:click="search">
+      <span><i class="fa fa-search" aria-hidden="true"></i></i></span>
+      <span>SEARCH</span>
+    </button>
+  </form>
+</div>

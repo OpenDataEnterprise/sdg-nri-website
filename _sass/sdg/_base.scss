@@ -81,6 +81,15 @@ h1, h2, h3, h4, h5, h6 {
 
 
 /**
+ * Fonts
+ */
+strong {
+  font-weight: $strong-font-weight;
+}
+
+
+
+/**
  * Links
  */
 a {
@@ -104,6 +113,7 @@ a {
     }
   }
 }
+
 
 
 /**
@@ -195,4 +205,8 @@ pre {
   li + li {
     padding-top: 5px;
   }
+}
+
+.fa {
+  margin-right: 0.3rem;
 }

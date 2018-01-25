@@ -2,10 +2,12 @@ export {
   getURLParameters,
   loadJSON,
   tokenizeArray,
-  getPublicationMonth
+  getPublicationDate,
 }
 
-// Parse parameters from URL.
+/**
+ * Parse parameters from URL string.
+ */
 function getURLParameters () {
   let paramstrings = window.location.search.substr(1).split('&');
 
@@ -26,11 +28,14 @@ function getURLParameters () {
   return params;
 }
 
-function loadJSON(filepath) {
+/**
+ * Load JSON format data from path.
+ */
+function loadJSON(path) {
   return new Promise((resolve, reject) => {
     let xhr = new XMLHttpRequest();
     xhr.overrideMimeType('application/json');
-    xhr.open('GET', filepath, true);
+    xhr.open('GET', path, true);
     xhr.onload = function () {
       if (xhr.status == '200') {
         resolve(JSON.parse(xhr.responseText));
@@ -43,8 +48,10 @@ function loadJSON(filepath) {
   });
 }
 
+/**
+ * Tokenizes array of strings, splitting on commas and whitespace.
+ */
 function tokenizeArray(array) {
-  // Tokenizes array of strings, splitting on commas and whitespace.
   let all_tokens = [];
   const arrayCount = array.length;
 
@@ -56,7 +63,10 @@ function tokenizeArray(array) {
   return all_tokens;
 }
 
-function getPublicationMonth (dateObject) {
+/**
+ * Converts Date object into a human-friendly string format.
+ */
+function getPublicationDate (dateObject, getDay) {
   const months = [
     'January',
     'February',
@@ -72,7 +82,11 @@ function getPublicationMonth (dateObject) {
     'December',
   ];
 
-  const datestring = months[dateObject.getMonth()] + ' ' + dateObject.getFullYear();
+  let dateString = months[dateObject.getMonth()] + ' ' + dateObject.getFullYear();
 
-  return datestring;
+  if (getDay) {
+    dateString = dateObject.getDate() + ' ' + dateString;
+  }
+
+  return dateString;
 }

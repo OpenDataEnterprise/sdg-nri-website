@@ -1,12 +1,6 @@
 .contact-form-wrapper {
-  padding: 8.3em 12em 5em;
-  font-size: 1.125em;
+  padding: 5em 12em;
   letter-spacing: 0.03em;
-  background-image: url('/assets/img/happy_children.jpg');
-  background-size: cover;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  background-position: center;
 }
 
 .color-bar {
@@ -22,92 +16,93 @@
 
 .contact-form-intro {
   padding: 1em 0;
+  font-size: 1.25em;
+}
+
+.field-label {
+  display: block;
+  font-size: 0.9em;
+}
+
+.name-fieldset, .interests-fieldset {
+  margin: 0 0 1.5em 0;
+  border: none;
+  padding: 0;
+}
+
+.name-fieldset {
+  margin-left: -2%;
+}
+
+.name-field, .email-field {
+  margin-left: 2%;
+  float: left;
+
+  input[type=text] {
+    margin-bottom: 0.375em;
+  }
+}
+
+.name-field {
+  width: 48%;
+}
+
+.email-field {
+  width: 98%;
+}
+
+.caption {
+  padding: 0.4em 0;
+  font-size: 0.75em;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.checkbox-label {
+  display: block;
+  padding: 0.25em 0;
+  font-size: 0.9em;
+
+  input[type=checkbox] {
+    margin: 0 0.5em 0 0;
+    cursor: pointer;
+  }
+}
+
+.field-element {
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0.375em 0 1.5em;
+  border: 1px solid #ccc;
+  border-radius: 0.125em;
+  padding: 0.5em;
+  font-size: 1em;
+  background: #fafafa;
+}
+
+.message-textarea {
+  min-height: 10em;
+  resize: vertical;
 }
 
 #contact-form {
-  label {
-    display: block;
-  }
-
   select {
     font: inherit;
-  }
-
-  textarea {
-    min-height: 6.25em;
-    resize: vertical;
-  }
-
-  input[type=checkbox] {
-    margin: 0.375em 0.5em 0.375em 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
   }
 
   input[type=submit] {
     display: block;
-    margin: 0 auto;
     border-radius: 0;
     border-color: #34a8fc;
-    padding: 1em 2.5em;
+    padding: 0.75em 1.5em;
     text-align: center;
     color: #020b4f;
     font-family: Oswald;
-    font-weight: 700;
-    font-size: 0.75em;
+    font-size: 1em;
     letter-spacing: .05em;
     text-transform: uppercase;
     background-color: #34a8fc;
-  }
-
-  .name-fieldset, .interests-fieldset {
-    margin: 0 0 1.5em 0;
-    border: none;
-    padding: 0;
-  }
-
-  .name-fieldset {
-    margin-left: -2%;
-  }
-
-  .name-field, .email-field {
-    margin-left: 2%;
-    float: left;
-
-    label {
-      font-size: 0.75em;
-    }
-
-    input[type=text] {
-      margin-bottom: 0.375em;
-    }
-  }
-
-  .name-field {
-    width: 48%;
-  }
-
-  .email-field {
-    width: 98%;
-  }
-
-  .caption {
-    padding: 0.4em 0;
-    font-size: 0.75em;
-    color: rgba(0, 0, 0, 0.6);
-  }
-
-  .checkbox-label {
-    padding: 0.25em 0;
-    font-size: 0.9em;
-  }
-
-  .field-element {
-    box-sizing: border-box;
-    width: 100%;
-    margin: 0.375em 0 1.5em;
-    border: 1px solid #ccc;
-    border-radius: 0.125em;
-    padding: 0.5em;
-    font-size: 1em;
-    background: #fafafa;
   }
 }

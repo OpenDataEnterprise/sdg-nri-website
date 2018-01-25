@@ -63,23 +63,6 @@ aside.contribute-resource-call-out {
   cursor: pointer;
 }
 
-.resource-image {
-  object-fit: cover;
-}
-
-.resource-info {
-  padding: 1.2em;
-  font-size: 0.8em;
-}
-
-.resource-title {
-  margin-bottom: 1em;
-}
-
-.resource-description {
-  margin: 1em 0;
-}
-
 .resource-languages-label,
 .resource-tags-label {
   display: inline-block;
@@ -104,98 +87,24 @@ aside.contribute-resource-call-out {
 .subject-tag {
   display: inline-block;
   margin: 0 0 0 0.3em;
-  padding: 0.3em 0.4em;
-  background-color: gainsboro;
+  padding: 0.5em;
+  line-height: 1em;
+  background-color: rgba(220, 220, 220, 1);
 
   &:first-child {
     margin: 0;
   }
 }
 
-.grid-list {
-  $grid-item-height: $spacing-unit * 15;
-  $image-height: $spacing-unit * 6;
-
-  @include grid-column(3, $col-4);
-  @include grid-container;
-
-  margin: 0 auto;
-  min-height: 32em;
-
-  .grid-item {
-    @include grid-column(12);
-
-    @include large-screen {
-      @include grid-column(6);
-    }
-
-    box-sizing: border-box;
-    max-width: 24em;
-    height: $grid-item-height;
-    min-height: $grid-item-height;
-    margin-bottom: 2em;
-    padding: 0;
-    box-shadow: 0 18px 47px -5px rgba(0,0,0,0.27);
-    background-color: #fff;
-    text-align: left;
-    text-decoration: none;
-    transition: all 0.2s ease-in-out;
-    overflow: hidden;
-
-    &:focus,
-    &:hover {
-      background-color: darken(#fff, 3%);
-    }
-
-    @for $i from 1 through length($img-placeholders) { 
-      &:nth-child(#{$i}) {
-        $img-from-list: nth($img-placeholders, $i);
-
-        .resource-image {
-          background-image: url("/assets/img/placeholders/#{$img-from-list}");
-          background-position: center;
-          background-repeat: no-repeat;
-          background-size: cover;
-        }
-      }
-    }
-  }
-
-  resource-image {
-    width: 100%;
-eight: $image-height;
-  }
-  
-  .resource-info {
-    box-sizing: border-box;
-    height: $grid-item-height - $image-height;
-    overflow-y: scroll;
-  }
-}
-
 .resource-list,
 .resource-list-group {
-  $action-color: #477DCA !default;
-  $base-background-color: white !default;
-  $grid-items-background: $base-background-color;
-  $grid-item-background: desaturate($action-color, 30%);
-  $grid-item-height: $spacing-unit * 7;
-  $featured-image-height: $spacing-unit * 6;
-
   @include grid-column(3, $col-4);
   @include grid-container;
 
   .resource-list-item,
   .resource-list-group-head {
-    box-sizing: border-box;
-    min-height: $grid-item-height;
-    padding: 0;
-    box-shadow: 0 18px 47px -5px rgba(0,0,0,0.27);
-    background-color: #fff;
-    overflow: hidden;
-    text-align: center;
-    text-decoration: none;
-    transition: all 0.2s ease-in-out;
+    padding: 2em 0em;
+    font-size: 1em;
 
     @for $i from 1 through length($img-placeholders) { 
       &:nth-child(#{$i}) {
@@ -211,35 +120,56 @@ eight: $image-height;
     }
   }
 
-  .resource-list-item {
-    display: flex;
-    margin-bottom: 2em;
+  .resource-list-item:first-child {
+    padding: 0 0 2em 0;
   }
+}
 
-  .resource-list-group-head {
-    display: block;
-    margin-bottom: 0.3em;
-    border-radius: 0.3em;
-    padding: 3em;
-    background-color: darken(#fff, 10%);
-  }
+.resource-list-group-head {
+  display: block;
+  margin-bottom: 0.3em;
+  border-radius: 0.3em;
+  padding: 3em;
+  background-color: darken(#fff, 10%);
+}
 
-  .resource-image {
-    width: 30%;
-  }
+.resource-list-item {
+  display: flex;
+  box-sizing: border-box;
+  padding: 0;
+  border-bottom: 1px solid;
+  background-color: #fff;
+  font-size: 1.2em;
+  text-decoration: none;
+  overflow: hidden;
+  transition: all 0.2s ease-in-out;
+}
 
-  .resource-info {
-    width: 70%;
-    overflow-y: scroll;
-  }
+.resource-image {
+  float: right;
+  height: 10em;
+  width: 13em;
+  margin: 0 0 2em 2em;
+  border: 1px solid;
+  object-fit: cover;
+}
 
-  .resource-organization {
-    margin-bottom: 1em;
-  }
+.resource-title {
+  margin-bottom: 1rem;
 
-  .resource-description {
-    text-align: left;
+  a:hover {
+    text-decoration: none;
   }
+}
+
+.resource-organization {
+  margin-bottom: 1rem;
+  font-style: italic;
+}
+
+.resource-description {
+  margin: 1em 0;
+  text-align: left;
 }
 
 .resource-list-group {
@@ -248,10 +178,6 @@ eight: $image-height;
 
 .resource-list-group-description {
   padding: 1em 0 1.5em;
-}
-
-.resource-list-item {
-  margin-bottom: 0.3em;
 }
 
 .directory-heading {
@@ -326,12 +252,7 @@ eight: $image-height;
 .search-directory {
   @include grid-container;
 
-  padding: 8.375em 0 2em;
-  background: rgba(233, 248, 255, 1) url('/assets/img/happy_children.jpg');
-  background-size: cover;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  background-position: center;
+  padding: 5em;
 
   table {
     border-radius: 3px;

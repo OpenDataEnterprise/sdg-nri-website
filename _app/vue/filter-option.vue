@@ -19,11 +19,12 @@
 </li>
 <li v-else>
   <input
+    class="filter-option-checkbox"
     type="checkbox"
     v-bind:id="'f-' + model[valueField]"
     v-bind:value="model[valueField]"
     v-on:click="emitFilterUpdate">
-  <label v-bind:for="'f-' + model[valueField]">{{ model[labelField] }}</label>
+  <label class="filter-option-label" v-bind:for="'f-' + model[valueField]">{{ model[labelField] }}</label>
 </li>
 </template>
 

@@ -9,74 +9,63 @@ news: true;
 
 {% include templates.html %}
 
+<header role="banner" class="banner news-banner">
+  <div class="banner-content">
+    <h1 class="banner-heading">News & Updates</h1>
+  </div>
+</header>
+
 <div class="news-wrapper-2">
-
   <ul id="news-feed" class="categories-2">
-
-    <li class="category">
-
-      <input type="checkbox" name="tabs" checked="checked" id="tab2" class="news-input">
-      <label for="tab2" class="category-title"><h2>News & Updates</h2></label>
-
+    <li>
+      <div class="news-filters">FILTER NEWS</div>
       <div id="tab-content2" class="content">
-
-        <div class="news-search">
-          <form class="news-search-bar" role="search">
-            <input class="search-field" type="search" placeholder="Filter Search" v-model="searchQuery">
-          </form>
-        </div>
-
+        <div class="news-count">Showing {{ site.news | size }} of {{ site.news | size }} news items</div>
         <ul is="news-feed"
           :data="newsfeed"
           :filter-key="searchQuery"
           :filters="filterSelection">
-          {% assign items = site.news | concat: site.events | sort: 'date' %}
-          {% for item in items %}
-          {% if item.collection == 'news' %}
+          {% for item in site.news | sort: 'date' %}
           <li class="news">
-            <a href="{{ item.link }}" target="_blank">
-              <h3 class="news-header">{{ item.title }}</h3>
-            </a>
+            <p class="news-date">News | {{ item.date | date_to_long_string }}</p>
+            <h3 class="news-header">
+              <a href="{{ item.link }}" target="_blank">{{ item.title }}</a>
+            </h3>
             <p class="news-author">{{ item.author }}</p>
-            <p class="news-date">{{ item.date | date_to_long_string }}</p>
             <p class="news-description">{{ item.description }}</p>
           </li>
-          {% endif %}
-          {% if item.collection == 'events' %}
-          <li class="event">
-            <a href="{{ item.link }}" target="_blank">
-              <h3 class="event-header">{{ item.title }}</h3>
-            </a>
-            <span class="event-start">{{ item.date | date_to_long_string }}</span>
-            {% if item.end_date %}
-            <span class="event-end"> - {{ item.end_date | date_to_long_string }}</span>
-            {% endif %}
-            <p>{{ item.description }}</p>
-            <span>Locations</span>
-            <ul class="event-locations">
-              {% for location in item.locations %}
-              <li class="event-location">{{ location }}</li>
-              {% endfor %}
-            </ul>
-          </li>
-          {% endif %}
           {% endfor %}
         </ul>
       </div>
-
     </li>
-
   </ul>
 
   <div class="category twitter-timeline-container">
-
-    <input type="checkbox" name="tabs" checked="checked" id="tab1" class="news-input">
-    <label for="tab1" class="category-title"><h2>Twitter</h2></label>
-
-    <div id="tab-content1" class="content">
-      <a class="twitter-timeline" data-dnt="true" href="https://twitter.com/hashtag/SDGs" data-chrome="nofooter transparent noheader" data-widget-id="938913200308965376">#SDGs Tweets</a>
-      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-    </div>
+    <h2 class="events-heading">EVENTS</h2>
+    <ul>
+      {% for item in site.events | sort: 'date' %}
+      <li class="event">
+        <div class="event-header">
+          <a href="{{ item.link }}" target="_blank">{{ item.title }}</a>
+        </div>
+        <div class="event-dates">
+          <span class="event-start">
+            <i class="fa fa-calendar" aria-hidden="true"></i>{{ item.date | date_to_long_string }}
+          </span>
+          {% if item.end_date %}
+          <span class="event-end"> - {{ item.end_date | date_to_long_string }}</span>
+          {% endif %}
+        </div>
+        <p>{{ item.description }}</p>
+        <i class="fa fa-map-marker" aria-hidden="true"></i>
+        <ul class="event-locations">
+          {% for location in item.locations %}
+          <li class="event-location">{{ location }}</li>
+          {% endfor %}
+        </ul>
+      </li>
+      {% endfor %}
+    </ul>
 
   </div>
 

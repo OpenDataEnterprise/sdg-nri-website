@@ -9,17 +9,17 @@ import * as Utility from 'js/utility';
 (function () {
   var resources;
 
-  // Load data from JSON files.
+  // Load data.
   var requestPromises = [];
-  var basePath = 'http://localhost:3000';
-  requestPromises.push(Utility.loadJSON(basePath + '/api/v1/resources'));
-  requestPromises.push(Utility.loadJSON(basePath + '/api/v1/countries'));
-  requestPromises.push(Utility.loadJSON(basePath + '/api/v1/regions'));
-  requestPromises.push(Utility.loadJSON(basePath + '/api/v1/languages'));
-  requestPromises.push(Utility.loadJSON(basePath + '/api/v1/topics'));
-  requestPromises.push(Utility.loadJSON(basePath + '/api/v1/resource_types'));
+  var apiPath = 'http://localhost:3000/api/v1/';
+  requestPromises.push(Utility.loadJSON(apiPath + 'resources'));
+  requestPromises.push(Utility.loadJSON(apiPath + 'countries'));
+  requestPromises.push(Utility.loadJSON(apiPath + 'regions'));
+  requestPromises.push(Utility.loadJSON(apiPath + 'languages'));
+  requestPromises.push(Utility.loadJSON(apiPath + 'topics'));
+  requestPromises.push(Utility.loadJSON(apiPath + 'resource_types'));
 
-  Promise.all(requestPromises).then(function (results) {
+  Promise.all(requestPromises).then((results) => {
     var resources = results[0];
     var countries = results[1];
     var regions = results[2];
@@ -40,7 +40,7 @@ import * as Utility from 'js/utility';
       if (resources[i]['date_published']) {
         var date = new Date(resources[i]['date_published']);
         if (date != 'Invalid Date') {
-          resources[i]['date_published'] = Utility.getPublicationMonth(date);
+          resources[i]['date_published'] = Utility.getPublicationDate(date, false);
         }
       }
     }

@@ -1,14 +1,8 @@
-header[role="banner"] {
+.banner {
   box-sizing: border-box;
-  min-height: 42em;
-  padding: 8em 8em 15em;
-  background-image: url('/assets/img/banner_background.jpg');
-  background-size: cover;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  background-position: center;
+  height: 26em;
+  background-color: rgba(220, 220, 220, 1);
   font-family: Lato;
-  color: #fdfdfd;
   text-align: center;
 }
 
@@ -21,6 +15,37 @@ header[role="banner"] {
 
 .heading-stripe {
   width: 17.6em;
+}
+
+.banner-heading {
+  font-size: 4em;
+}
+
+.main-banner {
+  padding: 8em;
+  min-height: 42em;
+  background-image: url('/assets/img/banner_background.jpg');
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center;
+  color: #fdfdfd;
+}
+
+.directory-banner {
+  .banner-heading {
+    margin-bottom: 0.2em;
+  }
+}
+
+.directory-banner,
+.news-banner,
+.contact-banner {
+  .banner-content {
+    position: relative;
+    top: 50%;
+    transform: translateY(-60%);
+  }
 }
 
 .banner-stripe {

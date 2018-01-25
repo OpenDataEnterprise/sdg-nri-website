@@ -6,13 +6,16 @@ layout: default
 resources-list: true
 ---
 
+<header role="banner" class="banner directory-banner">
+  <div class="banner-content">
+  	<h1 class="banner-heading">Search Resources</h1>
+    {% include search-bar.html %}
+  </div>
+</header>
+
 <div id="directory" class="search-directory">
 
-  {% include submission-call.html %}
-
   <div class="search-directory-wrapper">
-
-    {% include search-bar.html %}
 
     {% include filter-sidebar.html %}
 

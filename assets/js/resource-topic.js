@@ -199,7 +199,7 @@ const store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
       console.log(queryString);
 
       const resourcePath = 'http://localhost:3000/api/v1/resources';
-      const results = await Object(__WEBPACK_IMPORTED_MODULE_2_js_utility__["c" /* loadJSON */])(resourcePath + queryString);
+      const results = await Object(__WEBPACK_IMPORTED_MODULE_2_js_utility__["d" /* loadJSON */])(resourcePath + queryString);
 
       context.commit('setResources', results);
     }
@@ -1363,13 +1363,15 @@ var index_esm = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return getURLParameters; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return loadJSON; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return getURLParameters; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return loadJSON; });
 /* unused harmony export tokenizeArray */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return getPublicationMonth; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return getPublicationDate; });
 
 
-// Parse parameters from URL.
+/**
+ * Parse parameters from URL string.
+ */
 function getURLParameters() {
   let paramstrings = window.location.search.substr(1).split('&');
 
@@ -1387,11 +1389,14 @@ function getURLParameters() {
   return params;
 }
 
-function loadJSON(filepath) {
+/**
+ * Load JSON format data from path.
+ */
+function loadJSON(path) {
   return new Promise((resolve, reject) => {
     let xhr = new XMLHttpRequest();
     xhr.overrideMimeType('application/json');
-    xhr.open('GET', filepath, true);
+    xhr.open('GET', path, true);
     xhr.onload = function () {
       if (xhr.status == '200') {
         resolve(JSON.parse(xhr.responseText));
@@ -1404,8 +1409,10 @@ function loadJSON(filepath) {
   });
 }
 
+/**
+ * Tokenizes array of strings, splitting on commas and whitespace.
+ */
 function tokenizeArray(array) {
-  // Tokenizes array of strings, splitting on commas and whitespace.
   let all_tokens = [];
   const arrayCount = array.length;
 
@@ -1417,12 +1424,19 @@ function tokenizeArray(array) {
   return all_tokens;
 }
 
-function getPublicationMonth(dateObject) {
+/**
+ * Converts Date object into a human-friendly string format.
+ */
+function getPublicationDate(dateObject, getDay) {
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
-  const datestring = months[dateObject.getMonth()] + ' ' + dateObject.getFullYear();
+  let dateString = months[dateObject.getMonth()] + ' ' + dateObject.getFullYear();
 
-  return datestring;
+  if (getDay) {
+    dateString = dateObject.getDate() + ' ' + dateString;
+  }
+
+  return dateString;
 }
 
 /***/ }),
@@ -11373,6 +11387,7 @@ module.exports = g;
 //
 //
 //
+//
 
 
 
@@ -11463,7 +11478,7 @@ module.exports = g;
     'filter-option': __WEBPACK_IMPORTED_MODULE_0_vue_filter_option_vue__["a" /* default */]
   },
   mounted: function () {
-    const urlParams = Object(__WEBPACK_IMPORTED_MODULE_2_js_utility__["b" /* getURLParameters */])();
+    const urlParams = Object(__WEBPACK_IMPORTED_MODULE_2_js_utility__["c" /* getURLParameters */])();
 
     if (this.filterType in urlParams) {
       let filters = urlParams[this.filterType].split(',');
@@ -11490,6 +11505,7 @@ module.exports = g;
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_js_global_store__ = __webpack_require__(0);
+//
 //
 //
 //
@@ -14758,45 +14774,58 @@ var render = function() {
   return _c(
     "ul",
     { staticClass: "resource-list" },
-    _vm._l(_vm.resources, function(resource, index) {
-      return _c(
-        "li",
-        { staticClass: "resource-list-item", attrs: { tabindex: "0" } },
-        [
-          _c("img", { staticClass: "resource-image" }),
-          _vm._v(" "),
-          _c("section", { staticClass: "resource-info" }, [
-            _c("h1", { staticClass: "resource-title" }, [
-              _c("a", { attrs: { href: resource.url, target: "_blank" } }, [
-                _vm._v(_vm._s(resource.title))
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "resource-organization" }, [
-              _vm._v(_vm._s(resource.organization))
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "resource-description" }, [
-              _vm._v(_vm._s(resource.description))
-            ]),
-            _vm._v(" "),
-            resource.tags.length > 0
-              ? _c("div", { staticClass: "resource-tags" }, [
-                  _c(
-                    "ul",
-                    { staticClass: "resource-tags-list" },
-                    _vm._l(resource.tags, function(tag) {
-                      return _c("li", { staticClass: "subject-tag" }, [
-                        _vm._v(_vm._s(tag))
-                      ])
-                    })
-                  )
+    [
+      _c("span", [
+        _vm._v(
+          "Showing " +
+            _vm._s(_vm.resources.length) +
+            " of " +
+            _vm._s(_vm.resources.length) +
+            " resources"
+        )
+      ]),
+      _vm._v(" "),
+      _vm._l(_vm.resources, function(resource, index) {
+        return _c(
+          "li",
+          { staticClass: "resource-list-item", attrs: { tabindex: "0" } },
+          [
+            _c("article", { staticClass: "resource-card" }, [
+              _c("img", { staticClass: "resource-image" }),
+              _vm._v(" "),
+              _c("h1", { staticClass: "resource-title" }, [
+                _c("a", { attrs: { href: resource.url, target: "_blank" } }, [
+                  _vm._v(_vm._s(resource.title))
                 ])
-              : _vm._e()
-          ])
-        ]
-      )
-    })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "resource-organization" }, [
+                _vm._v(_vm._s(resource.organization))
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "resource-description" }, [
+                _vm._v(_vm._s(resource.description))
+              ]),
+              _vm._v(" "),
+              resource.tags.length > 0
+                ? _c("div", { staticClass: "resource-tags" }, [
+                    _c(
+                      "ul",
+                      { staticClass: "resource-tags-list" },
+                      _vm._l(resource.tags, function(tag) {
+                        return _c("li", { staticClass: "subject-tag" }, [
+                          _vm._v(_vm._s(tag))
+                        ])
+                      })
+                    )
+                  ])
+                : _vm._e()
+            ])
+          ]
+        )
+      })
+    ],
+    2
   )
 }
 var staticRenderFns = []
@@ -14960,14 +14989,20 @@ var render = function() {
       ])
     : _c("li", [
         _c("input", {
+          staticClass: "filter-option-checkbox",
           attrs: { type: "checkbox", id: "f-" + _vm.model[_vm.valueField] },
           domProps: { value: _vm.model[_vm.valueField] },
           on: { click: _vm.emitFilterUpdate }
         }),
         _vm._v(" "),
-        _c("label", { attrs: { for: "f-" + _vm.model[_vm.valueField] } }, [
-          _vm._v(_vm._s(_vm.model[_vm.labelField]))
-        ])
+        _c(
+          "label",
+          {
+            staticClass: "filter-option-label",
+            attrs: { for: "f-" + _vm.model[_vm.valueField] }
+          },
+          [_vm._v(_vm._s(_vm.model[_vm.labelField]))]
+        )
       ])
 }
 var staticRenderFns = []
@@ -15006,7 +15041,7 @@ var render = function() {
           }
         },
         [
-          _c("label", { staticClass: "filter-label" }, [
+          _c("h2", { staticClass: "filter-label" }, [
             _vm._v(_vm._s(_vm.filterLabel))
           ])
         ]
@@ -15091,7 +15126,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   }
 
   function parseTopic() {
-    let params = __WEBPACK_IMPORTED_MODULE_6_js_utility__["b" /* getURLParameters */]();
+    let params = __WEBPACK_IMPORTED_MODULE_6_js_utility__["c" /* getURLParameters */]();
     let filters = params['topic'].split(',');
 
     for (let i = 0; i < filters.length; i++) {
@@ -15111,8 +15146,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   // Load data from JSON files.
   var requestPromises = [];
-  requestPromises.push(__WEBPACK_IMPORTED_MODULE_6_js_utility__["c" /* loadJSON */]('/search_data.json'));
-  requestPromises.push(__WEBPACK_IMPORTED_MODULE_6_js_utility__["c" /* loadJSON */]('/api/v1/topics'));
+  requestPromises.push(__WEBPACK_IMPORTED_MODULE_6_js_utility__["d" /* loadJSON */]('/search_data.json'));
+  requestPromises.push(__WEBPACK_IMPORTED_MODULE_6_js_utility__["d" /* loadJSON */]('/api/v1/topics'));
 
   Promise.all(requestPromises).then(function (results) {
     var documents = results[0];
@@ -15137,7 +15172,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       if (resources[i]['date_published']) {
         var date = new Date(resources[i]['date_published']);
         if (date != 'Invalid Date') {
-          resources[i]['date_published'] = __WEBPACK_IMPORTED_MODULE_6_js_utility__["a" /* getPublicationMonth */](date);
+          resources[i]['date_published'] = __WEBPACK_IMPORTED_MODULE_6_js_utility__["getPublicationMonth"](date);
         }
       }
     }
