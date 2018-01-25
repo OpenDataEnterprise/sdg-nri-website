@@ -116,12 +116,34 @@ $gutter: 1.2em;
   padding: 0.1em 0;
 }
 
-.filter-option-checkbox {
+/*.filter-option-checkbox {
+  width: 1.2rem;
+  height: 1.2rem;
   margin: 0 0.25em 0 0;
+  border: 0.1rem solid #000;
   cursor: pointer;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
+}*/
+
+.filter-option-checkbox {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  cursor: pointer;
+}
+
+.filter-option-checkbox + label:before {
+  display: inline-block;
+  font-family: FontAwesome;
+  letter-spacing: 0.45rem;
+  content: "\f096";
+}
+
+.filter-option-checkbox:checked + label:before {
+  letter-spacing: 0.3rem;
+  content: "\f046";
 }
 
 .hide-options {

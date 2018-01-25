@@ -6,17 +6,20 @@
 }
 
 .button {
-  display: block;
-  border-radius: 0;
-  border-color: #34a8fc;
+  display: inline-block;
+  border: none;
   padding: 0.75em 1.5em;
   text-align: center;
-  color: #020b4f;
+  color: rgba(2, 11, 79, 1);
   font-family: Oswald;
   font-size: 1em;
   letter-spacing: .05em;
   text-transform: uppercase;
-  background-color: #34a8fc;
+  background-color: rgba(52, 168, 252, 1);
+
+  &:hover {
+    background-color: lighten(rgba(52, 168, 252, 1), 10%);
+  }
 }
 
 .banner {
@@ -209,4 +212,13 @@
 
 .contact-us-button {
   margin: 0 auto;
+
+  &:visited {
+    color: rgba(0, 0, 0, 1);
+  }
+
+  &:hover {
+    color: rgba(0, 0, 0, 1);
+    text-decoration: none;
+  }
 }
