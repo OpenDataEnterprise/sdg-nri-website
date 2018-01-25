@@ -3,7 +3,6 @@ var path = require('path');
 module.exports = {
   entry: {
     'resource-list': path.resolve(__dirname, './_app/app.js'),
-    'resource-topic':  path.resolve(__dirname, './_app/app2.js'),
   },
   output: {
     path: path.resolve(__dirname, './assets/js'),
