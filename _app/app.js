@@ -1,4 +1,4 @@
-import lunr from 'lunr';
+import Config from 'config';
 import Vue from 'vue';
 import Vuex from 'vuex';
 import { store } from 'js/global-store';
@@ -11,7 +11,7 @@ import * as Utility from 'js/utility';
 
   // Load data.
   var requestPromises = [];
-  var apiPath = 'http://localhost:3000/api/v1/';
+  var apiPath = Config.apiPath;
   requestPromises.push(Utility.loadJSON(apiPath + 'resources'));
   requestPromises.push(Utility.loadJSON(apiPath + 'countries'));
   requestPromises.push(Utility.loadJSON(apiPath + 'regions'));
