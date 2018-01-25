@@ -3,11 +3,6 @@
   letter-spacing: 0.03em;
 }
 
-.color-bar {
-  display: block;
-  margin: 0 auto 2em;
-}
-
 .contact-form-header {
   font-weight: 600;
   letter-spacing: 0.04em;
@@ -102,19 +97,5 @@
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-  }
-
-  input[type=submit] {
-    display: block;
-    border-radius: 0;
-    border-color: #34a8fc;
-    padding: 0.75em 1.5em;
-    text-align: center;
-    color: #020b4f;
-    font-family: Oswald;
-    font-size: 1em;
-    letter-spacing: .05em;
-    text-transform: uppercase;
-    background-color: #34a8fc;
   }
 }
