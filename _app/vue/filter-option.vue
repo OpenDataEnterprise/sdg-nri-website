@@ -91,6 +91,7 @@ export default {
       };
 
       store.commit('toggleFilter', filterObj);
+      store.dispatch('filterResources');
     }
   }
 };

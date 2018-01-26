@@ -11596,6 +11596,7 @@ module.exports = g;
       };
 
       __WEBPACK_IMPORTED_MODULE_0_js_global_store__["a" /* store */].commit('toggleFilter', filterObj);
+      __WEBPACK_IMPORTED_MODULE_0_js_global_store__["a" /* store */].dispatch('filterResources');
     }
   }
 });
