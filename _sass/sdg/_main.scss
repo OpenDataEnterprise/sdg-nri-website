@@ -51,6 +51,8 @@
 }
 
 .directory-banner {
+  position: relative;
+
   .banner-heading {
     margin-bottom: 0.2em;
   }
@@ -187,11 +189,19 @@
   }
 }
 
-.learn-more-section {
+.learn-more-section,
+.submit-resource-section {
   padding: 5rem 12rem;
+  text-align: center;
+}
+
+.learn-more-section {
   background-color: rgba(45, 45, 45, 1);
   color: rgba(255, 255, 255, 1);
-  text-align: center;
+}
+
+.submit-resource-section {
+  background-color: rgba(220, 220, 220, 1);
 }
 
 .learn-more-stripe {
@@ -200,17 +210,28 @@
   margin: 0 auto 1rem;
 }
 
-.learn-more-heading {
-  margin-bottom: 2rem;
+.learn-more-heading,
+.submit-resource-heading {
   font-family: Oswald;
   font-size: 2rem;
 }
 
-.learn-more-content {
+.learn-more-heading {
   margin-bottom: 2rem;
 }
 
-.contact-us-button {
+.submit-resource-heading {
+  margin-bottom: 1rem;
+}
+
+.learn-more-content,
+.submit-resource-content {
+  margin-bottom: 2rem;
+}
+
+.contact-us-button,
+.submit-resource-button,
+.banner-submit-resource-button {
   margin: 0 auto;
 
   &:visited {
@@ -221,4 +242,10 @@
     color: rgba(0, 0, 0, 1);
     text-decoration: none;
   }
+}
+
+.banner-submit-resource-button {
+  position: absolute;
+  bottom: 0;
+  left: 0;
 }

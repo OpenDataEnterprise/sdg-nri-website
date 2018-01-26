@@ -91,8 +91,19 @@ $gutter: 1.2em;
   transition: border-color;
   cursor: pointer;
 
+  &:after {
+    float: right;
+    font-family: FontAwesome;
+    content: "\f067";
+    transform: translateY(15%)
+  }
+
   &.active {
     border-bottom: none;
+  }
+
+  &.active:after {
+    content: "\f068";
   }
 
   /*&.active,

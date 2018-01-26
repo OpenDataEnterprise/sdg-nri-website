@@ -96,15 +96,18 @@ aside.contribute-resource-call-out {
   }
 }
 
-.resource-list,
-.resource-list-group {
+.resource-list-module {
   @include grid-column(3, $col-4);
   @include grid-container;
+}
 
+.resource-list,
+.resource-list-group {
   .resource-list-item,
   .resource-list-group-head {
-    padding: 2em 0em;
-    font-size: 1em;
+    margin-bottom: 2rem;
+    padding: 2rem 0;
+    font-size: 1rem;
 
     @for $i from 1 through length($img-placeholders) { 
       &:nth-child(#{$i}) {
@@ -121,7 +124,7 @@ aside.contribute-resource-call-out {
   }
 
   .resource-list-item:first-child {
-    padding: 0 0 2em 0;
+    padding: 0 0 2rem 0;
   }
 }
 
@@ -211,10 +214,6 @@ aside.contribute-resource-call-out {
 
 .resource-groups-container {
   width: 80%;
-}
-
-.directory-table_wrapper {
-  padding: 0 5em;
 }
 
 .help-nav {
