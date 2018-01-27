@@ -61,6 +61,13 @@
       margin-right: 1.25em;
     }
   }
+
+  .active {
+    border-top-width: 3px;
+    border-top-style: solid;
+    border-top-color: $ui-blue;
+    padding-top: 0.75rem;
+  }
 }
 
 
