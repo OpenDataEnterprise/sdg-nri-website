@@ -24,8 +24,9 @@ news-js: true
             <span>Tags</span>
           </div>
           <ul class="news-filter-options dropdown-content">
-            <li class="news-filter-option">
-              <a href="#" v-for="tag in tags">(( tag ))</a>
+            <li class="news-filter-option" v-for="tag in tags">
+              <input if="f-(( tag ))" type="checkbox" value="(( tag ))">
+              <label for="f-(( tag ))">(( tag ))</label>
             </li>
           </ul>
         </div>

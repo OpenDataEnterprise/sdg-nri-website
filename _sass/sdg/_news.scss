@@ -137,15 +137,16 @@
 .news-filter {
   height: 100%;
   border-left: 1px solid #000000;
-  padding: 0 1.5rem;
 }
 
 .dropdown-button,
 .news-filter-button {
   display: inline-block;
+  padding: 0 1.5rem;
 }
 
 .news-filter-button {
+  height: 100%;
   font-weight: 700;
 }
 
@@ -171,13 +172,12 @@
 
 .dropdown-content {
   position: absolute;
-  padding: 1.5rem;
+  background-color: rgba(255, 255, 255, 1);
   visibility: hidden;
   z-index: 1;
 
   a {
     display: block;
-    background-color: rgba(255, 255, 255, 1);
     text-decoration: none;
   }
 
@@ -187,14 +187,15 @@
 }
 
 .news-filter-options {
+  border: 1px solid rgba(0, 0, 0, 1);
   right: 0;
+  min-width: 12rem;
+  padding: 1rem;
 }
 
 .news-filter-option {
-  border-bottom: 1px solid rgba(0, 0, 0, 1);
-
-  a {
-    padding-bottom: 1rem;
+  label {
+    padding: 1rem;
   }
 }
 
