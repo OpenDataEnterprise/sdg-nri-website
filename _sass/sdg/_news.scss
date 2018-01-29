@@ -164,7 +164,7 @@
   }
 }
 
-.dropdown-button:focus {
+.dropdown-button:hover {
   &:after {
     content: "\f107";
   }
