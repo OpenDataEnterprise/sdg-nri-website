@@ -1,16 +1,16 @@
 <aside class="topic-sidebar">
   <ul class="topic-sidebar-list">
-    {% for topic in site.data.topic_dump %}
+    {% for topic in site.data.nested_topics %}
     <li class="topic">
       <div class="topic-heading">
-        <a href="{{ base_url }}?topic={{ topic.tag }}">{{ topic.label }}</a>
+        <a href="/topic/{{ topic.tag }}">{{ topic.label }}</a>
       </div>
       {% if topic.subtopics %}
       <ul>
         {% for subtopic in topic.subtopics %}
         <li class="subtopic">
           <div>
-            <a href="{{ base_url }}?topic={{ subtopic.tag }}">{{ subtopic.label }}</a>
+            <a href="/topic/{{ subtopic.tag }}">{{ subtopic.label }}</a>
           </div>
         </li>
         {% endfor %}

@@ -41,7 +41,7 @@ page_gen:
     data: 'topics'
     name: 'tag'
     template: 'resources-topic'
-    dir: 'topics'
+    dir: 'topic'
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list

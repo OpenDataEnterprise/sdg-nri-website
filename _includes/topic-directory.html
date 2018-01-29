@@ -1,17 +1,16 @@
-{% assign base_url = "/resources" %}
 <nav>
   <ul>
     {% for topic in site.data.nested_topics %}
     <li>
       <h1>
-        <a href="{{ base_url }}?topic={{ topic.tag }}">{{ topic.label }}</a>
+        <a href="/topic/{{ topic.tag }}">{{ topic.label }}</a>
       </h1>
       {% if topic.subtopics %}
       <ul>
         {% for subtopic in topic.subtopics %}
         <li>
           <h2>
-            <a href="{{ base_url }}?topic={{ subtopic.tag }}">{{ subtopic.label }}</a>
+            <a href="/topic/{{ subtopic.tag }}">{{ subtopic.label }}</a>
           </h2>
         </li>
         {% endfor %}

@@ -1,4 +1,3 @@
-{% assign base_url = "/resources-topic" %}
 <nav class="topic-directory">
   <div class="topic-directory-header">
     <img class="topic-directory-heading-stripe" src="/assets/img/stripe.jpg">
@@ -6,16 +5,16 @@
   </div>
   <div class="topic-directory-body">
     <ul class="topic-list">
-      {% for topic in site.data.topic_dump %}
+      {% for topic in site.data.nested_topics %}
       <li class="topic">
         <h2 class="topic-heading">
-          <a href="{{ base_url }}?topic={{ topic.tag }}">{{ topic.label }}</a>
+          <a href="/topic/{{ topic.tag }}">{{ topic.label }}</a>
         </h2>
         {% if topic.subtopics %}
         <ul>
           {% for subtopic in topic.subtopics %}
           <li class="subtopic">
-            <a href="{{ base_url }}?topic={{ subtopic.tag }}">{{ subtopic.label }}</a>
+            <a href="/topic/{{ subtopic.tag }}">{{ subtopic.label }}</a>
           </li>
           {% endfor %}
         </ul>
