@@ -77,6 +77,10 @@
       padding-bottom: 1rem;
     }
 
+    a:hover {
+      background-color: darken(rgb(255, 255, 255), 10%);
+    }
+
     h1, h2 {
       padding-bottom: 0.5rem;
     }
