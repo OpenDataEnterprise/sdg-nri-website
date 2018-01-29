@@ -3,6 +3,7 @@ export {
   loadJSON,
   tokenizeArray,
   getPublicationDate,
+  formatResults,
 }
 
 /**
@@ -89,4 +90,27 @@ function getPublicationDate (dateObject, getDay) {
   }
 
   return dateString;
+}
+
+// Format the given fields as dates.
+function formatResults (results, fields, includeDay) {
+  const resultCount = results.length;
+
+  for (var i = 0; i < resultCount; i++) {
+    const fieldCount = fields.length;
+
+    for (let j = 0; j < fieldCount; j++) {
+      const field = fields[j];
+
+      if (field in results[i]) {
+        const date = new Date(results[i][field]);
+
+        if (date !== 'Invalid Date') {
+          results[i][field] = getPublicationDate(date, includeDay);
+        }
+      }
+    }
+  }
+
+  return results;
 }

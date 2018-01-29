@@ -21,7 +21,6 @@
 
 .site-nav-wrapper {
   padding: 2em;
-  overflow: hidden;
 }
 
 .site-title {
@@ -52,13 +51,40 @@
     display: none;
   }
 
-  .page-link {
+  .page-link,
+  .topics-dropdown {
+    display: inline-block;
     font-size: 1.25em;
     line-height: $base-line-height;
 
     // Gaps between nav items, but not on the last one
     &:not(:last-child) {
       margin-right: 1.25em;
+    }
+  }
+
+  .topics-dropdown-menu {
+    right: 0;
+    min-width: 30rem;
+    background-color: rgba(255, 255, 255, 1);
+    column-count: 2;
+
+    nav > ul > li {
+      padding-bottom: 1rem;
+    }
+
+    h1, h2 {
+      padding-bottom: 0.5rem;
+    }
+
+    h1 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      line-height: 1.2em;
+    }
+
+    h2 {
+      font-size: 1rem;
     }
   }
 

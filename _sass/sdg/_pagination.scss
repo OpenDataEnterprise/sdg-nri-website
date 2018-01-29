@@ -8,30 +8,21 @@
   $base-font-color: $dark-gray !default;
   $pagination-border-color: $base-border-color;
   $pagination-border: 1px solid $pagination-border-color;
-  $pagination-background: lighten($pagination-border-color, 10);
+  $pagination-background: rgba(220, 220, 220, 1);
   $pagination-hover-background: lighten($pagination-background, 5);
   $pagination-color: $base-font-color;
 
-  text-align: center;
-
   ul {
-    display: inline-block;
+    display: block;
     margin: 0;
     padding: 0;
     text-align: center;
 
     li {
       display: inline-block;
-      list-style: none;
-    }
 
-    ul li {
-      display: inline-block;
-
-      &:nth-child(1),
-      &:nth-child(2),
-      &:nth-child(3) {
-        display: inline;
+      &:nth-last-child(n+2) {
+        margin-right: 0.75rem;
       }
     }
 
@@ -42,17 +33,22 @@
       line-height: 0.8em;
       color: $pagination-color;
       outline: none;
+      font-weight: 700;
       text-decoration: none;
       transition: all 0.2s ease-in-out;
 
-      &:hover,
-      &:focus {
-        background: $pagination-hover-background;
-        color: $action-color;
+      &:visited {
+        color: $pagination-color;
       }
 
-      &:active {
-        background: $pagination-background;
+      &:hover,
+      &:focus {
+        background-color: $pagination-hover-background;
+        color: $pagination-color;
+      }
+
+      &.active {
+        background-color: $pagination-background;
       }
     }
   }

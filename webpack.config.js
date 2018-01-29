@@ -4,6 +4,7 @@ module.exports = (env) => {
   return {
     entry: {
       'resource-list': path.resolve(__dirname, './_app/app.js'),
+      'news-app': path.resolve(__dirname, './_app/news.js'),
     },
     output: {
       path: path.resolve(__dirname, './assets/js'),

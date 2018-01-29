@@ -3,11 +3,8 @@ title: News & Updates
 permalink: /news/
 navigation_weight: 2
 layout: default
-vue: true;
-news: true;
+news-js: true
 ---
-
-{% include templates.html %}
 
 <header role="banner" class="banner news-banner">
   <div class="banner-content">
@@ -15,72 +12,59 @@ news: true;
   </div>
 </header>
 
-<div class="news-wrapper-2">
-  <ul id="news-feed" class="categories-2">
-    <li>
-      <div class="news-filters">FILTER NEWS</div>
-      <div id="tab-content2" class="content">
-        <div class="news-count">Showing {{ site.news | size }} of {{ site.news | size }} news items</div>
-        <ul is="news-feed"
-          :data="newsfeed"
-          :filter-key="searchQuery"
-          :filters="filterSelection">
-          {% assign newsfeed = site.news | sort: 'date' %}
-          {% for item in newsfeed %}
-          <li class="news">
-            <p class="news-date">News | {{ item.date | date_to_long_string }}</p>
-            <h3 class="news-header">
-              <a href="{{ item.link }}" target="_blank">{{ item.title }}</a>
-            </h3>
-            <p class="news-author">{{ item.author }}</p>
-            <p class="news-description">{{ item.description }}</p>
-          </li>
-          {% endfor %}
-        </ul>
-      </div>
-    </li>
-  </ul>
-  
-      <div class="pagination">
-        <ul>
-          <li class="page-prev"><a href="javascript:void(0)">Prev</a></li>
-          <li>
-            <ul>
-              <li><a href="javascript:void(0)">1</a></li>
-              <li><a href="javascript:void(0)">2</a></li>
-              <li><a href="javascript:void(0)">3</a></li>
-              <li><a href="javascript:void(0)">4</a></li>
-              <li><a href="javascript:void(0)">5</a></li>
-              <li><a href="javascript:void(0)">6</a></li>
-              <li><a href="javascript:void(0)">7</a></li>
-            </ul>
-          </li>
-          <li class="page-next"><a href="javascript:void(0)">Next</a></li>
-        </ul>
+<div id="news-updates" class="news-wrapper-2">
+
+  <div class="categories-2">
+
+    <div class="news-filters">
+      <div class="news-filters-heading">FILTER NEWS</div>
+      <div class="news-filters-controls">
+        <div class="news-filter dropdown">
+          <div class="news-filter-button dropdown-button">
+            <span>Tags</span>
+          </div>
+          <ul class="news-filter-options dropdown-content">
+            <li class="news-filter-option">
+              <a href="#" v-for="tag in tags">(( tag ))</a>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
+
+    <ul is="newsfeed"
+      :newsfeed="news"
+      :total-results="pagination.totalResults"></ul>
+
+    <pagination
+      :current-page="pagination.currentPage"
+      :items-per-page="pagination.resultsPerPage"
+      :total-items="pagination.totalResults"
+      @page-changed="changePage"></pagination>
+
+  </div>
 
   <div class="category twitter-timeline-container">
     <h2 class="events-heading">EVENTS</h2>
     <ul>
       {% assign events = site.events | sort: 'date' %}
-      {% for item in events %}
+      {% for event in events %}
       <li class="event">
         <div class="event-header">
-          <a href="{{ item.link }}" target="_blank">{{ item.title }}</a>
+          <a href="{{ item.link }}" target="_blank">{{ event.title }}</a>
         </div>
         <div class="event-dates">
           <span class="event-start">
-            <i class="fa fa-calendar" aria-hidden="true"></i>{{ item.date | date_to_long_string }}
+            <i class="fa fa-calendar" aria-hidden="true"></i>{{ event.date | date_to_long_string }}
           </span>
-          {% if item.end_date %}
-          <span class="event-end"> - {{ item.end_date | date_to_long_string }}</span>
+          {% if event.end_date %}
+          <span class="event-end"> - {{ event.end_date | date_to_long_string }}</span>
           {% endif %}
         </div>
-        <p>{{ item.description }}</p>
+        <p>{{ event.description }}</p>
         <i class="fa fa-map-marker" aria-hidden="true"></i>
         <ul class="event-locations">
-          {% for location in item.locations %}
+          {% for location in event.locations %}
           <li class="event-location">{{ location }}</li>
           {% endfor %}
         </ul>

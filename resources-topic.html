@@ -5,16 +5,23 @@ resources-topic: true
 
 {% assign groups = site.resources | group_by: "subject" %}
 
-<div id="directory" class="search-directory">
+<header role="banner" class="banner topics-banner">
+  <div class="banner-content">
+  	<h1 class="banner-heading">Explore Resources</h1>
+  </div>
+  <a class="banner-submit-resource-button button" href="/contact/">
+    <i class="fa fa-paperclip fa-lg" aria-hidden="true"></i>
+    <span>SUBMIT A RESOURCE</span>
+  </a>
+</header>
 
-  {% include submission-call.html %}
+<div id="directory" class="search-directory">
 
   <div class="search-directory-wrapper">
 
     {% include topic-sidebar.html %}
 
-    <ul class="resource-list"
-      is="resource-list">
+    <ul is="resource-list">
     </ul>
 
   </div>

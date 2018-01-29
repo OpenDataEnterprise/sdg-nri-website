@@ -128,6 +128,76 @@
   }
 }
 
+.dropdown,
+.news-filter {
+  position: relative;
+  display: inline-block;
+}
+
+.news-filter {
+  height: 100%;
+  border-left: 1px solid #000000;
+  padding: 0 1.5rem;
+}
+
+.dropdown-button,
+.news-filter-button {
+  display: inline-block;
+}
+
+.news-filter-button {
+  font-weight: 700;
+}
+
+.dropdown:hover {
+  .dropdown-content {
+    visibility: visible;
+  }
+}
+
+.dropdown-button {
+  &:after {
+    margin-left: 0.3rem;
+    font-family: "FontAwesome";
+    content: "\f106";
+  }
+}
+
+.dropdown-button:focus {
+  &:after {
+    content: "\f107";
+  }
+}
+
+.dropdown-content {
+  position: absolute;
+  padding: 1.5rem;
+  visibility: hidden;
+  z-index: 1;
+
+  a {
+    display: block;
+    background-color: rgba(255, 255, 255, 1);
+    text-decoration: none;
+  }
+
+  &:hover {
+    visibility: visible;
+  }
+}
+
+.news-filter-options {
+  right: 0;
+}
+
+.news-filter-option {
+  border-bottom: 1px solid rgba(0, 0, 0, 1);
+
+  a {
+    padding-bottom: 1rem;
+  }
+}
+
 .news,
 .event {
   box-sizing: border-box;
@@ -142,6 +212,14 @@
   border: none;
 }
 
+.news-feed {
+  margin-bottom: 2rem;
+}
+
+.news-list-item {
+  outline: none;
+}
+
 .news-input {
   position: absolute;
   left: -9999px;
@@ -153,14 +231,30 @@
 }
 
 .news-filters {
-  border-bottom: 1px solid;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #000000;
+}
+
+.news-filters-heading {
+  display: inline-block;
   padding-bottom: 1rem;
   font-family: Oswald;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
+}
+
+.news-filters-controls {
+  display: inline-block;
 }
 
 .news-count {
   padding-top: 1rem;
+}
+
+.news-card {
+  padding: 2rem 0;
+  border-bottom: 1px solid #000;
 }
 
 .news-date,

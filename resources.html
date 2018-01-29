@@ -3,7 +3,7 @@ title: Search Resources
 permalink: /resources/
 navigation_weight: 1
 layout: default
-resources-list: true
+resources-js: true
 ---
 
 <header role="banner" class="banner directory-banner">
@@ -21,33 +21,26 @@ resources-list: true
     {% include filter-sidebar.html %}
 
     <div class="resource-list-module">
-      <ul class="resource-list"
-        is="resource-list">
+
+      <ul is="resource-list"
+        :total-results="pagination.totalResults">
       </ul>
 
-      <div class="pagination">
-        <ul>
-          <li class="page-prev"><a href="javascript:void(0)">Prev</a></li>
-          <li>
-            <ul>
-              <li><a href="javascript:void(0)">1</a></li>
-              <li><a href="javascript:void(0)">2</a></li>
-              <li><a href="javascript:void(0)">3</a></li>
-              <li><a href="javascript:void(0)">4</a></li>
-            </ul>
-          </li>
-          <li class="page-next"><a href="javascript:void(0)">Next</a></li>
-        </ul>
-      </div>
+      <pagination
+        :current-page="pagination.currentPage"
+        :items-per-page="pagination.resultsPerPage"
+        :total-items="pagination.totalResults"
+        @page-changed="changePage"></pagination>
+
     </div>
 
 </div>
 
 <section class="submit-resource-section">
-<div class="submit-resource-heading">SUBMIT A RESOURCE</div>
-<p class="submit-resource-content">Do you have a resource you would like to contribute? Please visit our submission form.</p>
-<a class="submit-resource-button button" href="/contact/">
-  <i class="fa fa-paperclip fa-lg" aria-hidden="true"></i>
-  <span>SUBMIT A RESOURCE</span>
-</a>
+  <div class="submit-resource-heading">SUBMIT A RESOURCE</div>
+  <p class="submit-resource-content">Do you have a resource you would like to contribute? Please visit our submission form.</p>
+  <a class="submit-resource-button button" href="/contact/">
+    <i class="fa fa-paperclip fa-lg" aria-hidden="true"></i>
+    <span>SUBMIT A RESOURCE</span>
+  </a>
 </section>

@@ -70,8 +70,9 @@ aside.contribute-resource-call-out {
 }
 
 .resource-languages,
-.resource-tags {
-  margin: 0;
+.resource-tags,
+.news-tags {
+  margin: 1rem 0 0;
   line-height: 2em;
   text-align: left;
   list-style: none;
@@ -103,9 +104,10 @@ aside.contribute-resource-call-out {
 
 .resource-list,
 .resource-list-group {
+  margin-bottom: 2rem;
+
   .resource-list-item,
   .resource-list-group-head {
-    margin-bottom: 2rem;
     padding: 2rem 0;
     font-size: 1rem;
 
@@ -172,22 +174,21 @@ aside.contribute-resource-call-out {
 }
 
 .resource-description {
-  margin: 1em 0;
-  text-align: left;
+  margin: 1rem 0;
 }
 
 .resource-list-group {
-  margin: 0 5em 2em;
+  margin: 0 5rem 2rem;
 }
 
 .resource-list-group-description {
-  padding: 1em 0 1.5em;
+  padding: 1rem 0 1.5rem;
 }
 
 .directory-heading {
   display: block;
   margin-bottom: 3rem;
-  padding: 0.5em 0;
+  padding: 0.5rem 0;
   background-color: rgba(255,255,255,0.5);
   font-size: 3em;
   text-align: center;
@@ -195,15 +196,15 @@ aside.contribute-resource-call-out {
 
 .directory-listing {
   width: 20%;
-  margin: 0 0 0 5em;
+  margin: 0 0 0 5rem;
 
   ul {
     margin: 0;
     list-style: none;
 
     li {
-      margin-bottom: 2em;
-      font-size: 1.2em;
+      margin-bottom: 2rem;
+      font-size: 1.2rem;
     }
   }
 }
@@ -219,7 +220,7 @@ aside.contribute-resource-call-out {
 
 .help-nav {
   margin: 0 10rem 4rem;
-  font-size: 2em;
+  font-size: 2rem;
   text-align: center;
 
   div {

@@ -24,6 +24,12 @@
         </label>
 
         <div class="trigger">
+          <div class="topics-dropdown dropdown">
+            <a class=" dropdown-button" href="#">Explore Topics</a>
+            <div class="topics-dropdown-menu dropdown-content">
+              {% include topic-directory.html %}
+            </div>
+          </div>
           {% for path in page_paths %}
             {% assign my_page = site.pages | where: "path", path | first %}
             {% if my_page.title %}

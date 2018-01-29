@@ -1,6 +1,7 @@
+import Config from 'config'; // Aliased via WebPack.
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { loadJSON } from 'js/utility';
+import * as Utility from 'js/utility';
 
 Vue.use(Vuex);
 
@@ -9,6 +10,11 @@ export const store = new Vuex.Store({
     resources: [],
     index: {},
     searchText: '',
+    pagination: {
+      currentPage: 1,
+      resultsPerPage: 10,
+      totalResults: 0,
+    },
     filterOptions: {
       country: [],
       region: [],
@@ -58,19 +64,33 @@ export const store = new Vuex.Store({
       state.index = index;
     },
     setTopics: function (state, topics) {
-      state.filterOptions.topic = topics;
+      Vue.set(state.filterOptions, 'topic', topics);
     },
     setCountries: function (state, countries) {
-      state.filterOptions.country = countries;
+      Vue.set(state.filterOptions, 'country', countries);
     },
     setRegions: function (state, regions) {
-      state.filterOptions.region = regions;
+      Vue.set(state.filterOptions, 'region', regions);
     },
     setLanguages: function (state, languages) {
-      state.filterOptions.language = languages;
+      Vue.set(state.filterOptions, 'language', languages);
     },
     setTypes: function (state, types) {
-      state.filterOptions.type = types;
+      Vue.set(state.filterOptions, 'type', types);
+    },
+    setCurrentPage: function (state, currentPage) {
+      // Non-positive page numbers should never happen, but this is an explicit safety check.
+      if (currentPage < 1) {
+        currentPage = 1;
+      }
+
+      Vue.set(state.pagination, 'currentPage', currentPage);
+    },
+    setResultsPerPage: function (state, resultsPerPage) {
+      Vue.set(state.pagination, 'resultsPerPage', resultsPerPage);
+    },
+    setTotalResults: function(state, totalResults) {
+      Vue.set(state.pagination, 'totalResults', totalResults);
     }
   },
   getters: {
@@ -86,7 +106,7 @@ export const store = new Vuex.Store({
       return selectedFilters;
     },
     getQueryString: (state) => {
-      let queryString = '';
+      let queryString = '?limit=' + state.pagination.resultsPerPage;
 
       const categories = Object.keys(state.selectedFilters);
       const categoryCount = categories.length;
@@ -100,13 +120,7 @@ export const store = new Vuex.Store({
           continue;
         }
 
-        if (i === 0) {
-          queryString += '?';
-        } else {
-          queryString += '&';
-        }
-
-        queryString = queryString + category + '=';
+        queryString = queryString + '&' + category + '=';
 
         for (let j = 0; j < selectedOptionsCount; j++) {
           if (j > 0) {
@@ -125,10 +139,16 @@ export const store = new Vuex.Store({
       let queryString = context.getters.getQueryString;
       console.log(queryString);
 
-      const resourcePath = 'http://localhost:3000/api/v1/resources';
-      const results = await loadJSON(resourcePath + queryString);
+      const resourcePath = Config.apiPath + 'resources';
+      const results = await Utility.loadJSON(resourcePath + queryString);
 
-      context.commit('setResources', results);
+      let resources = Utility.formatResults(
+        results.rows,
+        ['date_published'],
+        false);
+      context.commit('setCurrentPage', 1);
+      context.commit('setTotalResults', results.count);
+      context.commit('setResources', resources);
     },
   }
 });
