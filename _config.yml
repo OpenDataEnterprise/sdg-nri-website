@@ -25,10 +25,23 @@ url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: jekyllrb
 github_username:  jekyll
 
+# If you want to link only specific pages in your header, uncomment
+# this and add the path to the pages in order as they should show up
+header_pages:
+ - resources.html
+ - news.html
+ - contact.html
+
 # Build settings
 markdown: kramdown
 plugins:
   - jekyll-feed
+page_gen:
+  - index_files: false
+    data: 'topics'
+    name: 'tag'
+    template: 'resources-topic'
+    dir: 'topics'
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
@@ -43,6 +56,4 @@ plugins:
 #   - vendor/ruby/
 
 collections:
-  - resources
-  - news
-  - events
+ - events

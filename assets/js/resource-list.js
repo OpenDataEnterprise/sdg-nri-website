@@ -12277,6 +12277,9 @@ __WEBPACK_IMPORTED_MODULE_1_vue__["a" /* default */].component('search-bar', __W
         };
       },
       computed: {
+        resourceList: function () {
+          return __WEBPACK_IMPORTED_MODULE_3_js_global_store__["a" /* store */].resources;
+        },
         sharedState: function () {
           return __WEBPACK_IMPORTED_MODULE_3_js_global_store__["a" /* store */].state;
         },

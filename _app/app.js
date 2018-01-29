@@ -56,6 +56,9 @@ Vue.component('search-bar', SearchBar);
         };
       },
       computed: {
+        resourceList: function () {
+          return store.resources;
+        },
         sharedState: function () {
           return store.state;
         },

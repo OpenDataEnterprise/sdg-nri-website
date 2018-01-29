@@ -1,7 +1,7 @@
 {% assign base_url = "/resources" %}
 <nav>
   <ul>
-    {% for topic in site.data.topic_dump %}
+    {% for topic in site.data.nested_topics %}
     <li>
       <h1>
         <a href="{{ base_url }}?topic={{ topic.tag }}">{{ topic.label }}</a>

@@ -32,7 +32,7 @@ module.exports = (env) => {
         path.resolve('./node_modules')
       ],
       alias: {
-        config: path.join(__dirname, '_config', env.NODE_ENV),
+        config: path.join(__dirname, '_app/config', env.NODE_ENV),
         'vue$': 'vue/dist/vue.esm.js'
       }
     },
