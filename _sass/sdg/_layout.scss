@@ -20,7 +20,8 @@
 }
 
 .site-nav-wrapper {
-  padding: 2em;
+  margin: 2em;
+  @extend %clearfix;
 }
 
 .site-title {
@@ -41,6 +42,7 @@
 
 .site-nav {
   float: right;
+  color: rgba(0, 0, 0, 1);
   line-height: $base-line-height * 2.25rem;
 
   .nav-trigger {
@@ -56,6 +58,7 @@
     display: inline-block;
     font-size: 1.25em;
     line-height: $base-line-height;
+    cursor: pointer;
 
     // Gaps between nav items, but not on the last one
     &:not(:last-child) {

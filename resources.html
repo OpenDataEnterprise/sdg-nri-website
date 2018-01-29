@@ -5,42 +5,43 @@ navigation_weight: 1
 layout: default
 resources-js: true
 ---
-
-<header role="banner" class="banner directory-banner">
-  <div class="banner-content">
-  	<h1 class="banner-heading">Search Resources</h1>
-    {% include search-bar.html %}
-  </div>
-  <a class="banner-submit-resource-button button" href="/contact/">
-    <i class="fa fa-paperclip fa-lg" aria-hidden="true"></i>
-    <span>SUBMIT A RESOURCE</span>
-  </a>
-</header>
-
-<div id="directory" class="search-directory">
-    {% include filter-sidebar.html %}
-
-    <div class="resource-list-module">
-
-      <ul is="resource-list"
-        :total-results="pagination.totalResults">
-      </ul>
-
-      <pagination
-        :current-page="pagination.currentPage"
-        :items-per-page="pagination.resultsPerPage"
-        :total-items="pagination.totalResults"
-        @page-changed="changePage"></pagination>
-
+<div id="directory">
+  <header role="banner" class="banner directory-banner">
+    <div class="banner-content">
+    	<h1 class="banner-heading">Search Resources</h1>
+      {% include search-bar.html %}
     </div>
-
+    <a class="banner-submit-resource-button button" href="/contact/">
+      <i class="fa fa-paperclip fa-lg" aria-hidden="true"></i>
+      <span>SUBMIT A RESOURCE</span>
+    </a>
+  </header>
+  
+  <div class="search-directory">
+      {% include filter-sidebar.html %}
+  
+      <div class="resource-list-module">
+  
+        <ul is="resource-list"
+          :total-results="pagination.totalResults">
+        </ul>
+  
+        <pagination
+          :current-page="pagination.currentPage"
+          :items-per-page="pagination.resultsPerPage"
+          :total-items="pagination.totalResults"
+          @page-changed="changePage"></pagination>
+  
+      </div>
+  
+  </div>
+  
+  <section class="submit-resource-section">
+    <div class="submit-resource-heading">SUBMIT A RESOURCE</div>
+    <p class="submit-resource-content">Do you have a resource you would like to contribute? Please visit our submission form.</p>
+    <a class="submit-resource-button button" href="/contact/">
+      <i class="fa fa-paperclip fa-lg" aria-hidden="true"></i>
+      <span>SUBMIT A RESOURCE</span>
+    </a>
+  </section>
 </div>
-
-<section class="submit-resource-section">
-  <div class="submit-resource-heading">SUBMIT A RESOURCE</div>
-  <p class="submit-resource-content">Do you have a resource you would like to contribute? Please visit our submission form.</p>
-  <a class="submit-resource-button button" href="/contact/">
-    <i class="fa fa-paperclip fa-lg" aria-hidden="true"></i>
-    <span>SUBMIT A RESOURCE</span>
-  </a>
-</section>

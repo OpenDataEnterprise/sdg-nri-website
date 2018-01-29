@@ -2,7 +2,7 @@
 
   <!--<div class="under-construction-warning">This website is a work in progress.</div>-->
 
-  <div class="site-nav-wrapper">
+  <div class="site-nav-wrapper clearfix">
     {% assign default_paths = site.pages | sort: "navigation_weight" | map: "path" %}
     {% assign page_paths = site.header_pages | default: default_paths %}
     <div class="site-title">
@@ -25,7 +25,7 @@
 
         <div class="trigger">
           <div class="topics-dropdown dropdown">
-            <a class=" dropdown-button" href="#">Explore Topics</a>
+            <div class=" dropdown-button">Explore Topics</div>
             <div class="topics-dropdown-menu dropdown-content">
               {% include topic-directory.html %}
             </div>

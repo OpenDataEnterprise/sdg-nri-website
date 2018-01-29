@@ -5,7 +5,10 @@ import { store } from 'js/global-store';
 import ResourceList from 'vue/resource-list.vue';
 import Filter from 'vue/filter.vue';
 import Pagination from 'vue/pagination.vue';
+import SearchBar from 'vue/search-bar.vue';
 import * as Utility from 'js/utility';
+
+Vue.component('search-bar', SearchBar);
 
 (function () {
   const apiPath = Config.apiPath;
@@ -26,7 +29,7 @@ import * as Utility from 'js/utility';
     const languages = results[3];
     const topics = results[4];
     const resource_types = results[5];
-      
+
     const resources = Utility.formatResults(
       resourceResults.rows,
       ['date_published'],
@@ -48,6 +51,7 @@ import * as Utility from 'js/utility';
       el: '#directory',
       data: function () {
         return {
+          searchQuery: '',
           filterOptions: store.state.filterOptions,
         };
       },
@@ -60,8 +64,10 @@ import * as Utility from 'js/utility';
         },
       },
       methods: {
-        search: function () {
+        search: function (event) {
+          event.preventDefault();
           store.commit('setSearch', this.searchQuery);
+          console.log(store.state.searchText);
         },
         changePage(pageNumber) {
           const offset = this.pagination.resultsPerPage * (pageNumber - 1);

@@ -150,7 +150,8 @@
   font-weight: 700;
 }
 
-.dropdown:hover {
+.dropdown:hover,
+.dropdown:focus {
   .dropdown-content {
     visibility: visible;
   }
@@ -164,7 +165,8 @@
   }
 }
 
-.dropdown-button:hover {
+.dropdown-button:hover,
+.dropdown-button:focus {
   &:after {
     content: "\f107";
   }

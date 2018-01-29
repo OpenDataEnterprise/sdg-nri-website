@@ -9,7 +9,7 @@ export const store = new Vuex.Store({
   state: {
     resources: [],
     index: {},
-    searchText: '',
+    searchQuery: '',
     pagination: {
       currentPage: 1,
       resultsPerPage: 10,
@@ -49,19 +49,15 @@ export const store = new Vuex.Store({
       for (let category in state.selectedFilters) {
         Vue.delete(state.selectedFilters, category);
       }
-      //Vue.set(state, 'selectedFilters', {});
     },
-    setSearch: function (state, text) {
-      state.searchText = text;
+    setSearch: function (state, queryString) {
+      Vue.set(state, 'searchQuery', queryString);
     },
     clearSearch: function (state) {
-      state.searchText = '';
+      Vue.set(state, 'searchQuery', '');
     },
     setResources: function (state, resources) {
       Vue.set(state, 'resources', resources);
-    },
-    setIndex: function (state, index) {
-      state.index = index;
     },
     setTopics: function (state, topics) {
       Vue.set(state.filterOptions, 'topic', topics);
@@ -146,6 +142,7 @@ export const store = new Vuex.Store({
         results.rows,
         ['date_published'],
         false);
+
       context.commit('setCurrentPage', 1);
       context.commit('setTotalResults', results.count);
       context.commit('setResources', resources);

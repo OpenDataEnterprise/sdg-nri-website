@@ -1,9 +1,13 @@
 <template>
 <li v-if="isExpandable">
-  <div v-on:click="toggle">
-    {{ model[labelField] }}
-    <span>[{{ expanded ? '-' : '+' }}]</span>
-  </div>
+    <input
+      class="filter-option-checkbox"
+      type="checkbox"
+      v-bind:id="'f-' + model[valueField]"
+      v-bind:value="model[valueField]"
+      v-on:click="emitFilterUpdate">
+    <label class="filter-option-label" v-bind:for="'f-' + model[valueField]" v-on:click="toggle">{{ model[labelField] }}</label>
+    <span class="filter-expansion-indicator">[{{ expanded ? '-' : '+' }}]</span>
   <ul class="filter-list" v-show="expanded">
     <filter-option
       class="filter-option"
@@ -74,8 +78,7 @@ export default {
         return false;
       }
 
-      return this.model[this.childrenField] &&
-        this.model[this.childrenField].length;
+      return this.model[this.childrenField];
     }
   },
   methods: {
