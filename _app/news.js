@@ -17,6 +17,7 @@ import * as Utility from 'js/utility';
         news: [],
         events: [],
         tags: [],
+        filterTags: {},
         pagination: {
           currentPage: 1,
           resultsPerPage: 10,
@@ -25,14 +26,35 @@ import * as Utility from 'js/utility';
       };
     },
     methods: {
-      changePage(pageNumber) {
+      addTag: function (tag) {
+        if (tag in this.filterTags) {
+          return;
+        }
+
+        Vue.set(this.filterTags, tag, true);
+        console.log(Object.keys(this.filterTags));
+        this.refresh();
+      },
+      removeTag: function (tag) {
+        if (tag in this.filterTags) {
+          Vue.delete(this.filterTags, tag);
+        }
+        console.log(Object.keys(this.filterTags));
+        this.refresh();
+      },
+      refresh: function (pageNumber = 1) {
         let self = this;
 
         const offset = self.pagination.resultsPerPage * (pageNumber - 1);
-
-        Utility.loadJSON(apiPath + 'news' +
+        let query = apiPath + 'news' +
           '?limit=' + self.pagination.resultsPerPage +
-          '&offset=' + offset)
+          '&offset=' + offset;
+
+        if (Object.keys(self.filterTags).length > 0) {
+          query = query + '&tags=' + Object.keys(self.filterTags);
+        }
+
+        Utility.loadJSON(query)
         .then(function (results) {
           self.pagination.totalResults = results.count;
 
@@ -62,18 +84,32 @@ import * as Utility from 'js/utility';
 
       // Load data.
       let requestPromises = [];
-      requestPromises.push(Utility.loadJSON(apiPath + 'news?limit=' + self.pagination.resultsPerPage));
+
+      let newsQuery = 'news' +
+        '?limit=' + self.pagination.resultsPerPage;
+
+      if (Object.keys(self.filterTags).length > 0) {
+        newsQuery = newsQuery + '&tags=' + Object.keys(self.filterTags);
+      }
+
+      requestPromises.push(Utility.loadJSON(apiPath + newsQuery));
       requestPromises.push(Utility.loadJSON(apiPath + 'events'));
       requestPromises.push(Utility.loadJSON(apiPath + 'tags/news'));
       
       Promise.all(requestPromises).then(function (results) {
         const newsResults = results[0];
-        const events = results[1];
+        const eventsResults = results[1];
         const tags = results[2];
 
         const news = Utility.formatResults(
           newsResults.rows,
           ['created_at'],
+          true
+        );
+
+        const events = Utility.formatResults(
+          eventsResults,
+          ['start_time', 'end_time'],
           true
         );
 

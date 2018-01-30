@@ -12,7 +12,9 @@ news-js: true
   </div>
 </header>
 
-<div id="news-updates" class="news-wrapper-2">
+<div
+  id="news-updates"
+  class="news-wrapper-2">
 
   <div class="categories-2">
 
@@ -25,52 +27,48 @@ news-js: true
           </div>
           <ul class="news-filter-options dropdown-content">
             <li class="news-filter-option" v-for="tag in tags">
-              <input if="f-(( tag ))" type="checkbox" value="(( tag ))">
-              <label for="f-(( tag ))">(( tag ))</label>
+              <input :if="'f-' + (( tag ))" type="checkbox" :value="(( tag ))">
+              <label :for="'f-' + (( tag ))">(( tag ))</label>
             </li>
           </ul>
         </div>
       </div>
     </div>
 
-    <ul is="newsfeed"
+    <newsfeed
       :newsfeed="news"
-      :total-results="pagination.totalResults"></ul>
+      :filter-tags="filterTags"
+      :total-results="pagination.totalResults"
+      @select-filter-tag="addTag"
+      @deselect-filter-tag="removeTag"></newsfeed>
 
     <pagination
       :current-page="pagination.currentPage"
       :items-per-page="pagination.resultsPerPage"
       :total-items="pagination.totalResults"
-      @page-changed="changePage"></pagination>
+      @page-changed="refresh"></pagination>
 
   </div>
 
   <div class="category twitter-timeline-container">
     <h2 class="events-heading">EVENTS</h2>
     <ul>
-      {% assign events = site.events | sort: 'date' %}
-      {% for event in events %}
-      <li class="event">
+      <li class="event" v-for="event in events">
         <div class="event-header">
-          <a href="{{ item.link }}" target="_blank">{{ event.title }}</a>
+          <a href="{{ event.link }}" target="_blank">(( event.title ))</a>
         </div>
         <div class="event-dates">
           <span class="event-start">
-            <i class="fa fa-calendar" aria-hidden="true"></i>{{ event.date | date_to_long_string }}
+            <i class="fa fa-calendar" aria-hidden="true"></i>(( event.start_time ))
           </span>
-          {% if event.end_date %}
-          <span class="event-end"> - {{ event.end_date | date_to_long_string }}</span>
-          {% endif %}
+          <span class="event-end" v-if="event.end_time"> - (( event.end_time ))</span>
         </div>
-        <p>{{ event.description }}</p>
+        <p class="event-description">(( event.description ))</p>
         <i class="fa fa-map-marker" aria-hidden="true"></i>
         <ul class="event-locations">
-          {% for location in event.locations %}
-          <li class="event-location">{{ location }}</li>
-          {% endfor %}
+          <li class="event-location" v-for="location in event.locations">(( location ))</li>
         </ul>
       </li>
-      {% endfor %}
     </ul>
 
   </div>

@@ -87,7 +87,7 @@ aside.contribute-resource-call-out {
 .language-tag,
 .subject-tag {
   display: inline-block;
-  margin: 0 0 0 0.3em;
+  margin: 0 0 0 0.3rem;
   padding: 0.5em;
   line-height: 1em;
   background-color: rgba(220, 220, 220, 1);
@@ -95,6 +95,10 @@ aside.contribute-resource-call-out {
   &:first-child {
     margin: 0;
   }
+}
+
+.subject-tag {
+  cursor: pointer;
 }
 
 .resource-list-module {

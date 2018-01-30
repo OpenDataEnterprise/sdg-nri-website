@@ -265,8 +265,9 @@
 .news-author,
 .event-dates,
 .event-header,
+.event-description,
 .event-end {
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
 }
 
 .news-author,
@@ -285,9 +286,13 @@
 }
 
 .event-location {
-  display: inline;
-  padding: 0.2em 0.4em;
-  background-color: rgba(212, 212, 212, 0.6);
+  display: inline-block;
+  margin: 0 0 0 0.3rem;
+  font-style: italic;
+
+  &:first-child {
+    margin: 0;
+  }
 }
 
 .twitter-timeline-container,

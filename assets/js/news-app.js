@@ -1567,19 +1567,21 @@ function getPublicationDate(dateObject, getDay) {
 
 // Format the given fields as dates.
 function formatResults(results, fields, includeDay) {
-  const resultCount = results.length;
+  if (Array.isArray(results)) {
+    const resultCount = results.length;
 
-  for (var i = 0; i < resultCount; i++) {
-    const fieldCount = fields.length;
+    for (var i = 0; i < resultCount; i++) {
+      const fieldCount = fields.length;
 
-    for (let j = 0; j < fieldCount; j++) {
-      const field = fields[j];
+      for (let j = 0; j < fieldCount; j++) {
+        const field = fields[j];
 
-      if (field in results[i]) {
-        const date = new Date(results[i][field]);
+        if (field in results[i]) {
+          const date = new Date(results[i][field]);
 
-        if (date !== 'Invalid Date') {
-          results[i][field] = getPublicationDate(date, includeDay);
+          if (date !== 'Invalid Date') {
+            results[i][field] = getPublicationDate(date, includeDay);
+          }
         }
       }
     }
@@ -11949,11 +11951,36 @@ if (false) {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["a"] = ({
   props: {
     newsfeed: Array,
+    filterTags: Object,
     totalResults: Number
+  },
+  methods: {
+    tagSelect: function (tag, event) {
+      console.log('Selected ' + tag);
+      this.$emit('select-filter-tag', tag);
+    },
+    tagDeselect: function (tag, event) {
+      console.log('Deselected ' + tag);
+      this.$emit('deselect-filter-tag', tag);
+    }
   }
 });
 
@@ -11999,6 +12026,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         news: [],
         events: [],
         tags: [],
+        filterTags: {},
         pagination: {
           currentPage: 1,
           resultsPerPage: 10,
@@ -12007,12 +12035,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       };
     },
     methods: {
-      changePage(pageNumber) {
+      addTag: function (tag) {
+        if (tag in this.filterTags) {
+          return;
+        }
+
+        __WEBPACK_IMPORTED_MODULE_1_vue__["a" /* default */].set(this.filterTags, tag, true);
+        console.log(Object.keys(this.filterTags));
+        this.refresh();
+      },
+      removeTag: function (tag) {
+        if (tag in this.filterTags) {
+          __WEBPACK_IMPORTED_MODULE_1_vue__["a" /* default */].delete(this.filterTags, tag);
+        }
+        console.log(Object.keys(this.filterTags));
+        this.refresh();
+      },
+      refresh: function (pageNumber = 1) {
         let self = this;
 
         const offset = self.pagination.resultsPerPage * (pageNumber - 1);
+        let query = apiPath + 'news' + '?limit=' + self.pagination.resultsPerPage + '&offset=' + offset;
 
-        __WEBPACK_IMPORTED_MODULE_6_js_utility__["c" /* loadJSON */](apiPath + 'news' + '?limit=' + self.pagination.resultsPerPage + '&offset=' + offset).then(function (results) {
+        if (Object.keys(self.filterTags).length > 0) {
+          query = query + '&tags=' + Object.keys(self.filterTags);
+        }
+
+        __WEBPACK_IMPORTED_MODULE_6_js_utility__["c" /* loadJSON */](query).then(function (results) {
           self.pagination.totalResults = results.count;
 
           const news = __WEBPACK_IMPORTED_MODULE_6_js_utility__["a" /* formatResults */](results.rows, ['created_at'], true);
@@ -12038,16 +12087,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       // Load data.
       let requestPromises = [];
-      requestPromises.push(__WEBPACK_IMPORTED_MODULE_6_js_utility__["c" /* loadJSON */](apiPath + 'news?limit=' + self.pagination.resultsPerPage));
+
+      let newsQuery = 'news' + '?limit=' + self.pagination.resultsPerPage;
+
+      if (Object.keys(self.filterTags).length > 0) {
+        newsQuery = newsQuery + '&tags=' + Object.keys(self.filterTags);
+      }
+
+      requestPromises.push(__WEBPACK_IMPORTED_MODULE_6_js_utility__["c" /* loadJSON */](apiPath + newsQuery));
       requestPromises.push(__WEBPACK_IMPORTED_MODULE_6_js_utility__["c" /* loadJSON */](apiPath + 'events'));
       requestPromises.push(__WEBPACK_IMPORTED_MODULE_6_js_utility__["c" /* loadJSON */](apiPath + 'tags/news'));
 
       Promise.all(requestPromises).then(function (results) {
         const newsResults = results[0];
-        const events = results[1];
+        const eventsResults = results[1];
         const tags = results[2];
 
         const news = __WEBPACK_IMPORTED_MODULE_6_js_utility__["a" /* formatResults */](newsResults.rows, ['created_at'], true);
+
+        const events = __WEBPACK_IMPORTED_MODULE_6_js_utility__["a" /* formatResults */](eventsResults, ['start_time', 'end_time'], true);
 
         self.pagination.totalResults = newsResults.count;
         self.news = news;
@@ -12120,20 +12178,47 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "ul",
-    { staticClass: "news-feed" },
-    [
-      _c("span", [
-        _vm._v(
-          "Showing " +
-            _vm._s(_vm.newsfeed.length) +
-            " of " +
-            _vm._s(_vm.totalResults) +
-            " news items"
+  return _c("div", [
+    _c("div", { staticClass: "results-counter" }, [
+      _vm._v(
+        "Showing " +
+          _vm._s(_vm.newsfeed.length) +
+          " of " +
+          _vm._s(_vm.totalResults) +
+          " news items"
+      )
+    ]),
+    _vm._v(" "),
+    Object.keys(_vm.filterTags).length > 0
+      ? _c(
+          "ul",
+          { staticClass: "news-tags" },
+          _vm._l(_vm.filterTags, function(item, tag) {
+            return _c(
+              "li",
+              {
+                staticClass: "subject-tag",
+                on: {
+                  click: function($event) {
+                    _vm.tagDeselect(tag)
+                  }
+                }
+              },
+              [
+                _c("i", {
+                  staticClass: "fa fa-times",
+                  attrs: { "aria-hidden": "true" }
+                }),
+                _vm._v(_vm._s(tag) + "\n    ")
+              ]
+            )
+          })
         )
-      ]),
-      _vm._v(" "),
+      : _vm._e(),
+    _vm._v(" "),
+    _c(
+      "ul",
+      { staticClass: "news-feed" },
       _vm._l(_vm.newsfeed, function(news, index) {
         return _c(
           "li",
@@ -12164,9 +12249,24 @@ var render = function() {
                       "ul",
                       { staticClass: "resource-tags-list" },
                       _vm._l(news.tags, function(tag) {
-                        return _c("li", { staticClass: "subject-tag" }, [
-                          _vm._v(_vm._s(tag))
-                        ])
+                        return _c(
+                          "li",
+                          {
+                            staticClass: "subject-tag",
+                            on: {
+                              click: function($event) {
+                                _vm.tagSelect(tag)
+                              }
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n              " +
+                                _vm._s(tag) +
+                                "\n            "
+                            )
+                          ]
+                        )
                       })
                     )
                   ])
@@ -12175,9 +12275,8 @@ var render = function() {
           ]
         )
       })
-    ],
-    2
-  )
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true

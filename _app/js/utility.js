@@ -94,19 +94,21 @@ function getPublicationDate (dateObject, getDay) {
 
 // Format the given fields as dates.
 function formatResults (results, fields, includeDay) {
-  const resultCount = results.length;
+  if (Array.isArray(results)) {
+    const resultCount = results.length;
 
-  for (var i = 0; i < resultCount; i++) {
-    const fieldCount = fields.length;
+    for (var i = 0; i < resultCount; i++) {
+      const fieldCount = fields.length;
 
-    for (let j = 0; j < fieldCount; j++) {
-      const field = fields[j];
+      for (let j = 0; j < fieldCount; j++) {
+        const field = fields[j];
 
-      if (field in results[i]) {
-        const date = new Date(results[i][field]);
+        if (field in results[i]) {
+          const date = new Date(results[i][field]);
 
-        if (date !== 'Invalid Date') {
-          results[i][field] = getPublicationDate(date, includeDay);
+          if (date !== 'Invalid Date') {
+            results[i][field] = getPublicationDate(date, includeDay);
+          }
         }
       }
     }

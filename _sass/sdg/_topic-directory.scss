@@ -51,16 +51,18 @@
   }
 }
 
-.topic {
-  margin-bottom: 2em;
+.active-topic {
+  border-left-width: 3px;
+  border-left-style: solid;
+  border-left-color: $ui-blue;
+  background-color: rgba(220, 220, 220, 1);
 }
 
 .topic-heading {
-  margin-bottom: 0.5em;
+  padding: 0.5rem 0;
   font-size: 1.2em;
 }
 
-.subtopic {
-  margin-left: 1.5em;
-  margin-bottom: 1em;
+.subtopic-heading {
+  padding: 0.5rem 1.5rem 0.5rem;
 }

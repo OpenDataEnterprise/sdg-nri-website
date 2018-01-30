@@ -2,14 +2,22 @@
   <ul class="topic-sidebar-list">
     {% for topic in site.data.nested_topics %}
     <li class="topic">
+      {% if page.title == subtopic.tag %}
+      <div class="topic-heading active-topic">
+      {% else %}
       <div class="topic-heading">
+      {% endif %}
         <a href="/topic/{{ topic.tag }}">{{ topic.label }}</a>
       </div>
       {% if topic.subtopics %}
       <ul>
         {% for subtopic in topic.subtopics %}
         <li class="subtopic">
-          <div>
+          {% if page.title == subtopic.tag %}
+          <div class="subtopic-heading active-topic">
+          {% else %}
+          <div class="subtopic-heading">
+          {% endif %}
             <a href="/topic/{{ subtopic.tag }}">{{ subtopic.label }}</a>
           </div>
         </li>
