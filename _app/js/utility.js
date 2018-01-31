@@ -32,7 +32,7 @@ function getURLParameters () {
 /**
  * Load JSON format data from path.
  */
-function loadJSON(path) {
+function loadJSON (path) {
   return new Promise((resolve, reject) => {
     let xhr = new XMLHttpRequest();
     xhr.overrideMimeType('application/json');
@@ -52,7 +52,7 @@ function loadJSON(path) {
 /**
  * Tokenizes array of strings, splitting on commas and whitespace.
  */
-function tokenizeArray(array) {
+function tokenizeArray (array) {
   let all_tokens = [];
   const arrayCount = array.length;
 
