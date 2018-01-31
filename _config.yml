@@ -56,4 +56,6 @@ page_gen:
 #   - vendor/ruby/
 
 collections:
+ - resources
+ - news
  - events
