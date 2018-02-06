@@ -7,14 +7,7 @@ Vue.use(Vuex);
 
 export const store = new Vuex.Store({
   state: {
-    resources: [],
-    index: {},
     searchQuery: '',
-    pagination: {
-      currentPage: 1,
-      resultsPerPage: 10,
-      totalResults: 0,
-    },
     filterOptions: {
       country: [],
       region: [],
@@ -56,24 +49,6 @@ export const store = new Vuex.Store({
     clearSearch: function (state) {
       Vue.set(state, 'searchQuery', '');
     },
-    setResources: function (state, resources) {
-      Vue.set(state, 'resources', resources);
-    },
-    setTopics: function (state, topics) {
-      Vue.set(state.filterOptions, 'topic', topics);
-    },
-    setCountries: function (state, countries) {
-      Vue.set(state.filterOptions, 'country', countries);
-    },
-    setRegions: function (state, regions) {
-      Vue.set(state.filterOptions, 'region', regions);
-    },
-    setLanguages: function (state, languages) {
-      Vue.set(state.filterOptions, 'language', languages);
-    },
-    setTypes: function (state, types) {
-      Vue.set(state.filterOptions, 'type', types);
-    },
     setCurrentPage: function (state, currentPage) {
       // Non-positive page numbers should never happen, but this is an explicit safety check.
       if (currentPage < 1) {
@@ -88,47 +63,6 @@ export const store = new Vuex.Store({
     setTotalResults: function(state, totalResults) {
       Vue.set(state.pagination, 'totalResults', totalResults);
     }
-  },
-  getters: {
-    filters: (state) => {
-      let selectedFilters = [];
-
-      for (let category in state.selectedFilters) {
-        for (let filter in state.selectedFilters[category]) {
-          selectedFilters.push(filter);
-        }
-      }
-
-      return selectedFilters;
-    },
-    getQueryString: (state) => {
-      let queryString = '?limit=' + state.pagination.resultsPerPage;
-
-      const categories = Object.keys(state.selectedFilters);
-      const categoryCount = categories.length;
-
-      for (let i = 0; i < categoryCount; ++i) {
-        const category = categories[i];
-        const selectedOptions = Object.keys(state.selectedFilters[category]);
-        const selectedOptionsCount = selectedOptions.length;
-
-        if (!selectedOptions.length) {
-          continue;
-        }
-
-        queryString = queryString + '&' + category + '=';
-
-        for (let j = 0; j < selectedOptionsCount; j++) {
-          if (j > 0) {
-            queryString += ',';
-          }
-
-          queryString = queryString + selectedOptions[j];
-        }
-      }
-
-      return queryString;
-    },
   },
   actions: {
     filterResources: async (context) => {

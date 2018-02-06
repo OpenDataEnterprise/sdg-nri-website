@@ -63,6 +63,10 @@ aside.contribute-resource-call-out {
   cursor: pointer;
 }
 
+.results-counter {
+  margin-bottom: 1rem;
+}
+
 .resource-languages-label,
 .resource-tags-label {
   display: inline-block;
@@ -72,7 +76,7 @@ aside.contribute-resource-call-out {
 .resource-languages,
 .resource-tags,
 .news-tags {
-  margin: 1rem 0 0;
+  margin: 1rem 0 0.7rem;
   line-height: 2em;
   text-align: left;
   list-style: none;
@@ -98,7 +102,7 @@ aside.contribute-resource-call-out {
 }
 
 .resource-list-module {
-  @include grid-column(3, $col-4);
+  @include grid-column(2, $col-3);
   @include grid-container;
 }
 

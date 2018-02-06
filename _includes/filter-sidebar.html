@@ -9,8 +9,10 @@
     v-bind:label-field="'label'"
     v-bind:value-field="'tag'"
     v-bind:children-field="'subtopics'"
-    v-bind:initial-options="sharedState.filterOptions.topic"
-    v-bind:nested="true">
+    v-bind:filter-options="filterOptions.topic"
+    v-bind:selected-options="selectedFilters.topic"
+    v-bind:nested="true"
+    @filter-update="toggleFilter">
     <div class="filter-handle">
       <h2 class="filter-label">Topic</h2>
     </div>
@@ -18,13 +20,15 @@
 
   <div class="sidebar-filter"
     is="resource-filter"
-    v-bind:filter-label="'Type'"
+    v-bind:filter-label="'Type of Resource'"
     v-bind:filter-type="'type'"
     v-bind:label-field="'name'"
-    v-bind:value-field="'name'"
-    v-bind:initial-options="sharedState.filterOptions.type">
+    v-bind:value-field="'id'"
+    v-bind:filter-options="filterOptions.type"
+    v-bind:selected-options="selectedFilters.type"
+    @filter-update="toggleFilter">
     <div class="filter-handle">
-      <h2 class="filter-label">Type</h2>
+      <h2 class="filter-label">Type of Resource</h2>
     </div>
   </div>
 
@@ -34,7 +38,9 @@
     v-bind:filter-type="'country'"
     v-bind:label-field="'name'"
     v-bind:value-field="'iso_alpha3'"
-    v-bind:initial-options="sharedState.filterOptions.country">
+    v-bind:filter-options="filterOptions.country"
+    v-bind:selected-options="selectedFilters.country"
+    @filter-update="toggleFilter">
     <div class="filter-handle">
       <h2 class="filter-label">Country</h2>
     </div>
@@ -46,12 +52,14 @@
     v-bind:filter-type="'language'"
     v-bind:label-field="'label'"
     v-bind:value-field="'ietf_tag'"
-    v-bind:initial-options="sharedState.filterOptions.language">
+    v-bind:filter-options="filterOptions.language"
+    v-bind:selected-options="selectedFilters.language"
+    @filter-update="toggleFilter">
     <div class="filter-handle">
       <h2 class="filter-label">Language</h2>
     </div>
   </div>
 
-  <button class="filter-clearall" v-on:click="clearAll">CLEAR ALL</button>
+  <button class="filter-clearall" v-on:click="clearAllFilters">CLEAR ALL</button>
 
 </aside>

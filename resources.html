@@ -21,16 +21,20 @@ resources-js: true
       {% include filter-sidebar.html %}
   
       <div class="resource-list-module">
-  
-        <ul is="resource-list"
-          :total-results="pagination.totalResults">
-        </ul>
+
+        <resource-list
+          :resources="resources"
+          :filter-tags="selectedFilters.tags"
+          :total-results="pagination.totalResults"
+          @select-filter-tag="addTag"
+          @deselect-filter-tag="removeTag">
+        </resource-list>
   
         <pagination
           :current-page="pagination.currentPage"
           :items-per-page="pagination.resultsPerPage"
           :total-items="pagination.totalResults"
-          @page-changed="changePage"></pagination>
+          @page-changed="refresh"></pagination>
   
       </div>
   

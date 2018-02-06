@@ -11,31 +11,35 @@
   <ul class="filter-list">
     <filter-option
       class="filter-option"
+      v-for="option in filterOptions"
       v-bind:filter-label="filterLabel"
       v-bind:filter-type="filterType"
       v-bind:label-field="labelField"
       v-bind:value-field="valueField"
       v-bind:children-field="childrenField"
+      v-bind:selected-options="selectedOptions"
       v-bind:model="option"
-      v-for="option in filterOptions"
-      v-bind:key="option[labelField]">
+      v-bind:key="option[labelField]"
+      v-on:filter-update="emitFilterUpdate">
     </filter-option>
   </ul>
 </div>
 </template>
 
 <script>
+import Vue from 'vue';
 import FilterOption from 'vue/filter-option.vue';
-import { store } from 'js/global-store';
 import { getURLParameters } from 'js/utility';
 
 export default {
   props: {
     filterLabel: {
       type: String,
+      required: true,
     },
     filterType: {
       type: String,
+      required: true,
     },
     labelField: {
       type: String,
@@ -49,20 +53,32 @@ export default {
       type: String,
       default: '',
     },
-    initialOptions: {
+    filterOptions: {
       type: Array,
+      default: function () {
+        return [];
+      }
     },
+    selectedOptions: {
+      type: Object,
+      default: function () {
+        return {};
+      },
+    }
   },
   data: function () {
     return {
       visible: false,
-      filterOptions: this.initialOptions,
     }
   },
   methods: {
+    emitFilterUpdate: function (filterObj, event) {
+      console.log('Captured filter click');
+      this.$emit('filter-update', filterObj);
+    },
     clear: function () {
-      store.commit('clearFilterCategory', this.filterOptions[filterType]);
-    }
+      Vue.set(this.selectedFilters, {});
+    },
   },
   components: {
     'filter-option': FilterOption,
@@ -83,7 +99,8 @@ export default {
           category: this.filterType,
         };
 
-        store.commit('toggleFilter', filterObj);
+        console.log('Emitting update');
+        this.$emit('filter-update', filterObj);
       }
     }
   }

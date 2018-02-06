@@ -70,7 +70,7 @@ $gutter: 1.2em;
 }
 
 .filter-sidebar {
-  @include grid-column(1, $col-4);  
+  @include grid-column(1, $col-3);  
 }
 
 .filters {

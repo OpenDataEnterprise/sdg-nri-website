@@ -3,21 +3,25 @@
     <input
       class="filter-option-checkbox"
       type="checkbox"
-      v-bind:id="'f-' + model[valueField]"
+      v-bind:id="'f-' + filterType + '-' + model[valueField]"
       v-bind:value="model[valueField]"
+      v-bind:checked="isChecked"
       v-on:click="emitFilterUpdate">
-    <label class="filter-option-label" v-bind:for="'f-' + model[valueField]" v-on:click="toggle">{{ model[labelField] }}</label>
+    <label class="filter-option-label"
+      v-bind:for="'f-' + filterType + '-' + model[valueField]"
+      v-on:click="toggle">{{ model[labelField] }}</label>
     <span class="filter-expansion-indicator">[{{ expanded ? '-' : '+' }}]</span>
   <ul class="filter-list" v-show="expanded">
     <filter-option
       class="filter-option"
+      v-for="model in model[childrenField]"
       v-bind:filter-type="filterType"
       v-bind:label-field="labelField"
       v-bind:value-field="valueField"
       v-bind:children-field="childrenField"
       v-bind:model="model"
-      v-for="model in model[childrenField]"
-      v-bind:key="model[labelField]">
+      v-bind:key="model[labelField]"
+      v-on:filter-update="emitFilterUpdate">
     </filter-option>
   </ul>
 </li>
@@ -25,53 +29,53 @@
   <input
     class="filter-option-checkbox"
     type="checkbox"
-    v-bind:id="'f-' + model[valueField]"
+    v-bind:id="'f-' + filterType + '-' + model[valueField]"
     v-bind:value="model[valueField]"
+    v-bind:checked="isChecked"
     v-on:click="emitFilterUpdate">
-  <label class="filter-option-label" v-bind:for="'f-' + model[valueField]">{{ model[labelField] }}</label>
+  <label class="filter-option-label"
+    v-bind:for="'f-' + filterType + '-' + model[valueField]">
+    {{ model[labelField] }}
+  </label>
 </li>
 </template>
 
 <script>
-import { store } from 'js/global-store';
-
 export default {
   name: 'filter-option',
   props: {
     valueField: {
       type: String,
-      default: ''
+      default: '',
     },
     labelField: {
       type: String,
-      default: ''
+      default: '',
     },
     childrenField: {
       type: String,
-      default: ''
+      default: '',
     },
     filterType: {
-      type: String
+      type: String,
     },
     model: {
-      type: Object
+      type: Object,
+      required: true,
+    },
+    selectedOptions: {
+      type: Object,
+      default: function () {
+        return {};
+      },
     }
   },
   data: function () {
     return {
-      expanded: false
+      expanded: true,
     };
   },
   computed: {
-    check: function () {
-      if (store.state.selectedFilters[this.filterType][this.valueField]) {
-        this.$attrs.checked = 'checked';
-      } else {
-        delete this.$attrs.checked;
-      }
-
-      return true;
-    },
     isExpandable: function () {
       if (!(this.childrenField in this.model)
         || !this.childrenField) {
@@ -79,6 +83,16 @@ export default {
       }
 
       return this.model[this.childrenField];
+    },
+    isChecked: function () {
+      const value = this.model[this.valueField];
+
+      if (value in this.selectedOptions
+        && this.selectedOptions[value] === true) {
+        return true;
+      }
+
+      return false;
     }
   },
   methods: {
@@ -87,14 +101,14 @@ export default {
         this.expanded = !this.expanded;
       }
     },
-    emitFilterUpdate: function (e) {
+    emitFilterUpdate: function (event) {
       let filterObj = {
         value: this.model[this.valueField],
-        category: this.filterType
+        category: this.filterType,
       };
 
-      store.commit('toggleFilter', filterObj);
-      store.dispatch('filterResources');
+      console.log('Emitting filter-update event for ', filterObj.value);
+      this.$emit('filter-update', filterObj);
     }
   }
 };

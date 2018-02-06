@@ -1,6 +1,6 @@
 ---
 layout: default
-resources-js: true
+topic-js: true
 ---
 
 <header role="banner" class="banner topics-banner">
@@ -13,20 +13,20 @@ resources-js: true
   </a>
 </header>
 
-<div id="directory" class="search-directory">
-
-  <div class="search-directory-wrapper">
+<div id="directory" class="topic-wrapper">
 
     {% include topic-sidebar.html %}
 
-    <div id="directory" class="topic-resources">
+    <div class="topic-content">
       {% assign heading = site.data.topics | where: "tag", page.title | first %}
-      <h2 class="topic-resources-heading">{{ heading.label | upcase }}</h2>
 
-      <h2 class="topic-resources-heading">{{ "Resources" | upcase }}</h2>
-      <ul is="resource-list"></ul>
+      <h2 class="topic-section-heading">{{ heading.label | upcase }}</h2>
+      <p class="topic-description">
+
+      <h2 class="topic-section-heading">{{ "Resources" | upcase }}</h2>
+      <ul is="resource-list"
+        :resources="resources"
+        :total-results="pagination.totalResults"></ul>
     </div>
-
-  </div>
 
 </div>

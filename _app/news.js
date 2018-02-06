@@ -54,8 +54,7 @@ import * as Utility from 'js/utility';
           query = query + '&tags=' + Object.keys(self.filterTags);
         }
 
-        Utility.loadJSON(query)
-        .then(function (results) {
+        Utility.loadJSON(query).then(function (results) {
           self.pagination.totalResults = results.count;
 
           const news = Utility.formatResults(
