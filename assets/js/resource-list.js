@@ -11611,6 +11611,8 @@ var index_esm = {
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["a"] = ({
   props: {
@@ -12025,7 +12027,12 @@ var render = function() {
           { staticClass: "resource-list-item", attrs: { tabindex: "0" } },
           [
             _c("article", { staticClass: "resource-card" }, [
-              _c("img", { staticClass: "resource-image" }),
+              resource.image_url
+                ? _c("img", {
+                    staticClass: "resource-image",
+                    attrs: { src: resource.image_url }
+                  })
+                : _vm._e(),
               _vm._v(" "),
               _c("h1", { staticClass: "resource-title" }, [
                 _c("a", { attrs: { href: resource.url, target: "_blank" } }, [

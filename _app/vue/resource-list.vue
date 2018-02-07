@@ -11,7 +11,9 @@
   <ul class="resource-list">
     <li class="resource-list-item" v-for="(resource, index) in resources" tabindex="0">
       <article class="resource-card">
-        <img class="resource-image">
+        <img class="resource-image"
+          :src="resource.image_url"
+          v-if="resource.image_url">
         <h1 class="resource-title">
           <a :href="(( resource.url ))" target="_blank">{{ resource.title }}</a>
         </h1>
