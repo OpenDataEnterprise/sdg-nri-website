@@ -10179,8 +10179,8 @@ module.exports = g;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return getURLParameters; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return loadJSON; });
+/* unused harmony export getURLParameters */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return loadJSON; });
 /* unused harmony export tokenizeArray */
 /* unused harmony export getPublicationDate */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return formatResults; });
@@ -10658,12 +10658,12 @@ exports.clearImmediate = clearImmediate;
 /* harmony default export */ __webpack_exports__["a"] = ({
   props: {
     resources: Array,
-    filterTags: Object,
+    tags: Object,
     totalResults: Number
   },
   watch: {
-    filterTags: function (val) {
-      this.filterTags = val;
+    tags: function (val) {
+      this.tags = val;
     }
   },
   methods: {
@@ -10938,11 +10938,11 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    Object.keys(_vm.filterTags).length > 0
+    Object.keys(_vm.tags).length > 0
       ? _c(
           "ul",
           { staticClass: "resource-tags" },
-          _vm._l(_vm.filterTags, function(item, tag) {
+          _vm._l(_vm.tags, function(item, tag) {
             return _c(
               "li",
               {
@@ -11111,7 +11111,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       changePage: function (pageNumber) {
         const offset = this.pagination.resultsPerPage * (pageNumber - 1);
 
-        __WEBPACK_IMPORTED_MODULE_5_js_utility__["c" /* loadJSON */](apiPath + 'resources' + '?limit=' + this.pagination.resultsPerPage + '&offset=' + offset + '&topic=' + this.tag).then(results => {
+        __WEBPACK_IMPORTED_MODULE_5_js_utility__["b" /* loadJSON */](apiPath + 'resources' + '?limit=' + this.pagination.resultsPerPage + '&offset=' + offset + '&topic=' + this.tag).then(results => {
           // Check whether resource count has been updated.
           if (results.count !== this.pagination.totalResults) {
             this.pagination.totalResults = results.count;
@@ -11138,8 +11138,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       let resourceQuery = apiPath + 'resources' + '?limit=' + this.pagination.resultsPerPage + '&topic=' + self.tag;
 
-      requestPromises.push(__WEBPACK_IMPORTED_MODULE_5_js_utility__["c" /* loadJSON */](resourceQuery));
-      requestPromises.push(__WEBPACK_IMPORTED_MODULE_5_js_utility__["c" /* loadJSON */](apiPath + 'topics'));
+      requestPromises.push(__WEBPACK_IMPORTED_MODULE_5_js_utility__["b" /* loadJSON */](resourceQuery));
+      requestPromises.push(__WEBPACK_IMPORTED_MODULE_5_js_utility__["b" /* loadJSON */](apiPath + 'topics'));
 
       Promise.all(requestPromises).then(function (results) {
         const resourceResults = results[0];

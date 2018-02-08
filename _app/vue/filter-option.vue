@@ -1,27 +1,28 @@
 <template>
 <li v-if="isExpandable">
-    <input
-      class="filter-option-checkbox"
-      type="checkbox"
-      v-bind:id="'f-' + filterType + '-' + model[valueField]"
-      v-bind:value="model[valueField]"
-      v-bind:checked="isChecked"
-      v-on:click="emitFilterUpdate">
-    <label class="filter-option-label"
-      v-bind:for="'f-' + filterType + '-' + model[valueField]"
-      v-on:click="toggle">{{ model[labelField] }}</label>
-    <span class="filter-expansion-indicator">[{{ expanded ? '-' : '+' }}]</span>
+  <input
+    class="filter-option-checkbox"
+    type="checkbox"
+    v-bind:id="'f-' + filterType + '-' + filterModel[valueField]"
+    v-bind:value="filterModel[valueField]"
+    v-bind:checked="isChecked">
+  <label class="filter-option-label"
+    v-bind:for="'f-' + filterType + '-' + filterModel[valueField]"
+    v-on:click="toggleFilter">
+    {{ filterModel[labelField] }}</label>
+  <span class="filter-expansion-indicator"
+    v-on:click="toggle">[{{ expanded ? '-' : '+' }}]</span>
   <ul class="filter-list" v-show="expanded">
     <filter-option
       class="filter-option"
-      v-for="model in model[childrenField]"
+      v-for="subfilterModel in filterModel[childField]"
       v-bind:filter-type="filterType"
       v-bind:label-field="labelField"
       v-bind:value-field="valueField"
-      v-bind:children-field="childrenField"
-      v-bind:model="model"
-      v-bind:key="model[labelField]"
-      v-on:filter-update="emitFilterUpdate">
+      v-bind:child-field="childField"
+      v-bind:filter-model="subfilterModel"
+      v-bind:key="subfilterModel[labelField]"
+      v-on:filter-update="updateCheck">
     </filter-option>
   </ul>
 </li>
@@ -29,13 +30,13 @@
   <input
     class="filter-option-checkbox"
     type="checkbox"
-    v-bind:id="'f-' + filterType + '-' + model[valueField]"
-    v-bind:value="model[valueField]"
-    v-bind:checked="isChecked"
-    v-on:click="emitFilterUpdate">
+    v-bind:id="'f-' + filterType + '-' + filterModel[valueField]"
+    v-bind:value="filterModel[valueField]"
+    v-bind:checked="isChecked">
   <label class="filter-option-label"
-    v-bind:for="'f-' + filterType + '-' + model[valueField]">
-    {{ model[labelField] }}
+    v-bind:for="'f-' + filterType + '-' + filterModel[valueField]"
+    v-on:click="toggleFilter">
+    {{ filterModel[labelField] }}
   </label>
 </li>
 </template>
@@ -52,48 +53,45 @@ export default {
       type: String,
       default: '',
     },
-    childrenField: {
+    childField: {
       type: String,
-      default: '',
+      default: ''
     },
     filterType: {
       type: String,
     },
-    model: {
+    filterModel: {
       type: Object,
       required: true,
     },
-    selectedOptions: {
-      type: Object,
-      default: function () {
-        return {};
-      },
-    }
   },
   data: function () {
     return {
+      filterValue: this.filterModel[this.valueField],
       expanded: true,
     };
   },
   computed: {
+    selectedFilters: function () {
+      return this.$store.state.filters.selectedFilters;
+    },
     isExpandable: function () {
-      if (!(this.childrenField in this.model)
-        || !this.childrenField) {
+      if (!(this.childField in this.filterModel)
+        || !this.childField) {
         return false;
       }
 
-      return this.model[this.childrenField];
+      return this.filterModel[this.childField];
     },
     isChecked: function () {
-      const value = this.model[this.valueField];
-
-      if (value in this.selectedOptions
-        && this.selectedOptions[value] === true) {
+      if (this.filterType in this.selectedFilters
+        && this.filterValue in this.selectedFilters[this.filterType]
+        && this.selectedFilters[this.filterType][this.filterValue] === true) {
         return true;
       }
 
       return false;
-    }
+    },
   },
   methods: {
     toggle: function () {
@@ -101,15 +99,100 @@ export default {
         this.expanded = !this.expanded;
       }
     },
-    emitFilterUpdate: function (event) {
-      let filterObj = {
-        value: this.model[this.valueField],
+    toggleFilter: function () {
+      const selectedFilters = this.selectedFilters[this.filterType];
+      const filter = {
+        value: this.filterValue,
         category: this.filterType,
       };
 
-      console.log('Emitting filter-update event for ', filterObj.value);
-      this.$emit('filter-update', filterObj);
-    }
+      this.$store.commit('toggleFilter', filter);
+
+      // If the selected filter is currently unselected and not all its children
+      // are selected, then activate the selected filter and all its children.
+
+      if (this.childField in this.filterModel
+        && this.filterModel[this.childField]) {
+        if (selectedFilters[this.filterValue]) {
+          const children = this.filterModel[this.childField];
+          const childCount = children.length;
+
+          for (let i = 0; i < childCount; i++) {
+            const child = children[i];
+            const subfilter = {
+              value: child[this.valueField],
+              category: this.filterType,
+            };
+
+            this.$store.commit('activateFilter', subfilter);
+          }
+        } else {
+          if (this.areAllChildrenSelected()) {
+            const children = this.filterModel[this.childField];
+            const childCount = children.length;
+
+            for (let i = 0; i < childCount; i++) {
+              const child = children[i];
+
+              const subfilter = {
+                value: child[this.valueField],
+                category: this.filterType,
+              };
+
+              this.$store.commit('deactivateFilter', subfilter);
+            }
+          }
+        }
+      }
+
+      this.$emit('filter-update');
+    },
+    updateCheck: function () {
+      const selectedFilters = this.selectedFilters[this.filterType];
+
+      if (selectedFilters[this.filterValue]
+        && this.childField in this.filterModel
+        && this.filterModel[this.childField]) {
+        const children = this.filterModel[this.childField];
+        const childCount = children.length;
+
+        // Flag to see if all suboptions are selected.
+        let areAllSelected = true;
+
+        if (!this.areAllChildrenSelected()) {
+          const filter = {
+            value: this.filterValue,
+            category: this.filterType,
+          };
+
+          this.$store.commit('deactivateFilter', filter);
+        }
+      }
+
+      this.$emit('filter-update');
+    },
+    areAllChildrenSelected: function () {
+      if (!(this.childField in this.filterModel)) {
+        return true;
+      }
+
+      const selectedFilters = this.selectedFilters[this.filterType];
+      const children = this.filterModel[this.childField];
+      const childCount = children.length;
+
+      // Flag to see if all suboptions are selected.
+      let areAllSelected = true;
+
+      for (let i = 0; i < childCount; i++) {
+        const child = children[i];
+
+        if (!(child[this.valueField] in selectedFilters)) {
+          areAllSelected = false;
+        }
+      }
+
+      return areAllSelected;
+    },
   }
 };
 </script>

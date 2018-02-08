@@ -12,16 +12,6 @@ Vue.component('search-bar', SearchBar);
 
 (function () {
   const apiPath = Config.apiPath;
-  // For (re)setting filters.
-  let filterSet = () => {
-    return {
-      country: {},
-      language: {},
-      tags: {},
-      topic: {},
-      type: {},
-    };
-  };
 
   new Vue({
     store,
@@ -36,7 +26,6 @@ Vue.component('search-bar', SearchBar);
           topic: [],
           type: [],
         },
-        selectedFilters: filterSet(),
         pagination: {
           currentPage: 1,
           resultsPerPage: 10,
@@ -44,6 +33,11 @@ Vue.component('search-bar', SearchBar);
         },
         isLoading: true,
       };
+    },
+    computed: {
+      selectedFilters: function () {
+        return store.state.filters.selectedFilters;
+      },
     },
     methods: {
       search: function (search, event) {
@@ -60,7 +54,6 @@ Vue.component('search-bar', SearchBar);
 
         for (let i = 0; i < categoryCount; ++i) {
           const category = categories[i];
-
           const selectedOptions = Object.keys(this.selectedFilters[category]);
           const selectedOptionsCount = selectedOptions.length;
 
@@ -103,30 +96,10 @@ Vue.component('search-bar', SearchBar);
 
         this.refresh();
       },
-      toggleFilter: function (filter) {
-        if (!(filter.category in this.selectedFilters)) {
-          Vue.set(this.selectedFilters, filter.category, {});
-        }
-
-        let filterCategory = this.selectedFilters[filter.category];
-        if (filter.value in filterCategory) {
-          Vue.delete(filterCategory, filter.value);
-
-          // If there are no filters selected, remove the category.
-          if (!Object.keys(filterCategory).length) {
-            Vue.delete(this.selectedFilters, filter.category);
-          }
-        } else {
-          Vue.set(filterCategory, filter.value, true);
-        }
-
-        this.refresh();
-      },
       refresh: function (pageNumber = 1) {
         let self = this;
 
         const query = apiPath + 'resources' + self.getQueryString(pageNumber);
-        console.log('Query:', query);
 
         Utility.loadJSON(query).then((results) => {
           Vue.set(self.pagination, 'totalResults', results.count);
@@ -142,8 +115,7 @@ Vue.component('search-bar', SearchBar);
         Vue.set(self.pagination, 'currentPage', pageNumber);
       },
       clearAllFilters: function () {
-        Vue.set(this, 'selectedFilters', filterSet());
-
+        this.$store.commit('clearAllFilters');
         this.refresh();
       },
     },
@@ -157,7 +129,8 @@ Vue.component('search-bar', SearchBar);
 
       // Load data.
       let requestPromises = [];
-      requestPromises.push(Utility.loadJSON(apiPath + 'resources?limit=' + self.pagination.resultsPerPage));
+      requestPromises.push(Utility.loadJSON(apiPath + 'resources?limit='
+        + self.pagination.resultsPerPage));
       requestPromises.push(Utility.loadJSON(apiPath + 'countries'));
       requestPromises.push(Utility.loadJSON(apiPath + 'languages'));
       requestPromises.push(Utility.loadJSON(apiPath + 'topics'));

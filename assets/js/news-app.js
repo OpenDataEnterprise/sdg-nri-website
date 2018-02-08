@@ -10179,8 +10179,8 @@ module.exports = g;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return getURLParameters; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return loadJSON; });
+/* unused harmony export getURLParameters */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return loadJSON; });
 /* unused harmony export tokenizeArray */
 /* unused harmony export getPublicationDate */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return formatResults; });
@@ -11766,91 +11766,74 @@ if (false) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_config__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_config___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_config__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_js_utility__ = __webpack_require__(4);
- // Aliased via WebPack.
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(9);
 
 
 
+__WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */].use(__WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */]);
 
-__WEBPACK_IMPORTED_MODULE_1_vue__["a" /* default */].use(__WEBPACK_IMPORTED_MODULE_2_vuex__["a" /* default */]);
+// For (re)setting filters.
+function filterSet() {
+  return {
+    country: {},
+    language: {},
+    tags: {},
+    topic: {},
+    type: {}
+  };
+};
 
-const store = new __WEBPACK_IMPORTED_MODULE_2_vuex__["a" /* default */].Store({
+// Create namespaced state storage for filters.
+const filterModule = {
   state: {
-    searchQuery: '',
-    filterOptions: {
-      country: [],
-      region: [],
-      language: [],
-      topic: [],
-      type: []
-    },
-    selectedFilters: {}
+    selectedFilters: {
+      country: {},
+      language: {},
+      tags: {},
+      topic: {},
+      type: {}
+    }
   },
   mutations: {
+    activateFilter: function (state, filter) {
+      if (!(filter.category in state.selectedFilters)) {
+        __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */].set(state.selectedFilters, filter.category, {});
+      }
+
+      __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */].set(state.selectedFilters[filter.category], filter.value, true);
+    },
+    deactivateFilter: function (state, filter) {
+      if (!(filter.category in state.selectedFilters)) {
+        __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */].set(state.selectedFilters, filter.category, {});
+      }
+
+      let selectedFilters = state.selectedFilters[filter.category];
+      if (filter.value in selectedFilters) {
+        __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */].delete(selectedFilters, filter.value);
+      }
+    },
     toggleFilter: function (state, filter) {
       if (!(filter.category in state.selectedFilters)) {
-        __WEBPACK_IMPORTED_MODULE_1_vue__["a" /* default */].set(state.selectedFilters, filter.category, {});
+        __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */].set(state.selectedFilters, filter.category, {});
       }
 
-      let filterCategory = state.selectedFilters[filter.category];
-      if (filter.value in filterCategory) {
-        __WEBPACK_IMPORTED_MODULE_1_vue__["a" /* default */].delete(filterCategory, filter.value);
-
-        // If there are no filters selected, remove the category.
-        if (!Object.keys(filterCategory).length) {
-          __WEBPACK_IMPORTED_MODULE_1_vue__["a" /* default */].delete(state.selectedFilters, filter.category);
-        }
+      let selectedFilters = state.selectedFilters[filter.category];
+      if (filter.value in selectedFilters) {
+        __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */].delete(selectedFilters, filter.value);
       } else {
-        __WEBPACK_IMPORTED_MODULE_1_vue__["a" /* default */].set(filterCategory, filter.value, true);
+        __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */].set(selectedFilters, filter.value, true);
       }
     },
-    clearFilterCategory: function (state, category) {
-      __WEBPACK_IMPORTED_MODULE_1_vue__["a" /* default */].delete(state.selectedFilters, category);
-    },
-    clearFilters: function (state) {
-      for (let category in state.selectedFilters) {
-        __WEBPACK_IMPORTED_MODULE_1_vue__["a" /* default */].delete(state.selectedFilters, category);
-      }
-    },
-    setSearch: function (state, queryString) {
-      __WEBPACK_IMPORTED_MODULE_1_vue__["a" /* default */].set(state, 'searchQuery', queryString);
-    },
-    clearSearch: function (state) {
-      __WEBPACK_IMPORTED_MODULE_1_vue__["a" /* default */].set(state, 'searchQuery', '');
-    },
-    setCurrentPage: function (state, currentPage) {
-      // Non-positive page numbers should never happen, but this is an explicit safety check.
-      if (currentPage < 1) {
-        currentPage = 1;
-      }
-
-      __WEBPACK_IMPORTED_MODULE_1_vue__["a" /* default */].set(state.pagination, 'currentPage', currentPage);
-    },
-    setResultsPerPage: function (state, resultsPerPage) {
-      __WEBPACK_IMPORTED_MODULE_1_vue__["a" /* default */].set(state.pagination, 'resultsPerPage', resultsPerPage);
-    },
-    setTotalResults: function (state, totalResults) {
-      __WEBPACK_IMPORTED_MODULE_1_vue__["a" /* default */].set(state.pagination, 'totalResults', totalResults);
+    clearAllFilters: function (state) {
+      __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */].set(state.selectedFilters, filterSet());
     }
-  },
-  actions: {
-    filterResources: async context => {
-      let queryString = context.getters.getQueryString;
-      console.log(queryString);
+  }
+};
 
-      const resourcePath = __WEBPACK_IMPORTED_MODULE_0_config___default.a.apiPath + 'resources';
-      const results = await __WEBPACK_IMPORTED_MODULE_3_js_utility__["c" /* loadJSON */](resourcePath + queryString);
-
-      let resources = __WEBPACK_IMPORTED_MODULE_3_js_utility__["a" /* formatResults */](results.rows, ['date_published'], false);
-
-      context.commit('setCurrentPage', 1);
-      context.commit('setTotalResults', results.count);
-      context.commit('setResources', resources);
-    }
+const store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
+  modules: {
+    filters: filterModule
   }
 });
 /* harmony export (immutable) */ __webpack_exports__["a"] = store;
@@ -11995,7 +11978,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           query = query + '&tags=' + Object.keys(self.filterTags);
         }
 
-        __WEBPACK_IMPORTED_MODULE_6_js_utility__["c" /* loadJSON */](query).then(function (results) {
+        __WEBPACK_IMPORTED_MODULE_6_js_utility__["b" /* loadJSON */](query).then(function (results) {
           self.pagination.totalResults = results.count;
 
           const news = __WEBPACK_IMPORTED_MODULE_6_js_utility__["a" /* formatResults */](results.rows, ['created_at'], true);
@@ -12028,9 +12011,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         newsQuery = newsQuery + '&tags=' + Object.keys(self.filterTags);
       }
 
-      requestPromises.push(__WEBPACK_IMPORTED_MODULE_6_js_utility__["c" /* loadJSON */](apiPath + newsQuery));
-      requestPromises.push(__WEBPACK_IMPORTED_MODULE_6_js_utility__["c" /* loadJSON */](apiPath + 'events'));
-      requestPromises.push(__WEBPACK_IMPORTED_MODULE_6_js_utility__["c" /* loadJSON */](apiPath + 'tags/news'));
+      requestPromises.push(__WEBPACK_IMPORTED_MODULE_6_js_utility__["b" /* loadJSON */](apiPath + newsQuery));
+      requestPromises.push(__WEBPACK_IMPORTED_MODULE_6_js_utility__["b" /* loadJSON */](apiPath + 'events'));
+      requestPromises.push(__WEBPACK_IMPORTED_MODULE_6_js_utility__["b" /* loadJSON */](apiPath + 'tags/news'));
 
       Promise.all(requestPromises).then(function (results) {
         const newsResults = results[0];

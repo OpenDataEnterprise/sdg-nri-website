@@ -1,9 +1,9 @@
 <template>
 <div>
   <div class="results-counter">Showing {{ resources.length }} of {{ totalResults }} resources</div>
-  <ul class="resource-tags" v-if="Object.keys(filterTags).length > 0">
+  <ul class="resource-tags" v-if="Object.keys(tags).length > 0">
     <li class="subject-tag"
-      v-for="(item, tag) in filterTags"
+      v-for="(item, tag) in tags"
       v-on:click="tagDeselect(tag)">
       <i class="fa fa-times" aria-hidden="true"></i>{{ tag }}
     </li>
@@ -39,13 +39,13 @@
 export default {
   props: {
     resources: Array,
-    filterTags: Object,
+    tags: Object,
     totalResults: Number,
   },
   watch: {
-    filterTags: function (val) {
-      this.filterTags = val;
-    }
+    tags: function (val) {
+      this.tags = val;
+    },
   },
   methods: {
     tagSelect: function (tag, event) {
@@ -53,7 +53,7 @@ export default {
     },
     tagDeselect: function (tag, event) {
       this.$emit('deselect-filter-tag', tag);
-    }
+    },
   },
 };
 </script>

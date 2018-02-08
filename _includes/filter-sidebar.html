@@ -8,11 +8,11 @@
     v-bind:filter-type="'topic'"
     v-bind:label-field="'label'"
     v-bind:value-field="'tag'"
-    v-bind:children-field="'subtopics'"
+    v-bind:child-field="'subtopics'"
     v-bind:filter-options="filterOptions.topic"
     v-bind:selected-options="selectedFilters.topic"
     v-bind:nested="true"
-    @filter-update="toggleFilter">
+    v-on:filter-update="refresh">
     <div class="filter-handle">
       <h2 class="filter-label">Topic</h2>
     </div>
@@ -26,7 +26,7 @@
     v-bind:value-field="'id'"
     v-bind:filter-options="filterOptions.type"
     v-bind:selected-options="selectedFilters.type"
-    @filter-update="toggleFilter">
+    v-on:filter-update="refresh">
     <div class="filter-handle">
       <h2 class="filter-label">Type of Resource</h2>
     </div>
@@ -40,7 +40,7 @@
     v-bind:value-field="'iso_alpha3'"
     v-bind:filter-options="filterOptions.country"
     v-bind:selected-options="selectedFilters.country"
-    @filter-update="toggleFilter">
+    v-on:filter-update="refresh">
     <div class="filter-handle">
       <h2 class="filter-label">Country</h2>
     </div>
@@ -54,7 +54,7 @@
     v-bind:value-field="'ietf_tag'"
     v-bind:filter-options="filterOptions.language"
     v-bind:selected-options="selectedFilters.language"
-    @filter-update="toggleFilter">
+    v-on:filter-update="refresh">
     <div class="filter-handle">
       <h2 class="filter-label">Language</h2>
     </div>

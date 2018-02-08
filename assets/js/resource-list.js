@@ -10179,8 +10179,8 @@ module.exports = g;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return getURLParameters; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return loadJSON; });
+/* unused harmony export getURLParameters */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return loadJSON; });
 /* unused harmony export tokenizeArray */
 /* unused harmony export getPublicationDate */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return formatResults; });
@@ -11617,12 +11617,12 @@ var index_esm = {
 /* harmony default export */ __webpack_exports__["a"] = ({
   props: {
     resources: Array,
-    filterTags: Object,
+    tags: Object,
     totalResults: Number
   },
   watch: {
-    filterTags: function (val) {
-      this.filterTags = val;
+    tags: function (val) {
+      this.tags = val;
     }
   },
   methods: {
@@ -11829,91 +11829,74 @@ if (false) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_config__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_config___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_config__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_js_utility__ = __webpack_require__(4);
- // Aliased via WebPack.
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(9);
 
 
 
+__WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */].use(__WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */]);
 
-__WEBPACK_IMPORTED_MODULE_1_vue__["a" /* default */].use(__WEBPACK_IMPORTED_MODULE_2_vuex__["a" /* default */]);
+// For (re)setting filters.
+function filterSet() {
+  return {
+    country: {},
+    language: {},
+    tags: {},
+    topic: {},
+    type: {}
+  };
+};
 
-const store = new __WEBPACK_IMPORTED_MODULE_2_vuex__["a" /* default */].Store({
+// Create namespaced state storage for filters.
+const filterModule = {
   state: {
-    searchQuery: '',
-    filterOptions: {
-      country: [],
-      region: [],
-      language: [],
-      topic: [],
-      type: []
-    },
-    selectedFilters: {}
+    selectedFilters: {
+      country: {},
+      language: {},
+      tags: {},
+      topic: {},
+      type: {}
+    }
   },
   mutations: {
+    activateFilter: function (state, filter) {
+      if (!(filter.category in state.selectedFilters)) {
+        __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */].set(state.selectedFilters, filter.category, {});
+      }
+
+      __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */].set(state.selectedFilters[filter.category], filter.value, true);
+    },
+    deactivateFilter: function (state, filter) {
+      if (!(filter.category in state.selectedFilters)) {
+        __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */].set(state.selectedFilters, filter.category, {});
+      }
+
+      let selectedFilters = state.selectedFilters[filter.category];
+      if (filter.value in selectedFilters) {
+        __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */].delete(selectedFilters, filter.value);
+      }
+    },
     toggleFilter: function (state, filter) {
       if (!(filter.category in state.selectedFilters)) {
-        __WEBPACK_IMPORTED_MODULE_1_vue__["a" /* default */].set(state.selectedFilters, filter.category, {});
+        __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */].set(state.selectedFilters, filter.category, {});
       }
 
-      let filterCategory = state.selectedFilters[filter.category];
-      if (filter.value in filterCategory) {
-        __WEBPACK_IMPORTED_MODULE_1_vue__["a" /* default */].delete(filterCategory, filter.value);
-
-        // If there are no filters selected, remove the category.
-        if (!Object.keys(filterCategory).length) {
-          __WEBPACK_IMPORTED_MODULE_1_vue__["a" /* default */].delete(state.selectedFilters, filter.category);
-        }
+      let selectedFilters = state.selectedFilters[filter.category];
+      if (filter.value in selectedFilters) {
+        __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */].delete(selectedFilters, filter.value);
       } else {
-        __WEBPACK_IMPORTED_MODULE_1_vue__["a" /* default */].set(filterCategory, filter.value, true);
+        __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */].set(selectedFilters, filter.value, true);
       }
     },
-    clearFilterCategory: function (state, category) {
-      __WEBPACK_IMPORTED_MODULE_1_vue__["a" /* default */].delete(state.selectedFilters, category);
-    },
-    clearFilters: function (state) {
-      for (let category in state.selectedFilters) {
-        __WEBPACK_IMPORTED_MODULE_1_vue__["a" /* default */].delete(state.selectedFilters, category);
-      }
-    },
-    setSearch: function (state, queryString) {
-      __WEBPACK_IMPORTED_MODULE_1_vue__["a" /* default */].set(state, 'searchQuery', queryString);
-    },
-    clearSearch: function (state) {
-      __WEBPACK_IMPORTED_MODULE_1_vue__["a" /* default */].set(state, 'searchQuery', '');
-    },
-    setCurrentPage: function (state, currentPage) {
-      // Non-positive page numbers should never happen, but this is an explicit safety check.
-      if (currentPage < 1) {
-        currentPage = 1;
-      }
-
-      __WEBPACK_IMPORTED_MODULE_1_vue__["a" /* default */].set(state.pagination, 'currentPage', currentPage);
-    },
-    setResultsPerPage: function (state, resultsPerPage) {
-      __WEBPACK_IMPORTED_MODULE_1_vue__["a" /* default */].set(state.pagination, 'resultsPerPage', resultsPerPage);
-    },
-    setTotalResults: function (state, totalResults) {
-      __WEBPACK_IMPORTED_MODULE_1_vue__["a" /* default */].set(state.pagination, 'totalResults', totalResults);
+    clearAllFilters: function (state) {
+      __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */].set(state.selectedFilters, filterSet());
     }
-  },
-  actions: {
-    filterResources: async context => {
-      let queryString = context.getters.getQueryString;
-      console.log(queryString);
+  }
+};
 
-      const resourcePath = __WEBPACK_IMPORTED_MODULE_0_config___default.a.apiPath + 'resources';
-      const results = await __WEBPACK_IMPORTED_MODULE_3_js_utility__["c" /* loadJSON */](resourcePath + queryString);
-
-      let resources = __WEBPACK_IMPORTED_MODULE_3_js_utility__["a" /* formatResults */](results.rows, ['date_published'], false);
-
-      context.commit('setCurrentPage', 1);
-      context.commit('setTotalResults', results.count);
-      context.commit('setResources', resources);
-    }
+const store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
+  modules: {
+    filters: filterModule
   }
 });
 /* harmony export (immutable) */ __webpack_exports__["a"] = store;
@@ -11991,11 +11974,11 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    Object.keys(_vm.filterTags).length > 0
+    Object.keys(_vm.tags).length > 0
       ? _c(
           "ul",
           { staticClass: "resource-tags" },
-          _vm._l(_vm.filterTags, function(item, tag) {
+          _vm._l(_vm.tags, function(item, tag) {
             return _c(
               "li",
               {
@@ -12103,9 +12086,7 @@ if (false) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_filter_option_vue__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_js_utility__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_filter_option_vue__ = __webpack_require__(22);
 //
 //
 //
@@ -12133,9 +12114,6 @@ if (false) {
 //
 //
 //
-//
-
-
 
 
 
@@ -12157,7 +12135,7 @@ if (false) {
       type: String,
       default: ''
     },
-    childrenField: {
+    childField: {
       type: String,
       default: ''
     },
@@ -12165,12 +12143,6 @@ if (false) {
       type: Array,
       default: function () {
         return [];
-      }
-    },
-    selectedOptions: {
-      type: Object,
-      default: function () {
-        return {};
       }
     }
   },
@@ -12180,37 +12152,12 @@ if (false) {
     };
   },
   methods: {
-    emitFilterUpdate: function (filterObj, event) {
-      console.log('Captured filter click');
-      this.$emit('filter-update', filterObj);
-    },
-    clear: function () {
-      __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */].set(this.selectedFilters, {});
+    passFilterUpdate: function () {
+      this.$emit('filter-update');
     }
   },
   components: {
-    'filter-option': __WEBPACK_IMPORTED_MODULE_1_vue_filter_option_vue__["a" /* default */]
-  },
-  mounted: function () {
-    const urlParams = Object(__WEBPACK_IMPORTED_MODULE_2_js_utility__["b" /* getURLParameters */])();
-
-    if (this.filterType in urlParams) {
-      let filters = urlParams[this.filterType].split(',');
-
-      for (let i = 0; i < filters.length; i++) {
-        const filterId = 'f-' + filters[i];
-        const f = document.getElementById(filterId);
-        f.setAttribute('checked', 'checked');
-
-        let filterObj = {
-          value: filters[i],
-          category: this.filterType
-        };
-
-        console.log('Emitting update');
-        this.$emit('filter-update', filterObj);
-      }
-    }
+    'filter-option': __WEBPACK_IMPORTED_MODULE_0_vue_filter_option_vue__["a" /* default */]
   }
 });
 
@@ -12219,6 +12166,7 @@ if (false) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+//
 //
 //
 //
@@ -12273,41 +12221,37 @@ if (false) {
       type: String,
       default: ''
     },
-    childrenField: {
+    childField: {
       type: String,
       default: ''
     },
     filterType: {
       type: String
     },
-    model: {
+    filterModel: {
       type: Object,
       required: true
-    },
-    selectedOptions: {
-      type: Object,
-      default: function () {
-        return {};
-      }
     }
   },
   data: function () {
     return {
+      filterValue: this.filterModel[this.valueField],
       expanded: true
     };
   },
   computed: {
+    selectedFilters: function () {
+      return this.$store.state.filters.selectedFilters;
+    },
     isExpandable: function () {
-      if (!(this.childrenField in this.model) || !this.childrenField) {
+      if (!(this.childField in this.filterModel) || !this.childField) {
         return false;
       }
 
-      return this.model[this.childrenField];
+      return this.filterModel[this.childField];
     },
     isChecked: function () {
-      const value = this.model[this.valueField];
-
-      if (value in this.selectedOptions && this.selectedOptions[value] === true) {
+      if (this.filterType in this.selectedFilters && this.filterValue in this.selectedFilters[this.filterType] && this.selectedFilters[this.filterType][this.filterValue] === true) {
         return true;
       }
 
@@ -12320,14 +12264,96 @@ if (false) {
         this.expanded = !this.expanded;
       }
     },
-    emitFilterUpdate: function (event) {
-      let filterObj = {
-        value: this.model[this.valueField],
+    toggleFilter: function () {
+      const selectedFilters = this.selectedFilters[this.filterType];
+      const filter = {
+        value: this.filterValue,
         category: this.filterType
       };
 
-      console.log('Emitting filter-update event for ', filterObj.value);
-      this.$emit('filter-update', filterObj);
+      this.$store.commit('toggleFilter', filter);
+
+      // If the selected filter is currently unselected and not all its children
+      // are selected, then activate the selected filter and all its children.
+
+      if (this.childField in this.filterModel && this.filterModel[this.childField]) {
+        if (selectedFilters[this.filterValue]) {
+          const children = this.filterModel[this.childField];
+          const childCount = children.length;
+
+          for (let i = 0; i < childCount; i++) {
+            const child = children[i];
+            const subfilter = {
+              value: child[this.valueField],
+              category: this.filterType
+            };
+
+            this.$store.commit('activateFilter', subfilter);
+          }
+        } else {
+          if (this.areAllChildrenSelected()) {
+            const children = this.filterModel[this.childField];
+            const childCount = children.length;
+
+            for (let i = 0; i < childCount; i++) {
+              const child = children[i];
+
+              const subfilter = {
+                value: child[this.valueField],
+                category: this.filterType
+              };
+
+              this.$store.commit('deactivateFilter', subfilter);
+            }
+          }
+        }
+      }
+
+      this.$emit('filter-update');
+    },
+    updateCheck: function () {
+      const selectedFilters = this.selectedFilters[this.filterType];
+
+      if (selectedFilters[this.filterValue] && this.childField in this.filterModel && this.filterModel[this.childField]) {
+        const children = this.filterModel[this.childField];
+        const childCount = children.length;
+
+        // Flag to see if all suboptions are selected.
+        let areAllSelected = true;
+
+        if (!this.areAllChildrenSelected()) {
+          const filter = {
+            value: this.filterValue,
+            category: this.filterType
+          };
+
+          this.$store.commit('deactivateFilter', filter);
+        }
+      }
+
+      this.$emit('filter-update');
+    },
+    areAllChildrenSelected: function () {
+      if (!(this.childField in this.filterModel)) {
+        return true;
+      }
+
+      const selectedFilters = this.selectedFilters[this.filterType];
+      const children = this.filterModel[this.childField];
+      const childCount = children.length;
+
+      // Flag to see if all suboptions are selected.
+      let areAllSelected = true;
+
+      for (let i = 0; i < childCount; i++) {
+        const child = children[i];
+
+        if (!(child[this.valueField] in selectedFilters)) {
+          areAllSelected = false;
+        }
+      }
+
+      return areAllSelected;
     }
   }
 });
@@ -12400,16 +12426,6 @@ __WEBPACK_IMPORTED_MODULE_1_vue__["a" /* default */].component('search-bar', __W
 
 (function () {
   const apiPath = __WEBPACK_IMPORTED_MODULE_0_config___default.a.apiPath;
-  // For (re)setting filters.
-  let filterSet = () => {
-    return {
-      country: {},
-      language: {},
-      tags: {},
-      topic: {},
-      type: {}
-    };
-  };
 
   new __WEBPACK_IMPORTED_MODULE_1_vue__["a" /* default */]({
     store: __WEBPACK_IMPORTED_MODULE_3_js_global_store__["a" /* store */],
@@ -12424,7 +12440,6 @@ __WEBPACK_IMPORTED_MODULE_1_vue__["a" /* default */].component('search-bar', __W
           topic: [],
           type: []
         },
-        selectedFilters: filterSet(),
         pagination: {
           currentPage: 1,
           resultsPerPage: 10,
@@ -12432,6 +12447,11 @@ __WEBPACK_IMPORTED_MODULE_1_vue__["a" /* default */].component('search-bar', __W
         },
         isLoading: true
       };
+    },
+    computed: {
+      selectedFilters: function () {
+        return __WEBPACK_IMPORTED_MODULE_3_js_global_store__["a" /* store */].state.filters.selectedFilters;
+      }
     },
     methods: {
       search: function (search, event) {
@@ -12448,7 +12468,6 @@ __WEBPACK_IMPORTED_MODULE_1_vue__["a" /* default */].component('search-bar', __W
 
         for (let i = 0; i < categoryCount; ++i) {
           const category = categories[i];
-
           const selectedOptions = Object.keys(this.selectedFilters[category]);
           const selectedOptionsCount = selectedOptions.length;
 
@@ -12491,32 +12510,12 @@ __WEBPACK_IMPORTED_MODULE_1_vue__["a" /* default */].component('search-bar', __W
 
         this.refresh();
       },
-      toggleFilter: function (filter) {
-        if (!(filter.category in this.selectedFilters)) {
-          __WEBPACK_IMPORTED_MODULE_1_vue__["a" /* default */].set(this.selectedFilters, filter.category, {});
-        }
-
-        let filterCategory = this.selectedFilters[filter.category];
-        if (filter.value in filterCategory) {
-          __WEBPACK_IMPORTED_MODULE_1_vue__["a" /* default */].delete(filterCategory, filter.value);
-
-          // If there are no filters selected, remove the category.
-          if (!Object.keys(filterCategory).length) {
-            __WEBPACK_IMPORTED_MODULE_1_vue__["a" /* default */].delete(this.selectedFilters, filter.category);
-          }
-        } else {
-          __WEBPACK_IMPORTED_MODULE_1_vue__["a" /* default */].set(filterCategory, filter.value, true);
-        }
-
-        this.refresh();
-      },
       refresh: function (pageNumber = 1) {
         let self = this;
 
         const query = apiPath + 'resources' + self.getQueryString(pageNumber);
-        console.log('Query:', query);
 
-        __WEBPACK_IMPORTED_MODULE_8_js_utility__["c" /* loadJSON */](query).then(results => {
+        __WEBPACK_IMPORTED_MODULE_8_js_utility__["b" /* loadJSON */](query).then(results => {
           __WEBPACK_IMPORTED_MODULE_1_vue__["a" /* default */].set(self.pagination, 'totalResults', results.count);
 
           const resources = __WEBPACK_IMPORTED_MODULE_8_js_utility__["a" /* formatResults */](results.rows, ['date_published'], false);
@@ -12527,8 +12526,7 @@ __WEBPACK_IMPORTED_MODULE_1_vue__["a" /* default */].component('search-bar', __W
         __WEBPACK_IMPORTED_MODULE_1_vue__["a" /* default */].set(self.pagination, 'currentPage', pageNumber);
       },
       clearAllFilters: function () {
-        __WEBPACK_IMPORTED_MODULE_1_vue__["a" /* default */].set(this, 'selectedFilters', filterSet());
-
+        this.$store.commit('clearAllFilters');
         this.refresh();
       }
     },
@@ -12542,11 +12540,11 @@ __WEBPACK_IMPORTED_MODULE_1_vue__["a" /* default */].component('search-bar', __W
 
       // Load data.
       let requestPromises = [];
-      requestPromises.push(__WEBPACK_IMPORTED_MODULE_8_js_utility__["c" /* loadJSON */](apiPath + 'resources?limit=' + self.pagination.resultsPerPage));
-      requestPromises.push(__WEBPACK_IMPORTED_MODULE_8_js_utility__["c" /* loadJSON */](apiPath + 'countries'));
-      requestPromises.push(__WEBPACK_IMPORTED_MODULE_8_js_utility__["c" /* loadJSON */](apiPath + 'languages'));
-      requestPromises.push(__WEBPACK_IMPORTED_MODULE_8_js_utility__["c" /* loadJSON */](apiPath + 'topics'));
-      requestPromises.push(__WEBPACK_IMPORTED_MODULE_8_js_utility__["c" /* loadJSON */](apiPath + 'resource_types'));
+      requestPromises.push(__WEBPACK_IMPORTED_MODULE_8_js_utility__["b" /* loadJSON */](apiPath + 'resources?limit=' + self.pagination.resultsPerPage));
+      requestPromises.push(__WEBPACK_IMPORTED_MODULE_8_js_utility__["b" /* loadJSON */](apiPath + 'countries'));
+      requestPromises.push(__WEBPACK_IMPORTED_MODULE_8_js_utility__["b" /* loadJSON */](apiPath + 'languages'));
+      requestPromises.push(__WEBPACK_IMPORTED_MODULE_8_js_utility__["b" /* loadJSON */](apiPath + 'topics'));
+      requestPromises.push(__WEBPACK_IMPORTED_MODULE_8_js_utility__["b" /* loadJSON */](apiPath + 'resource_types'));
 
       Promise.all(requestPromises).then(function (results) {
         const resourceResults = results[0];
@@ -12690,13 +12688,12 @@ var render = function() {
           staticClass: "filter-option-checkbox",
           attrs: {
             type: "checkbox",
-            id: "f-" + _vm.filterType + "-" + _vm.model[_vm.valueField]
+            id: "f-" + _vm.filterType + "-" + _vm.filterModel[_vm.valueField]
           },
           domProps: {
-            value: _vm.model[_vm.valueField],
+            value: _vm.filterModel[_vm.valueField],
             checked: _vm.isChecked
-          },
-          on: { click: _vm.emitFilterUpdate }
+          }
         }),
         _vm._v(" "),
         _c(
@@ -12704,16 +12701,21 @@ var render = function() {
           {
             staticClass: "filter-option-label",
             attrs: {
-              for: "f-" + _vm.filterType + "-" + _vm.model[_vm.valueField]
+              for: "f-" + _vm.filterType + "-" + _vm.filterModel[_vm.valueField]
             },
-            on: { click: _vm.toggle }
+            on: { click: _vm.toggleFilter }
           },
-          [_vm._v(_vm._s(_vm.model[_vm.labelField]))]
+          [_vm._v("\n    " + _vm._s(_vm.filterModel[_vm.labelField]))]
         ),
         _vm._v(" "),
-        _c("span", { staticClass: "filter-expansion-indicator" }, [
-          _vm._v("[" + _vm._s(_vm.expanded ? "-" : "+") + "]")
-        ]),
+        _c(
+          "span",
+          {
+            staticClass: "filter-expansion-indicator",
+            on: { click: _vm.toggle }
+          },
+          [_vm._v("[" + _vm._s(_vm.expanded ? "-" : "+") + "]")]
+        ),
         _vm._v(" "),
         _c(
           "ul",
@@ -12728,18 +12730,18 @@ var render = function() {
             ],
             staticClass: "filter-list"
           },
-          _vm._l(_vm.model[_vm.childrenField], function(model) {
+          _vm._l(_vm.filterModel[_vm.childField], function(subfilterModel) {
             return _c("filter-option", {
-              key: model[_vm.labelField],
+              key: subfilterModel[_vm.labelField],
               staticClass: "filter-option",
               attrs: {
                 "filter-type": _vm.filterType,
                 "label-field": _vm.labelField,
                 "value-field": _vm.valueField,
-                "children-field": _vm.childrenField,
-                model: model
+                "child-field": _vm.childField,
+                "filter-model": subfilterModel
               },
-              on: { "filter-update": _vm.emitFilterUpdate }
+              on: { "filter-update": _vm.updateCheck }
             })
           })
         )
@@ -12749,13 +12751,12 @@ var render = function() {
           staticClass: "filter-option-checkbox",
           attrs: {
             type: "checkbox",
-            id: "f-" + _vm.filterType + "-" + _vm.model[_vm.valueField]
+            id: "f-" + _vm.filterType + "-" + _vm.filterModel[_vm.valueField]
           },
           domProps: {
-            value: _vm.model[_vm.valueField],
+            value: _vm.filterModel[_vm.valueField],
             checked: _vm.isChecked
-          },
-          on: { click: _vm.emitFilterUpdate }
+          }
         }),
         _vm._v(" "),
         _c(
@@ -12763,10 +12764,11 @@ var render = function() {
           {
             staticClass: "filter-option-label",
             attrs: {
-              for: "f-" + _vm.filterType + "-" + _vm.model[_vm.valueField]
-            }
+              for: "f-" + _vm.filterType + "-" + _vm.filterModel[_vm.valueField]
+            },
+            on: { click: _vm.toggleFilter }
           },
-          [_vm._v("\n    " + _vm._s(_vm.model[_vm.labelField]) + "\n  ")]
+          [_vm._v("\n    " + _vm._s(_vm.filterModel[_vm.labelField]) + "\n  ")]
         )
       ])
 }
@@ -12824,11 +12826,10 @@ var render = function() {
               "filter-type": _vm.filterType,
               "label-field": _vm.labelField,
               "value-field": _vm.valueField,
-              "children-field": _vm.childrenField,
-              "selected-options": _vm.selectedOptions,
-              model: option
+              "child-field": _vm.childField,
+              "filter-model": option
             },
-            on: { "filter-update": _vm.emitFilterUpdate }
+            on: { "filter-update": _vm.passFilterUpdate }
           })
         })
       )

@@ -23,18 +23,18 @@ resources-js: true
       <div class="resource-list-module">
 
         <resource-list
-          :resources="resources"
-          :filter-tags="selectedFilters.tags"
-          :total-results="pagination.totalResults"
-          @select-filter-tag="addTag"
-          @deselect-filter-tag="removeTag">
+          v-bind:resources="resources"
+          v-bind:tags="selectedFilters.tags"
+          v-bind:total-results="pagination.totalResults"
+          v-on:select-filter-tag="addTag"
+          v-on:deselect-filter-tag="removeTag">
         </resource-list>
   
         <pagination
-          :current-page="pagination.currentPage"
-          :items-per-page="pagination.resultsPerPage"
-          :total-items="pagination.totalResults"
-          @page-changed="refresh"></pagination>
+          v-bind:current-page="pagination.currentPage"
+          v-bind:items-per-page="pagination.resultsPerPage"
+          v-bind:total-items="pagination.totalResults"
+          v-on:page-changed="refresh"></pagination>
   
       </div>
   
