@@ -257,6 +257,31 @@ process.umask = function () {
 /* 1 */
 /***/ (function(module, exports) {
 
+var g;
+
+// This works in non-strict mode
+g = function () {
+	return this;
+}();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || Function("return this")() || (1, eval)("this");
+} catch (e) {
+	// This works if the window reference is available
+	if (typeof window === "object") g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports) {
+
 /* globals __VUE_SSR_CONTEXT__ */
 
 // IMPORTANT: Do NOT use ES2015 features in this file.
@@ -363,7 +388,80 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 2 */
+/* 3 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  props: {
+    currentPage: {
+      type: Number,
+      required: true
+    },
+    itemsPerPage: Number,
+    totalItems: Number,
+    visiblePages: {
+      type: Number,
+      default: 5,
+      coerce: val => parseInt(val)
+    }
+  },
+  computed: {
+    lastPage() {
+      return this.totalItems % this.itemsPerPage === 0 ? this.totalItems / this.itemsPerPage : Math.floor(this.totalItems / this.itemsPerPage) + 1;
+    },
+    paginationRange() {
+      let start = this.currentPage - this.visiblePages / 2 <= 0 ? 1 : this.currentPage + this.visiblePages / 2 > this.lastPage ? Math.max(this.lastPage - this.visiblePages + 1, 1) : Math.ceil(this.currentPage - this.visiblePages / 2);
+
+      let range = [];
+
+      for (let i = 0; i < this.visiblePages && i < this.lastPage; i++) {
+        range.push(start + i);
+      }
+
+      return range;
+    }
+  },
+  methods: {
+    activePage(pageNumber) {
+      return this.currentPage === pageNumber ? 'active' : '';
+    },
+    pageChanged(pageNumber) {
+      // Set a numerical floor for the page numbers.
+      pageNumber = Math.max(pageNumber, 1);
+
+      if (pageNumber !== this.currentPage) {
+        this.$emit('page-changed', pageNumber);
+      }
+    }
+  }
+});
+
+/***/ }),
+/* 4 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10147,215 +10245,10 @@ function getOuterHTML(el) {
 Vue$3.compile = compileToFunctions;
 
 /* harmony default export */ __webpack_exports__["a"] = (Vue$3);
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0), __webpack_require__(3), __webpack_require__(7).setImmediate))
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports) {
-
-var g;
-
-// This works in non-strict mode
-g = function () {
-	return this;
-}();
-
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || Function("return this")() || (1, eval)("this");
-} catch (e) {
-	// This works if the window reference is available
-	if (typeof window === "object") g = window;
-}
-
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
-
-module.exports = g;
-
-/***/ }),
-/* 4 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export getURLParameters */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return loadJSON; });
-/* unused harmony export tokenizeArray */
-/* unused harmony export getPublicationDate */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return formatResults; });
-
-
-/**
- * Parse parameters from URL string.
- */
-function getURLParameters() {
-  let paramstrings = window.location.search.substr(1).split('&');
-
-  if (paramstrings == '') {
-    return {};
-  }
-
-  let params = {};
-
-  for (let i = 0; i < paramstrings.length; ++i) {
-    let param = paramstrings[i].split('=', 2);
-    if (param.length == 1) params[param[0]] = '';else params[param[0]] = decodeURIComponent(param[1].replace(/\+/g, ' '));
-  }
-
-  return params;
-}
-
-/**
- * Load JSON format data from path.
- */
-function loadJSON(path) {
-  return new Promise((resolve, reject) => {
-    let xhr = new XMLHttpRequest();
-    xhr.overrideMimeType('application/json');
-    xhr.open('GET', path, true);
-    xhr.onload = function () {
-      if (xhr.status == '200') {
-        resolve(JSON.parse(xhr.responseText));
-      } else {
-        reject(xhr.statusText);
-      }
-    };
-    xhr.onerror = () => reject(xhr.statusText);
-    xhr.send();
-  });
-}
-
-/**
- * Tokenizes array of strings, splitting on commas and whitespace.
- */
-function tokenizeArray(array) {
-  let all_tokens = [];
-  const arrayCount = array.length;
-
-  for (let i = 0; i < arrayCount; i++) {
-    const string_tokens = array[i].split(/,?\s+/);
-    all_tokens = all_tokens.concat(string_tokens);
-  }
-
-  return all_tokens;
-}
-
-/**
- * Converts Date object into a human-friendly string format.
- */
-function getPublicationDate(dateObject, getDay) {
-  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-
-  let dateString = months[dateObject.getMonth()] + ' ' + dateObject.getFullYear();
-
-  if (getDay) {
-    dateString = dateObject.getDate() + ' ' + dateString;
-  }
-
-  return dateString;
-}
-
-// Format the given fields as dates.
-function formatResults(results, fields, includeDay) {
-  if (Array.isArray(results)) {
-    const resultCount = results.length;
-
-    for (var i = 0; i < resultCount; i++) {
-      const fieldCount = fields.length;
-
-      for (let j = 0; j < fieldCount; j++) {
-        const field = fields[j];
-
-        if (field in results[i]) {
-          const date = new Date(results[i][field]);
-
-          if (date !== 'Invalid Date') {
-            results[i][field] = getPublicationDate(date, includeDay);
-          }
-        }
-      }
-    }
-  }
-
-  return results;
-}
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0), __webpack_require__(1), __webpack_require__(6).setImmediate))
 
 /***/ }),
 /* 5 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["a"] = ({
-  props: {
-    currentPage: {
-      type: Number,
-      required: true
-    },
-    itemsPerPage: Number,
-    totalItems: Number,
-    visiblePages: {
-      type: Number,
-      default: 5,
-      coerce: val => parseInt(val)
-    }
-  },
-  computed: {
-    lastPage() {
-      return this.totalItems % this.itemsPerPage === 0 ? this.totalItems / this.itemsPerPage : Math.floor(this.totalItems / this.itemsPerPage) + 1;
-    },
-    paginationRange() {
-      let start = this.currentPage - this.visiblePages / 2 <= 0 ? 1 : this.currentPage + this.visiblePages / 2 > this.lastPage ? Math.max(this.lastPage - this.visiblePages + 1, 1) : Math.ceil(this.currentPage - this.visiblePages / 2);
-
-      let range = [];
-
-      for (let i = 0; i < this.visiblePages && i < this.lastPage; i++) {
-        range.push(start + i);
-      }
-
-      return range;
-    }
-  },
-  methods: {
-    activePage(pageNumber) {
-      return this.currentPage === pageNumber ? 'active' : '';
-    },
-    pageChanged(pageNumber) {
-      // Set a numerical floor for the page numbers.
-      pageNumber = Math.max(pageNumber, 1);
-
-      if (pageNumber !== this.currentPage) {
-        this.$emit('page-changed', pageNumber);
-      }
-    }
-  }
-});
-
-/***/ }),
-/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10368,10 +10261,10 @@ var config = {
 module.exports = config;
 
 /***/ }),
-/* 7 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var apply = Function.prototype.apply;
+/* WEBPACK VAR INJECTION */(function(global) {var apply = Function.prototype.apply;
 
 // DOM APIs, for completeness
 
@@ -10419,12 +10312,16 @@ exports._unrefActive = exports.active = function (item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__(8);
-exports.setImmediate = setImmediate;
-exports.clearImmediate = clearImmediate;
+__webpack_require__(7);
+// On some exotic environments, it's not clear which object `setimmeidate` was
+// able to install onto.  Search each possibility in the same order as the
+// `setimmediate` library.
+exports.setImmediate = typeof self !== "undefined" && self.setImmediate || typeof global !== "undefined" && global.setImmediate || this && this.setImmediate;
+exports.clearImmediate = typeof self !== "undefined" && self.clearImmediate || typeof global !== "undefined" && global.clearImmediate || this && this.clearImmediate;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 8 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -10609,10 +10506,10 @@ exports.clearImmediate = clearImmediate;
     attachTo.setImmediate = setImmediate;
     attachTo.clearImmediate = clearImmediate;
 })(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self);
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(0)))
 
 /***/ }),
-/* 9 */
+/* 8 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11572,16 +11469,16 @@ var index_esm = {
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
 /***/ }),
-/* 10 */,
-/* 11 */
+/* 9 */,
+/* 10 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_pagination_vue__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_pagination_vue__ = __webpack_require__(3);
 /* unused harmony namespace reexport */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_b0253c1c_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_pagination_vue__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_b0253c1c_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_pagination_vue__ = __webpack_require__(11);
 var disposed = false
-var normalizeComponent = __webpack_require__(1)
+var normalizeComponent = __webpack_require__(2)
 /* script */
 
 
@@ -11596,8 +11493,8 @@ var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
-  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_pagination_vue__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_b0253c1c_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_pagination_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_pagination_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_b0253c1c_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_pagination_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
@@ -11625,7 +11522,7 @@ if (false) {(function () {
 
 
 /***/ }),
-/* 12 */
+/* 11 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11762,12 +11659,119 @@ if (false) {
 }
 
 /***/ }),
+/* 12 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* unused harmony export getURLParameters */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return loadJSON; });
+/* unused harmony export tokenizeArray */
+/* unused harmony export getPublicationDate */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return formatResults; });
+
+
+/**
+ * Parse parameters from URL string.
+ */
+function getURLParameters() {
+  let paramstrings = window.location.search.substr(1).split('&');
+
+  if (paramstrings == '') {
+    return {};
+  }
+
+  let params = {};
+
+  for (let i = 0; i < paramstrings.length; ++i) {
+    let param = paramstrings[i].split('=', 2);
+    if (param.length == 1) params[param[0]] = '';else params[param[0]] = decodeURIComponent(param[1].replace(/\+/g, ' '));
+  }
+
+  return params;
+}
+
+/**
+ * Load JSON format data from path.
+ */
+function loadJSON(path) {
+  return new Promise((resolve, reject) => {
+    let xhr = new XMLHttpRequest();
+    xhr.overrideMimeType('application/json');
+    xhr.open('GET', path, true);
+    xhr.onload = function () {
+      if (xhr.status == '200') {
+        resolve(JSON.parse(xhr.responseText));
+      } else {
+        reject(xhr.statusText);
+      }
+    };
+    xhr.onerror = () => reject(xhr.statusText);
+    xhr.send();
+  });
+}
+
+/**
+ * Tokenizes array of strings, splitting on commas and whitespace.
+ */
+function tokenizeArray(array) {
+  let all_tokens = [];
+  const arrayCount = array.length;
+
+  for (let i = 0; i < arrayCount; i++) {
+    const string_tokens = array[i].split(/,?\s+/);
+    all_tokens = all_tokens.concat(string_tokens);
+  }
+
+  return all_tokens;
+}
+
+/**
+ * Converts Date object into a human-friendly string format.
+ */
+function getPublicationDate(dateObject, getDay) {
+  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+  let dateString = months[dateObject.getMonth()] + ' ' + dateObject.getFullYear();
+
+  if (getDay) {
+    dateString = dateObject.getDate() + ' ' + dateString;
+  }
+
+  return dateString;
+}
+
+// Format the given fields as dates.
+function formatResults(results, fields, includeDay) {
+  if (Array.isArray(results)) {
+    const resultCount = results.length;
+
+    for (var i = 0; i < resultCount; i++) {
+      const fieldCount = fields.length;
+
+      for (let j = 0; j < fieldCount; j++) {
+        const field = fields[j];
+
+        if (field in results[i]) {
+          const date = new Date(results[i][field]);
+
+          if (date !== 'Invalid Date') {
+            results[i][field] = getPublicationDate(date, includeDay);
+          }
+        }
+      }
+    }
+  }
+
+  return results;
+}
+
+/***/ }),
 /* 13 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(8);
 
 
 
@@ -11916,14 +11920,14 @@ const store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_config__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_config__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_config___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_config__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_js_global_store__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vue_newsfeed_vue__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vue_pagination_vue__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_js_utility__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vue_pagination_vue__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_js_utility__ = __webpack_require__(12);
  // Aliased via WebPack.
 
 
@@ -12039,11 +12043,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_newsfeed_vue__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_newsfeed_vue__ = __webpack_require__(19);
 /* unused harmony namespace reexport */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_5e94a5c9_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_newsfeed_vue__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_5e94a5c9_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_newsfeed_vue__ = __webpack_require__(29);
 var disposed = false
-var normalizeComponent = __webpack_require__(1)
+var normalizeComponent = __webpack_require__(2)
 /* script */
 
 
@@ -12058,8 +12062,8 @@ var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
-  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_newsfeed_vue__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_5e94a5c9_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_newsfeed_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_newsfeed_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_5e94a5c9_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_newsfeed_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,

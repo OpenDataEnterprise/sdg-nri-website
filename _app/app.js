@@ -109,7 +109,7 @@ Vue.component('search-bar', SearchBar);
             ['date_published'],
             false);
 
-          self.resources = resources;
+          Vue.set(self, 'resources', resources);
         });
 
         Vue.set(self.pagination, 'currentPage', pageNumber);
@@ -134,14 +134,14 @@ Vue.component('search-bar', SearchBar);
       requestPromises.push(Utility.loadJSON(apiPath + 'countries'));
       requestPromises.push(Utility.loadJSON(apiPath + 'languages'));
       requestPromises.push(Utility.loadJSON(apiPath + 'topics'));
-      requestPromises.push(Utility.loadJSON(apiPath + 'resource_types'));
+      requestPromises.push(Utility.loadJSON(apiPath + 'content_types'));
 
       Promise.all(requestPromises).then(function (results) {
         const resourceResults = results[0];
         const countries = results[1];
         const languages = results[2];
         const topics = results[3];
-        const resource_types = results[4];
+        const content_types = results[4];
 
         const resourceCount = resourceResults.count;
         const resources = Utility.formatResults(
@@ -154,7 +154,8 @@ Vue.component('search-bar', SearchBar);
         Vue.set(self.filterOptions, 'country', countries);
         Vue.set(self.filterOptions, 'language', languages);
         Vue.set(self.filterOptions, 'topic', topics);
-        Vue.set(self.filterOptions, 'type', resource_types);
+        Vue.set(self.filterOptions, 'type', content_types);
+        console.log(self);
       });
 
       self.isLoading = false;

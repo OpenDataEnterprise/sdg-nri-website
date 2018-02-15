@@ -1,6 +1,32 @@
+$form-label-font-size: 0.85em;
+
 .contact-form-wrapper {
-  padding-top: 2rem;
   letter-spacing: 0.03em;
+
+  input {
+    font-size: 0.85em;
+  }
+
+  /* Remove default browser styling on selection inputs. */
+  select {
+    position: relative;
+    font: inherit;
+    font-size: 0.85em;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    &:after {
+      font-family: "FontAwesome";
+      content: "\f078";
+      position: absolute;
+      right: 0;
+    }
+
+    & .initial-option {
+      color: rgba(0,0,0,0.5);
+    }
+  }
 }
 
 .contact-form-header {
@@ -15,17 +41,24 @@
   color: rgba(0, 0, 0, 1);
 }
 
+.contact-form-intro-heading {
+  font-size: 1.5em;
+  line-height: 2.2em;
+}
+
 .contact-form-intro {
   padding: 1em 0;
-  font-size: 1.25em;
 }
 
 .field-label {
+  position: relative;
   display: block;
-  font-size: 0.9em;
+  font-size: $form-label-font-size;
 }
 
-.name-fieldset, .interests-fieldset {
+.name-fieldset,
+.interests-fieldset,
+.topics-fieldset {
   margin: 0 0 1.5em 0;
   border: none;
   padding: 0;
@@ -33,6 +66,12 @@
 
 .name-fieldset {
   margin-left: -2%;
+}
+
+.topics-fieldset {
+  ul {
+    column-count: 3;
+  }
 }
 
 .name-field, .email-field {
@@ -61,8 +100,8 @@
 
 .checkbox-label {
   display: block;
-  padding: 0.25em 0;
-  font-size: 0.9em;
+  padding-top: 1.5rem;
+  font-size: $form-label-font-size;
 
   input[type=checkbox] {
     margin: 0 0.5em 0 0;
@@ -70,32 +109,59 @@
   }
 }
 
+.tabbed {
+  padding: 4em 12em;
+}
+
+.tabs {
+  display: block;
+  border-bottom: 2px solid black;
+
+  li {
+    display: inline-block;
+    margin: 0 1em;
+
+    a {
+      display: inline-block;
+      border: 2px solid black;
+      border-bottom: none;
+      padding: 1em;
+      text-decoration: none;
+    }
+
+    a.active {
+      border-bottom: 2px solid white;
+    }
+  }
+}
+
+.tab:focus,
+.tab:hover {
+  background-color: darken(rgba(220, 220, 220, 1), 10%);
+}
+
+.tab-content {
+  display: none;
+
+  &:target {
+    display: block;
+  }
+}
+
 .field-element {
   box-sizing: border-box;
   width: 100%;
   margin: 0.375em 0 1.5em;
-  border: 1px solid #ccc;
-  border-radius: 0.125em;
-  padding: 0.5em;
+  border: 1px solid $ui-blue;
+  border-radius: 0;
+  padding: 0.7em;
   font-size: 1em;
   background: #fafafa;
 }
 
-.message-textarea {
+.message-text-input,
+.description-text-input,
+.additional-info-text-input {
   min-height: 10em;
   resize: vertical;
-}
-
-.description-textarea {
-  min-height: 10em;
-  resize: vertical;
-}
-
-#contact-form {
-  select {
-    font: inherit;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-  }
 }

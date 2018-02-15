@@ -20,7 +20,7 @@
         <span class="resource-organization">{{ resource.organization }}</span>
         <span class="resource-publication-date">| {{ resource.date_published }}</span>
         <div class="resource-description">{{ resource.description }}</div>
-        <div class="resource-tags" v-if="resource.tags.length > 0">
+        <div class="resource-tags" v-if="hasTags(resource)">
           <ul class="resource-tags-list">
             <li class="subject-tag"
               v-for="tag in resource.tags"
@@ -53,6 +53,13 @@ export default {
     },
     tagDeselect: function (tag, event) {
       this.$emit('deselect-filter-tag', tag);
+    },
+    hasTags: function (resource) {
+      if (Array.isArray(resource.tags)) {
+        return resource.tags.length > 0;
+      } else {
+        return false;
+      }
     },
   },
 };
