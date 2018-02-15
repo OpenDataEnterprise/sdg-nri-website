@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="21px" height="14px" viewBox="0 0 21 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>envelope-icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="02_opendata04_sdg_national_reporting_project_contact_us_design_01" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-40.000000, -692.000000)">
+        <g id="Tabs" transform="translate(40.000000, 558.000000)" fill="#020B4F">
+            <path d="M0.9609375,134.359375 L20.4609375,134.359375 L20.4609375,147.859375 L0.9609375,147.859375 L0.9609375,134.359375 Z M4.1953125,135.859375 L10.7109375,140.171875 L17.2265625,135.859375 L4.1953125,135.859375 Z M2.4609375,136.515625 L2.4609375,146.359375 L18.9609375,146.359375 L18.9609375,136.515625 L11.1328125,141.765625 L10.7109375,142 L10.2890625,141.765625 L2.4609375,136.515625 Z" id="envelope-icon"></path>
+        </g>
+    </g>
+</svg>
