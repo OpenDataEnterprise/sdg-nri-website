@@ -1,11 +1,97 @@
 $form-label-font-size: 0.85em;
+$tab-border-width: 2px;
+
+.tabbed {
+  padding: 4em 12em;
+}
+
+.tab:focus,
+.tab:hover {
+  background-color: darken(rgba(255, 255, 255, 1), 10%);
+}
+
+.tab-input {
+  position: fixed;
+  opacity: 0;
+
+  &:checked + .tab-label {
+    z-index: 3;
+    border: $tab-border-width solid $ui-dark-blue;
+    border-bottom: none;
+    background-color: rgba(255, 255, 255, 1);
+  }
+}
+
+.tab-label {
+  display: inline-block;
+  position: relative;
+  z-index: 1;
+  margin: 0 0 (-$tab-border-width);
+  padding: 0.5rem 1rem;
+  font-family: "Oswald";
+  font-size: 1.5rem;
+  color: $ui-dark-blue;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  span {
+    display: inline-block;
+    vertical-align: middle;
+  }
+}
+
+.tab-label[for=contact-us-tab] {
+  $tab-border-color: $ui-blue;
+  margin-right: 1rem;
+  border-top: $tab-border-width solid $tab-border-color;
+  border-left: $tab-border-width solid $tab-border-color;
+  border-bottom: none;
+  border-right: $tab-border-width solid $tab-border-color;
+  background-color: $tab-border-color;
+}
+
+.tab-label[for=submit-resource-tab] {
+  $tab-border-color: $ui-yellow;
+  border-top: $tab-border-width solid $tab-border-color;
+  border-left: $tab-border-width solid $tab-border-color;
+  border-bottom: none;
+  border-right: $tab-border-width solid $tab-border-color;
+  background-color: $tab-border-color;
+}
+
+.envelope-icon {
+  height: 0.9rem;
+  width: 1.5rem;
+}
+
+.paperclip-icon {
+  height: 1.25rem;
+  width: 1.25rem;
+}
+
+.envelope-icon,
+.paperclip-icon {
+  vertical-align: middle;
+}
+
+.tab-content {
+  display: none;
+  position: relative;
+  z-index: 2;
+  padding: 1.5em 0 0;
+  border-top: $tab-border-width solid $ui-dark-blue;
+}
+
+#contact-us-tab:checked ~ #contact-us,
+#contact-us-tab:checked ~ #contact-us,
+#submit-resource-tab:checked ~ #submit-resource {
+  display: block;
+}
 
 .contact-form-wrapper {
   letter-spacing: 0.03em;
-
-  input {
-    font-size: 0.85em;
-  }
 
   /* Remove default browser styling on selection inputs. */
   select {
@@ -41,19 +127,15 @@ $form-label-font-size: 0.85em;
   color: rgba(0, 0, 0, 1);
 }
 
-.contact-form-intro-heading {
-  font-size: 1.5em;
-  line-height: 2.2em;
+.contact-form-intro-heading,
+.contact-form-thank-you-heading {
+  padding: 1.5rem 0 0.75rem 0;
+  font-size: 1.5rem;
 }
 
-.contact-form-intro {
-  padding: 1em 0;
-}
-
-.field-label {
-  position: relative;
-  display: block;
-  font-size: $form-label-font-size;
+.contact-form-intro,
+.contact-form-thank-you {
+  padding: 0 0 1.5rem 0;
 }
 
 .name-fieldset,
@@ -64,12 +146,36 @@ $form-label-font-size: 0.85em;
   padding: 0;
 }
 
+.field-label {
+  position: relative;
+  display: block;
+  font-size: $form-label-font-size;
+}
+
+.field-element {
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0.375rem 0 1.5rem;
+  border: 1px solid $ui-blue;
+  border-radius: 0;
+  padding: 0.7em;
+  font-size: 0.85em;
+  background: #fafafa;
+}
+
+.caption {
+  padding: 0.4em 0;
+  font-size: 0.75em;
+  font-style: italic;
+  color: rgba(0, 0, 0, 0.6);
+}
+
 .name-fieldset {
   margin-left: -2%;
 }
 
 .topics-fieldset {
-  ul {
+  .checkbox-set {
     column-count: 3;
   }
 }
@@ -91,72 +197,46 @@ $form-label-font-size: 0.85em;
   width: 98%;
 }
 
-.caption {
-  padding: 0.4em 0;
-  font-size: 0.75em;
-  font-style: italic;
-  color: rgba(0, 0, 0, 0.6);
+.checkbox {
+  -moz-appearance:none;
+  -webkit-appearance:none;
+  -o-appearance:none;
+  display: inline-block;
+  height: 1.25rem;
+  width: 1.25rem;
+  border: 2px solid $ui-blue;
+  vertical-align: middle;
+
+  &:checked {
+    background-color: $ui-blue;
+  }
+
+  &:checked::before {
+    font-family: "Font Awesome 5 Free";
+    font-size: 1rem;
+    font-weight: 900;
+    color: rgba(255, 255, 255, 1);
+    content: "\f00c";
+  }
 }
 
 .checkbox-label {
   display: block;
-  padding-top: 1.5rem;
-  font-size: $form-label-font-size;
+  cursor: pointer;
 
-  input[type=checkbox] {
-    margin: 0 0.5em 0 0;
-    cursor: pointer;
+  span {
+    vertical-align: middle;
+    color: $ui-dark-blue;
+    font-size: $form-label-font-size;
   }
 }
 
-.tabbed {
-  padding: 4em 12em;
-}
-
-.tabs {
-  display: block;
-  border-bottom: 2px solid black;
+.checkbox-set {
+  margin-top: 1rem;
 
   li {
-    display: inline-block;
-    margin: 0 1em;
-
-    a {
-      display: inline-block;
-      border: 2px solid black;
-      border-bottom: none;
-      padding: 1em;
-      text-decoration: none;
-    }
-
-    a.active {
-      border-bottom: 2px solid white;
-    }
+    margin-bottom: 1rem;
   }
-}
-
-.tab:focus,
-.tab:hover {
-  background-color: darken(rgba(220, 220, 220, 1), 10%);
-}
-
-.tab-content {
-  display: none;
-
-  &:target {
-    display: block;
-  }
-}
-
-.field-element {
-  box-sizing: border-box;
-  width: 100%;
-  margin: 0.375em 0 1.5em;
-  border: 1px solid $ui-blue;
-  border-radius: 0;
-  padding: 0.7em;
-  font-size: 1em;
-  background: #fafafa;
 }
 
 .message-text-input,

@@ -12,26 +12,31 @@ navigation_weight: 3
 </header>
 
 <div class="tabbed">
-  <ul class="tabs">
-    <li class="tab">
-      <a href="#contact-us">
-        <i class="fa fa-envelope fa-lg" aria-hidden="true"></i>
-        <span>Contact Us</span>
-      </a>
-    </li>
-    <li class="tab">
-      <a href="#submit-resource">
-        <i class="fa fa-paperclip fa-lg" aria-hidden="true"></i>
-        <span>Submit a Resource</span>
-      </a>
-    </li>
-  </ul>
+  <input class="tab-input" id="contact-us-tab" type="radio" name="tabs" checked="checked">
+  <label class="tab-label" for="contact-us-tab">
+    <object class="envelope-icon" type="image/svg+xml" data="/assets/img/envelope-icon.svg">
+      <img src="/assets/img/envelope-icon-100px.png">
+    </object>
+    <span>CONTACT US</span>
+  </label>
 
-  <div id="contact-us" class="tab-content">
+  <input class="tab-input" id="submit-resource-tab" type="radio" name="tabs">
+  <label class="tab-label" for="submit-resource-tab">
+    <object class="paperclip-icon" type="image/svg+xml" data="/assets/img/paperclip-icon.svg">
+      <img src="/assets/img/paperclip-icon-100px.png">
+    </object>
+    <span>SUBMIT A RESOURCE</span>
+  </label>
+
+  <section id="contact-us" class="tab-content">
     <div class="contact-form-wrapper">
-      <p class="contact-form-intro">The <a href="http://opendataenterprise.org/" target="_blank">Center for Open Data Enterprise</a> collaborates with public, private and nonprofit organizations that have a shared interest in utilizing data to achieve the Sustainable Development Goals. CODE welcomes interest from national statistical offices (NSOs), related statistical and data institutions, and international organizations to further advance SDG national reporting.</p>
+      <p class="contact-form-intro-heading">The <a href="http://opendataenterprise.org/" target="_blank">Center for Open Data Enterprise</a> collaborates with public, private and nonprofit organizations that have a shared interest in utilizing data to achieve the Sustainable Development Goals.</p>
+      <p class="contact-form-intro">Contact us to learn more about the initiative or partner with us.</p>
+
       <form id="contact-us-form" method="post" action="{{ site.apiurl }}/contact-form">
-        <div class="contact-form-heading">Contact Information</div>
+
+        <h1 class="contact-form-heading">Contact Information</h1>
+
         <legend class="field-label">Name <span class="required">*</span></legend>
         <fieldset class="name-fieldset">
           <div class="name-field">
@@ -66,40 +71,53 @@ navigation_weight: 3
 
         <div class="contact-form-heading">Message</div>
         <label class="field-label" for="message">Message</label>
-        <textarea class="field-element message-textarea" name="message"></textarea>
+        <textarea class="field-element message-text-input" name="message"></textarea>
 
         <fieldset class="interests-fieldset">
           <label class="contact-form-heading" for="interests">What are you most interested in for SDG reporting? <span class="required">*</span></label>
           <p class="field-label">Check all that apply.</p>
-          <label class="checkbox-label">
-            <input name="interests" type="checkbox" value="SDG reporting approaches">SDG reporting approaches
-          </label>
-          <label class="checkbox-label">
-            <input name="interests" type="checkbox" value="Policy-related advisory approaches">Policy-related advisory approaches
-          </label>
-          <label class="checkbox-label">
-            <input name="interests" type="checkbox" value="Technical advisory services">Technical advisory services
-          </label>
-          <label class="checkbox-label">
-            <input name="interests" type="checkbox" value="Other">Other
-          </label>
+          <ul class="checkbox-set">
+            <li>
+              <label class="checkbox-label">
+                <input class="checkbox" name="interests" type="checkbox" value="SDG reporting approaches">
+                <span>SDG reporting approaches</span>
+              </label>
+            </li>
+            <li>
+              <label class="checkbox-label">
+                <input class="checkbox" name="interests" type="checkbox" value="Policy-related advisory approaches">
+                <span>Policy-related advisory approaches</span>
+              </label>
+            </li>
+            <li>
+              <label class="checkbox-label">
+                <input class="checkbox" name="interests" type="checkbox" value="Technical advisory services">
+                <span>Technical advisory services</span>
+              </label>
+            </li>
+            <li>
+              <label class="checkbox-label">
+                <input class="checkbox" name="interests" type="checkbox" value="Other">
+                <span>Other</span>
+              </label>
+            </li>
+          </ul>
         </fieldset>
 
         <input class="button" type="submit" value="Send Message">
-    </form>
+      </form>
     </div>
-  </div>
+  </section>
 
-  <div id="submit-resource" class="tab-content">
+  <section id="submit-resource" class="tab-content">
     <div class="contact-form-wrapper">
-      <div class="contact-form-intro">
-        <p class="contact-form-intro-heading">Do you know of a resource that we haven't listed?</p>
-        <p>Help us by submitting resources we haven't discovered. Submissions will be reviewed for accuracy.</p>
-      </div>
+      <p class="contact-form-intro-heading">Do you know of a resource that we haven't listed?</p>
+      <p class="contact-form-intro">Help us by submitting resources we haven't discovered. Submissions will be reviewed for accuracy.</p>
 
       <form id="contact-form" method="post" action="{{ site.apiurl }}/submission-form">
-        
+
         <h1 class="contact-form-heading">Contact Information</h1>
+
         <legend class="field-label">Name <span class="required">*</span></legend>
         <fieldset class="name-fieldset">
           <div class="name-field">
@@ -133,6 +151,7 @@ navigation_weight: 3
         <input name="city" type="text" class="field-element" required>
 
         <h1 class="contact-form-heading">Resource Information</h1>
+
         <label class="field-label" for="title">Resource Title <span class="required">*</span></label>
         <input name="resource-title" type="text" class="field-element" required>
 
@@ -147,75 +166,89 @@ navigation_weight: 3
 
         <fieldset class="topics-fieldset">
           <label class="field-label" for="resource-topics">Tags <span class="required">*</span></label>
-          <ul>
+          <ul class="checkbox-set">
             <li>
               <label class="checkbox-label">
-                <input name="resource-topics" type="checkbox" value="SDG Reporting">SDG Reporting
+                <input class="checkbox" name="resource-topics" type="checkbox" value="SDG Reporting">
+                <span>SDG Reporting</span>
               </label>
             </li>
             <li>
               <label class="checkbox-label">
-                <input name="resource-topics" type="checkbox" value="Indicators">Indicators
+                <input class="checkbox" name="resource-topics" type="checkbox" value="Indicators">
+                <span>Indicators</span>
               </label>
             </li>
             <li>
               <label class="checkbox-label">
-                <input name="resource-topics" type="checkbox" value="Technology">Technology
+                <input class="checkbox" name="resource-topics" type="checkbox" value="Technology">
+                <span>Technology</span>
               </label>
             </li>
             <li>
               <label class="checkbox-label">
-                <input name="resource-topics" type="checkbox" value="Features">Features
+                <input class="checkbox" name="resource-topics" type="checkbox" value="Features">
+                <span>Features</span>
               </label>
             </li>
             <li>
               <label class="checkbox-label">
-                <input name="resource-topics" type="checkbox" value="Country">Country
+                <input class="checkbox" name="resource-topics" type="checkbox" value="Country">
+                <span>Country</span>
               </label>
             </li>
             <li>
               <label class="checkbox-label">
-                <input name="resource-topics" type="checkbox" value="Standards">Standards
+                <input class="checkbox" name="resource-topics" type="checkbox" value="Standards">
+                <span>Standards</span>
               </label>
             </li>
             <li>
               <label class="checkbox-label">
-                <input name="resource-topics" type="checkbox" value="Open data">Open data
+                <input class="checkbox" name="resource-topics" type="checkbox" value="Open data">
+                <span>Open data</span>
               </label>
             </li>
             <li>
               <label class="checkbox-label">
-                <input name="resource-topics" type="checkbox" value="Privacy">Privacy
+                <input class="checkbox" name="resource-topics" type="checkbox" value="Privacy">
+                <span>Privacy</span>
               </label>
             </li>
             <li>
               <label class="checkbox-label">
-                <input name="resource-topics" type="checkbox" value="Security">Security
+                <input class="checkbox" name="resource-topics" type="checkbox" value="Security">
+                <span>Security</span>
               </label>
             </li>
             <li>
               <label class="checkbox-label">
-                <input name="resource-topics" type="checkbox" value="Open source">Open source
+                <input class="checkbox" name="resource-topics" type="checkbox" value="Open source">
+                <span>Open source</span>
               </label>
             </li>
             <li>
               <label class="checkbox-label">
-                <input name="resource-topics" type="checkbox" value="Policy">Policy
+                <input class="checkbox" name="resource-topics" type="checkbox" value="Policy">
+                <span>Policy</span>
               </label>
             </li>
             <li>
               <label class="checkbox-label">
-                <input name="resource-topics" type="checkbox" value="Engagement">Engagement
+                <input class="checkbox" name="resource-topics" type="checkbox" value="Engagement">
+                <span>Engagement</span>
               </label>
             </li>
             <li>
               <label class="checkbox-label">
-                <input name="resource-topics" type="checkbox" value="Capacity">Capacity
+                <input class="checkbox" name="resource-topics" type="checkbox" value="Capacity">
+                <span>Capacity</span>
               </label>
             </li>
             <li>
               <label class="checkbox-label">
-                <input name="resource-topics" type="checkbox" value="Financing">Financing
+                <input class="checkbox" name="resource-topics" type="checkbox" value="Financing">
+                <span>Financing</span>
               </label>
             </li>
           </ul>
@@ -227,5 +260,5 @@ navigation_weight: 3
         <input class="button" type="submit" value="Submit Resource">
       </form>
     </div>
-  </div>
+  </section>
 </div>
