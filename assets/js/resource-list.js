@@ -11849,25 +11849,21 @@ __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */].use(__WEBPACK_IMPORTED_MODU
 
 // For (re)setting filters.
 function filterSet() {
-  return {
+  const filterSet = {
     country: {},
     language: {},
     tags: {},
     topic: {},
     type: {}
   };
+
+  return filterSet;
 };
 
 // Create namespaced state storage for filters.
 const filterModule = {
   state: {
-    selectedFilters: {
-      country: {},
-      language: {},
-      tags: {},
-      topic: {},
-      type: {}
-    }
+    selectedFilters: filterSet()
   },
   mutations: {
     activateFilter: function (state, filter) {
@@ -11900,7 +11896,7 @@ const filterModule = {
       }
     },
     clearAllFilters: function (state) {
-      __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */].set(state.selectedFilters, filterSet());
+      __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */].set(state, 'selectedFilters', filterSet());
     }
   }
 };
@@ -12219,7 +12215,6 @@ if (false) {
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["a"] = ({
   name: 'filter-option',
@@ -12276,6 +12271,8 @@ if (false) {
       }
     },
     toggleFilter: function () {
+      console.log('toggleFilter called');
+
       const selectedFilters = this.selectedFilters[this.filterType];
       const filter = {
         value: this.filterValue,
@@ -12325,7 +12322,7 @@ if (false) {
     updateCheck: function () {
       const selectedFilters = this.selectedFilters[this.filterType];
 
-      if (selectedFilters[this.filterValue] && this.childField in this.filterModel && this.filterModel[this.childField]) {
+      if (selectedFilters[this.filterValue] && this.childField in this.filterModel && this.filterModel[this.childField].length > 0) {
         const children = this.filterModel[this.childField];
         const childCount = children.length;
 
@@ -12461,7 +12458,7 @@ __WEBPACK_IMPORTED_MODULE_1_vue__["a" /* default */].component('search-bar', __W
     },
     computed: {
       selectedFilters: function () {
-        return __WEBPACK_IMPORTED_MODULE_3_js_global_store__["a" /* store */].state.filters.selectedFilters;
+        return this.$store.state.filters.selectedFilters;
       }
     },
     methods: {
@@ -12479,7 +12476,12 @@ __WEBPACK_IMPORTED_MODULE_1_vue__["a" /* default */].component('search-bar', __W
 
         for (let i = 0; i < categoryCount; ++i) {
           const category = categories[i];
-          const selectedOptions = Object.keys(this.selectedFilters[category]);
+
+          let selectedOptions = [];
+          if (category in this.selectedFilters) {
+            selectedOptions = Object.keys(this.selectedFilters[category]);
+          }
+
           const selectedOptionsCount = selectedOptions.length;
 
           // Skip filters with no values.
@@ -12573,7 +12575,6 @@ __WEBPACK_IMPORTED_MODULE_1_vue__["a" /* default */].component('search-bar', __W
         __WEBPACK_IMPORTED_MODULE_1_vue__["a" /* default */].set(self.filterOptions, 'language', languages);
         __WEBPACK_IMPORTED_MODULE_1_vue__["a" /* default */].set(self.filterOptions, 'topic', topics);
         __WEBPACK_IMPORTED_MODULE_1_vue__["a" /* default */].set(self.filterOptions, 'type', content_types);
-        console.log(self);
       });
 
       self.isLoading = false;
@@ -12696,29 +12697,22 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _vm.isExpandable
     ? _c("li", [
-        _c("input", {
-          staticClass: "filter-option-checkbox",
-          attrs: {
-            type: "checkbox",
-            id: "f-" + _vm.filterType + "-" + _vm.filterModel[_vm.valueField]
-          },
-          domProps: {
-            value: _vm.filterModel[_vm.valueField],
-            checked: _vm.isChecked
-          }
-        }),
-        _vm._v(" "),
-        _c(
-          "label",
-          {
-            staticClass: "filter-option-label",
+        _c("label", { staticClass: "filter-option-expandable-label" }, [
+          _c("input", {
+            staticClass: "checkbox",
             attrs: {
-              for: "f-" + _vm.filterType + "-" + _vm.filterModel[_vm.valueField]
+              type: "checkbox",
+              id: "f-" + _vm.filterType + "-" + _vm.filterModel[_vm.valueField]
+            },
+            domProps: {
+              value: _vm.filterModel[_vm.valueField],
+              checked: _vm.isChecked
             },
             on: { click: _vm.toggleFilter }
-          },
-          [_vm._v("\n    " + _vm._s(_vm.filterModel[_vm.labelField]))]
-        ),
+          }),
+          _vm._v(" "),
+          _c("span", [_vm._v(_vm._s(_vm.filterModel[_vm.labelField]))])
+        ]),
         _vm._v(" "),
         _c(
           "span",
@@ -12759,29 +12753,22 @@ var render = function() {
         )
       ])
     : _c("li", [
-        _c("input", {
-          staticClass: "filter-option-checkbox",
-          attrs: {
-            type: "checkbox",
-            id: "f-" + _vm.filterType + "-" + _vm.filterModel[_vm.valueField]
-          },
-          domProps: {
-            value: _vm.filterModel[_vm.valueField],
-            checked: _vm.isChecked
-          }
-        }),
-        _vm._v(" "),
-        _c(
-          "label",
-          {
-            staticClass: "filter-option-label",
+        _c("label", { staticClass: "filter-option-label" }, [
+          _c("input", {
+            staticClass: "checkbox",
             attrs: {
-              for: "f-" + _vm.filterType + "-" + _vm.filterModel[_vm.valueField]
+              type: "checkbox",
+              id: "f-" + _vm.filterType + "-" + _vm.filterModel[_vm.valueField]
+            },
+            domProps: {
+              value: _vm.filterModel[_vm.valueField],
+              checked: _vm.isChecked
             },
             on: { click: _vm.toggleFilter }
-          },
-          [_vm._v("\n    " + _vm._s(_vm.filterModel[_vm.labelField]) + "\n  ")]
-        )
+          }),
+          _vm._v(" "),
+          _c("span", [_vm._v(_vm._s(_vm.filterModel[_vm.labelField]))])
+        ])
       ])
 }
 var staticRenderFns = []

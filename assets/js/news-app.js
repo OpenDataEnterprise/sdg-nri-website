@@ -11779,25 +11779,21 @@ __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */].use(__WEBPACK_IMPORTED_MODU
 
 // For (re)setting filters.
 function filterSet() {
-  return {
+  const filterSet = {
     country: {},
     language: {},
     tags: {},
     topic: {},
     type: {}
   };
+
+  return filterSet;
 };
 
 // Create namespaced state storage for filters.
 const filterModule = {
   state: {
-    selectedFilters: {
-      country: {},
-      language: {},
-      tags: {},
-      topic: {},
-      type: {}
-    }
+    selectedFilters: filterSet()
   },
   mutations: {
     activateFilter: function (state, filter) {
@@ -11830,7 +11826,7 @@ const filterModule = {
       }
     },
     clearAllFilters: function (state) {
-      __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */].set(state.selectedFilters, filterSet());
+      __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */].set(state, 'selectedFilters', filterSet());
     }
   }
 };

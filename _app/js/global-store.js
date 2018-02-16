@@ -5,25 +5,21 @@ Vue.use(Vuex);
 
 // For (re)setting filters.
 function filterSet () {
-  return {
+  const filterSet = {
     country: {},
     language: {},
     tags: {},
     topic: {},
-    type: {},
+    type: {}
   };
+
+  return filterSet;
 };
 
 // Create namespaced state storage for filters.
 const filterModule = {
   state: {
-    selectedFilters: {
-      country: {},
-      language: {},
-      tags: {},
-      topic: {},
-      type: {},
-    },
+    selectedFilters: filterSet(),
   },
   mutations: {
     activateFilter: function (state, filter) {
@@ -56,7 +52,7 @@ const filterModule = {
       }
     },
     clearAllFilters: function (state) {
-      Vue.set(state.selectedFilters, filterSet());
+      Vue.set(state, 'selectedFilters', filterSet());
     },
   },
 };

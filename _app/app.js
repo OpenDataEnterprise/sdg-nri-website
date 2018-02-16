@@ -36,7 +36,7 @@ Vue.component('search-bar', SearchBar);
     },
     computed: {
       selectedFilters: function () {
-        return store.state.filters.selectedFilters;
+        return this.$store.state.filters.selectedFilters;
       },
     },
     methods: {
@@ -54,7 +54,12 @@ Vue.component('search-bar', SearchBar);
 
         for (let i = 0; i < categoryCount; ++i) {
           const category = categories[i];
-          const selectedOptions = Object.keys(this.selectedFilters[category]);
+
+          let selectedOptions = [];
+          if (category in this.selectedFilters) {
+            selectedOptions = Object.keys(this.selectedFilters[category]);
+          }
+
           const selectedOptionsCount = selectedOptions.length;
 
           // Skip filters with no values.
@@ -155,7 +160,6 @@ Vue.component('search-bar', SearchBar);
         Vue.set(self.filterOptions, 'language', languages);
         Vue.set(self.filterOptions, 'topic', topics);
         Vue.set(self.filterOptions, 'type', content_types);
-        console.log(self);
       });
 
       self.isLoading = false;
