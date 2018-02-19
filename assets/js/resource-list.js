@@ -11510,6 +11510,13 @@ var index_esm = {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["a"] = ({
   props: {
@@ -11996,16 +12003,22 @@ var render = function() {
                   }
                 }
               },
-              [
-                _c("i", {
-                  staticClass: "fa fa-times",
-                  attrs: { "aria-hidden": "true" }
-                }),
-                _vm._v(_vm._s(tag) + "\n    ")
-              ]
+              [_vm._m(0, true), _vm._v(" "), _c("span", [_vm._v(_vm._s(tag))])]
             )
           })
         )
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.resources.length === 0
+      ? _c("div", [
+          _c("div", { staticClass: "no-results-heading" }, [
+            _vm._v("No results.")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "no-results-message" }, [
+            _vm._v("Try narrowing your search or view all resources.")
+          ])
+        ])
       : _vm._e(),
     _vm._v(" "),
     _c(
@@ -12077,7 +12090,21 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "object",
+      {
+        staticClass: "close-icon",
+        attrs: { type: "image/svg+xml", data: "/assets/img/close-icon.svg" }
+      },
+      [_c("img", { attrs: { src: "/assets/img/close-icon@2x.png" } })]
+    )
+  }
+]
 render._withStripped = true
 var esExports = { render: render, staticRenderFns: staticRenderFns }
 /* harmony default export */ __webpack_exports__["a"] = (esExports);
