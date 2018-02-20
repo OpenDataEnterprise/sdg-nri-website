@@ -1,15 +1,15 @@
 <template>
 <li v-if="isExpandable">
-  <input
-    class="filter-option-checkbox"
-    type="checkbox"
-    v-bind:id="'f-' + filterType + '-' + filterModel[valueField]"
-    v-bind:value="filterModel[valueField]"
-    v-bind:checked="isChecked">
-  <label class="filter-option-label"
-    v-bind:for="'f-' + filterType + '-' + filterModel[valueField]"
-    v-on:click="toggleFilter">
-    {{ filterModel[labelField] }}</label>
+  <label class="filter-option-expandable-label">
+    <input
+      class="checkbox"
+      type="checkbox"
+      v-bind:id="'f-' + filterType + '-' + filterModel[valueField]"
+      v-bind:value="filterModel[valueField]"
+      v-bind:checked="isChecked"
+      v-on:click="toggleFilter">
+    <span>{{ filterModel[labelField] }}</span>
+  </label>
   <span class="filter-expansion-indicator"
     v-on:click="toggle">[{{ expanded ? '-' : '+' }}]</span>
   <ul class="filter-list" v-show="expanded">
@@ -27,16 +27,15 @@
   </ul>
 </li>
 <li v-else>
-  <input
-    class="filter-option-checkbox"
-    type="checkbox"
-    v-bind:id="'f-' + filterType + '-' + filterModel[valueField]"
-    v-bind:value="filterModel[valueField]"
-    v-bind:checked="isChecked">
-  <label class="filter-option-label"
-    v-bind:for="'f-' + filterType + '-' + filterModel[valueField]"
-    v-on:click="toggleFilter">
-    {{ filterModel[labelField] }}
+  <label class="filter-option-label">
+    <input
+      class="checkbox"
+      type="checkbox"
+      v-bind:id="'f-' + filterType + '-' + filterModel[valueField]"
+      v-bind:value="filterModel[valueField]"
+      v-bind:checked="isChecked"
+      v-on:click="toggleFilter">
+    <span>{{ filterModel[labelField] }}</span>
   </label>
 </li>
 </template>
@@ -100,6 +99,8 @@ export default {
       }
     },
     toggleFilter: function () {
+      console.log('toggleFilter called');
+
       const selectedFilters = this.selectedFilters[this.filterType];
       const filter = {
         value: this.filterValue,
@@ -152,7 +153,7 @@ export default {
 
       if (selectedFilters[this.filterValue]
         && this.childField in this.filterModel
-        && this.filterModel[this.childField]) {
+        && this.filterModel[this.childField].length > 0) {
         const children = this.filterModel[this.childField];
         const childCount = children.length;
 

@@ -5,9 +5,14 @@
     <li class="subject-tag"
       v-for="(item, tag) in tags"
       v-on:click="tagDeselect(tag)">
-      <i class="fa fa-times" aria-hidden="true"></i>{{ tag }}
+      <span class="icon-close" aria-hidden="true"></span>
+      <span>{{ tag }}</span>
     </li>
   </ul>
+  <div v-if="resources.length === 0">
+    <div class="no-results-heading">No results.</div>
+    <div class="no-results-message">Try narrowing your search or view all resources.</div>
+  </div>
   <ul class="resource-list">
     <li class="resource-list-item" v-for="(resource, index) in resources" tabindex="0">
       <article class="resource-card">

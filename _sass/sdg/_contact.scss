@@ -10,18 +10,6 @@ $tab-border-width: 2px;
   background-color: darken(rgba(255, 255, 255, 1), 10%);
 }
 
-.tab-input {
-  position: fixed;
-  opacity: 0;
-
-  &:checked + .tab-label {
-    z-index: 3;
-    border: $tab-border-width solid $ui-dark-blue;
-    border-bottom: none;
-    background-color: rgba(255, 255, 255, 1);
-  }
-}
-
 .tab-label {
   display: inline-block;
   position: relative;
@@ -36,13 +24,28 @@ $tab-border-width: 2px;
     cursor: pointer;
   }
 
+  &.active-tab {
+    z-index: 3;
+    border: $tab-border-width solid $ui-dark-blue;
+    border-bottom: none;
+    background-color: rgba(255, 255, 255, 1);
+  }
+
+  a {
+    color: $ui-dark-blue;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
   span {
     display: inline-block;
     vertical-align: middle;
   }
 }
 
-.tab-label[for=contact-us-tab] {
+.contact-tab {
   $tab-border-color: $ui-blue;
   margin-right: 1rem;
   border-top: $tab-border-width solid $tab-border-color;
@@ -52,7 +55,7 @@ $tab-border-width: 2px;
   background-color: $tab-border-color;
 }
 
-.tab-label[for=submit-resource-tab] {
+.resource-tab {
   $tab-border-color: $ui-yellow;
   border-top: $tab-border-width solid $tab-border-color;
   border-left: $tab-border-width solid $tab-border-color;
@@ -61,33 +64,11 @@ $tab-border-width: 2px;
   background-color: $tab-border-color;
 }
 
-.envelope-icon {
-  height: 0.9rem;
-  width: 1.5rem;
-}
-
-.paperclip-icon {
-  height: 1.25rem;
-  width: 1.25rem;
-}
-
-.envelope-icon,
-.paperclip-icon {
-  vertical-align: middle;
-}
-
 .tab-content {
-  display: none;
   position: relative;
   z-index: 2;
   padding: 1.5em 0 0;
   border-top: $tab-border-width solid $ui-dark-blue;
-}
-
-#contact-us-tab:checked ~ #contact-us,
-#contact-us-tab:checked ~ #contact-us,
-#submit-resource-tab:checked ~ #submit-resource {
-  display: block;
 }
 
 .contact-form-wrapper {

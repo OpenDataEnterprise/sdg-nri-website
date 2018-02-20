@@ -20,24 +20,25 @@
 }
 
 .site-nav-wrapper {
-  margin: 2em;
+  margin: 2rem;
   @extend %clearfix;
 }
 
 .site-title {
   display: inline-block;
-  transform: translateY(0.25em);
+  transform: translateY(0.25rem);
 }
 
 .site-title-stripe {
   display: block;
-  width: 23.3em;
-  margin-bottom: 0.3em;
+  max-height: 3rem;
+  width: 100%;
+  margin-bottom: 0.3rem;
 }
 
 .site-title-heading {
   font-family: Oswald;
-  font-size: 1.625em;
+  font-size: 1.625rem;
 }
 
 .site-nav {

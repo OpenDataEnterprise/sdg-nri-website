@@ -1,12 +1,10 @@
 .pagination {
-  $base-border-color: rgba(0, 0, 0, 1);
   $base-border-radius: 3px !default;
   $base-spacing: 1.5em !default;
   $action-color: #477DCA !default;
-  $dark-gray: #333 !default;
   $large-screen: 53.75em !default;
-  $base-font-color: $dark-gray !default;
-  $pagination-border-color: $base-border-color;
+  $base-font-color: $ui-dark-blue !default;
+  $pagination-border-color: $ui-blue;
   $pagination-border: 1px solid $pagination-border-color;
   $pagination-background: rgba(220, 220, 220, 1);
   $pagination-hover-background: lighten($pagination-background, 5);
@@ -29,7 +27,7 @@
     li a {
       display: inline-block;
       border: $pagination-border;
-      padding: 1.2em;
+      padding: 0.9rem 1rem;
       line-height: 0.8em;
       color: $pagination-color;
       outline: none;

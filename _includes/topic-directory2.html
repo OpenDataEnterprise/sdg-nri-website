@@ -1,6 +1,8 @@
 <nav class="topic-directory">
   <div class="topic-directory-header">
-    <img class="topic-directory-heading-stripe" src="/assets/img/stripe.jpg">
+    <object class="topic-directory-heading-stripe" type="image/svg+xml" data="/assets/img/color-bar.svg">
+      <img src="/assets/img/color-bar.png">
+    </object>
     <h1 class="topic-directory-heading">Explore Resources by Topic</h1>
   </div>
   <div class="topic-directory-body">
@@ -8,7 +10,10 @@
       {% for topic in site.data.nested_topics %}
       <li class="topic">
         <h2 class="topic-heading">
-          <a href="/topic/{{ topic.tag }}">{{ topic.label }}</a>
+          <a href="/topic/{{ topic.tag }}">
+            <span>{{ topic.label }}</span>
+            <span class="icon-blue-arrow" aria-hidden="true"></span>
+          </a>
         </h2>
         {% if topic.subtopics %}
         <ul>
@@ -22,5 +27,9 @@
       </li>
       {% endfor %}
     </ul>
+    <a class="submit-resource-button button" href="/submit-resource/">
+      <span class="icon-paperclip" aria-hidden="true"></span>
+      <span>SUBMIT A RESOURCE</span>
+    </a>
   </div>
 </nav>

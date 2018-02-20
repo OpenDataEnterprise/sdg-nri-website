@@ -18,15 +18,30 @@ topic-js: true
     {% include topic-sidebar.html %}
 
     <div class="topic-content">
-      {% assign heading = site.data.topics | where: "tag", page.title | first %}
+      {% assign currentTopic = site.data.topics | where: 'tag', page.title | first %}
 
-      <h2 class="topic-section-heading">{{ heading.label | upcase }}</h2>
-      <p class="topic-description">
+      <h2 class="topic-heading">{{ currentTopic.label }}</h2>
 
-      <h2 class="topic-section-heading">{{ "Resources" | upcase }}</h2>
+      <p class="topic-description"></p>
+
+      <h2 class="topic-section-heading">{{ 'Resources' | upcase }}</h2>
       <ul is="resource-list"
         :resources="resources"
         :total-results="pagination.totalResults"></ul>
+
+      {% assign nextTopic = '' %}
+      {% for topic in site.data.topics %}
+      {% if topic.label == currentTopic.label %}
+      {% if forloop.index != site.data.topics.size %}
+      {% assign nextTopic = site.data.topics[forloop.index] %}
+      {% endif %}
+      {% endif %}
+      {% endfor %}
+
+      {% if nextTopic != '' %}
+      <h2 class="topic-section-heading">{{ 'Next Section' | upcase }}</h2>
+      <a class="next-section-link" href="/topic/{{ nextTopic.tag }}">{{ nextTopic.label }}</a>
+      {% endif %}
     </div>
 
 </div>

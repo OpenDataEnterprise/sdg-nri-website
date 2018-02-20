@@ -27,7 +27,6 @@ body {
        -o-font-feature-settings: "kern" 1;
           font-feature-settings: "kern" 1;
   font-kerning: normal;
-  letter-spacing: 0.03em;
 }
 
 
@@ -75,9 +74,13 @@ li {
  * Headings
  */
 h1, h2, h3, h4, h5, h6 {
-  font-weight: 400;
+  font-weight: 500;
 }
 
+%heading {
+  color: $ui-dark-blue;
+  font-weight: 700;
+}
 
 
 /**
@@ -97,20 +100,12 @@ a {
   text-decoration: none;
 
   &:visited {
-    color: darken($brand-color, 15%);
+    color: $brand-color;
   }
 
   &:hover {
     color: $text-color;
-    text-decoration: underline;
-  }
-
-  .social-media-list &:hover {
     text-decoration: none;
-
-    .username {
-      text-decoration: underline;
-    }
   }
 }
 

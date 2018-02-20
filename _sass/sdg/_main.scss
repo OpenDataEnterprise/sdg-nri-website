@@ -1,3 +1,34 @@
+/**
+ * Icons
+ */
+.dropdown-icon {
+  height: 0.45rem;
+  width: 0.75rem;
+}
+
+.feature-icon {
+  width: 100%;
+  max-width: 31.250em;
+  margin-bottom: 1.5em;
+  object-fit: cover;
+}
+
+.envelope-icon {
+  height: 0.9rem;
+  width: 1.5rem;
+}
+
+.paperclip-icon {
+  height: 1.25rem;
+  width: 1.25rem;
+}
+
+.dropdown-icon,
+.envelope-icon,
+.paperclip-icon {
+  vertical-align: middle;
+}
+
 .under-construction-warning {
   background-color: rgba(255, 255, 255, 0.25);
   color: #fff;
@@ -8,46 +39,51 @@
 .button {
   display: inline-block;
   border: none;
-  padding: 0.75em 1.5em;
+  padding: 0.5rem 1.5rem;
   text-align: center;
-  color: rgba(255, 255, 255, 1);
+  color: $ui-dark-blue;
   font-family: Oswald;
-  font-size: 1em;
-  letter-spacing: .05em;
+  font-size: 1rem;
+  letter-spacing: .05rem;
   text-transform: uppercase;
   background-color: $ui-blue;
 
   &:hover {
-    background-color: lighten(rgba(52, 168, 252, 1), 10%);
+    background-color: lighten($ui-blue, 10%);
+  }
+
+  &:visited {
+    color: $ui-dark-blue;
   }
 }
 
 .banner {
   box-sizing: border-box;
-  height: 26em;
+  height: 26rem;
   background-color: rgba(220, 220, 220, 1);
   font-family: Lato;
   text-align: center;
 }
 
 .heading-stripe {
-  width: 17.6em;
+  width: 17.6rem;
 }
 
 .banner-heading {
-  font-size: 4em;
+  color: rgb(255, 255, 255);
+  font-size: 5rem;
+  text-shadow: 3px 3px 0 rgba(2,11,79,0.5);
 }
 
 .main-banner {
-  padding: 8em;
-  min-height: 42em;
+  padding: 8rem;
+  min-height: 42rem;
   background-image: url('/assets/img/banner_background.jpg');
   background-size: cover;
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-position: center;
   font-weight: 400;
-  color: rbga(255, 255, 255, 1);
 }
 
 .directory-banner,
@@ -55,7 +91,7 @@
   position: relative;
 
   .banner-heading {
-    margin-bottom: 0.2em;
+    margin-bottom: 0.2rem;
   }
 }
 
@@ -71,7 +107,7 @@
 }
 
 .banner-stripe {
-  width: 35em;
+  width: 35rem;
 }
 
 .banner-heading {
@@ -79,7 +115,7 @@
 }
 
 .banner-text {
-  font-size: 3em;
+  font-size: 3rem;
   letter-spacing: 0.02em;
   line-height: 1.4em;
   color: #fdfdfd;
@@ -87,7 +123,7 @@
 }
 
 .banner-search {
-  margin-top: 3em;
+  margin-top: 3rem;
 
   input[type=search] {
     background-color: rgba(255, 255, 255, 0.6);
@@ -96,24 +132,16 @@
   }
 }
 
-.learn-more-call {
-  color: #fff;
-  font-size: 2em;
-  line-height: 2em;
-  text-align: center;
-}
-
 .intro-section {
   box-sizing: border-box;
-  padding: 5em 10em;
+  padding: 5rem 10rem;
   text-align: center;
   font-family: Lato;
 }
 
 .intro-text {
-  margin: 0 1em 1em;
-  font-size: 1.8em;
-  letter-spacing: 0.02em;
+  margin-bottom: 1.8rem;
+  font-size: 1.8rem;
   color: #020b4f;
 
   a {
@@ -124,121 +152,140 @@
   }
 }
 
-.offering-text {
-  margin-bottom: 3em;
-}
-
 .feature-list {
-  $single-grid: (
-    columns: 12,
-    gutter: 0,
-    media: 320px,
-  );
-
-  $full-grid: (
-    columns: 12,
-    gutter: 0,
-    media: 1080px,
-  );
-
   box-sizing: border-box;
-  margin-bottom: 1.2em;
+  margin-bottom: 1.2rem;
   padding: 0;
-  overflow: hidden;
-  text-align: center;
+  text-align: left;
   list-style: none;
-
-  .feature {
-    @include grid-media($single-grid) {
-      @include grid-column(12);
-    }
-
-    @include grid-media($full-grid) {
-      @include grid-column(4);
-    }
-
-    a {
-      color: rgba(0, 0, 0, 1);
-    }
-
-    a:hover {
-      color: rgba(0, 0, 0, 0.5);
-      text-decoration: none;
-    }
-  }
-
-  .feature-icon {
-    width: 100%;
-    max-width: 31.250em;
-    margin-bottom: 1.5em;
-    object-fit: cover;
-  }
-
-  .feature-description-header {
-    margin-bottom: 1rem;
-    font-family: Oswald;
-    font-size: 1.75em;
-    text-transform: uppercase;
-  }
-
-  .feature-description {
-    padding: 0 1.2em;
-    font-size: 1.125em;
-  }
 }
 
-.learn-more-section,
+.feature {
+  display: flex;
+  width: 100%;
+  align-items: center;
+
+  &:not(:last-child) {
+    margin-bottom: 2.5rem;
+  }
+
+  a {
+    color: rgba(0, 0, 0, 1);
+  }
+
+  a:hover {
+    color: rgba(0, 0, 0, 0.5);
+    text-decoration: none;
+  }
+
+  @extend %clearfix;
+}
+
+.feature-description-header {
+  margin-bottom: 0.5rem;
+  color: $ui-dark-blue;
+  font-family: Oswald;
+  font-size: 2em;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.feature-image {
+  width: 11rem;
+  margin-left: 3rem;
+}
+
+.who-we-serve-section,
 .submit-resource-section {
-  padding: 5rem 12rem;
+  padding: 5rem 10rem;
+  background-color: rgb(22, 45, 122);
+  background-image: url('/assets/img/blue-texture-background@2x.png');
   text-align: center;
+  color: rgb(255, 255, 255);
 }
 
-.learn-more-section {
-  background-color: rgba(45, 45, 45, 1);
-  color: rgba(255, 255, 255, 1);
-}
-
-.submit-resource-section {
-  background-color: rgba(220, 220, 220, 1);
-}
-
-.learn-more-stripe {
+.who-we-serve-stripe {
   display: block;
-  width: 9.5rem;
+  width: 13.35rem;
+  height: 0.25rem;
   margin: 0 auto 1rem;
 }
 
-.learn-more-heading,
+.who-we-serve-section-heading,
 .submit-resource-heading {
   font-family: Oswald;
-  font-size: 2rem;
+  font-weight: 500;
 }
 
-.learn-more-heading {
+.who-we-serve-section-heading {
   margin-bottom: 2rem;
+  font-size: 2.25rem;
 }
 
 .submit-resource-heading {
   margin-bottom: 1rem;
 }
 
-.learn-more-content,
-.submit-resource-content {
+.who-we-serve-section-content {
+  font-size: 1.75rem;
+}
+
+.who-we-serve-section-subtext {
+  font-size: 1.25rem;
+  font-weight: 300;
+}
+
+.who-we-serve-list {
+  margin: 0 4rem;
+  text-align: left;
+  font-weight: 300;
+}
+
+.who-we-serve-item {
+  margin-bottom: 3rem;
+}
+
+.who-we-serve-item-heading {
+  font-family: "Oswald";
+  font-size: 1.5rem;
+  letter-spacing: 0.0625rem;
+}
+
+.who-we-serve-item-link {
+  color: rgb(183, 234, 255);
+
+  .icon-blue-arrow {
+    margin-left: 0.5rem;
+
+    &::before {
+      color: rgb(183,234,255);
+    }
+  }
+}
+
+.who-we-serve-section-content,
+.submit-resource-content,
+.who-we-serve-section-subtext {
   margin-bottom: 2rem;
+}
+
+.who-we-serve-item-heading,
+.who-we-serve-item-description,
+.who-we-serve-item-link {
+  margin-bottom: 0.5rem;
 }
 
 .contact-us-button,
 .submit-resource-button,
 .banner-submit-resource-button {
   margin: 0 auto;
-
-  &:visited {
-    color: rgba(255, 255, 255, 1);
-  }
+  background-color: $ui-yellow;
+  color: $ui-dark-blue;
 
   &:hover {
-    color: rgba(255, 255, 255, 1);
+    background-color: lighten($ui-yellow, 10%);
     text-decoration: none;
+    color: $ui-dark-blue;
   }
 }
 

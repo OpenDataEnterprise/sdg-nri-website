@@ -6,7 +6,9 @@
     {% assign default_paths = site.pages | sort: "navigation_weight" | map: "path" %}
     {% assign page_paths = site.header_pages | default: default_paths %}
     <div class="site-title">
-      <img class="site-title-stripe" src="/assets/img/stripe.jpg">
+      <object class="site-title-stripe" type="image/svg+xml" data="/assets/img/full-color-bar.svg">
+        <img src="/assets/img/full-color-bar.png">
+      </object>
       <a class="site-title-heading" href="{{ "/" | relative_url }}">{{ site.title | upcase }}</a>
     </div>
 
@@ -25,7 +27,10 @@
 
         <div class="trigger">
           <div class="topics-dropdown dropdown">
-            <div class=" dropdown-button">Explore Topics</div>
+            <div class="dropdown-button">
+              <span>Explore Topics</span>
+              <span class="icon-dropdown" aria-hidden="true"></span>
+            </div>
             <div class="topics-dropdown-menu dropdown-content">
               {% include topic-directory.html %}
             </div>
@@ -33,7 +38,7 @@
           {% for path in page_paths %}
             {% assign my_page = site.pages | where: "path", path | first %}
             {% if my_page.title %}
-            {% if my_page.url == page.url %}
+            {% if my_page.title == page.title %}
             <a class="page-link active" href="{{ my_page.url | relative_url }}">{{ my_page.title | escape }}</a>
             {% else %}
             <a class="page-link" href="{{ my_page.url | relative_url }}">{{ my_page.title | escape }}</a>

@@ -1,16 +1,22 @@
 <nav class="topic-nav-sidebar">
   <ul>
-    <li class="nav-topic" v-for="topic in topics">
-      <h1 class="nav-topic-heading" :class="{ 'active-nav-topic': isActive(topic.tag) }">
-        <a :href="'/topic/' + (( topic.tag ))">(( topic.label ))</a>
+    {% for topic in site.data.nested_topics %}
+    <li class="nav-topic">
+      <h1 class="nav-topic-heading">
+        <a href="/topic/{{ topic.tag }}">{{ topic.label }}</a>
       </h1>
-      <ul v-if="topic.subtopics">
-        <li class="nav-subtopic" v-for="subtopic in topic.subtopics">
-          <h2 class="nav-subtopic-heading" :class="{ 'active-nav-topic': isActive(subtopic.tag) }">
-            <a :href="'/topic/' + (( subtopic.tag ))">(( subtopic.label ))</a>
+      {% if topic.subtopics.size > 0 %}
+      <ul>
+        {% for subtopic in topic.subtopics %}
+        <li class="nav-subtopic">
+          <h2 class="nav-subtopic-heading">
+            <a href="/topic/{{ subtopic.tag }}">{{ subtopic.label }}</a>
           </h2>
         </li>
+        {% endfor %}
       </ul>
+      {% endif %}
     </li>
+    {% endfor %}
   </ul>
 </nav>

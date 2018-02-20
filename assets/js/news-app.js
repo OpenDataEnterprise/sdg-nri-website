@@ -10255,7 +10255,7 @@ Vue$3.compile = compileToFunctions;
 
 
 var config = {
-  apiPath: 'https://sdg-prototype.herokuapp.com/api/v1/'
+  apiPath: 'http://localhost:3000/api/v1/'
 };
 
 module.exports = config;

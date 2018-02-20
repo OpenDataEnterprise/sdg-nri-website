@@ -79,7 +79,7 @@ $gutter: 1.2em;
 
 .filters-heading {
   padding-bottom: 0.75em;
-  border-bottom: 1px solid;
+  border-bottom: 1px solid $ui-light-gray;
   font-family: Oswald;
 }
 
@@ -97,13 +97,20 @@ $gutter: 1.2em;
   }
 }
 
-.filter-update,
-.filter-clearall {
+.filter-clear-all {
   width: 100%;
+  margin-top: 1rem;
+  border: 1px solid $ui-blue;
   padding: 0.75em;
+  text-align: center;
+  color: $ui-dark-blue;
   font: inherit;
   font-family: Oswald;
-  text-align: center;
+
+  object,
+  span {
+    vertical-align: middle;
+  }
 }
 
 .filter-update {
@@ -113,28 +120,24 @@ $gutter: 1.2em;
   color: #fff;
 }
 
-.filter-clearall {
-  margin-top: 1rem;
-  border: 1px solid rgba(220, 220, 220, 1);
-  color: #000;
-}
-
 .item {
   margin-left: 1em;
 }
 
 .filter-handle {
   box-sizing: border-box;
-  border-bottom: 1px solid;
+  border-bottom: 1px solid $ui-light-gray;
   padding: 1em 0;
   transition: border-color;
   cursor: pointer;
 
   &:after {
     float: right;
-    font-family: FontAwesome;
-    content: "\f067";
-    transform: translateY(15%)
+    color: $ui-blue;
+    font-family: "SDG NRI Icons";
+    font-weight: 900;
+    content: "\e90e";
+    transform: translateY(25%)
   }
 
   &.active {
@@ -142,66 +145,52 @@ $gutter: 1.2em;
   }
 
   &.active:after {
-    content: "\f068";
+    content: "\e90a";
   }
-
-  /*&.active,
-  &:focus,
-  &:hover {
-    background-color: rgba(200, 200, 200, 0.7);
-    border-color: darken($base-border-color, 10%);
-  }*/
 }
 
 .filter-label {
   display: inline;
+  color: $ui-dark-blue;
 }
 
 .filter-list {
   margin: 0;
-  background-color: rgba(255, 255, 255, 0.75);
 
   & .filter-list {
-    margin-left: 1.5rem;
+    margin-left: 1.8rem;
   }
-}
-
-.filter-option {
-  padding: 0.1em 0;
-}
-
-/*.filter-option-checkbox {
-  width: 1.2rem;
-  height: 1.2rem;
-  margin: 0 0.25em 0 0;
-  border: 0.1rem solid #000;
-  cursor: pointer;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-}*/
-
-.filter-option-checkbox {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  cursor: pointer;
-}
-
-.filter-option-checkbox + label:before {
-  display: inline-block;
-  font-family: FontAwesome;
-  letter-spacing: 0.45rem;
-  content: "\f096";
-}
-
-.filter-option-checkbox:checked + label:before {
-  letter-spacing: 0.3rem;
-  content: "\f046";
 }
 
 .filter-expansion-indicator {
   float: right;
+}
+
+.filter-option {
+  padding-bottom: 0.8rem;
+}
+
+.filter-option-label {
+  @extend .checkbox-label;
+
+  span {
+    font-size: 1rem;
+  }
+}
+
+.filter-option-expandable-label {
+  @extend .checkbox-label;
+
+  margin-bottom: 0.8rem;
+
+  span {
+    font-size: 1.5rem;
+  }
+}
+
+.close-icon {
+  height: 0.7rem;
+  width: 0.7rem;
 }
 
 .hide-options {

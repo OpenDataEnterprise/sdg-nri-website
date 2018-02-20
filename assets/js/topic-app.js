@@ -10255,7 +10255,7 @@ Vue$3.compile = compileToFunctions;
 
 
 var config = {
-  apiPath: 'https://sdg-prototype.herokuapp.com/api/v1/'
+  apiPath: 'http://localhost:3000/api/v1/'
 };
 
 module.exports = config;
@@ -10514,8 +10514,6 @@ exports.clearImmediate = typeof self !== "undefined" && self.clearImmediate || t
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-//
-//
 //
 //
 //
@@ -10971,7 +10969,14 @@ var render = function() {
                   }
                 }
               },
-              [_vm._m(0, true), _vm._v(" "), _c("span", [_vm._v(_vm._s(tag))])]
+              [
+                _c("span", {
+                  staticClass: "icon-close",
+                  attrs: { "aria-hidden": "true" }
+                }),
+                _vm._v(" "),
+                _c("span", [_vm._v(_vm._s(tag))])
+              ]
             )
           })
         )
@@ -11058,21 +11063,7 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "object",
-      {
-        staticClass: "close-icon",
-        attrs: { type: "image/svg+xml", data: "/assets/img/close-icon.svg" }
-      },
-      [_c("img", { attrs: { src: "/assets/img/close-icon@2x.png" } })]
-    )
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 var esExports = { render: render, staticRenderFns: staticRenderFns }
 /* harmony default export */ __webpack_exports__["a"] = (esExports);

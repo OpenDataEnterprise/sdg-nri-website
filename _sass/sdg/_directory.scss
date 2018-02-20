@@ -70,7 +70,7 @@ aside.contribute-resource-call-out {
 .resource-languages-label,
 .resource-tags-label {
   display: inline-block;
-  min-width: 6em;
+  min-width: 6rem;
 }
 
 .resource-languages,
@@ -88,17 +88,18 @@ aside.contribute-resource-call-out {
   margin: 0;
 }
 
-.language-tag,
 .subject-tag {
   display: inline-block;
   margin: 0 0.3rem 0.3rem 0;
-  padding: 0.5em;
+  padding: 0.3rem 0.4rem;
+  background-color: $ui-light-blue;
   line-height: 1em;
-  background-color: rgba(220, 220, 220, 1);
-}
-
-.subject-tag {
+  color: $ui-dark-blue;
   cursor: pointer;
+
+  .icon-close {
+    font-size: 0.7rem;
+  }
 }
 
 .resource-list-module {
@@ -146,9 +147,9 @@ aside.contribute-resource-call-out {
   display: flex;
   box-sizing: border-box;
   padding: 0;
-  border-bottom: 1px solid;
+  border-bottom: 1px solid $ui-light-gray;
   background-color: #fff;
-  font-size: 1.2em;
+  font-size: 1.2rem;
   text-decoration: none;
   overflow: hidden;
   outline: none;
@@ -157,9 +158,9 @@ aside.contribute-resource-call-out {
 
 .resource-image {
   float: right;
-  height: 10em;
-  width: 13em;
-  margin: 0 0 2em 2em;
+  height: 10rem;
+  width: 13rem;
+  margin: 0 0 2rem 2rem;
   border: 1px solid;
   object-fit: cover;
 }
@@ -361,4 +362,9 @@ aside.contribute-resource-call-out {
 
 .subject-tabs .tab-content {
   min-height: 35em;
+}
+
+.no-results-heading {
+  color: $ui-dark-blue;
+  font-size: 2rem;
 }
