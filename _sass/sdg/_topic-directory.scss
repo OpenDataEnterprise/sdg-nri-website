@@ -52,7 +52,7 @@
   margin-bottom: 1.6rem;
 }
 
-.topic-heading {
+.topic-page-heading {
   margin-bottom: 1.5rem;
   color: $ui-dark-blue;
   font-size: 3.375rem;
@@ -65,7 +65,7 @@
   font-size: 2.5rem;
 }
 
-.topic-content {
+.topic-page-content {
   border-top: 0.25rem solid $ui-blue;
 
   @include grid-column(2, $col-3);
@@ -105,12 +105,19 @@
   font-weight: 200;
 }
 
+.topic-heading {
+  color: $ui-dark-blue;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
 .nav-topic-heading {
   padding: 0.3rem 0;
   font-size: 1.5rem;
   font-weight: 700;
 }
 
+.subtopic,
 .nav-subtopic {
   padding: 0.5rem 0 0.5rem 1rem;
 }

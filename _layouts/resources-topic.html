@@ -17,10 +17,10 @@ topic-js: true
 
     {% include topic-sidebar.html %}
 
-    <div class="topic-content">
+    <div class="topic-page-content">
       {% assign currentTopic = site.data.topics | where: 'tag', page.title | first %}
 
-      <h2 class="topic-heading">{{ currentTopic.label }}</h2>
+      <h2 class="topic-page-heading">{{ currentTopic.label }}</h2>
 
       <p class="topic-description"></p>
 
