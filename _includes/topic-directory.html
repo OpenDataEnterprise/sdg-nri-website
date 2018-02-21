@@ -1,15 +1,15 @@
 <nav>
   <ul>
     {% for topic in site.data.nested_topics %}
-    <li>
-      <h1>
+    <li class="topics-dropdown-topic">
+      <h1 class="topics-dropdown-topic-heading">
         <a href="/topic/{{ topic.tag }}">{{ topic.label }}</a>
       </h1>
       {% if topic.subtopics %}
       <ul>
         {% for subtopic in topic.subtopics %}
-        <li>
-          <h2>
+        <li class="topics-dropdown-subtopic">
+          <h2 class="topics-dropdown-subtopic-heading">
             <a href="/topic/{{ subtopic.tag }}">{{ subtopic.label }}</a>
           </h2>
         </li>

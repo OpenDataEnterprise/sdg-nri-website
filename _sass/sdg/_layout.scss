@@ -68,14 +68,15 @@
   }
 
   .topics-dropdown-menu {
-    right: 0;
-    min-width: 30rem;
-    padding: 1.5rem;
-    border-top-width: 3px;
-    border-bottom-width: 3px;
+    box-sizing: border-box;
+    left: 0;
+    width: 100%;
+    padding: 2rem 5rem;
+    border-width: 0.25rem 0 0.25rem 0;
     border-style: solid;
-    border-color: rgba(0, 0, 0, 1);
-    column-count: 2;
+    border-color: $ui-blue;
+    background-color: $ui-light-blue;
+    column-count: 3;
 
     nav > ul > li {
       padding-bottom: 1rem;
@@ -97,6 +98,16 @@
 
     h2 {
       font-size: 1rem;
+    }
+
+    .topics-dropdown-topic {
+      -webkit-column-break-inside: avoid;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    .topics-dropdown-subtopic-heading {
+      margin-left: 1rem;
     }
   }
 

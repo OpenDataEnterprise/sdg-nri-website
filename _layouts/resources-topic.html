@@ -14,18 +14,46 @@ topic-js: true
 </header>
 
 <div id="directory" class="topic-wrapper">
+    {% assign currentTopic = site.data.topics | where: 'tag', page.topic-tag | first %}
 
-    {% include topic-sidebar.html %}
+    <nav class="topic-nav-sidebar">
+      <ul>
+        {% for topic in site.data.topics %}
+        {% if topic.path contains "." %}
+        <li class="nav-subtopic">
+          {% if topic.tag == currentTopic.tag %}
+          <h2 class="nav-subtopic-heading active-nav-topic">
+          {% else %}
+          <h2 class="nav-subtopic-heading">
+          {% endif %}
+            <a href="/topic/{{ topic.tag }}">{{ topic.label }}</a>
+          </h2>
+        </li>
+        {% else %}
+        <li class="nav-topic">
+          {% if topic.tag == currentTopic.tag %}
+          <h1 class="nav-topic-heading active-nav-topic">
+          {% else %}
+          <h1 class="nav-topic-heading">
+          {% endif %}
+            <a href="/topic/{{ topic.tag }}">{{ topic.label }}</a>
+          </h1>
+        </li>
+        {% endif %}
+        {% endfor %}
+      </ul>
+    </nav>
 
     <div class="topic-page-content">
-      {% assign currentTopic = site.data.topics | where: 'tag', page.title | first %}
 
       <h2 class="topic-page-heading">{{ currentTopic.label }}</h2>
 
-      <p class="topic-description"></p>
+      <div class="topic-description">
+        {{ content }}
+      </div>
 
       <h2 class="topic-section-heading">{{ 'Resources' | upcase }}</h2>
-      <ul is="resource-list"
+      <ul class="topic-resources" is="resource-list"
         :resources="resources"
         :total-results="pagination.totalResults"></ul>
 

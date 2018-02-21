@@ -1,0 +1,76 @@
+---
+title: News & Updates
+permalink: /news/
+navigation_weight: 2
+layout: default
+news-js: true
+---
+
+<header role="banner" class="banner news-banner">
+  <div class="banner-content">
+    <h1 class="banner-heading">News & Updates</h1>
+  </div>
+</header>
+
+<div
+  id="news-updates"
+  class="news-wrapper-2">
+
+  <div class="categories-2">
+
+    <div class="news-filters">
+      <div class="news-filters-heading">FILTER NEWS</div>
+      <div class="news-filters-controls">
+        <div class="news-filter dropdown">
+          <div class="news-filter-button dropdown-button">
+            <span>Tags</span>
+          </div>
+          <ul class="news-filter-options dropdown-content">
+            <li class="news-filter-option" v-for="tag in tags">
+              <input :if="'f-' + (( tag ))" type="checkbox" :value="(( tag ))">
+              <label :for="'f-' + (( tag ))">(( tag ))</label>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <newsfeed
+      :newsfeed="news"
+      :filter-tags="filterTags"
+      :total-results="pagination.totalResults"
+      @select-filter-tag="addTag"
+      @deselect-filter-tag="removeTag"></newsfeed>
+
+    <pagination
+      :current-page="pagination.currentPage"
+      :items-per-page="pagination.resultsPerPage"
+      :total-items="pagination.totalResults"
+      @page-changed="refresh"></pagination>
+
+  </div>
+
+  <div class="category twitter-timeline-container">
+    <h2 class="events-heading">EVENTS</h2>
+    <ul>
+      <li class="event" v-for="event in events">
+        <div class="event-header">
+          <a href="{{ event.link }}" target="_blank">(( event.title ))</a>
+        </div>
+        <div class="event-dates">
+          <span class="event-start">
+            <i class="fa fa-calendar" aria-hidden="true"></i>(( event.start_time ))
+          </span>
+          <span class="event-end" v-if="event.end_time"> - (( event.end_time ))</span>
+        </div>
+        <p class="event-description">(( event.description ))</p>
+        <i class="fa fa-map-marker" aria-hidden="true"></i>
+        <ul class="event-locations">
+          <li class="event-location" v-for="location in event.locations">(( location ))</li>
+        </ul>
+      </li>
+    </ul>
+
+  </div>
+
+</div>

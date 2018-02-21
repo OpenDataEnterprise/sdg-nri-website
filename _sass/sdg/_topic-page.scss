@@ -1,44 +1,3 @@
-.topic-directory {
-  display: block;
-  margin: 0 auto;
-  padding: 5em 8em 5em;
-  background: rgba(233, 248, 255, 1) url('/assets/img/happy_children.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: bottom;
-  text-align: center;
-}
-
-.topic-directory-header {
-  box-sizing: border-box;
-  width: 100%;
-  margin-bottom: 2em;
-  font-family: Oswald;
-  font-size: 1.5em;
-  text-align: center;
-  text-transform: uppercase;
-  color: rgba(0, 0, 0, 1);
-  transition: background 0.1s, color 0.1s;
-}
-
-.topic-directory-heading-stripe {
-  width: 27.4rem;
-  height: 0.25rem;
-  margin-bottom: 0.5rem;
-}
-
-.topic-list {
-  margin-bottom: 2rem;
-  column-count: 2;
-  text-align: left;
-  color: $ui-dark-blue;
-
-  a {
-    color: $ui-dark-blue;
-    text-decoration: none;
-  }
-}
-
 /**
  * Topic Page
  */
@@ -56,6 +15,7 @@
 
 .topic-page-heading {
   margin-bottom: 1.5rem;
+  padding-top: 0.5rem;
   color: $ui-dark-blue;
   font-size: 3.375rem;
   font-weight: 700;
@@ -80,6 +40,21 @@
   &:visited {
     color: $ui-dark-blue;  
   }
+}
+
+.topic-description {
+  p {
+    margin-bottom: 1rem;
+  }
+}
+
+.topic-description,
+.topic-resources {
+  margin-bottom: 3rem;
+}
+
+.topic-description-intro {
+  font-size: 1.5rem;
 }
 
 /**
