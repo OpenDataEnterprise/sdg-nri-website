@@ -12,15 +12,13 @@ news-js: true
   </div>
 </header>
 
-<div
-  id="news-updates"
-  class="news-wrapper-2">
+<div id="news-updates" class="news-wrapper">
 
-  <div class="categories-2">
+  <section class="news-section">
 
     <div class="news-filters">
-      <div class="news-filters-heading">FILTER NEWS</div>
-      <div class="news-filters-controls">
+      <div class="news-filters-heading">News</div>
+      <!--<div class="news-filters-controls">
         <div class="news-filter dropdown">
           <div class="news-filter-button dropdown-button">
             <span>Tags</span>
@@ -32,7 +30,7 @@ news-js: true
             </li>
           </ul>
         </div>
-      </div>
+      </div>-->
     </div>
 
     <newsfeed
@@ -40,37 +38,42 @@ news-js: true
       :filter-tags="filterTags"
       :total-results="pagination.totalResults"
       @select-filter-tag="addTag"
-      @deselect-filter-tag="removeTag"></newsfeed>
+      @deselect-filter-tag="removeTag">
+    </newsfeed>
 
     <pagination
       :current-page="pagination.currentPage"
       :items-per-page="pagination.resultsPerPage"
       :total-items="pagination.totalResults"
-      @page-changed="refresh"></pagination>
+      @page-changed="refresh">
+    </pagination>
 
-  </div>
+  </section>
 
-  <div class="category twitter-timeline-container">
-    <h2 class="events-heading">EVENTS</h2>
+  <section class="events-section">
+    <h2 class="events-heading">Events</h2>
     <ul>
       <li class="event" v-for="event in events">
-        <div class="event-header">
-          <a href="{{ event.link }}" target="_blank">(( event.title ))</a>
-        </div>
-        <div class="event-dates">
-          <span class="event-start">
-            <i class="fa fa-calendar" aria-hidden="true"></i>(( event.start_time ))
-          </span>
-          <span class="event-end" v-if="event.end_time"> - (( event.end_time ))</span>
-        </div>
-        <p class="event-description">(( event.description ))</p>
-        <i class="fa fa-map-marker" aria-hidden="true"></i>
-        <ul class="event-locations">
-          <li class="event-location" v-for="location in event.locations">(( location ))</li>
-        </ul>
+        <article class="event-card">
+          <div class="event-heading">
+            <a href="{{ event.link }}" target="_blank">(( event.title ))</a>
+          </div>
+          <div class="event-dates">
+            <span class="event-start">
+              <span class="icon-calendar" aria-hidden="true"></span>
+              <span>(( event.start_time ))</span>
+            </span>
+            <span class="event-end" v-if="event.end_time"> - (( event.end_time ))</span>
+          </div>
+          <p class="event-description">(( event.description ))</p>
+          <span class="icon-location" aria-hidden="true"></span>
+          <ul class="event-locations">
+            <li class="event-location" v-for="location in event.locations">(( location ))</li>
+          </ul>
+        </article>
       </li>
     </ul>
 
-  </div>
+  </section>
 
 </div>

@@ -13,14 +13,6 @@
   margin-bottom: 1.6rem;
 }
 
-.topic-page-heading {
-  margin-bottom: 1.5rem;
-  padding-top: 0.5rem;
-  color: $ui-dark-blue;
-  font-size: 3.375rem;
-  font-weight: 700;
-}
-
 .topic-section-heading {
   color: $ui-dark-blue;
   font-family: Oswald;
@@ -29,6 +21,18 @@
 
 .topic-page-content {
   border-top: 0.25rem solid $ui-blue;
+
+  h1 {
+    margin-bottom: 1.5rem;
+    padding-top: 0.5rem;
+    font-size: 3.375rem;
+    font-weight: 700;
+  }
+
+  h2 {
+    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+  }
 
   @include grid-column(2, $col-3);
 }

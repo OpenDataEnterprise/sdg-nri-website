@@ -6,7 +6,8 @@
       class="subject-tag"
       v-for="(item, tag) in filterTags"
       @click="tagDeselect(tag)">
-      <i class="fa fa-times" aria-hidden="true"></i>{{ tag }}
+      <span class="icon-close" aria-hidden="true"></span>
+      <span>{{ tag }}</span>
     </li>
   </ul>
   <ul class="news-feed">

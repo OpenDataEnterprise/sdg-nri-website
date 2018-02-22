@@ -1,9 +1,9 @@
-{% if page.resources-js %}
-<script defer src="/assets/js/resource-list.js"></script>
+{% if page.resources-js or layout.resources-js %}
+<script defer src="/assets/js/resources.js"></script>
 {% endif %}
-{% if page.news-js %}
-<script defer src="/assets/js/news-app.js"></script>
+{% if page.news-js or layout.news-js %}
+<script defer src="/assets/js/news.js"></script>
 {% endif %}
-{% if page.topic-js %}
-<script defer src="/assets/js/topic-app.js"></script>
+{% if page.topic-js or layout.topic-js%}
+<script defer src="/assets/js/topic.js"></script>
 {% endif %}

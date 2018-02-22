@@ -44,18 +44,25 @@ topic-js: true
       </ul>
     </nav>
 
-    <div class="topic-page-content">
-
-      <h2 class="topic-page-heading">{{ currentTopic.label }}</h2>
+    <section class="topic-page-content">
+      <h1>{{ currentTopic.label }}</h1>
 
       <div class="topic-description">
         {{ content }}
       </div>
 
-      <h2 class="topic-section-heading">{{ 'Resources' | upcase }}</h2>
+      <div class="topic-section-heading">{{ 'Resources' | upcase }}</div>
       <ul class="topic-resources" is="resource-list"
         :resources="resources"
-        :total-results="pagination.totalResults"></ul>
+        :total-results="pagination.totalResults"
+        :tag="{{ currentTopic.tag }}"></ul>
+
+      <pagination
+        v-bind:current-page="pagination.currentPage"
+        v-bind:items-per-page="pagination.resultsPerPage"
+        v-bind:total-items="pagination.totalResults"
+        v-on:page-changed="refresh">
+      </pagination>
 
       {% assign nextTopic = '' %}
       {% for topic in site.data.topics %}
@@ -65,11 +72,9 @@ topic-js: true
       {% endif %}
       {% endif %}
       {% endfor %}
-
       {% if nextTopic != '' %}
-      <h2 class="topic-section-heading">{{ 'Next Section' | upcase }}</h2>
+      <div class="topic-section-heading">{{ 'Next Section' | upcase }}</div>
       <a class="next-section-link" href="/topic/{{ nextTopic.tag }}">{{ nextTopic.label }}</a>
       {% endif %}
-    </div>
-
+    </section>
 </div>

@@ -3,9 +3,9 @@ var path = require('path');
 module.exports = (env) => {
   return {
     entry: {
-      'resource-list': path.resolve(__dirname, './_app/app.js'),
-      'news-app': path.resolve(__dirname, './_app/news.js'),
-      'topic-app': path.resolve(__dirname, './_app/topic.js')
+      'resources': path.resolve(__dirname, './_app/scripts/resources.js'),
+      'news': path.resolve(__dirname, './_app/scripts/news.js'),
+      'topic': path.resolve(__dirname, './_app/scripts/topic.js')
     },
     output: {
       path: path.resolve(__dirname, './assets/js'),

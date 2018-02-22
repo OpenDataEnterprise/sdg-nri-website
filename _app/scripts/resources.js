@@ -1,12 +1,11 @@
 import Config from 'config'; // Aliased via WebPack.
 import Vue from 'vue';
-import Vuex from 'vuex';
-import { store } from 'js/global-store';
+import { store } from 'scripts/global-store';
+import * as Utility from 'scripts/utility';
 import ResourceList from 'vue/resource-list.vue';
 import Filter from 'vue/filter.vue';
 import Pagination from 'vue/pagination.vue';
 import SearchBar from 'vue/search-bar.vue';
-import * as Utility from 'js/utility';
 
 Vue.component('search-bar', SearchBar);
 

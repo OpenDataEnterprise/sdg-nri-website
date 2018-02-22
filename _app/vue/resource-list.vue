@@ -43,9 +43,23 @@
 <script>
 export default {
   props: {
-    resources: Array,
-    tags: Object,
-    totalResults: Number,
+    resources: {
+      type: Array,
+      default: function () {
+        return [];
+      },
+    },
+    tags: {
+      type: Object,
+      required: false,
+      default: function () {
+        return {};
+      },
+    },
+    totalResults: {
+      type: Number,
+      required: true,
+    }
   },
   watch: {
     tags: function (val) {

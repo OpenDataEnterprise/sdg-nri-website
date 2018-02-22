@@ -1,10 +1,11 @@
 import Config from 'config'; // Aliased via WebPack.
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { store } from 'js/global-store';
-import NewsList from 'vue/newsfeed.vue';
+import { store } from 'scripts/global-store';
+import * as Utility from 'scripts/utility';
+import NewsFeed from 'vue/newsfeed.vue';
+import EventFeed from 'vue/event-feed.vue';
 import Pagination from 'vue/pagination.vue';
-import * as Utility from 'js/utility';
 
 (function () {
   const apiPath = Config.apiPath;
@@ -20,7 +21,7 @@ import * as Utility from 'js/utility';
         filterTags: {},
         pagination: {
           currentPage: 1,
-          resultsPerPage: 10,
+          resultsPerPage: 5,
           totalResults: 0,
         },
       };
@@ -75,7 +76,7 @@ import * as Utility from 'js/utility';
       },
     },
     components: {
-      'newsfeed': NewsList,
+      'newsfeed': NewsFeed,
       'pagination': Pagination,
     },
     created: function () {
