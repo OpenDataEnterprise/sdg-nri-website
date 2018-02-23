@@ -74,7 +74,10 @@ topic-js: true
       {% endfor %}
       {% if nextTopic != '' %}
       <div class="topic-section-heading">{{ 'Next Section' | upcase }}</div>
-      <a class="next-section-link" href="/topic/{{ nextTopic.tag }}">{{ nextTopic.label }}</a>
+      <a class="next-section-link" href="/topic/{{ nextTopic.tag }}">
+        <span>{{ nextTopic.label }}</span>
+        <span class="icon-blue-arrow" aria-hidden="true"></span>
+      </a>
       {% endif %}
     </section>
 </div>

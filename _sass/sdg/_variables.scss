@@ -2,13 +2,13 @@
 
 $site-padding: 4em 10em;
 
-$base-font-family:   "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
-$base-font-size:     16px;
-$base-font-weight:   400;
-$light-font-weight:  200;
-$strong-font-weight: 700;
-$small-font-size:    $base-font-size * 0.875;
-$base-line-height:   1.5;
+$base-font-family:   "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$base-font-size:     16px !default;
+$base-font-weight:   400 !default;
+$light-font-weight:  200 !default;
+$strong-font-weight: 700 !default;
+$small-font-size:    $base-font-size * 0.875 !default;
+$base-line-height:   1.5 !default;
 
 $standard-border-width: 2px;
 $spacing-unit:          2rem !default;
@@ -24,10 +24,10 @@ $color-dodger-blue:  rgba(52, 168, 252, 1);
 $color-stratos:      rgba(2, 11, 79, 1);
 
 // UI Element Colors
-$text-color-light:   $color-white;
-$text-color-neutral: $color-scorpion;
-$text-color-dark:    $color-stratos;
-$background-color:   $color-white;
+$text-color-light:   $color-white !default;
+$text-color-neutral: $color-scorpion !default;
+$text-color-dark:    $color-stratos !default;
+$background-color:   $color-white !default;
 
 // Width of the content area
 $content-width:    800px !default;

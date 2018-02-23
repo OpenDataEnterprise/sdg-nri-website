@@ -30,7 +30,12 @@
 }
 .icon-blue-arrow:before {
   content: "\e901";
-  color: #34a8fc;
+  color: #2c94f8;
+  font-size: 0.7em;
+}
+.icon-check:before {
+  content: "\e910";
+  color: #fff;
 }
 .icon-calendar:before {
   content: "\e902";
