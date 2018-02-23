@@ -1,0 +1,20 @@
+.privacy-policy-wrapper,
+.terms-and-conditions-wrapper {
+  padding: $site-padding;
+  font-size: 1.125rem;
+
+  h1 {
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  h2 {
+    font-size: 1.125rem;
+    font-weight: 700;
+  }
+
+  p {
+    margin-bottom: 1.125rem;
+    font-weight: 300;
+  }
+}
