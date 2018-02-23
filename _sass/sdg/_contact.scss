@@ -1,24 +1,27 @@
 $form-label-font-size: 0.85em;
-$tab-border-width: 2px;
+$tab-border-width: $standard-border-width;
+$tab-border-color: $color-stratos;
+$checkbox-border-color: $color-dodger-blue;
+$field-element-border-color: $color-dodger-blue;
 
-.tabbed {
-  padding: 4em 12em;
+.contact-page-content {
+  padding: $site-padding;
 }
 
 .tab:focus,
 .tab:hover {
-  background-color: darken(rgba(255, 255, 255, 1), 10%);
+  background-color: darken($color-white, 10%);
 }
 
 .tab-label {
-  display: inline-block;
   position: relative;
   z-index: 1;
+  display: inline-block;
   margin: 0 0 (-$tab-border-width);
   padding: 0.5rem 1rem;
+  color: $text-color-dark;
   font-family: "Oswald";
   font-size: 1.5rem;
-  color: $ui-dark-blue;
 
   &:hover {
     cursor: pointer;
@@ -26,17 +29,13 @@ $tab-border-width: 2px;
 
   &.active-tab {
     z-index: 3;
-    border: $tab-border-width solid $ui-dark-blue;
+    border: $tab-border-width solid $tab-border-color;
     border-bottom: none;
-    background-color: rgba(255, 255, 255, 1);
+    background-color: $color-white;
   }
 
-  a {
-    color: $ui-dark-blue;
-
-    &:hover {
-      text-decoration: none;
-    }
+  a:hover {
+    color: $text-color-dark;
   }
 
   span {
@@ -45,8 +44,15 @@ $tab-border-width: 2px;
   }
 }
 
+.tab-content {
+  position: relative;
+  z-index: 2;
+  padding: 1.5em 0 0;
+  border-top: $tab-border-width solid $tab-border-color;
+}
+
 .contact-tab {
-  $tab-border-color: $ui-blue;
+  $tab-border-color: $color-dodger-blue;
   margin-right: 1rem;
   border-top: $tab-border-width solid $tab-border-color;
   border-left: $tab-border-width solid $tab-border-color;
@@ -56,7 +62,7 @@ $tab-border-width: 2px;
 }
 
 .resource-tab {
-  $tab-border-color: $ui-yellow;
+  $tab-border-color: $color-saffron;
   border-top: $tab-border-width solid $tab-border-color;
   border-left: $tab-border-width solid $tab-border-color;
   border-bottom: none;
@@ -64,13 +70,11 @@ $tab-border-width: 2px;
   background-color: $tab-border-color;
 }
 
-.tab-content {
-  position: relative;
-  z-index: 2;
-  padding: 1.5em 0 0;
-  border-top: $tab-border-width solid $ui-dark-blue;
-}
 
+
+/**
+ * Forms
+ */
 .contact-form-wrapper {
   letter-spacing: 0.03em;
 
@@ -91,15 +95,15 @@ $tab-border-width: 2px;
     }
 
     & .initial-option {
-      color: rgba(0,0,0,0.5);
+      color: rgba(0, 0, 0, 0.5);
     }
   }
 }
 
 .contact-form-header {
-  font-weight: 700;
-  letter-spacing: 0.04em;
   text-align: center;
+  font-weight: $strong-font-weight;
+  letter-spacing: 0.04em;
 }
 
 .contact-form-heading {
@@ -137,7 +141,7 @@ $tab-border-width: 2px;
   box-sizing: border-box;
   width: 100%;
   margin: 0.375rem 0 1.5rem;
-  border: 1px solid $ui-blue;
+  border: 1px solid $field-element-border-color;
   border-radius: 0;
   padding: 0.7em;
   font-size: 0.85em;
@@ -185,18 +189,18 @@ $tab-border-width: 2px;
   display: inline-block;
   height: 1.25rem;
   width: 1.25rem;
-  border: 2px solid $ui-blue;
+  border: $standard-border-width solid $checkbox-border-color;
   vertical-align: middle;
 
   &:checked {
-    background-color: $ui-blue;
+    background-color: $checkbox-border-color;
   }
 
   &:checked::before {
     font-family: "Font Awesome 5 Free";
     font-size: 1rem;
     font-weight: 900;
-    color: rgba(255, 255, 255, 1);
+    color: $color-white;
     content: "\f00c";
   }
 }
@@ -207,7 +211,7 @@ $tab-border-width: 2px;
 
   span {
     vertical-align: middle;
-    color: $ui-dark-blue;
+    color: $text-color-dark;
     font-size: $form-label-font-size;
   }
 }
@@ -223,6 +227,6 @@ $tab-border-width: 2px;
 .message-text-input,
 .description-text-input,
 .additional-info-text-input {
-  min-height: 10em;
+  min-height: 10rem;
   resize: vertical;
 }

@@ -1,7 +1,7 @@
 .topic-directory {
   display: block;
   margin: 0 auto;
-  padding: 5em 8em 5em;
+  padding: $site-padding;
   background: rgba(233, 248, 255, 1) url('/assets/img/happy_children.jpg');
   background-size: cover;
   background-repeat: no-repeat;
@@ -31,10 +31,5 @@
   margin-bottom: 2rem;
   column-count: 2;
   text-align: left;
-  color: $ui-dark-blue;
-
-  a {
-    color: $ui-dark-blue;
-    text-decoration: none;
-  }
+  color: $text-color-dark;
 }

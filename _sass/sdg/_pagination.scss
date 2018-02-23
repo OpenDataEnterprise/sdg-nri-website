@@ -3,8 +3,8 @@
   $base-spacing: 1.5em !default;
   $action-color: #477DCA !default;
   $large-screen: 53.75em !default;
-  $base-font-color: $ui-dark-blue !default;
-  $pagination-border-color: $ui-blue;
+  $base-font-color: $text-color-dark !default;
+  $pagination-border-color: $color-pattens-blue;
   $pagination-border: 1px solid $pagination-border-color;
   $pagination-background: rgba(220, 220, 220, 1);
   $pagination-hover-background: lighten($pagination-background, 5);

@@ -77,6 +77,7 @@ import Pagination from 'vue/pagination.vue';
     },
     components: {
       'newsfeed': NewsFeed,
+      'event-feed': EventFeed,
       'pagination': Pagination,
     },
     created: function () {

@@ -6,7 +6,7 @@ $action-color: #477DCA !default;
 
 $dark-gray: #333 !default;
 $large-screen: 53.75em !default;
-$base-font-color: $dark-gray !default;
+$base-font-color: $text-color-neutral !default;
 $clear-button-width: 4em;
 $search-tools-border-color: $base-border-color;
 $search-tools-background: lighten($search-tools-border-color, 10%);
@@ -58,6 +58,10 @@ $gutter: 1.2em;
   color: #fff;
 }
 
+
+/**
+ * Filter Sidebar
+ */
 .filters {
   @include large-screen {
     flex-direction: row;
@@ -79,7 +83,7 @@ $gutter: 1.2em;
 
 .filters-heading {
   padding-bottom: 0.75em;
-  border-bottom: 1px solid $ui-light-gray;
+  border-bottom: 1px solid $color-alto;
   font-family: Oswald;
 }
 
@@ -100,10 +104,10 @@ $gutter: 1.2em;
 .filter-clear-all {
   width: 100%;
   margin-top: 1rem;
-  border: 1px solid $ui-blue;
+  border: 1px solid $color-pattens-blue;
   padding: 0.75em;
   text-align: center;
-  color: $ui-dark-blue;
+  color: $text-color-dark;
   font: inherit;
   font-family: Oswald;
 
@@ -126,14 +130,14 @@ $gutter: 1.2em;
 
 .filter-handle {
   box-sizing: border-box;
-  border-bottom: 1px solid $ui-light-gray;
+  border-bottom: 1px solid $color-alto;
   padding: 1em 0;
   transition: border-color;
   cursor: pointer;
 
   &:after {
     float: right;
-    color: $ui-blue;
+    color: $color-dodger-blue;
     font-family: "SDG NRI Icons";
     font-weight: 900;
     content: "\e90e";
@@ -151,7 +155,7 @@ $gutter: 1.2em;
 
 .filter-label {
   display: inline;
-  color: $ui-dark-blue;
+  color: $text-color-dark;
 }
 
 .filter-list {

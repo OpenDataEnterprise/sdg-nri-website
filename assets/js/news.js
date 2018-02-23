@@ -11906,9 +11906,81 @@ const store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
 
 /***/ }),
 /* 20 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module build failed: SyntaxError: return is a reserved word (37:4)\n\n\u001b[0m \u001b[90m 35 | \u001b[39m  }\u001b[33m,\u001b[39m\n \u001b[90m 36 | \u001b[39m  data\u001b[33m:\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 37 | \u001b[39m    \u001b[36mreturn\u001b[39m {\n \u001b[90m    | \u001b[39m    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 38 | \u001b[39m      currentPage\u001b[33m:\u001b[39m \u001b[35m1\u001b[39m\u001b[33m,\u001b[39m\n \u001b[90m 39 | \u001b[39m    }\n \u001b[90m 40 | \u001b[39m  }\u001b[33m,\u001b[39m\u001b[0m\n");
+"use strict";
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  props: {
+    events: {
+      type: Array,
+      required: true
+    }
+  },
+  data: function () {
+    return {
+      resultsPerPage: 3,
+      currentPage: 1
+    };
+  },
+  computed: {
+    // Check whether there are any events that are not shown yet.
+    areRemainingEvents: function () {
+      const lastIndex = this.currentPage * this.resultsPerPage;
+
+      if (lastIndex >= this.events.length) {
+        return false;
+      }
+
+      return true;
+    },
+    filteredEvents: function () {
+      // Calculate window end index.
+      let end = this.currentPage * this.resultsPerPage;
+
+      // Cap window end index.
+      if (end > this.events.length) {
+        end = this.events.length;
+      }
+
+      const events = this.events.slice(0, end);
+
+      return events;
+    }
+  }
+});
 
 /***/ }),
 /* 21 */,
@@ -12006,6 +12078,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     components: {
       'newsfeed': __WEBPACK_IMPORTED_MODULE_5_vue_newsfeed_vue__["a" /* default */],
+      'event-feed': __WEBPACK_IMPORTED_MODULE_6_vue_event_feed_vue__["a" /* default */],
       'pagination': __WEBPACK_IMPORTED_MODULE_7_vue_pagination_vue__["a" /* default */]
     },
     created: function () {
@@ -12222,8 +12295,7 @@ if (false) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_event_feed_vue__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_event_feed_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_event_feed_vue__);
-/* unused harmony reexport namespace */
+/* unused harmony namespace reexport */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_6584cbc9_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_event_feed_vue__ = __webpack_require__(32);
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
@@ -12241,7 +12313,7 @@ var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
-  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_event_feed_vue__["default"],
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_event_feed_vue__["a" /* default */],
   __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_6584cbc9_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_event_feed_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
@@ -12266,7 +12338,7 @@ if (false) {(function () {
   })
 })()}
 
-/* unused harmony default export */ var _unused_webpack_default_export = (Component.exports);
+/* harmony default export */ __webpack_exports__["a"] = (Component.exports);
 
 
 /***/ }),
@@ -12274,7 +12346,83 @@ if (false) {(function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-var esExports = {render:function(){},staticRenderFns: []}
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("section", { staticClass: "events-section" }, [
+    _c("h2", { staticClass: "events-heading" }, [_vm._v("Events")]),
+    _vm._v(" "),
+    _c(
+      "ul",
+      _vm._l(_vm.filteredEvents, function(event) {
+        return _c("li", { staticClass: "event" }, [
+          _c("article", { staticClass: "event-card" }, [
+            _c("div", { staticClass: "event-heading" }, [
+              _c("a", { attrs: { href: event.link, target: "_blank" } }, [
+                _vm._v(_vm._s(event.title))
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "event-dates" }, [
+              _c("span", { staticClass: "event-start" }, [
+                _c("span", {
+                  staticClass: "icon-calendar",
+                  attrs: { "aria-hidden": "true" }
+                }),
+                _vm._v(" "),
+                _c("span", [_vm._v(_vm._s(event.start_time))])
+              ]),
+              _vm._v(" "),
+              event.end_time
+                ? _c("span", { staticClass: "event-end" }, [
+                    _vm._v(" - " + _vm._s(event.end_time))
+                  ])
+                : _vm._e()
+            ]),
+            _vm._v(" "),
+            _c("p", { staticClass: "event-description" }, [
+              _vm._v(_vm._s(event.description))
+            ]),
+            _vm._v(" "),
+            _c("span", {
+              staticClass: "icon-location",
+              attrs: { "aria-hidden": "true" }
+            }),
+            _vm._v(" "),
+            _c(
+              "ul",
+              { staticClass: "event-locations" },
+              _vm._l(event.locations, function(location) {
+                return _c("li", { staticClass: "event-location" }, [
+                  _vm._v(_vm._s(location))
+                ])
+              })
+            )
+          ])
+        ])
+      })
+    ),
+    _vm._v(" "),
+    _vm.areRemainingEvents
+      ? _c(
+          "button",
+          {
+            staticClass: "more-events-button button",
+            on: {
+              click: function($event) {
+                _vm.currentPage += 1
+              }
+            }
+          },
+          [_c("span", [_vm._v("More Events +")])]
+        )
+      : _vm._e()
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+var esExports = { render: render, staticRenderFns: staticRenderFns }
 /* harmony default export */ __webpack_exports__["a"] = (esExports);
 if (false) {
   module.hot.accept()

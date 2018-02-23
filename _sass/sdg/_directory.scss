@@ -1,49 +1,11 @@
-$img-placeholders:
-  "01.jpg",
-  "02.jpg",
-  "03.jpg",
-  "04.jpg",
-  "05.jpg",
-  "06.jpg",
-  "07.jpg",
-  "08.jpg",
-  "09.jpg",
-  "10.jpg",
-  "11.jpg",
-  "12.jpg",
-  "13.jpg",
-  "14.jpg",
-  "15.jpg",
-  "16.jpg",
-  "17.jpg",
-  "18.jpg",
-  "19.jpg",
-  "20.jpg",
-  "21.jpg",
-  "22.jpg",
-  "23.jpg",
-  "20.jpg";
-
-aside.contribute-resource-call-out {
-  @include med-small-screen {
-    width: 30em;
-  }
-
-  @include med-screen {
-    width: 50em;
-  }
-
-  box-sizing: border-box;
-  width: 20em;
-  margin: 0 auto 2em;
-  border: 1px solid red;
-  padding: 1em;
-  background-color: rgba(255,255,255,0.7);
-  text-align: center;
-}
-
 .hide-resource {
   display: none !important;
+}
+
+.search-directory {
+  padding: $site-padding;
+
+  @extend %clearfix;
 }
 
 .resource-list-toggle {
@@ -92,9 +54,9 @@ aside.contribute-resource-call-out {
   display: inline-block;
   margin: 0 0.3rem 0.3rem 0;
   padding: 0.3rem 0.4rem;
-  background-color: $ui-light-blue;
+  background-color: $color-pattens-blue;
   line-height: 1em;
-  color: $ui-dark-blue;
+  color: $text-color-dark;
   cursor: pointer;
 
   .icon-close {
@@ -115,19 +77,6 @@ aside.contribute-resource-call-out {
   .resource-list-group-head {
     padding: 2rem 0;
     font-size: 1rem;
-
-    @for $i from 1 through length($img-placeholders) { 
-      &:nth-child(#{$i}) {
-        $img-from-list: nth($img-placeholders, $i);
-
-        .resource-image {
-          background-image: url("/assets/img/placeholders/#{$img-from-list}");
-          background-position: center;
-          background-repeat: no-repeat;
-          background-size: cover;
-        }
-      }
-    }
   }
 
   .resource-list-item:first-child {
@@ -140,14 +89,14 @@ aside.contribute-resource-call-out {
   margin-bottom: 0.3em;
   border-radius: 0.3em;
   padding: 3em;
-  background-color: darken(#fff, 10%);
+  background-color: darken($color-white, 10%);
 }
 
 .resource-list-item {
   display: flex;
   box-sizing: border-box;
   padding: 0;
-  border-bottom: 1px solid $ui-light-gray;
+  border-bottom: 1px solid $color-alto;
   background-color: #fff;
   font-size: 1.2rem;
   text-decoration: none;
@@ -161,7 +110,7 @@ aside.contribute-resource-call-out {
   height: 10rem;
   width: 13rem;
   margin: 0 0 2rem 2rem;
-  border: 1px solid;
+  border: 1px solid $color-alto;
   object-fit: cover;
 }
 
@@ -255,116 +204,6 @@ aside.contribute-resource-call-out {
   }
 }
 
-.search-directory {
-  @include grid-container;
-
-  padding: 5em;
-
-  table {
-    border-radius: 3px;
-    border-collapse: collapse;
-    font-size: 0.8em;
-    color: #2c3e50;
-  }
-
-  thead {
-    tr {
-      position: relative;
-    }
-
-    th {
-      background-color: #020b4f;
-      color: rgba(255,255,255,0.66);
-      cursor: pointer;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-    }
-
-    th.active {
-      color: #fff;
-    }
-
-    th.active .arrow {
-      opacity: 1;
-    }
-
-    .arrow {
-      display: inline-block;
-      vertical-align: middle;
-      width: 0;
-      height: 0;
-      margin-left: 5px;
-      opacity: 0.66;
-    }
-
-    .arrow.asc {
-      border-left: 4px solid transparent;
-      border-right: 4px solid transparent;
-      border-bottom: 4px solid #fff;
-    }
-
-    .arrow.dsc {
-      border-left: 4px solid transparent;
-      border-right: 4px solid transparent;
-      border-top: 4px solid #fff;
-    }
-  }
-
-  tbody {
-    height: $table_body_height;
-    overflow: auto;
-  }
-
-  td {
-    border-bottom: 1px solid #020b4f;
-    background-color: rgba(255,255,255,0.75);
-  }
-
-  th, td {
-    min-width: 120px;
-    padding: 10px 20px;
-  }
-}
-
-.subject-menu-wrapper {
-  display: block;
-  margin: 0 auto;
-  padding: 0 10em 5em;
-}
-
-.subject-menu-header {
-  box-sizing: border-box;
-  width: 100%;
-  margin: 0;
-  padding: 2em;
-  background-color: rgba(200, 200, 200, 0.5);
-  font: inherit;
-  text-align: center;
-  text-transform: uppercase;
-  color: #fff;
-  transition: background 0.1s, color 0.1s;
-}
-
-.subject-tabs {
-  display: flex;
-  background: #efefef;
-  flex-wrap: wrap;
-  box-shadow: 0 48px 80px -32px rgba(0,0,0,0.3);
-}
-
-.subject-tabs .tab-label {
-  @include med-screen {
-    width: 33.33%;
-  }
-}
-
-.subject-tabs .tab-content {
-  min-height: 35em;
-}
-
 .no-results-heading {
-  color: $ui-dark-blue;
   font-size: 2rem;
 }

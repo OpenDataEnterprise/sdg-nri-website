@@ -1,9 +1,11 @@
+$accent-border-color: $color-dodger-blue;
+
 /**
  * Topic Page
  */
 .topic-wrapper {
   box-sizing: border-box;
-  padding: 4rem 8rem 4rem;
+  padding: $site-padding;
 
   @include grid-collapse;
   @extend %clearfix;
@@ -14,13 +16,13 @@
 }
 
 .topic-section-heading {
-  color: $ui-dark-blue;
+  color: $text-color-dark;
   font-family: Oswald;
   font-size: 2.5rem;
 }
 
 .topic-page-content {
-  border-top: 0.25rem solid $ui-blue;
+  border-top: ($standard-border-width * 2) solid $accent-border-color;
 
   h1 {
     margin-bottom: 1.5rem;
@@ -39,11 +41,7 @@
 
 .next-section-link {
   font-size: 1.5rem;
-  color: $ui-dark-blue;
-
-  &:visited {
-    color: $ui-dark-blue;  
-  }
+  color: $text-color-dark;
 }
 
 .topic-description {
@@ -65,14 +63,13 @@
  * Topic Sidebar
  */
 .topic-nav-sidebar {
-  border-right: 1px solid $ui-light-gray;
+  border-right: 1px solid $color-alto;
   padding-right: 1rem;
-  color: $ui-dark-blue;
+  color: $text-color-dark;
 
   @include grid-column(1, $col-3);
 
   a {
-    color: $ui-dark-blue;
     cursor: pointer;
   }
 }
@@ -89,7 +86,7 @@
 }
 
 .topic-heading {
-  color: $ui-dark-blue;
+  color: $text-color-dark;
   font-size: 1.5rem;
   font-weight: 700;
 }
@@ -112,9 +109,9 @@
 
 .active-nav-topic {
   margin: 0 -1rem;
-  border-right-width: 0.25rem;
+  border-right-width: ($standard-border-width * 2);
   border-right-style: solid;
-  border-right-color: $ui-blue;
+  border-right-color: $accent-border-color;
   padding: 0.3rem 0 0.3rem 1rem;
-  background-color: $ui-light-blue;
+  background-color: $color-pattens-blue;
 }

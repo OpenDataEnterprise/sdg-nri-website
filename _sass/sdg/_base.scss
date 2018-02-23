@@ -19,7 +19,7 @@ html, body {
 
 body {
   font: $base-font-weight #{$base-font-size}/#{$base-line-height} $base-font-family;
-  color: $text-color;
+  color: $text-color-neutral;
   background-color: $background-color;
   -webkit-text-size-adjust: 100%;
   -webkit-font-feature-settings: "kern" 1;
@@ -74,13 +74,10 @@ li {
  * Headings
  */
 h1, h2, h3, h4, h5, h6 {
+  color: $text-color-dark;
   font-weight: 500;
 }
 
-%heading {
-  color: $ui-dark-blue;
-  font-weight: 700;
-}
 
 
 /**
@@ -96,15 +93,15 @@ strong {
  * Links
  */
 a {
-  color: $brand-color;
+  color: $text-color-dark;
   text-decoration: none;
 
   &:visited {
-    color: $brand-color;
+    color: $text-color-dark;
   }
 
   &:hover {
-    color: $text-color;
+    color: $text-color-dark;
     text-decoration: none;
   }
 }
@@ -115,8 +112,8 @@ a {
  * Blockquotes
  */
 blockquote {
-  color: $grey-color;
-  border-left: 4px solid $grey-color-light;
+  color: $color-alto;
+  border-left: 4px solid $color-alto;
   padding-left: $spacing-unit / 2;
   @include relative-font-size(1.125);
   letter-spacing: -1px;
@@ -135,7 +132,7 @@ blockquote {
 pre,
 code {
   @include relative-font-size(0.9375);
-  border: 1px solid $grey-color-light;
+  border: 1px solid $color-alto;
   border-radius: 3px;
   background-color: #eef;
 }
@@ -181,6 +178,15 @@ pre {
 
 
 /**
+ * Margin-Based Horizontal Centering
+ */
+%margin-centered {
+  margin: 0 auto;
+}
+
+
+
+/**
  * Icons
  */
 .icon > svg {
@@ -188,21 +194,6 @@ pre {
   vertical-align: middle;
 
   path {
-    fill: $grey-color;
+    fill: $color-alto;
   }
-}
-
-.social-media-list {
-  .icon {
-    padding-right: 5px;
-  }
-
-  li + li {
-    padding-top: 5px;
-  }
-}
-
-.fa {
-  display: inline;
-  margin-right: 0.3rem;
 }

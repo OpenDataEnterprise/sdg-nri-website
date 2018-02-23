@@ -12303,8 +12303,6 @@ if (false) {
       }
     },
     toggleFilter: function () {
-      console.log('toggleFilter called');
-
       const selectedFilters = this.selectedFilters[this.filterType];
       const filter = {
         value: this.filterValue,

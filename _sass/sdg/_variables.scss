@@ -1,32 +1,36 @@
 // Define defaults for each variable.
 
-$site-padding: 5em 10em;
+$site-padding: 4em 10em;
 
-$base-font-family:   "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif !default;
-$base-font-size:     16px !default;
-$base-font-weight:   400 !default;
-$strong-font-weight: 900 !default;
-$small-font-size:    $base-font-size * 0.875 !default;
-$base-line-height:   1.5 !default;
+$base-font-family:   "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$base-font-size:     16px;
+$base-font-weight:   400;
+$light-font-weight:  200;
+$strong-font-weight: 700;
+$small-font-size:    $base-font-size * 0.875;
+$base-line-height:   1.5;
 
-$spacing-unit:     2rem !default;
+$standard-border-width: 2px;
+$spacing-unit:          2rem !default;
 
-$text-color:       rgba(0, 0, 0, 0.65) !default;
-$background-color: #fdfdfd !default;
-$brand-color:      #2a7ae2 !default;
+// Colors
+$color-white:        rgba(255, 255, 255, 1);
+$color-alto:         rgba(207, 207, 207, 1);
+$color-scorpion:     rgba(89, 89, 89, 1);
+$color-saffron:      rgba(245, 184, 64, 1);
+$color-pattens-blue: rgba(219, 244, 255, 1);
+$color-french-pass:  rgba(183, 234, 255, 1);
+$color-dodger-blue:  rgba(52, 168, 252, 1);
+$color-stratos:      rgba(2, 11, 79, 1);
 
-$ui-light-blue:    rgba(219, 244, 255, 1);
-$ui-blue:          rgba(52, 168, 252, 1);
-$ui-dark-blue:     rgba(2, 11, 79, 1);
-$ui-yellow:        rgba(245, 184, 64, 1);
-$ui-light-gray:    rgba(207, 207, 207, 1);
-$grey-color:       #828282 !default;
-$grey-color-light: lighten($grey-color, 40%) !default;
-$grey-color-dark:  darken($grey-color, 25%) !default;
+// UI Element Colors
+$text-color-light:   $color-white;
+$text-color-neutral: $color-scorpion;
+$text-color-dark:    $color-stratos;
+$background-color:   $color-white;
 
 // Width of the content area
 $content-width:    800px !default;
-
 $on-palm:          600px !default;
 $on-laptop:        800px !default;
 
@@ -39,14 +43,6 @@ $col-4: (
   columns: 4,
   gutter: 3rem,
 );
-
-$col-12: (
-  columns: 12,
-  gutter: 3rem,
-);
-
-$table_body_height: 300px;
-$table_width: 500px;
 
 @mixin small-screen {
   @media (max-width: 599px) { @content; }
