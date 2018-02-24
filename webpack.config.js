@@ -1,4 +1,4 @@
-var path = require('path');
+const path = require('path');
 
 module.exports = (env) => {
   return {
@@ -37,6 +37,5 @@ module.exports = (env) => {
         'vue$': 'vue/dist/vue.esm.js'
       }
     },
-    watch: true
   }
 };
