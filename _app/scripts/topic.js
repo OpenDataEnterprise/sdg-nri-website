@@ -67,24 +67,21 @@ import Pagination from 'vue/pagination.vue';
     created: function () {
       let self = this;
 
-      self.topicTag = self.$route.params.tag;
+      self.tag = self.$route.params.tag;
 
       // Load data.
       let requestPromises = [];
       let resourceQuery = apiPath + 'resources' + self.getQueryString(1);
-      console.log(resourceQuery);
-      //requestPromises.push(Utility.loadJSON(resourceQuery));
+      requestPromises.push(Utility.loadJSON(resourceQuery));
 
-      /*Promise.all(requestPromises).then(function (results) {
+      Promise.all(requestPromises).then(function (results) {
         const resourceResults = results[0];
 
         self.resources = Utility.formatResults(
           resourceResults.rows,
           ['date_published'],
           false);
-      });*/
-
-      console.log('created');
+      });
     },
     delimiters: ["((", "))"],
   });

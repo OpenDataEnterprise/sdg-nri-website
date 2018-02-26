@@ -45,13 +45,13 @@ topic-js: true
     </nav>
 
     <section class="topic-page-content">
-      <h1>{{ currentTopic.label }}</h1>
+      <h1 class="topic-page-main-heading">{{ currentTopic.label }}</h1>
 
       <div class="topic-description">
         {{ content }}
       </div>
 
-      <div class="topic-section-heading">{{ 'Resources' | upcase }}</div>
+      <div class="topic-page-section-heading">{{ 'Resources' | upcase }}</div>
       <ul class="topic-resources" is="resource-list"
         :resources="resources"
         :total-results="pagination.totalResults"></ul>
@@ -72,7 +72,7 @@ topic-js: true
       {% endif %}
       {% endfor %}
       {% if nextTopic != '' %}
-      <div class="topic-section-heading">{{ 'Next Section' | upcase }}</div>
+      <div class="topic-page-section-heading">{{ 'Next Section' | upcase }}</div>
       <a class="next-section-link" href="/topic/{{ nextTopic.tag }}">
         <span>{{ nextTopic.label }}</span>
         <span class="icon-blue-arrow" aria-hidden="true"></span>

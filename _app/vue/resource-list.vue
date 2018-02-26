@@ -1,6 +1,6 @@
 <template>
 <div>
-  <div class="results-counter">Showing {{ resources.length }} of {{ totalResults }} resources</div>
+  <div class="results-counter" v-if="isFilterable">Showing {{ resources.length }} of {{ totalResults }} resources</div>
   <ul class="resource-tags" v-if="Object.keys(tags).length > 0">
     <li class="subject-tag"
       v-for="(item, tag) in tags"
@@ -9,9 +9,12 @@
       <span>{{ tag }}</span>
     </li>
   </ul>
-  <div v-if="resources.length === 0">
+  <div v-if="isFilterable === true && resources.length === 0">
     <div class="no-results-heading">No results.</div>
-    <div class="no-results-message">Try narrowing your search or view all resources.</div>
+    <div class="no-results-message">Try narrowing your search or <span class="reset-resource-list" v-on:click="viewAll">view all resources</span>.</div>
+  </div>
+  <div v-if="isFilterable !== true && resources.length === 0">
+    <div class="no-results-message">There are no resources available for this topic. Please help us by <a href="submit-resource">contributing a resource</a>.</div>
   </div>
   <ul class="resource-list">
     <li class="resource-list-item" v-for="(resource, index) in resources" tabindex="0">
@@ -59,6 +62,10 @@ export default {
     totalResults: {
       type: Number,
       required: true,
+    },
+    isFilterable: {
+      type: Boolean,
+      default: false,
     }
   },
   watch: {
@@ -80,6 +87,9 @@ export default {
         return false;
       }
     },
+    viewAll: function () {
+      this.$emit('view-all');
+    }
   },
 };
 </script>

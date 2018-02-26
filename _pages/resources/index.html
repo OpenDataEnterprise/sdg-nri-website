@@ -28,8 +28,10 @@ resources-js: true
           v-bind:resources="resources"
           v-bind:tags="selectedFilters.tags"
           v-bind:total-results="pagination.totalResults"
+          v-bind:is-filterable="true"
           v-on:select-filter-tag="addTag"
-          v-on:deselect-filter-tag="removeTag">
+          v-on:deselect-filter-tag="removeTag"
+          v-on:view-all="clearAllFilters">
         </resource-list>
   
         <pagination
