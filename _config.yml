@@ -34,6 +34,8 @@ header_pages:
 
 # Build settings
 markdown: kramdown
+sass:
+  style: compressed
 plugins:
   - jekyll-feed
 # Automatically generates resource topic pages from data file.
