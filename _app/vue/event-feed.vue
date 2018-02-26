@@ -25,7 +25,8 @@
   <button class="more-events-button button"
     v-if="areRemainingEvents"
     v-on:click="currentPage += 1">
-    <span>More Events +</span>
+    <span class="more-events-button-text">More Events</span>
+    <span class="icon-plus-for-buttons"></span>
   </button>
 </section>
 </template>
