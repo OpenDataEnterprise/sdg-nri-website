@@ -54,8 +54,7 @@ topic-js: true
       <div class="topic-section-heading">{{ 'Resources' | upcase }}</div>
       <ul class="topic-resources" is="resource-list"
         :resources="resources"
-        :total-results="pagination.totalResults"
-        :tag="{{ currentTopic.tag }}"></ul>
+        :total-results="pagination.totalResults"></ul>
 
       <pagination
         v-bind:current-page="pagination.currentPage"
