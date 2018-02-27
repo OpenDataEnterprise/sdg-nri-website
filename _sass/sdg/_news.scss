@@ -1,14 +1,34 @@
 $news-border-width: $standard-border-width;
 $news-border-color: $color-stratos;
 
+.dropdown {
+  &:hover,
+  &:focus {
+    .dropdown-content {
+      visibility: visible;
+    }
+  }
+}
+
+.dropdown-content {
+  position: absolute;
+  background-color: $color-white;
+  visibility: hidden;
+  z-index: 1;
+
+  a {
+    display: block;
+    text-decoration: none;
+  }
+
+  &:hover {
+    visibility: visible;
+  }
+}
+
 /**
  * Buttons
  */
-.news-filter-button {
-  height: 100%;
-  font-weight: 700;
-}
-
 .more-events-button {
   width: 100%;
 }
@@ -34,10 +54,7 @@ $news-border-color: $color-stratos;
   justify-content: space-between;
   margin-bottom: 1rem;
   border-bottom: $news-border-width solid $news-border-color;
-}
-
-.news-filters-controls {
-  display: inline-block;
+  color: $text-color-dark;
 }
 
 .news-filter {
@@ -45,48 +62,28 @@ $news-border-color: $color-stratos;
   display: inline-block;
   height: 100%;
   border-left: $news-border-width solid $news-border-color;
+
+  @extend .dropdown;
+}
+
+.news-filter-control {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding-left: 1rem;
+  font-size: 1.25rem;
+  font-weight: 700;
 }
 
 .news-filter-options {
-  border: 1px solid rgba(0, 0, 0, 1);
+  border: $standard-border-width solid rgba(0, 0, 0, 1);
   right: 0;
   min-width: 12rem;
   padding: 1rem;
 }
 
 .news-filter-option {
-  label {
-    padding: 1rem;
-  }
-}
-
-.dropdown-button,
-.news-filter-button {
-  display: inline-block;
-  padding: 0 1.5rem;
-}
-
-.dropdown:hover,
-.dropdown:focus {
-  .dropdown-content {
-    visibility: visible;
-  }
-}
-
-.dropdown-content {
-  position: absolute;
-  background-color: $color-white;
-  visibility: hidden;
-  z-index: 1;
-
-  a {
-    display: block;
-    text-decoration: none;
-  }
-
-  &:hover {
-    visibility: visible;
-  }
 }
 
 .news-feed {

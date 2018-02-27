@@ -19,19 +19,28 @@ news-js: true
 
     <div class="news-filters">
       <div class="news-filters-heading">News</div>
-      <!--<div class="news-filters-controls">
-        <div class="news-filter dropdown">
-          <div class="news-filter-button dropdown-button">
-            <span>Tags</span>
+      <div class="news-filters-controls">
+        <div class="news-filter">
+          <div class="news-filter-control dropdown-button">
+            <div class="news-filter-control-label">
+              <span>Filter by Tag</span>
+              <span class="icon-dropdown" aria-hidden="true"></span>
+            </div>
           </div>
           <ul class="news-filter-options dropdown-content">
             <li class="news-filter-option" v-for="tag in tags">
-              <input :if="'f-' + (( tag ))" type="checkbox" :value="(( tag ))">
-              <label :for="'f-' + (( tag ))">(( tag ))</label>
+              <label v-if="!(tag in filterTags)">
+                <input class="checkbox"
+                  type="checkbox"
+                  :value="tag"
+                  v-on:click="checkTag(tag)">
+                  (( tag ))
+                </input>
+              </label>
             </li>
           </ul>
         </div>
-      </div>-->
+      </div>
     </div>
 
     <newsfeed

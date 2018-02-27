@@ -1,7 +1,5 @@
 import Config from 'config'; // Aliased via WebPack.
 import Vue from 'vue';
-import Vuex from 'vuex';
-import { store } from 'scripts/global-store';
 import * as Utility from 'scripts/utility';
 import NewsFeed from 'vue/newsfeed.vue';
 import EventFeed from 'vue/event-feed.vue';
@@ -11,7 +9,6 @@ import Pagination from 'vue/pagination.vue';
   const apiPath = Config.apiPath;
 
   new Vue({
-    store,
     el: '#news-updates',
     data: function () {
       return {
@@ -29,19 +26,28 @@ import Pagination from 'vue/pagination.vue';
     methods: {
       addTag: function (tag) {
         if (tag in this.filterTags) {
-          return;
+          return false;
         }
 
         Vue.set(this.filterTags, tag, true);
-        console.log(Object.keys(this.filterTags));
         this.refresh();
+        return true;
       },
       removeTag: function (tag) {
-        if (tag in this.filterTags) {
-          Vue.delete(this.filterTags, tag);
+        if (!(tag in this.filterTags)) {
+          return false;
         }
-        console.log(Object.keys(this.filterTags));
+
+        Vue.delete(this.filterTags, tag);
         this.refresh();
+        return true;
+      },
+      checkTag: function (tag, event) {
+        if (tag in this.filterTags) {
+          return this.removeTag(tag);
+        } else {
+          return this.addTag(tag);
+        }
       },
       refresh: function (pageNumber = 1) {
         let self = this;
@@ -67,12 +73,6 @@ import Pagination from 'vue/pagination.vue';
         });
 
         self.pagination.currentPage = pageNumber;
-        console.log('Current news page: ' + self.pagination.currentPage);
-      },
-      clearAll: function () {
-        console.log('Clearing filters.');
-        store.commit('clearFilters');
-        console.log(store.state);
       },
     },
     components: {
