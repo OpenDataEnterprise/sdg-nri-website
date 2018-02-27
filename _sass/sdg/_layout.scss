@@ -19,7 +19,7 @@
   }
 }
 
-.site-nav-wrapper {
+.site-nav-container {
   margin: 2rem;
   @extend %clearfix;
 }
@@ -59,7 +59,7 @@
   }
 
   .page-link,
-  .topics-dropdown {
+  .topics-dropdown-menu-container {
     display: inline-block;
     font-size: 1.25em;
     line-height: $base-line-height;
@@ -71,7 +71,7 @@
     }
   }
 
-  .topics-dropdown-menu {
+  .topics-dropdown-menu-content {
     box-sizing: border-box;
     left: 0;
     width: 100%;
@@ -118,9 +118,24 @@
   .active {
     border-top-width: 3px;
     border-top-style: solid;
-    border-top-color: $color-dodger-blue;
     padding-top: 0.75rem;
   }
+}
+
+.topics-dropdown-menu-control.active {
+  border-top-color: $color-apple;
+}
+
+.resources.active {
+  border-top-color: $color-saffron;
+}
+
+.news.active {
+  border-top-color: $color-razzmatazz;
+}
+
+.contact.active {
+  border-top-color: $color-dodger-blue;
 }
 
 
