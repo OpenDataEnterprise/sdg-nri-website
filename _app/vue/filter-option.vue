@@ -10,8 +10,6 @@
       v-on:click="toggleFilter">
     <span>{{ filterModel[labelField] }}</span>
   </label>
-  <span class="filter-expansion-indicator"
-    v-on:click="toggle">[{{ expanded ? '-' : '+' }}]</span>
   <ul class="filter-list" v-show="expanded">
     <filter-option
       class="filter-option"

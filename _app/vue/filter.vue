@@ -56,10 +56,14 @@ export default {
         return [];
       }
     },
+    initiallyExpanded: {
+      type: Boolean,
+      default: false,
+    },
   },
   data: function () {
     return {
-      visible: false,
+      visible: this.initiallyExpanded,
     }
   },
   methods: {
