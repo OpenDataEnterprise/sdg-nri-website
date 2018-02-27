@@ -4,6 +4,7 @@
 $checkbox-border-color: $color-dodger-blue;
 
 
+
 /**
  * Icons
  */
@@ -194,7 +195,7 @@ $checkbox-border-color: $color-dodger-blue;
   letter-spacing: 0.02em;
   line-height: 1.4em;
   color: #fdfdfd;
-  text-shadow: 0.04em 0.04em #000000;
+  text-shadow: 0.2em 0.2em 0 rgba(2, 11, 79, 0.5);
 }
 
 .banner-search {
