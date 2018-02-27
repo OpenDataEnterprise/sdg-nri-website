@@ -4,8 +4,7 @@
   <div class="filter-handle"
     tabindex="0"
     v-bind:class="{ 'active': visible }"
-    v-on:click="visible = !visible"
-    v-on:focus="visible = true">
+    v-on:click="visible = !visible">
     <h2 class="filter-label">{{ filterLabel }}</h2>
   </div>
   <ul class="filter-list">
