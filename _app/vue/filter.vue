@@ -1,11 +1,11 @@
 <template>
-<div
-  class="sidebar-filter"
+<div class="sidebar-filter"
   v-bind:class="{ 'hide-options': !visible }">
-  <div
-    class="filter-handle"
+  <div class="filter-handle"
+    tabindex="0"
     v-bind:class="{ 'active': visible }"
-    v-on:click="visible = !visible">
+    v-on:click="visible = !visible"
+    v-on:focus="visible = true">
     <h2 class="filter-label">{{ filterLabel }}</h2>
   </div>
   <ul class="filter-list">

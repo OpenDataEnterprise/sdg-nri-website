@@ -8,21 +8,25 @@ resources-js: true
 ---
 
 <div id="directory" class="directory">
+
   <header role="banner" class="banner directory-banner">
+
     <div class="banner-content">
     	<h1 class="banner-heading">Search Resources</h1>
       {% include search-bar.html %}
     </div>
+
     <a class="banner-submit-resource-button button" href="/submit-resource/">
       <span class="icon-paperclip" aria-hidden="true"></span>
       <span>SUBMIT A RESOURCE</span>
     </a>
+
   </header>
-  
+
   <div class="search-directory">
 
       {% include filter-sidebar.html %}
-  
+
       <div class="resource-list-module">
 
         <resource-list
@@ -34,29 +38,32 @@ resources-js: true
           v-on:deselect-filter-tag="removeTag"
           v-on:view-all="clearAllFilters">
         </resource-list>
-  
+
         <pagination
           v-bind:current-page="pagination.currentPage"
           v-bind:items-per-page="pagination.resultsPerPage"
           v-bind:total-items="pagination.totalResults"
           v-on:page-changed="refresh">
         </pagination>
-  
+
       </div>
-  
+
   </div>
-  
+
   <section class="submit-resource-section">
+
     <div class="striped-heading">
-      <object class="heading-stripe" type="image/svg+xml" data="/assets/img/color-bar.svg">
-        <img src="/assets/img/color-bar.png">
-      </object>
+      <img src="/assets/img/color-bar.svg" role="img" aria-hidden="true">
       <h1 class="submit-resource-heading">SUBMIT A RESOURCE</h1>
     </div>
+
     <p class="submit-resource-content">Do you have a resource you would like to contribute? Please visit our submission form.</p>
+
     <a class="submit-resource-button button" href="/submit-resource/">
       <span class="icon-paperclip" aria-hidden="true"></span>
       <span>SUBMIT A RESOURCE</span>
     </a>
+
   </section>
+
 </div>

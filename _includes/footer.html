@@ -3,43 +3,50 @@
   <div class="wrapper">
 
     <div class="footer-col-wrapper footer-top">
-        <address class="contact-info">
-          {% if site.ode_email %}
-          <div class="contact-email">
-            <a href="mailto:{{ site.ode_email }}">{{ site.ode_email }}</a>
-          </div>
-          {% endif %}
-          {% if site.ode_website %}
-          <div class="contact-website">
-            <a  href="{{ site.ode_website }}">OpenDataEnterprise.org</a>
-          </div>
-          {% endif %}
-          <div class="contact-address">OpenGov Hub, 1110 Vermont Ave NW, Washington, D.C. 20005</div>
-        </address>
+
+      <address class="contact-info">
+        {% if site.ode_email %}
+        <div class="contact-email">
+          <a href="mailto:{{ site.ode_email }}">{{ site.ode_email }}</a>
+        </div>
+        {% endif %}
+        {% if site.ode_website %}
+        <div class="contact-website">
+          <a  href="{{ site.ode_website }}">OpenDataEnterprise.org</a>
+        </div>
+        {% endif %}
+        <div class="contact-address">OpenGov Hub, 1110 Vermont Ave NW, Washington, D.C. 20005</div>
+      </address>
 
       <div class="sponsors">
-        <img class="footer-img" src="/assets/img/opendata_enterprise_and_hewlett_foundation_logos.png">
+        <img class="footer-img" src="/assets/img/opendata_enterprise_and_hewlett_foundation_logos.png" alt="Side-by-side logos for the Center for Open Data Enterprise and the William and Flora Hewlett Foundation">
       </div>
+
     </div>
+
     <div class="footer-col-wrapper footer-bottom">
+
       <div class="footer-links-wrapper">
         <div class="footer-npo-line">The Center for Open Data Enterprise is an independent 501(c)(3) nonprofit organization based in Washington, DC.<br>The mission of the Center for Open Data Enterprise is to maximize the value of government data as a public resource, by focusing on data users.</div>
-        <ul class="footer-links">
+        <ul class="footer-links" role="Navigation">
           <li class="footer-link">
-            <a href="terms-and-conditions">Terms & Conditions</a>
+            <a href="/terms-and-conditions">Terms & Conditions</a>
           </li>
           <li class="footer-link">
-            <a href="privacy-policy">Privacy Policy</a>
+            <a href="/privacy-policy">Privacy Policy</a>
           </li>
           <li class="footer-link">
-            <a href="sitemap">Sitemap</a>
+            <a href="/sitemap">Sitemap</a>
           </li>
         </ul>
       </div>
+
       <div class="cc-icon">
-        <img class="footer-img" src="/assets/img/cc-by_icon.png">
+        <img class="footer-img" src="/assets/img/cc-by_icon.png" alt="Creative Commons attribution license logo">
       </div>
+
     </div>
+
   </div>
 
 </footer>

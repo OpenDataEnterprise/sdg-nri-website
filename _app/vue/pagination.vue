@@ -2,19 +2,39 @@
 <div class="pagination" v-if="lastPage > 1">
   <ul>
     <li v-if="currentPage > 1">
-      <a href="#" @click.prevent="pageChanged(1)" aria-label="Back"><span aria-hidden="true">&laquo;</span></a>
+      <a href="#"
+        aria-label="First page of results"
+        v-on:click.prevent="pageChanged(1)">
+        <span>&laquo;</span>
+      </a>
     </li>
     <li v-if="currentPage > 1">
-      <a href="#" @click.prevent="pageChanged(currentPage - 1)" aria-label="Previous"><span aria-hidden="true">Previous</span></a>
+      <a href="#"
+        aria-label="Previous page of results"
+        v-on:click.prevent="pageChanged(currentPage - 1)">
+        <span>Previous</span>
+      </a>
     </li>
     <li v-for="n in paginationRange">
-      <a :class="activePage(n)" href="#" @click.prevent="pageChanged(n)">{{ n }}</a>
+      <a href="#" @click.prevent="pageChanged(n)"
+        v-bind:class="activePage(n)"
+        v-bind:aria-label="'Page ' + n + ' of results'">
+        <span>{{ n }}</span>
+      </a>
     </li>
     <li v-if="currentPage < lastPage">
-      <a href="#" @click.prevent="pageChanged(currentPage + 1)" aria-label="Next"><span aria-hidden="true">Next</span></a>
+      <a href="#"
+        aria-label="Next page of results"
+        v-on:click.prevent="pageChanged(currentPage + 1)">
+        <span>Next</span>
+      </a>
     </li>
     <li v-if="currentPage < lastPage">
-      <a href="#" @click.prevent="pageChanged(lastPage)" aria-label="Forward"><span aria-hidden="true">&raquo;</span></a>
+      <a href="#"
+        aria-label="Last page of results"
+        v-on:click.prevent="pageChanged(lastPage)">
+        <span>&raquo;</span>
+      </a>
     </li>
   </ul>
 </div>

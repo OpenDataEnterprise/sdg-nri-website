@@ -17,7 +17,7 @@
     <div class="no-results-message">There are no resources available for this topic. Please help us by <a href="submit-resource">contributing a resource</a>.</div>
   </div>
   <ul class="resource-list">
-    <li class="resource-list-item" v-for="(resource, index) in resources" tabindex="0">
+    <li class="resource-list-item" v-for="(resource, index) in resources">
       <article class="resource-card">
         <img class="resource-image"
           :src="resource.image_url"
