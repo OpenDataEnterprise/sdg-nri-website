@@ -11,7 +11,6 @@
 
 .topic-directory-header {
   box-sizing: border-box;
-  width: 100%;
   margin-bottom: 2em;
   font-family: Oswald;
   font-size: 1.5em;
@@ -19,12 +18,6 @@
   text-transform: uppercase;
   color: rgba(0, 0, 0, 1);
   transition: background 0.1s, color 0.1s;
-}
-
-.topic-directory-heading-stripe {
-  width: 27.4rem;
-  height: 0.25rem;
-  margin-bottom: 0.5rem;
 }
 
 .topic-list {
