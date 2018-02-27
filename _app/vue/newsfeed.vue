@@ -43,11 +43,9 @@ export default {
   },
   methods: {
     tagSelect: function (tag, event) {
-      console.log('Selected ' + tag);
       this.$emit('select-filter-tag', tag);
     },
     tagDeselect: function (tag, event) {
-      console.log('Deselected ' + tag);
       this.$emit('deselect-filter-tag', tag);
     }
   },
