@@ -290,7 +290,7 @@ $checkbox-border-color: $color-dodger-blue;
 
 .who-we-serve-section,
 .submit-resource-section {
-  padding: 5rem 10rem;
+  padding: $site-padding;
   background-color: rgba(22, 45, 122, 1);
   background-image: url('/assets/img/blue-texture-background@2x.png');
   text-align: center;
