@@ -24,7 +24,7 @@ $gutter: 1.2em;
 
 .search-bar-controls,
 .news-search-bar {
-  @include med-screen {
+  @include for-tablet-landscape-up {
     display: flex;
   }
 
@@ -63,7 +63,7 @@ $gutter: 1.2em;
  * Filter Sidebar
  */
 .filters {
-  @include large-screen {
+  @include for-desktop-up {
     flex-direction: row;
   }
 
@@ -88,7 +88,7 @@ $gutter: 1.2em;
 }
 
 .filter {
-  @include large-screen {
+  @include for-desktop-up {
     margin-bottom: 0;
 
     &:first-child {

@@ -77,25 +77,41 @@ $field-element-border-color: $color-dodger-blue;
 .contact-form-wrapper {
   letter-spacing: 0.03em;
 
+  .select-container {
+    position: relative;
+    overflow: auto;
+
+    &:after {
+      position: absolute;
+      top: 25%;
+      right: 0.5rem;
+      content: "\e906";
+      color: $text-color-grayed;
+      font-family: "SDG NRI Icons";
+      font-size: 0.7em;
+    }
+  }
+
   /* Remove default browser styling on selection inputs. */
   select {
-    position: relative;
+    float: left;
+    color: $text-color-neutral;
     font: inherit;
     font-size: 0.85em;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
+  }
 
-    &:after {
-      font-family: "FontAwesome";
-      content: "\f078";
-      position: absolute;
-      right: 0;
-    }
+  select:invalid,
+  select option[value=""] {
+    color: $text-color-grayed;
+  }
 
-    & .initial-option {
-      color: rgba(0, 0, 0, 0.5);
-    }
+  /* Compatibility */
+  select::-ms-expand,
+  [hidden] {
+    display: none;
   }
 }
 
