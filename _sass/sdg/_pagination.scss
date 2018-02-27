@@ -4,11 +4,37 @@
   $action-color: #477DCA !default;
   $large-screen: 53.75em !default;
   $base-font-color: $text-color-dark !default;
-  $pagination-border-color: $color-pattens-blue;
+  $pagination-border-color: $color-dodger-blue;
   $pagination-border: 1px solid $pagination-border-color;
-  $pagination-background: rgba(220, 220, 220, 1);
-  $pagination-hover-background: lighten($pagination-background, 5);
-  $pagination-color: $base-font-color;
+  $pagination-background: $color-dodger-blue;
+  $pagination-hover-background: lighten($pagination-background, 20%);
+  $pagination-color: $text-color-dark;
+
+  button {
+    border: $pagination-border;
+    padding: 0.7rem 0.9rem;
+    color: $pagination-color;
+    font-size: 1rem;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+
+    &:hover,
+    &:focus {
+      border-color: $pagination-hover-background;
+      background-color: $pagination-hover-background;
+    }
+
+    &.active {
+      background-color: $pagination-background;
+    }
+  }
+
+  .prev-page-button,
+  .next-page-button {
+    background-color: $color-dodger-blue;
+  }
 
   ul {
     display: block;
@@ -26,27 +52,9 @@
 
     li a {
       display: inline-block;
-      border: $pagination-border;
-      padding: 0.9rem 1rem;
-      line-height: 0.8em;
-      color: $pagination-color;
-      outline: none;
-      font-weight: 700;
-      text-decoration: none;
-      transition: all 0.2s ease-in-out;
 
       &:visited {
         color: $pagination-color;
-      }
-
-      &:hover,
-      &:focus {
-        background-color: $pagination-hover-background;
-        color: $pagination-color;
-      }
-
-      &.active {
-        background-color: $pagination-background;
       }
     }
   }

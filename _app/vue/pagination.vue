@@ -1,40 +1,45 @@
 <template>
 <div class="pagination" v-if="lastPage > 1">
   <ul>
-    <li v-if="currentPage > 1">
-      <a href="#"
+    <li v-if="currentPage > 2">
+      <button type="button"
         aria-label="First page of results"
         v-on:click.prevent="pageChanged(1)">
         <span>&laquo;</span>
-      </a>
+      </button>
     </li>
     <li v-if="currentPage > 1">
-      <a href="#"
+      <button class="prev-page-button"
+        type="button"
         aria-label="Previous page of results"
         v-on:click.prevent="pageChanged(currentPage - 1)">
+        <span class="icon-arrow-reverse" aria-hidden="true"></span>
         <span>Previous</span>
-      </a>
+      </button>
     </li>
     <li v-for="n in paginationRange">
-      <a href="#" @click.prevent="pageChanged(n)"
+      <button type="button"
         v-bind:class="activePage(n)"
-        v-bind:aria-label="'Page ' + n + ' of results'">
+        v-bind:aria-label="'Page ' + n + ' of results'"
+        v-on:click.prevent="pageChanged(n)">
         <span>{{ n }}</span>
-      </a>
+      </button>
     </li>
     <li v-if="currentPage < lastPage">
-      <a href="#"
+      <button class="next-page-button"
+        type="button"
         aria-label="Next page of results"
         v-on:click.prevent="pageChanged(currentPage + 1)">
         <span>Next</span>
-      </a>
+        <span class="icon-arrow" aria-hidden="true"></span>
+      </button>
     </li>
-    <li v-if="currentPage < lastPage">
-      <a href="#"
+    <li v-if="currentPage < (lastPage - 1)">
+      <button type="button"
         aria-label="Last page of results"
         v-on:click.prevent="pageChanged(lastPage)">
         <span>&raquo;</span>
-      </a>
+      </button>
     </li>
   </ul>
 </div>
