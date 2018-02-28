@@ -135,6 +135,35 @@ $checkbox-border-color: $color-dodger-blue;
 
 
 /**
+ * Dropdown
+ */
+.dropdown {
+  &:hover,
+  &:focus {
+    .dropdown-content {
+      visibility: visible;
+    }
+  }
+}
+
+.dropdown-content {
+  position: absolute;
+  visibility: hidden;
+  z-index: 10;
+
+  a {
+    display: block;
+    text-decoration: none;
+  }
+
+  &:hover {
+    visibility: visible;
+  }
+}
+
+
+
+/**
  * Hero Banner
  */
 .banner {
@@ -195,7 +224,7 @@ $checkbox-border-color: $color-dodger-blue;
   letter-spacing: 0.02em;
   line-height: 1.4em;
   color: #fdfdfd;
-  text-shadow: 0.2em 0.2em 0 rgba(2, 11, 79, 0.5);
+  text-shadow: 0.2rem 0.2rem 0 rgba(2, 11, 79, 0.5);
 }
 
 .banner-search {

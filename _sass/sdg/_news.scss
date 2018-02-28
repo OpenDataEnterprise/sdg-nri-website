@@ -1,31 +1,6 @@
 $news-border-width: $standard-border-width;
 $news-border-color: $color-stratos;
 
-.dropdown {
-  &:hover,
-  &:focus {
-    .dropdown-content {
-      visibility: visible;
-    }
-  }
-}
-
-.dropdown-content {
-  position: absolute;
-  background-color: $color-white;
-  visibility: hidden;
-  z-index: 1;
-
-  a {
-    display: block;
-    text-decoration: none;
-  }
-
-  &:hover {
-    visibility: visible;
-  }
-}
-
 /**
  * Buttons
  */
@@ -74,16 +49,22 @@ $news-border-color: $color-stratos;
   padding-left: 1rem;
   font-size: 1.25rem;
   font-weight: 700;
+  cursor: pointer;
 }
 
 .news-filter-options {
+  position: absolute;
   border: $standard-border-width solid rgba(0, 0, 0, 1);
+  top: 100%;
   right: 0;
   min-width: 12rem;
   padding: 1rem;
+  background-color: $color-white;
 }
 
 .news-filter-option {
+  font-size: 1rem;
+  font-weight: $base-font-weight;
 }
 
 .news-feed {

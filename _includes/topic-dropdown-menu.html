@@ -3,7 +3,9 @@
     {% for topic in site.data.nested_topics %}
     <li class="topics-dropdown-topic">
       <h1 class="topics-dropdown-topic-heading">
-        <a href="/topic/{{ topic.tag }}">{{ topic.label }}</a>
+        <a href="/topic/{{ topic.tag }}">
+          <span>{{ topic.label }}&nbsp;<span class="icon-blue-arrow" aria-hidden="true"></span></span>
+        </a>
       </h1>
       {% if topic.subtopics %}
       <ul>

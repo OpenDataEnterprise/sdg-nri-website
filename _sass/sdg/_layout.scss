@@ -20,13 +20,16 @@
 }
 
 .site-nav-container {
-  margin: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
   @extend %clearfix;
 }
 
 .site-title {
   display: inline-block;
-  transform: translateY(0.25rem);
+  margin-left: 2.5rem;
 }
 
 .site-title-stripe {
@@ -41,12 +44,13 @@
 }
 
 .site-nav {
-  float: right;
+  display: inline-block;
+  padding-right: 2rem;
   color: rgba(0, 0, 0, 1);
   line-height: $base-line-height * 2.25rem;
 
   .nav-trigger {
-      display: none;
+    display: none;
   }
 
   .menu-icon {
@@ -56,7 +60,8 @@
   .page-link,
   .topics-dropdown-menu-container {
     display: inline-block;
-    font-size: 1.25em;
+    padding: 2.5rem 0;
+    font-size: 1.25rem;
     line-height: $base-line-height;
     cursor: pointer;
 
@@ -66,55 +71,15 @@
     }
   }
 
-  .topics-dropdown-menu-content {
-    box-sizing: border-box;
-    left: 0;
-    width: 100%;
-    padding: 2rem 5rem;
-    border-width: 0.25rem 0 0.25rem 0;
-    border-style: solid;
-    border-color: $color-dodger-blue;
-    background-color: $color-pattens-blue;
-    column-count: 3;
-
-    nav > ul > li {
-      padding-bottom: 1rem;
-    }
-
-    a:hover {
-      background-color: darken($color-white, 10%);
-    }
-
-    h1, h2 {
-      padding-bottom: 0.5rem;
-    }
-
-    h1 {
-      font-size: 1.2rem;
-      font-weight: 700;
-      line-height: 1.2em;
-    }
-
-    h2 {
-      font-size: 1rem;
-    }
-
-    .topics-dropdown-topic {
-      -webkit-column-break-inside: avoid;
-      page-break-inside: avoid;
-      break-inside: avoid;
-    }
-
-    .topics-dropdown-subtopic-heading {
-      margin-left: 1rem;
-    }
-  }
-
   .active {
-    border-top-width: 3px;
+    border-top-width: 0.2rem;
     border-top-style: solid;
-    padding-top: 0.75rem;
+    padding-top: 0.73rem;
   }
+}
+
+.topics-dropdown-menu-control {
+  padding-top: 0.75rem;
 }
 
 .topics-dropdown-menu-control.active {
@@ -131,6 +96,46 @@
 
 .contact.active {
   border-top-color: $color-dodger-blue;
+}
+
+.topics-dropdown-menu-content {
+  box-sizing: border-box;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  padding: 2rem 5rem;
+  border-width: 1px;
+  border-style: solid;
+  border-color: $color-silver;
+  background-color: $color-pattens-blue;
+  column-count: 3;
+  line-height: 2rem;
+
+  nav > ul > li {
+    padding-bottom: 1rem;
+  }
+
+  a:hover {
+    color: $color-dodger-blue;
+  }
+}
+
+.topics-dropdown-topic {
+  margin-bottom: 2rem;
+  -webkit-column-break-inside: avoid;
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+
+.topics-dropdown-topic-heading {
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.topics-dropdown-subtopic-heading {
+  margin: 0 0 0.5rem 0.7rem;
+  font-size: 1rem;
 }
 
 
