@@ -37,11 +37,14 @@ $field-element-border-color: $color-dodger-blue;
   a:hover {
     color: $text-color-dark;
   }
+}
 
-  span {
-    display: inline-block;
-    font-weight: 500;
-  }
+.tab-label-icon {
+  font-size: 0.9em;
+}
+
+.tab-label-text {
+  font-weight: 500;
 }
 
 .tab-content {
