@@ -56,12 +56,14 @@ permalink: /submit-resource/
         <input name="title" type="text" class="field-element" required>
 
         <label class="field-label" for="country">Country <span class="required">*</span></label>
-        <select name="country" class="field-element" required>
-          <option class="initial-option" disabled="disabled" selected="selected" value="">Please select a country</option>
-          {% for country in site.data.countries %}
-          <option value="{{ country.iso_alpha3 }}">{{ country.name }}</option>
-          {% endfor %}
-        </select>
+        <div class="select-container">
+          <select name="country" class="field-element" required>
+            <option class="initial-option" disabled="disabled" selected="selected" value="" hidden>Please select a country</option>
+            {% for country in site.data.countries %}
+            <option value="{{ country.iso_alpha3 }}">{{ country.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
 
         <label class="field-label" for="city">City <span class="required">*</span></label>
         <input name="city" type="text" class="field-element" required>
