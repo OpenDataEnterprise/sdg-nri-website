@@ -6,7 +6,7 @@ $base-font-family:   "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif !def
 $base-font-size:     16px !default;
 $base-font-weight:   400 !default;
 $light-font-weight:  200 !default;
-$strong-font-weight: 700 !default;
+$bold-font-weight:   700 !default;
 $small-font-size:    $base-font-size * 0.875 !default;
 $base-line-height:   1.5 !default;
 
@@ -27,6 +27,7 @@ $color-apple:        rgba(78, 159, 58, 1);
 $color-pattens-blue: rgba(219, 244, 255, 1);
 $color-french-pass:  rgba(183, 234, 255, 1);
 $color-dodger-blue:  rgba(52, 168, 252, 1);
+$color-cerulean:     rgba(10, 150, 217, 1);
 $color-stratos:      rgba(2, 11, 79, 1);
 
 // UI Element Colors

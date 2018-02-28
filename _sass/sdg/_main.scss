@@ -327,6 +327,10 @@ $checkbox-border-color: $color-dodger-blue;
   color: rgb(255, 255, 255);
 
   @include background-2x('/assets/img/blue-texture-background', 'png', 100px, 100px, center center, repeat);
+
+  .submit-resource-button {
+    box-shadow: 0.15rem 0.15rem 0 0 #020B4F;
+  }
 }
 
 .submit-resource-heading {

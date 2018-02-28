@@ -1,62 +1,64 @@
-$base-border-color: gainsboro !default;
-$base-border-radius: 3px !default;
-$base-line-height: 1.5em !default;
-$base-spacing: 1.5em !default;
-$action-color: #477DCA !default;
-
-$dark-gray: #333 !default;
-$large-screen: 53.75em !default;
-$base-font-color: $text-color-neutral !default;
-$clear-button-width: 4em;
-$search-tools-border-color: $base-border-color;
-$search-tools-background: lighten($search-tools-border-color, 10%);
-$gutter: 1.2em;
-
-.news-search {
-  padding: 1em;
-  background-color: rgba(160, 160, 160, 0.5);
-}
-
+/**
+ * Resource Search Bar
+ */
 .search-bar {
   max-width: 50em;
   margin: 0 auto;
 }
 
-.search-bar-controls,
-.news-search-bar {
+.search-bar-controls {
+  text-align: center;
+
   @include for-tablet-landscape-up {
     display: flex;
   }
 
-  text-align: center;
+  .icon-search-resources-mobile {
+    vertical-align: middle;
+
+    &:before {
+      color: $color-dodger-blue;
+      font-size: 1.5rem;
+    }
+  }
 }
 
 .search-field {
   width: 100%;
-  border-top: 1px solid #34a8fc;
+  border-top: 1px solid $color-dodger-blue;
   border-right: none;
-  border-left: 1px solid #34a8fc;
-  border-bottom: 1px solid #34a8fc;
-  padding: 0.75em;
-  background-color: rgba(255, 255, 255, 0.75);
+  border-bottom: 1px solid $color-dodger-blue;
+  border-left: 1px solid $color-dodger-blue;
+  padding: 0.75rem;
+  background-color: $color-white;
   font: inherit;
-  font-size: 1.2em;
-}
+  font-size: 1.2rem;
 
-.search-field::placeholder {
-  color: black;
+  &::placeholder {
+    color: $text-color-grayed;
+  }
 }
 
 .search-submit {
-  display: flex;
-  border: none;
-  border-radius: 0;
-  padding: 1.1em 1.2em;
-  background-color: rgba(52, 168, 252, 1);
+  display: inline-block;
+  border-top: 1px solid $color-dodger-blue;
+  border-right: 1px solid $color-dodger-blue;
+  border-bottom: 1px solid $color-dodger-blue;
+  border-left: none;
+  padding: 0.75rem;
+  vertical-align: middle;
+  background-color: $color-white;
+  color: $color-dodger-blue;
   font-family: Oswald;
-  font-size: 1em;
-  color: #fff;
+  font-size: 1.2rem;
+  white-space: nowrap;
+  cursor: pointer;
 }
+
+.search-submit-label {
+  margin-left: 0.25rem;
+}
+
 
 
 /**
@@ -131,7 +133,7 @@ $gutter: 1.2em;
 .filter-handle {
   box-sizing: border-box;
   border-bottom: 1px solid $color-alto;
-  padding: 1em 0;
+  padding: 1rem 0;
   transition: border-color;
   cursor: pointer;
 
@@ -139,7 +141,7 @@ $gutter: 1.2em;
     float: right;
     color: $color-dodger-blue;
     font-family: "SDG NRI Icons";
-    font-weight: 900;
+    font-size: 0.85rem;
     content: "\e90e";
     transform: translateY(25%)
   }
@@ -156,6 +158,7 @@ $gutter: 1.2em;
 .filter-label {
   display: inline;
   color: $text-color-dark;
+  font-weight: $bold-font-weight;
 }
 
 .filter-list {
@@ -183,9 +186,10 @@ $gutter: 1.2em;
 }
 
 .filter-option-expandable-label {
-  @extend .checkbox-label;
-
   margin-bottom: 0.8rem;
+  font-weight: $bold-font-weight;
+
+  @extend .checkbox-label;
 
   span {
     font-size: 1.5rem;

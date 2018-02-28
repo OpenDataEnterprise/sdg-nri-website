@@ -2,7 +2,7 @@
   $pagination-border-color: $color-dodger-blue;
   $pagination-border: 1px solid $pagination-border-color;
   $pagination-background: $color-dodger-blue;
-  $pagination-hover-background: lighten($pagination-background, 20%);
+  $pagination-hover-background: $color-cerulean;
   $pagination-color: $text-color-dark;
 
   button {
@@ -35,7 +35,6 @@
     display: block;
     margin: 0;
     padding: 0;
-    text-align: center;
 
     li {
       display: inline-block;
