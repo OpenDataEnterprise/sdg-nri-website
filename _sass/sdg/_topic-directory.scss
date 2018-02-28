@@ -28,4 +28,8 @@
   column-count: 2;
   text-align: left;
   color: $text-color-dark;
+
+  a:hover {
+    color: $link-color-hover;
+  }
 }

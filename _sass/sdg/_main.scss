@@ -227,22 +227,14 @@ $checkbox-border-color: $color-dodger-blue;
 .intro-section {
   position: relative;
   box-sizing: border-box;
-  padding: 5rem 10rem;
+  padding: $site-padding;
   text-align: center;
-  font-family: Lato;
 }
 
 .intro-text {
   margin-bottom: 1.8rem;
   font-size: 1.8rem;
-  color: #020b4f;
-
-  a {
-    border-bottom-width: 1px;
-    border-bottom-style: solid;
-    border-bottom-color: rgba(2,11,79,.3);
-    text-decoration: none;
-  }
+  color: $text-color-dark;
 }
 
 .feature-list {

@@ -77,6 +77,10 @@ $accent-border-color: $color-dodger-blue;
 
   a {
     cursor: pointer;
+
+    &:hover {
+      color: $link-color-hover;
+    }
   }
 }
 
