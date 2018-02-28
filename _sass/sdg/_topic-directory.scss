@@ -23,6 +23,13 @@
   @extend .color-bar-heading;
 }
 
+.topic-directory-topic {
+  margin-bottom: 2rem;
+  -webkit-column-break-inside: avoid;
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+
 .topic-list {
   margin-bottom: 2rem;
   column-count: 2;

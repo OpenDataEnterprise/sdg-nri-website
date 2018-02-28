@@ -6,7 +6,7 @@
   <div class="topic-directory-body">
     <ul class="topic-list">
       {% for topic in site.data.nested_topics %}
-      <li class="topic">
+      <li class="topic-directory-topic">
         <h2 class="topic-heading">
           <a href="/topic/{{ topic.tag }}">
             <span>{{ topic.label }}&nbsp;<span class="icon-blue-arrow" aria-hidden="true"></span></span>
@@ -15,7 +15,7 @@
         {% if topic.subtopics %}
         <ul>
           {% for subtopic in topic.subtopics %}
-          <li class="subtopic">
+          <li class="topic-directory-subtopic">
             <a href="/topic/{{ subtopic.tag }}">{{ subtopic.label }}</a>
           </li>
           {% endfor %}
