@@ -105,17 +105,19 @@
 
 .filter-clear-all {
   width: 100%;
-  margin-top: 1rem;
-  border: 1px solid $color-pattens-blue;
+  margin-top: 2.5rem;
+  border: 1px solid $color-dodger-blue;
   padding: 0.75em;
   text-align: center;
   color: $text-color-dark;
-  font: inherit;
   font-family: Oswald;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
 
-  object,
-  span {
-    vertical-align: middle;
+  &:hover {
+    background-color: darken($color-white, 5%);
+    transition-duration: 0.1s;
   }
 }
 
