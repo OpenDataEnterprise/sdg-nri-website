@@ -21,12 +21,12 @@ news-js: true
       <div class="news-filters-heading">News</div>
       <div class="news-filters-controls">
         <div class="news-filter">
-          <div class="news-filter-control dropdown-button" tabindex="0">
+          <div class="news-filter-control" tabindex="0">
             <div class="news-filter-control-label">
               <span>Filter by Tag</span>
               <span class="icon-dropdown" aria-hidden="true"></span>
             </div>
-            <ul class="news-filter-options dropdown-content">
+            <ul class="news-filter-options">
               <li class="news-filter-option" v-for="tag in tags">
                 <label v-if="!(tag in filterTags)">
                   <input class="checkbox"

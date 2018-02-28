@@ -6,46 +6,6 @@ $checkbox-border-color: $color-dodger-blue;
 
 
 /**
- * Icons
- */
-.dropdown-icon {
-  height: 0.45rem;
-  width: 0.75rem;
-}
-
-.feature-icon {
-  width: 100%;
-  max-width: 31.250em;
-  margin-bottom: 1.5em;
-  object-fit: cover;
-}
-
-.envelope-icon {
-  height: 0.9rem;
-  width: 1.5rem;
-}
-
-.paperclip-icon {
-  height: 1.25rem;
-  width: 1.25rem;
-}
-
-.dropdown-icon,
-.envelope-icon,
-.paperclip-icon {
-  vertical-align: middle;
-}
-
-.under-construction-warning {
-  background-color: rgba(255, 255, 255, 0.25);
-  color: #fff;
-  text-align: center;
-  line-height: 3em;
-}
-
-
-
-/**
  * Striped Color Bar
  */
 .color-bar-heading {

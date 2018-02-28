@@ -37,8 +37,6 @@ $news-border-color: $color-stratos;
   display: inline-block;
   height: 100%;
   border-left: $news-border-width solid $news-border-color;
-
-  @extend .dropdown;
 }
 
 .news-filter-control {
@@ -50,6 +48,8 @@ $news-border-color: $color-stratos;
   font-size: 1.25rem;
   font-weight: 700;
   cursor: pointer;
+
+  @extend .dropdown;
 }
 
 .news-filter-options {
@@ -60,6 +60,8 @@ $news-border-color: $color-stratos;
   min-width: 12rem;
   padding: 1rem;
   background-color: $color-white;
+
+  @extend .dropdown-content;
 }
 
 .news-filter-option {

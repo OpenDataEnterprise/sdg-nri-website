@@ -11,7 +11,7 @@
     </li>
   </ul>
   <ul class="news-feed">
-    <li class="news-list-item" v-for="(news, index) in newsfeed" tabindex="0">
+    <li class="news-list-item" v-for="(news, index) in newsfeed">
       <article class="news-card">
         <div class="news-date">{{ news.created_at }}</div>
         <h1 class="news-header">
