@@ -65,6 +65,10 @@
   color: $text-color-dark;
   cursor: pointer;
 
+  &:hover {
+    background-color: $color-french-pass;
+  }
+
   .icon-close {
     font-size: 0.7rem;
   }
