@@ -10690,6 +10690,7 @@ function formatResults(results, fields, includeDay) {
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["a"] = ({
   props: {
@@ -12128,8 +12129,10 @@ var render = function() {
               _vm._v(_vm._s(resource.organization))
             ]),
             _vm._v(" "),
+            _c("span", { staticClass: "resource-info-divider" }, [_vm._v("|")]),
+            _vm._v(" "),
             _c("span", { staticClass: "resource-publication-date" }, [
-              _vm._v("| " + _vm._s(resource.date_published))
+              _vm._v(_vm._s(resource.date_published))
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "resource-description" }, [
