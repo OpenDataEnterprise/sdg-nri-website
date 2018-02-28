@@ -130,15 +130,14 @@ $checkbox-border-color: $color-dodger-blue;
 .banner-submit-resource-button {
   $button-background-color: $color-saffron;
 
+  margin: 0 auto;
   background-color: $button-background-color;
   color: $text-color-dark;
 
   &:hover {
-    background-color: lighten($button-background-color, 10%);
+    background-color: $color-anzac;
     text-decoration: none;
   }
-
-  @extends %margin-centered;
 }
 
 
