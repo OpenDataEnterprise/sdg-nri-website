@@ -158,6 +158,7 @@
 .filter-label {
   display: inline;
   color: $text-color-dark;
+  font-size: 1.5rem;
   font-weight: $bold-font-weight;
 }
 
@@ -192,7 +193,7 @@
   @extend .checkbox-label;
 
   span {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
   }
 }
 
