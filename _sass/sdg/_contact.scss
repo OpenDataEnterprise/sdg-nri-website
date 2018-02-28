@@ -41,6 +41,7 @@ $field-element-border-color: $color-dodger-blue;
   span {
     display: inline-block;
     vertical-align: middle;
+    font-weight: 500;
   }
 }
 
@@ -99,6 +100,7 @@ $field-element-border-color: $color-dodger-blue;
     color: $text-color-neutral;
     font: inherit;
     font-size: 0.85em;
+    background-color: $color-white;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -161,7 +163,6 @@ $field-element-border-color: $color-dodger-blue;
   border-radius: 0;
   padding: 0.7em;
   font-size: 0.85em;
-  background: #fafafa;
 }
 
 .caption {
