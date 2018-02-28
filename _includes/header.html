@@ -7,7 +7,7 @@
 
     <div class="site-title">
 
-      <img class="site-title-stripe" src="/assets/img/full-color-bar.svg" aria-hidden="true">
+      <img class="site-title-color-bar" src="/assets/img/full-color-bar.svg" aria-hidden="true">
 
       <a class="site-title-heading" href="{{ "/" | relative_url }}" aria-label="{{ site.title }} Home">{{ site.title | upcase }}</a>
 
@@ -29,13 +29,13 @@
 
       <div class="trigger">
 
+        {% if page.url contains "/topic/" %}
+        <div class="topics-dropdown-menu-container active dropdown" tabindex="0">
+        {% else %}
         <div class="topics-dropdown-menu-container dropdown" tabindex="0">
+        {% endif %}
 
-          {% if page.url contains "/topic/" %}
-          <div class="topics-dropdown-menu-control active">
-          {% else %}
           <div class="topics-dropdown-menu-control">
-          {% endif %}
             <span>Explore Topics</span>
             <span class="icon-dropdown" aria-hidden="true"></span>
           </div>

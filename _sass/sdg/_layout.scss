@@ -32,9 +32,10 @@
   margin-left: 2.5rem;
 }
 
-.site-title-stripe {
+.site-title-color-bar {
   display: block;
   width: 100%;
+  height: 3px;
   margin-bottom: 0.3rem;
 }
 
@@ -60,7 +61,8 @@
   .page-link,
   .topics-dropdown-menu-container {
     display: inline-block;
-    padding: 2.5rem 0;
+    margin-top: 2.5rem;
+    padding: 0.75rem 0 2.5rem 0;
     font-size: 1.25rem;
     line-height: $base-line-height;
     cursor: pointer;
@@ -72,17 +74,13 @@
   }
 
   .active {
-    border-top-width: 0.2rem;
+    border-top-width: $active-link-border-width;
     border-top-style: solid;
     padding-top: 0.73rem;
   }
 }
 
-.topics-dropdown-menu-control {
-  padding-top: 0.75rem;
-}
-
-.topics-dropdown-menu-control.active {
+.topics-dropdown-menu-container.active {
   border-top-color: $color-apple;
 }
 
