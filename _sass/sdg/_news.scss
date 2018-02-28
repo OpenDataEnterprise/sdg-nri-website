@@ -102,9 +102,8 @@ $news-border-color: $color-stratos;
   border-bottom: 1px solid $color-alto;
 }
 
-.news-header,
 .news-description {
-  margin: 1rem 0;
+  margin: 0.5rem 0;
 }
 
 
@@ -151,6 +150,7 @@ $news-border-color: $color-stratos;
   font-size: 1.5rem;
 }
 
+.news-header,
 .event-dates,
 .event-heading,
 .event-description,
