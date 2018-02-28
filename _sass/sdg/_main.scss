@@ -279,12 +279,11 @@ $checkbox-border-color: $color-dodger-blue;
   }
 
   a {
-    color: rgba(0, 0, 0, 1);
-  }
+    text-decoration: underline;
 
-  a:hover {
-    color: rgba(0, 0, 0, 0.5);
-    text-decoration: none;
+    &:hover {
+      color: $color-dodger-blue;
+    }
   }
 
   @extend %clearfix;
@@ -337,7 +336,7 @@ $checkbox-border-color: $color-dodger-blue;
 .who-we-serve-section-content {
   font-size: 1.75rem;
 
-  a:hover {
+  a {
     text-decoration: underline;
   }
 }
@@ -364,13 +363,13 @@ $checkbox-border-color: $color-dodger-blue;
 }
 
 .who-we-serve-item-link {
-  color: rgba(183, 234, 255, 1);
+  color: $color-french-pass;
 
   .icon-blue-arrow {
     margin-left: 0.2rem;
 
-    &::before {
-      color: rgba(183, 234, 255, 1);
+    &:before {
+      color: $color-french-pass;
     }
   }
 }
