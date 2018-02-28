@@ -17,19 +17,24 @@
   @extend %clearfix;
 }
 
-.site-title {
+
+
+/**
+ * Site logo
+ */
+.site-logo {
   display: inline-block;
   margin-left: 2.5rem;
 }
 
-.site-title-color-bar {
+.site-logo-color-bar {
   display: block;
   width: 100%;
   height: 3px;
   margin-bottom: 0.3rem;
 }
 
-.site-title-heading {
+.site-logo-heading {
   font-family: Oswald;
   font-size: 1.625rem;
 }

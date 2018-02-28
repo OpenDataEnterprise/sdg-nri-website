@@ -22,6 +22,29 @@ $checkbox-border-color: $color-dodger-blue;
 
 
 /**
+ * Wave Graphic
+ */
+%wavey {
+  position: absolute;
+  left: 0;
+  width: 100%;
+}
+
+.white-wave {
+  top: -40px;
+
+  @extend %wavey;
+}
+
+.blue-wave {
+  top: -32px;
+
+  @extend %wavey;
+}
+
+
+
+/**
  * Checkboxes
  */
 .checkbox {
@@ -55,8 +78,10 @@ $checkbox-border-color: $color-dodger-blue;
   $button-background-color: $color-dodger-blue;
 
   display: inline-block;
+  z-index: 10;
   border: none;
   padding: 0.5rem 1.5rem;
+  background-color: $button-background-color;
   text-align: center;
   color: $text-color-dark;
   font-family: Oswald;
@@ -64,7 +89,6 @@ $checkbox-border-color: $color-dodger-blue;
   font-weight: 500;
   letter-spacing: .05rem;
   text-transform: uppercase;
-  background-color: $button-background-color;
 
   &:hover {
     background-color: lighten($button-background-color, 10%);
@@ -142,6 +166,7 @@ $checkbox-border-color: $color-dodger-blue;
 }
 
 .main-banner {
+  position: relative;
   padding: 8rem;
   min-height: 42rem;
   background-image: url('/assets/img/banner_background.jpg');
@@ -194,10 +219,13 @@ $checkbox-border-color: $color-dodger-blue;
   }
 }
 
+
+
 /**
  * Main Page Section: Intro
  */
 .intro-section {
+  position: relative;
   box-sizing: border-box;
   padding: 5rem 10rem;
   text-align: center;
@@ -265,6 +293,8 @@ $checkbox-border-color: $color-dodger-blue;
  * Main Page Section: Who We Serve
  */
 .who-we-serve-section {
+  position: relative;
+
   a {
     color: $color-french-pass;
 
@@ -333,6 +363,10 @@ $checkbox-border-color: $color-dodger-blue;
 /**
  * Section: Submit Resource
  */
+.submit-resource-section {
+  position: relative;
+}
+
 .submit-resource-content {
   font-weight: $light-font-weight;
 }

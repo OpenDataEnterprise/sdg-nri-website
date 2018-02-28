@@ -5,11 +5,11 @@
     {% assign default_paths = site.pages | sort: "navigation_weight" | map: "path" %}
     {% assign page_paths = site.header_pages | default: default_paths %}
 
-    <div class="site-title">
+    <div class="site-logo">
 
-      <img class="site-title-color-bar" src="/assets/img/full-color-bar.svg" aria-hidden="true">
-
-      <a class="site-title-heading" href="{{ "/" | relative_url }}" aria-label="{{ site.title }} Home">{{ site.title | upcase }}</a>
+      <a class="site-logo-heading" href="{{ "/" | relative_url }}" aria-label="{{ site.title }} Home">
+        <img src="/assets/img/sdg_national_reporting_initiative_logo.svg">
+      </a>
 
     </div>
 

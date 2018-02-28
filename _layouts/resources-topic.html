@@ -13,7 +13,10 @@ topic-js: true
   </a>
 </header>
 
-<div id="directory" class="topic-wrapper">
+<div id="directory" class="topic-page-wrapper">
+
+    <img class="white-wave" src="/assets/img/white-wave.png" alt="" role="img" aria-hidden="true">
+
     {% assign currentTopic = site.data.topics | where: 'tag', page.topic-tag | first %}
 
     <nav class="topic-nav-sidebar">

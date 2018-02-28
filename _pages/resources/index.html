@@ -25,32 +25,36 @@ resources-js: true
 
   <div class="search-directory">
 
-      {% include filter-sidebar.html %}
+    <img class="white-wave" src="/assets/img/white-wave.png" alt="" role="img" aria-hidden="true">
 
-      <div class="resource-list-module">
+    {% include filter-sidebar.html %}
 
-        <resource-list
-          v-bind:resources="resources"
-          v-bind:tags="selectedFilters.tags"
-          v-bind:total-results="pagination.totalResults"
-          v-bind:is-filterable="true"
-          v-on:select-filter-tag="addTag"
-          v-on:deselect-filter-tag="removeTag"
-          v-on:view-all="clearAllFilters">
-        </resource-list>
+    <div class="resource-list-module">
 
-        <pagination
-          v-bind:current-page="pagination.currentPage"
-          v-bind:items-per-page="pagination.resultsPerPage"
-          v-bind:total-items="pagination.totalResults"
-          v-on:page-changed="refresh">
-        </pagination>
+      <resource-list
+        v-bind:resources="resources"
+        v-bind:tags="selectedFilters.tags"
+        v-bind:total-results="pagination.totalResults"
+        v-bind:is-filterable="true"
+        v-on:select-filter-tag="addTag"
+        v-on:deselect-filter-tag="removeTag"
+        v-on:view-all="clearAllFilters">
+      </resource-list>
 
-      </div>
+      <pagination
+        v-bind:current-page="pagination.currentPage"
+        v-bind:items-per-page="pagination.resultsPerPage"
+        v-bind:total-items="pagination.totalResults"
+        v-on:page-changed="refresh">
+      </pagination>
+
+    </div>
 
   </div>
 
   <section class="submit-resource-section">
+
+    <img class="blue-wave" src="/assets/img/blue-wave.png" alt="" role="img" aria-hidden="true">
 
     <div class="color-bar-heading">
       <img class="heading-color-bar" src="/assets/img/color-bar.svg" role="img" aria-hidden="true">

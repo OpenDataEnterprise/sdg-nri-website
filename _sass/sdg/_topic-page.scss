@@ -3,8 +3,9 @@ $accent-border-color: $color-dodger-blue;
 /**
  * Topic Page
  */
-.topic-wrapper {
+.topic-page-wrapper {
   box-sizing: border-box;
+  position: relative;
   padding: $site-padding;
 
   @include grid-collapse;
@@ -31,6 +32,7 @@ $accent-border-color: $color-dodger-blue;
   padding-top: 0.5rem;
   font-size: 3.375rem;
   font-weight: 700;
+  line-height: 1.2em;
 }
 
 .topic-page-section-heading {
