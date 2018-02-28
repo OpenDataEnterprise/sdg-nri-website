@@ -2,21 +2,11 @@
  * Site header
  */
 .site-header {
-  width: 100%;
-  /*min-height: $base-line-height * $base-font-size * 2.25;*/
-  background-color: rgba(255, 255, 255, 1);
-
   // Positioning context for the mobile navigation icon
   position: relative;
 
-  a, a:visited {
-    color: rgba(2, 11, 79, 1);
-  }
-
-  a:hover {
-    color: rgba(2, 11, 79, 1);
-    text-decoration: none;
-  }
+  width: 100%;
+  background-color: $color-white;
 }
 
 .site-nav-container {
