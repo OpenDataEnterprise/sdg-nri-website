@@ -1,5 +1,10 @@
+/**
+ * Variables
+ */
 $news-border-width: $standard-border-width;
 $news-border-color: $color-stratos;
+
+
 
 /**
  * Buttons
@@ -11,7 +16,10 @@ $news-border-color: $color-stratos;
 
 .more-events-button-text {
   vertical-align: middle;
+  font-weight: 700;
 }
+
+
 
 /**
  * News Section
@@ -94,6 +102,13 @@ $news-border-color: $color-stratos;
   border-bottom: 1px solid $color-alto;
 }
 
+.news-header,
+.news-description {
+  margin: 1rem 0;
+}
+
+
+
 /**
  * Event Section
  */
@@ -136,20 +151,23 @@ $news-border-color: $color-stratos;
   font-size: 1.5rem;
 }
 
-.news-date,
-.news-header,
-.news-author,
 .event-dates,
 .event-heading,
 .event-description,
 .event-end {
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
+
+
+
+/**
+ * Mixed Styles
+ */
 
 .news-author,
 .event-start,
 .event-end {
-  font-style:italic;
+  font-style: italic;
 }
 
 .news-filters-heading,

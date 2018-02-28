@@ -13,11 +13,12 @@
   <ul class="news-feed">
     <li class="news-list-item" v-for="(news, index) in newsfeed">
       <article class="news-card">
-        <div class="news-date">{{ news.created_at }}</div>
         <h1 class="news-header">
           <a :href="(( news.url ))" target="_blank">{{ news.title }}</a>
         </h1>
-        <div class="news-author">{{ news.organization }}</div>
+        <span class="news-date">{{ news.created_at }}</span>
+        <span class="info-divider">|</span>
+        <span class="news-author">{{ news.organization }}</span>
         <div class="news-description">{{ news.description }}</div>
         <div class="resource-tags" v-if="news.tags.length > 0">
           <ul class="resource-tags-list">
