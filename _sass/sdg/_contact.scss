@@ -96,6 +96,14 @@ $field-element-border-color: $color-dodger-blue;
     }
   }
 
+  a {
+    text-decoration: underline;
+
+    &:hover {
+      color: $color-dodger-blue;
+    }
+  }
+
   /* Remove default browser styling on selection inputs. */
   select {
     float: left;
@@ -120,6 +128,17 @@ $field-element-border-color: $color-dodger-blue;
   }
 }
 
+.contact-form-intro-header,
+.contact-form-thank-you-header {
+  padding: 1.5rem 0 0.75rem 0;
+  font-size: 1.5rem;
+}
+
+.contact-form-intro-subtext,
+.contact-form-thank-you-subtext {
+  padding: 0 0 1.5rem 0;
+}
+
 .contact-form-header {
   text-align: center;
   font-weight: $bold-font-weight;
@@ -130,17 +149,6 @@ $field-element-border-color: $color-dodger-blue;
   margin-bottom: 1rem;
   font-size: 1.5rem;
   color: rgba(0, 0, 0, 1);
-}
-
-.contact-form-intro-heading,
-.contact-form-thank-you-heading {
-  padding: 1.5rem 0 0.75rem 0;
-  font-size: 1.5rem;
-}
-
-.contact-form-intro,
-.contact-form-thank-you {
-  padding: 0 0 1.5rem 0;
 }
 
 .name-fieldset,
