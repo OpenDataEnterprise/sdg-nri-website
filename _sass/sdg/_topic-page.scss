@@ -44,6 +44,10 @@ $accent-border-color: $color-dodger-blue;
 .next-section-link {
   font-size: 1.5rem;
   color: $text-color-dark;
+
+  &:hover {
+    color: $link-color-hover;
+  }
 }
 
 .topic-description {
