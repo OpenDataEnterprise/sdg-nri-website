@@ -28,8 +28,7 @@ news-js: true
               <span>Filter by Tag</span>
               <span class="icon-dropdown" aria-hidden="true"></span>
             </div>
-            <ul class="news-filter-options"
-              v-if="tags.length > Object.keys(filterTags).length">
+            <ul class="news-filter-options">
               <li class="news-filter-option" v-for="tag in tags">
                 <div class="subject-tag"
                   v-if="!(tag in filterTags)"
@@ -37,6 +36,12 @@ news-js: true
                   (( tag ))
                 </div>
               </li>
+              <span v-if="tags.length === 0">
+                No tags available.
+              </span>
+              <span v-else-if="tags.length === Object.keys(filterTags).length">
+                All tags have been selected.
+              </span>
             </ul>
           </div>
         </div>
