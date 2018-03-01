@@ -28,9 +28,9 @@ github_username:  jekyll
 # If you want to link only specific pages in your header, uncomment
 # this and add the path to the pages in order as they should show up
 header_pages:
- - _pages/resources/index.html
- - _pages/news/index.html
- - _pages/contact/index.html
+ - _pages/resources.html
+ - _pages/news.html
+ - _pages/contact.html
 
 # Build settings
 markdown: kramdown

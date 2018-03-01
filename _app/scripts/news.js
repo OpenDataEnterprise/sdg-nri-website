@@ -1,7 +1,7 @@
 import Config from 'config'; // Aliased via WebPack.
 import Vue from 'vue';
 import * as Utility from 'scripts/utility';
-import NewsFeed from 'vue/newsfeed.vue';
+import NewsFeed from 'vue/news-feed.vue';
 import EventFeed from 'vue/event-feed.vue';
 import Pagination from 'vue/pagination.vue';
 
