@@ -88,6 +88,7 @@ $checkbox-border-color: $color-dodger-blue;
   display: inline-block;
   height: 1.25rem;
   width: 1.25rem;
+  margin: 0 0.3rem 0 -1.8rem;
   border: $standard-border-width solid $checkbox-border-color;
   vertical-align: middle;
 
@@ -100,6 +101,16 @@ $checkbox-border-color: $color-dodger-blue;
     font-family: "SDG NRI Icons";
     font-size: 1rem;
     content: "\e910";
+  }
+}
+
+.checkbox-label {
+  display: block;
+  margin-left: 2rem;
+  cursor: pointer;
+
+  span {
+    vertical-align: middle;
   }
 }
 

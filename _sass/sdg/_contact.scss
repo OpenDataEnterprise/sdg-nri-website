@@ -209,9 +209,8 @@ $field-element-border-color: $color-dodger-blue;
   width: 98%;
 }
 
-.checkbox-label {
-  display: block;
-  cursor: pointer;
+.form-checkbox-label {
+  @extend .checkbox-label;
 
   span {
     vertical-align: middle;
