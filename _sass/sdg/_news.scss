@@ -74,12 +74,12 @@ $news-border-color: $color-stratos;
   min-width: 12rem;
   padding: 1rem;
   background-color: $color-white;
+  font-size: 1rem;
 
   @extend .dropdown-content;
 }
 
 .news-filter-option {
-  font-size: 1rem;
   font-weight: $base-font-weight;
 }
 
