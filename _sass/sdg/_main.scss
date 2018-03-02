@@ -179,7 +179,7 @@ $checkbox-border-color: $color-dodger-blue;
 .dropdown-content {
   position: absolute;
   visibility: hidden;
-  z-index: 10;
+  z-index: 1000;
 
   a {
     display: block;
