@@ -3,10 +3,18 @@
 }
 
 .search-directory {
-  position: relative;
-  padding: $site-padding;
-
   @extend %clearfix;
+
+  position: relative;
+  padding: $mobile-padding;
+
+  @include for-tablet-portrait-up {
+    padding: $tablet-padding;
+  }
+
+  @include for-tablet-landscape-up {
+    padding: $site-padding;
+  }
 }
 
 .resource-list-toggle {
@@ -76,7 +84,12 @@
 
 .resource-list-module {
   @include grid-column(2, $col-3);
-  @include grid-container;
+
+  @include for-mobile-only {
+    @include grid-collapse;
+
+    margin-bottom: 2.5rem;
+  }
 }
 
 .resource-list,

@@ -1,5 +1,7 @@
 // Define defaults for each variable.
 
+$mobile-padding: 2.5rem;
+$tablet-padding: 3rem 5rem;
 $site-padding: 6rem 10rem;
 
 $base-font-family:   "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif !default;
@@ -40,7 +42,7 @@ $link-color-hover:   $color-dodger-blue !default;
 $background-color:   $color-white !default;
 
 // Width of the content area
-$content-width:    800px !default;
+$content-width:    1200px !default;
 $on-palm:          600px !default;
 $on-laptop:        800px !default;
 
@@ -54,18 +56,30 @@ $col-4: (
   gutter: 3rem,
 );
 
+/**
+ * Media query breakpoints
+ */
+$tablet-portrait-width: 600px;
+$tablet-landscape-width: 900px;
+$desktop-width: 1200px;
+
+
+
+/**
+ * Media query mixins
+ */
 @mixin for-mobile-only {
-  @media (max-width: 599px) { @content; }
+  @media (max-width: ($tablet-portrait-width - 1)) { @content; }
 }
 
 @mixin for-tablet-portrait-up {
-  @media (min-width: 600px) { @content; }
+  @media (min-width: $tablet-portrait-width) { @content; }
 }
 
 @mixin for-tablet-landscape-up {
-  @media (min-width: 900px) { @content; }
+  @media (min-width: $tablet-landscape-width) { @content; }
 }
 
 @mixin for-desktop-up {
-  @media (min-width: 1200px) { @content; }
+  @media (min-width: $desktop-width) { @content; }
 }

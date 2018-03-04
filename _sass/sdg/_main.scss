@@ -50,7 +50,11 @@ $checkbox-border-color: $color-dodger-blue;
   display: block;
   min-width: 100%;
   height: $color-bar-height;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
+
+  @include for-tablet-portrait-up {
+    margin-bottom: 1rem;
+  }
 }
 
 
@@ -60,20 +64,21 @@ $checkbox-border-color: $color-dodger-blue;
  */
 %wavey {
   position: absolute;
+  bottom: 100%;
   left: 0;
   width: 100%;
 }
 
 .white-wave {
-  top: -40px;
-
   @extend %wavey;
+
+  margin-bottom: -1px;
 }
 
 .blue-wave {
-  top: -32px;
-
   @extend %wavey;
+
+  margin-bottom: -1px;
 }
 
 
@@ -82,9 +87,9 @@ $checkbox-border-color: $color-dodger-blue;
  * Checkboxes
  */
 .checkbox {
-  -moz-appearance:none;
-  -webkit-appearance:none;
-  -o-appearance:none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -o-appearance: none;
   display: inline-block;
   height: 1.25rem;
   width: 1.25rem;
@@ -141,15 +146,7 @@ $checkbox-border-color: $color-dodger-blue;
   }
 }
 
-.banner-submit-resource-button {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-}
-
-.contact-us-button,
-.submit-resource-button,
-.banner-submit-resource-button {
+.cta-button {
   $button-background-color: $color-saffron;
 
   margin: 0 auto;
@@ -160,6 +157,14 @@ $checkbox-border-color: $color-dodger-blue;
     background-color: $color-anzac;
     text-decoration: none;
   }
+}
+
+.hero-cta-button {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+
+  @extend .cta-button;
 }
 
 
@@ -196,30 +201,51 @@ $checkbox-border-color: $color-dodger-blue;
 /**
  * Hero Banner
  */
-.banner {
+.hero-section {
+  position: relative;
   box-sizing: border-box;
   height: 26rem;
-  background-color: rgba(220, 220, 220, 1);
-  font-family: Lato;
+  background-color: $color-silver;
   text-align: center;
 }
 
-.banner-heading {
-  color: rgb(255, 255, 255);
-  font-size: 5rem;
-  text-shadow: 3px 3px 0 rgba(2,11,79,0.5);
+.hero-header {
+  white-space: nowrap;
+  color: $text-color-light;
+  font-size: 2.5rem;
+  text-shadow: 0.04em 0.04em 0 rgba(2, 11, 79, 0.5);
+
+  @include for-tablet-portrait-up {
+    font-size: 5rem;
+  }
+}
+
+.hero-body {
+  position: relative;
+  top: 50%;
+  transform: translateY(-60%);
 }
 
 .main-banner {
   position: relative;
-  padding: 8rem;
-  min-height: 42rem;
+  padding: 1rem;
   background-image: url('/assets/img/banner_background.jpg');
   background-size: cover;
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-position: center;
+  color: $text-color-light;
+  font-size: 1.5rem;
   font-weight: 400;
+  line-height: 1.4em;
+  letter-spacing: 0.02em;
+  text-shadow: 0.08em 0.08em 0 rgba(2, 11, 79, 0.5);
+
+  @include for-tablet-portrait-up {
+    height: 42rem;
+    padding: 8rem;
+    font-size: 3rem;
+  }
 }
 
 .directory-banner,
@@ -229,29 +255,6 @@ $checkbox-border-color: $color-dodger-blue;
   .banner-heading {
     margin-bottom: 0.2rem;
   }
-}
-
-.contact-banner,
-.directory-banner,
-.news-banner,
-.topics-banner {
-  .banner-content {
-    position: relative;
-    top: 50%;
-    transform: translateY(-60%);
-  }
-}
-
-.banner-heading {
-  white-space: nowrap;
-}
-
-.banner-text {
-  font-size: 3rem;
-  letter-spacing: 0.02em;
-  line-height: 1.4em;
-  color: #fdfdfd;
-  text-shadow: 0.2rem 0.2rem 0 rgba(2, 11, 79, 0.5);
 }
 
 .banner-search {
@@ -272,28 +275,38 @@ $checkbox-border-color: $color-dodger-blue;
 .intro-section {
   position: relative;
   box-sizing: border-box;
-  padding: $site-padding;
-  text-align: center;
+  padding: $mobile-padding;
+
+  @include for-tablet-portrait-up {
+    padding: $tablet-padding;
+    text-align: center;
+  }
+
+  @include for-tablet-landscape-up {
+    padding: $site-padding;
+  }
 }
 
 .intro-text {
   margin-bottom: 1.8rem;
-  font-size: 1.8rem;
+  font-size: 1.25rem;
   color: $text-color-dark;
+
+  @include for-tablet-portrait-up {
+    font-size: 1.8rem;
+    margin-bottom: 3rem;
+  }
 }
 
 .feature-list {
-  box-sizing: border-box;
-  margin-bottom: 1.2rem;
-  padding: 0;
+  max-width: $content-width;
+  margin: 0 auto 1.2rem;
   text-align: left;
-  list-style: none;
 }
 
 .feature {
   display: flex;
-  width: 100%;
-  align-items: center;
+  flex-shrink: 0;
 
   &:not(:last-child) {
     margin-bottom: 2.5rem;
@@ -306,8 +319,10 @@ $checkbox-border-color: $color-dodger-blue;
       color: $color-dodger-blue;
     }
   }
+}
 
-  @extend %clearfix;
+.feature-copy {
+  flex: auto;
 }
 
 .feature-description-header {
@@ -320,9 +335,50 @@ $checkbox-border-color: $color-dodger-blue;
 }
 
 .feature-image {
-  width: 11rem;
-  margin-left: 3rem;
+  display: none;
+
+  @include for-tablet-portrait-up {
+    display: inline-block;
+    flex-shrink: 0;
+    flex-grow: 0;
+    flex-basis: fit-content;
+    margin-left: 3rem;
+    width: 11rem;
+    height: 11rem;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
 }
+
+.feature-opportunity-copy {
+  @extend .feature-copy;
+}
+
+.feature-opportunity-image {
+  @extend .feature-image;
+
+  @include for-tablet-portrait-up {
+    background-image: url('/assets/img/an-unprecedented-opportunity-icon@2x.png');
+  }
+}
+
+.feature-challenges-image {
+  @extend .feature-image;
+
+  @include for-tablet-portrait-up {
+    background-image: url('/assets/img/reporting-challenges-icon@2x.png');
+  }
+}
+
+.feature-here-to-help-image {
+  @extend .feature-image;
+
+  @include for-tablet-portrait-up {
+    background-image: url('/assets/img/were-here-to-help-icon@2x.png');
+  }
+}
+
 
 
 /**
@@ -342,15 +398,23 @@ $checkbox-border-color: $color-dodger-blue;
 
 .who-we-serve-section,
 .submit-resource-section {
-  padding: $site-padding;
+  @include background-2x('/assets/img/blue-texture-background', 'png', 100px, 100px, center center, repeat);
+
+  padding: $mobile-padding;
   background-color: rgba(22, 45, 122, 1);
   text-align: center;
   color: rgb(255, 255, 255);
 
-  @include background-2x('/assets/img/blue-texture-background', 'png', 100px, 100px, center center, repeat);
-
   .submit-resource-button {
     box-shadow: 0.15rem 0.15rem 0 0 #020B4F;
+  }
+
+  @include for-tablet-portrait-up {
+    padding: $tablet-padding;
+  }
+
+  @include for-tablet-landscape-up {
+    padding: $site-padding;
   }
 }
 
@@ -372,9 +436,13 @@ $checkbox-border-color: $color-dodger-blue;
 }
 
 .who-we-serve-list {
-  margin: 0 4rem;
+  margin: 0 1rem;
   text-align: left;
   font-weight: 300;
+
+  @include for-tablet-portrait-up {
+    margin: 0 4rem;
+  }
 }
 
 .who-we-serve-item {

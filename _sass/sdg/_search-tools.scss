@@ -80,7 +80,13 @@
 }
 
 .filter-sidebar {
-  @include grid-column(1, $col-3);  
+  @include grid-column(1, $col-3);
+
+  @include for-mobile-only {
+    @include grid-collapse;
+
+    margin-bottom: 2.5rem;
+  }
 }
 
 .filters {

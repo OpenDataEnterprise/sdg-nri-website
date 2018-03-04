@@ -9,19 +9,22 @@ resources-js: true
 
 <div id="directory" class="directory">
 
-  <header role="banner" class="banner directory-banner">
+  <section class="hero-section">
 
-    <div class="banner-content">
-    	<h1 class="banner-heading">Search Resources</h1>
+    <div class="hero-body">
+
+    	<h1 class="hero-header">{{ page.title }}</h1>
+
       {% include search-bar.html %}
+
     </div>
 
-    <a class="banner-submit-resource-button button" href="/submit-resource/">
+    <a class="hero-cta-button button" href="/submit-resource/">
       <span class="icon-paperclip" aria-hidden="true"></span>
-      <span>SUBMIT A RESOURCE</span>
+      <span>{{ 'Submit a Resource' | upcase }}</span>
     </a>
 
-  </header>
+  </section>
 
   <div class="search-directory">
 

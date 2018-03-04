@@ -1,7 +1,7 @@
 .topic-directory {
   display: block;
   margin: 0 auto;
-  padding: $site-padding;
+  padding: $mobile-padding;
   background: rgba(233, 248, 255, 1) url('/assets/img/happy_children.jpg');
   background-size: cover;
   background-repeat: no-repeat;
@@ -10,6 +10,14 @@
 
   .submit-resource-button {
     box-shadow: 0.15rem 0.15rem 0 0 #020B4F;
+  }
+
+  @include for-tablet-portrait-up {
+    padding: $tablet-padding;
+  }
+
+  @include for-tablet-landscape-up {
+    padding: $site-padding;
   }
 }
 
@@ -35,12 +43,18 @@
 }
 
 .topic-list {
-  margin-bottom: 2rem;
-  column-count: 2;
+  margin: 0 auto 2rem;
+  column-count: 1;
   text-align: left;
   color: $text-color-dark;
 
   a:hover {
     color: $link-color-hover;
+  }
+
+  @include for-tablet-portrait-up {
+    max-width: 60rem;
+    column-count: 2;
+    column-gap: 5rem;
   }
 }
