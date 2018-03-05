@@ -1,14 +1,14 @@
 ---
 title: Contact Us
 permalink: /submit-resource/
-layout: form
+layout: submit-resource-form
 ---
 
-<div id="submit-resource" class="contact-form-wrapper">
+<div id="submit-resource" class="contact-form-container">
 
   <p class="contact-form-intro-header">Do you know of a resource that we haven't listed?</p>
 
-  <p class="contact-form-intro-subtext">Help us by submitting resources we haven't discovered. Submissions will be reviewed for accuracy.</p>
+  <p class="contact-form-intro-subtext">Help us by submitting resources we haven't discovered. Submissions wireviewed for accuracy.</p>
 
   <form id="contact-form" method="post" action="{{ site.api_url }}/submission-form">
 
@@ -38,7 +38,7 @@ layout: form
     <label class="field-label" for="country">Country <span class="required">*</span></label>
     <div class="select-container">
       <select name="country" class="field-element" required>
-      <option class="initial-option" disabled="disabled" selected="selected" value="" hidden>Please select a country</  option>
+            <option class="initial-option" disabled="disabled" selected="selected" value="" hidden>Please select a countoption>
         {% for country in site.data.countries %}
         <option value="{{ country.iso_alpha3 }}">{{ country.name }}</option>
         {% endfor %}
