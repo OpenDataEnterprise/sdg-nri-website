@@ -208,20 +208,24 @@ $checkbox-border-color: $color-dodger-blue;
  * Hero Banner
  */
 .hero-section {
-  position: relative;
+  background-color: $color-silver;
   box-sizing: border-box;
   height: 26rem;
-  background-color: $color-silver;
+  position: relative;
   text-align: center;
 }
 
 .hero-header {
-  white-space: nowrap;
   color: $text-color-light;
   font-size: 2.5rem;
   text-shadow: 0.04em 0.04em 0 rgba(2, 11, 79, 0.5);
+  white-space: nowrap;
 
   @include for-tablet-portrait-up {
+    font-size: 3rem;
+  }
+
+  @include for-tablet-landscape-up {
     font-size: 5rem;
   }
 }
@@ -235,18 +239,18 @@ $checkbox-border-color: $color-dodger-blue;
 }
 
 .main-banner {
-  position: relative;
-  padding: 1rem;
+  background-attachment: fixed;
   background-image: url('/assets/img/banner_background.jpg');
   background-size: cover;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
   background-position: center;
+  background-repeat: no-repeat;
   color: $text-color-light;
   font-size: 1.75rem;
   font-weight: 400;
-  line-height: 1.4em;
   letter-spacing: 0.02em;
+  line-height: 1.4em;
+  padding: 1rem;
+  position: relative;
   text-shadow: 0.08em 0.08em 0 rgba(2, 11, 79, 0.5);
 
   @include for-tablet-portrait-up {
