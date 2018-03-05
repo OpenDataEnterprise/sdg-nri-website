@@ -12,13 +12,15 @@
     padding: $tablet-padding;
   }
 
-  @include for-tablet-landscape-up {
+  @include for-desktop-up {
     padding: $site-padding;
   }
 }
 
 .resource-search-section-content {
   @extend %section-content;
+
+  @include grid-container;
 }
 
 .resource-list-toggle {

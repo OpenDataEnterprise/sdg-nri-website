@@ -32,6 +32,7 @@
 
 .site-nav-links {
   border-top: 1px solid $color-silver;
+  display: flex;
   white-space: nowrap;
 
   @include for-tablet-landscape-up {
@@ -73,7 +74,7 @@
     border-bottom: none;
     border-top-width: $active-link-border-width;
     border-top-style: solid;
-    font-size: 1.25rem;
+    font-size: 1.125rem;
     line-height: $base-line-height;
     margin-top: 2.5rem;
     width: auto;
@@ -82,6 +83,10 @@
     &:not(:last-child) {
       margin-right: 1.25em;
     }
+  }
+
+  @include for-desktop-up {
+    font-size: 1.25rem;
   }
 }
 
@@ -189,8 +194,12 @@
   }
 
   @include for-tablet-portrait-up {
-    column-count: 3;
+    column-count: 2;
     padding: $tablet-padding;
+  }
+
+  @include for-desktop-up {
+    column-count: 3;
   }
 }
 
