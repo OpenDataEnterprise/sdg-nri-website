@@ -68,22 +68,23 @@ $checkbox-border-color: $color-dodger-blue;
  * Wave Graphic
  */
 %wavey {
-  position: absolute;
   bottom: 100%;
   left: 0;
+  margin-bottom: -1px;
+  position: absolute;
   width: 100%;
 }
 
 .white-wave {
   @extend %wavey;
 
-  margin-bottom: -1px;
+  height: 42px;
 }
 
 .blue-wave {
   @extend %wavey;
 
-  margin-bottom: -1px;
+  height: 32px;
 }
 
 
