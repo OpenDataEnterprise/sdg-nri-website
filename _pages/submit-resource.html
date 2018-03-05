@@ -38,7 +38,11 @@ layout: submit-resource-form
     <label class="field-label" for="country">Country <span class="required">*</span></label>
     <div class="select-container">
       <select name="country" class="field-element" required>
+<<<<<<< 3b427c4f26d6ccdf51a5f4d87ab8e9a5e3a67bef
             <option class="initial-option" disabled="disabled" selected="selected" value="" hidden>Please select a countoption>
+=======
+      <option class="initial-option" disabled="disabled" selected="selected" value="" hidden>Please select a country</  option>
+>>>>>>> Created template for forms.
         {% for country in site.data.countries %}
         <option value="{{ country.iso_alpha3 }}">{{ country.name }}</option>
         {% endfor %}
