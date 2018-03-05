@@ -12,55 +12,71 @@
 .site-nav-container {
   @extend %clearfix;
 
-  @include for-tablet-portrait-up {
+  @include for-tablet-landscape-up {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+  }
+}
+
+.site-nav {
+  background-color: $color-white;
+  display: inline-block;
+  width: 100%;
+  z-index: 9000;
+
+  @include for-tablet-landscape-up {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 2.5rem;
   }
 }
 
 .site-nav-links {
-  display: flex;
-  flex-wrap: nowrap;
+  border-top: 1px solid $color-silver;
+  white-space: nowrap;
 
-  @include for-tablet-portrait-up {
-    line-height: $base-line-height * 2.25rem;
+  @include for-tablet-landscape-up {
+    border-top: none;
   }
 }
 
 .site-nav-item {
   display: inline-block;
-  width: 25%;
   border-color: transparent;
+  color: $text-color-dark;
   cursor: pointer;
+  line-height: 1.25rem;
+  text-align: center;
+  white-space: nowrap;
 
-  a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
+  .topics-dropdown-menu-control,
+  & > a {
+    display: block;
+    padding: 0.75rem 0.5rem;
+
+    @include for-tablet-landscape-up {
+      padding: 0.75rem 0 2.5rem 0;
+    }
   }
 
-  @include for-mobile-only {
+  @include for-tablet-portrait-down {
     border-bottom-width: $active-link-border-width;
     border-bottom-style: solid;
-    padding-bottom: 0.23rem;
-    text-align: center;
+    width: 25%;
     white-space: normal;
 
     &:not(:last-child) {
       border-right: 1px solid $color-silver;
-    }
+    }  
   }
 
-  @include for-tablet-portrait-up {
-    margin-top: 2.5rem;
-    padding: 0.75rem 0 2.5rem 0;
+  @include for-tablet-landscape-up {
+    border-bottom: none;
     border-top-width: $active-link-border-width;
     border-top-style: solid;
-    padding-top: 0.73rem;
     font-size: 1.25rem;
     line-height: $base-line-height;
+    margin-top: 2.5rem;
+    width: auto;
 
     // Gaps between nav items, but not on the last one
     &:not(:last-child) {
@@ -72,15 +88,18 @@
 .topics {
   &.active {
     border-bottom-color: $color-apple;
+    border-top-color: $color-apple;
+  }
 
-    @include for-tablet-portrait-up {
-      border-top-color: $color-apple;
+  @include for-tablet-portrait-down {
+    .topics-dropdown-menu-control > span {
+      @include icon-explore-topics-nav();
     }
   }
 
-  @include for-mobile-only {
-    span {
-      @include icon-explore-topics-mobile();
+  @include for-tablet-landscape-up {
+    .topics-dropdown-menu-control > span {
+      @include dropdown-explore-topics-nav();
     }
   }
 }
@@ -88,15 +107,12 @@
 .resources {
   &.active {
     border-bottom-color: $color-saffron;
-
-    @include for-tablet-portrait-up {
-      border-top-color: $color-saffron;
-    }
+    border-top-color: $color-saffron;
   }
 
-  @include for-mobile-only {
-    span {
-      @include icon-search-resources-mobile();
+  @include for-tablet-portrait-down {
+    a > span {
+      @include icon-search-resources-nav();
     }
   }
 }
@@ -104,15 +120,12 @@
 .news {
   &.active {
     border-bottom-color: $color-razzmatazz;
-
-    @include for-tablet-portrait-up {
-      border-top-color: $color-razzmatazz;
-    }
+    border-top-color: $color-razzmatazz;
   }
 
-  @include for-mobile-only {
-    span {
-      @include icon-news-and-events-mobile();
+  @include for-tablet-portrait-down {
+    a > span {
+      @include icon-news-and-events-nav();
     }
   }
 }
@@ -120,15 +133,12 @@
 .contact {
   &.active {
     border-bottom-color: $color-dodger-blue;
-
-    @include for-tablet-portrait-up {
-      border-top-color: $color-dodger-blue;
-    }
+    border-top-color: $color-dodger-blue;
   }
 
-  @include for-mobile-only {
-    span {
-      @include icon-contact-us-mobile();
+  @include for-tablet-portrait-down {
+    a > span {
+      @include icon-contact-us-nav();
     }
   }
 }
@@ -139,14 +149,14 @@
  * Site logo
  */
 .site-logo {
-  display: inline-block;
-
-  @include for-mobile-only {
-    margin: 1.5rem 2rem 1.5rem;
-  }
-
-  @include for-tablet-portrait-up {
-    margin-left: 2.5rem;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin: 2.5rem;
+  
+  @include for-tablet-landscape-up {
+    justify-content: flex-start;
+    width: 100%;
   }
 }
 
@@ -155,17 +165,16 @@
 }
 
 .topics-dropdown-menu-content {
-  box-sizing: border-box;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  padding: 2rem 5rem;
-  border-width: 1px;
-  border-style: solid;
-  border-color: $color-silver;
   background-color: $color-pattens-blue;
-  column-count: 3;
+  box-sizing: border-box;
+  border: 1px solid $color-silver;
+  column-count: 1;
+  left: 0;
   line-height: 2rem;
+  padding: 1.5rem;
+  text-align: left;
+  top: 100%;
+  width: 100%;
 
   nav > ul > li {
     padding-bottom: 1rem;
@@ -174,24 +183,44 @@
   a:hover {
     color: $color-dodger-blue;
   }
+
+  @include for-mobile-only {
+    text-align: center;
+  }
+
+  @include for-tablet-portrait-up {
+    column-count: 3;
+    padding: $tablet-padding;
+  }
 }
 
 .topics-dropdown-topic {
-  margin-bottom: 2rem;
   -webkit-column-break-inside: avoid;
   page-break-inside: avoid;
   break-inside: avoid;
+
+  &:not(:last-child) {
+    margin-bottom: 2rem;
+  }
 }
 
 .topics-dropdown-topic-heading {
-  margin-bottom: 0.5rem;
   font-size: 1.2rem;
   font-weight: 700;
+  margin-bottom: 1rem;
+
+  @include for-tablet-portrait-up {
+    margin-bottom: 0.5rem;
+  }
 }
 
 .topics-dropdown-subtopic-heading {
-  margin: 0 0 0.25rem 0.7rem;
   font-size: 1rem;
+  margin-bottom: 1rem;
+
+  @include for-tablet-portrait-up {
+    margin: 0 0 0.25rem 0.7rem;
+  }
 }
 
 

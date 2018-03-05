@@ -2,16 +2,17 @@
  * Resource Search Bar
  */
 .search-bar {
-  max-width: 50em;
   margin: 0 auto;
+  max-width: 50em;
+
+  @include for-mobile-only {
+    padding: 0 3rem;
+  }
 }
 
 .search-bar-controls {
+  display: flex;
   text-align: center;
-
-  @include for-tablet-landscape-up {
-    display: flex;
-  }
 
   .icon-search-resources-mobile {
     vertical-align: middle;
@@ -24,15 +25,15 @@
 }
 
 .search-field {
-  width: 100%;
-  border-top: 1px solid $color-dodger-blue;
-  border-right: none;
+  background-color: $color-white;
   border-bottom: 1px solid $color-dodger-blue;
   border-left: 1px solid $color-dodger-blue;
-  padding: 0.75rem;
-  background-color: $color-white;
+  border-right: none;
+  border-top: 1px solid $color-dodger-blue;
   font: inherit;
   font-size: 1.2rem;
+  padding: 0.75rem;
+  width: 100%;
 
   &::placeholder {
     color: $text-color-grayed;
@@ -40,23 +41,16 @@
 }
 
 .search-submit {
-  display: inline-block;
-  border-top: 1px solid $color-dodger-blue;
-  border-right: 1px solid $color-dodger-blue;
+  background-color: $color-white;
   border-bottom: 1px solid $color-dodger-blue;
   border-left: none;
+  border-right: 1px solid $color-dodger-blue;
+  border-top: 1px solid $color-dodger-blue;
+  color: $color-dodger-blue;
+  cursor: pointer;
+  display: inline-block;
   padding: 0.75rem;
   vertical-align: middle;
-  background-color: $color-dodger-blue;
-  color: $text-color-light;
-  font-family: Oswald;
-  font-size: 1.2rem;
-  white-space: nowrap;
-  cursor: pointer;
-
-  .search-submit-icon:before {
-    color: $text-color-light;
-  }
 }
 
 .search-submit-label {

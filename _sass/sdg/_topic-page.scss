@@ -3,12 +3,22 @@ $accent-border-color: $color-dodger-blue;
 /**
  * Topic Page
  */
-.topic-page-wrapper {
+.topic-page {
   box-sizing: border-box;
+  padding: $mobile-padding;
   position: relative;
-  padding: $site-padding;
 
-  @include grid-collapse;
+  @include for-tablet-portrait-up {
+    padding: $tablet-padding;
+  }
+
+  @include for-tablet-landscape-up {
+    padding: $site-padding;
+  }
+}
+
+.topic-page-wrapper {
+  @extend %section-content;
   @extend %clearfix;
 }
 
@@ -24,15 +34,21 @@ $accent-border-color: $color-dodger-blue;
     font-size: 1.5rem;
   }
 
-  @include grid-column(2, $col-3);
+  @include for-tablet-portrait-up {
+    @include grid-column(2, $col-3);
+  }
 }
 
 .topic-page-main-heading {
-  margin-bottom: 1.5rem;
-  padding-top: 0.5rem;
-  font-size: 3.375rem;
+  font-size: 2rem;
   font-weight: 700;
   line-height: 1.2em;
+  margin-bottom: 1.5rem;
+  padding-top: 0.5rem;
+
+  @include for-tablet-portrait-up {
+    font-size: 3.375rem;
+  }
 }
 
 .topic-page-section-heading {
@@ -74,10 +90,8 @@ $accent-border-color: $color-dodger-blue;
  */
 .topic-nav-sidebar {
   border-right: 1px solid $color-alto;
-  padding-right: 1rem;
   color: $text-color-dark;
-
-  @include grid-column(1, $col-3);
+  padding-right: 1rem;
 
   a {
     cursor: pointer;
@@ -85,6 +99,14 @@ $accent-border-color: $color-dodger-blue;
     &:hover {
       color: $link-color-hover;
     }
+  }
+
+  @include for-mobile-only {
+    display: none;
+  }
+
+  @include for-tablet-portrait-up {
+    @include grid-column(1, $col-3);
   }
 }
 

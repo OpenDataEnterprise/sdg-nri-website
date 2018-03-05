@@ -19,19 +19,17 @@
       <ul class="site-nav-links">
 
         {% if page.url contains "/topic/" %}
-        <li class="site-nav-item topics active">
+        <li class="site-nav-item topics-dropdown-menu-container topics active">
         {% else %}
-        <li class="site-nav-item topics">
+        <li class="site-nav-item topics-dropdown-menu-container topics">
         {% endif %}
-          <div class="topics-dropdown-menu-container" tabindex="0">
 
-            <div class="topics-dropdown-menu-control">
-              <span>Explore Topics</span>
-            </div>
-
-            {% include topic-dropdown-menu.html %}
-
+          <div class="topics-dropdown-menu-control" tabindex="0">
+            <span>Explore Topics</span>
           </div>
+
+          {% include topic-dropdown-menu.html %}
+
         </li>
 
         {% for path in page_paths %}
@@ -42,9 +40,11 @@
         {% else %}
         <li class="site-nav-item {{ my_page.navigation_id }}">
         {% endif %}
+
           <a href="{{ my_page.url | relative_url }}">
             <span>{{ my_page.title | escape }}</span>
           </a>
+
         </li>
         {% endif %}
         {% endfor %}

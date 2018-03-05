@@ -1,5 +1,5 @@
 ---
-title: News & Updates
+title: News & Events
 permalink: /news/
 navigation_weight: 2
 navigation_id: news
@@ -17,58 +17,76 @@ news-js: true
 
 </section>
 
-<div id="news-updates" class="news-wrapper">
+<section class="news-section">
 
-  <img class="white-wave" src="/assets/img/white-wave.png" alt="" role="img" aria-hidden="true">
+  <div id="news-updates" class="news-section-content">
 
-  <section class="news-section">
+    <img class="white-wave" src="/assets/img/white-wave.png" alt="" role="img" aria-hidden="true">
 
-    <div class="news-filters">
-      <div class="news-filters-heading">News</div>
-      <div class="news-filters-controls">
-        <div class="news-filter">
-          <div class="news-filter-control" tabindex="0">
-            <div class="news-filter-control-label">
-              <span>Filter by Tag</span>
-              <span class="icon-dropdown" aria-hidden="true"></span>
+    <div class="news-wrapper">
+
+      <div class="news-filters">
+
+        <div class="news-filters-heading">News</div>
+
+        <div class="news-filters-controls">
+
+          <div class="news-filter">
+
+            <div class="news-filter-control" tabindex="0">
+
+              <div class="news-filter-control-label">
+                <span>Filter by Tag</span>
+                <span class="icon-dropdown" aria-hidden="true"></span>
+              </div>
+
+              <ul class="news-filter-options">
+
+                <li class="news-filter-option" v-for="tag in tags">
+                  <div class="subject-tag"
+                    v-if="!(tag in filterTags)"
+                    v-on:click="checkTag(tag)">
+                    (( tag ))
+                  </div>
+                </li>
+
+                <span v-if="tags.length === 0">
+                  No tags available.
+                </span>
+
+                <span v-else-if="tags.length === Object.keys(filterTags).length">
+                  All tags have been selected.
+                </span>
+
+              </ul>
+
             </div>
-            <ul class="news-filter-options">
-              <li class="news-filter-option" v-for="tag in tags">
-                <div class="subject-tag"
-                  v-if="!(tag in filterTags)"
-                  v-on:click="checkTag(tag)">
-                  (( tag ))
-                </div>
-              </li>
-              <span v-if="tags.length === 0">
-                No tags available.
-              </span>
-              <span v-else-if="tags.length === Object.keys(filterTags).length">
-                All tags have been selected.
-              </span>
-            </ul>
+
           </div>
+
         </div>
+
       </div>
+
+      <newsfeed
+        :newsfeed="news"
+        :filter-tags="filterTags"
+        :total-results="pagination.totalResults"
+        @select-filter-tag="addTag"
+        @deselect-filter-tag="removeTag">
+      </newsfeed>
+
+      <pagination
+        :current-page="pagination.currentPage"
+        :items-per-page="pagination.resultsPerPage"
+        :total-items="pagination.totalResults"
+        @page-changed="refresh">
+      </pagination>
+
     </div>
 
-    <newsfeed
-      :newsfeed="news"
-      :filter-tags="filterTags"
-      :total-results="pagination.totalResults"
-      @select-filter-tag="addTag"
-      @deselect-filter-tag="removeTag">
-    </newsfeed>
+    <event-feed :events="events"></event-feed>
 
-    <pagination
-      :current-page="pagination.currentPage"
-      :items-per-page="pagination.resultsPerPage"
-      :total-items="pagination.totalResults"
-      @page-changed="refresh">
-    </pagination>
+  </div>
 
-  </section>
-
-  <event-feed :events="events"></event-feed>
-
-</div>
+</section>

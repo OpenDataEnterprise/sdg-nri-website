@@ -22,13 +22,16 @@
 }
 
 .topic-directory-header {
-  margin-bottom: 2em;
+  @extend .color-bar-heading;
   font-family: Oswald;
-  font-size: 1.5em;
+  font-size: 1.3rem;
+  margin-bottom: 2em;
   text-align: center;
   text-transform: uppercase;
 
-  @extend .color-bar-heading;
+  @include for-tablet-portrait-up {
+    font-size: 1.5em;
+  }
 }
 
 .topic-directory-body {

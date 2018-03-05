@@ -3,25 +3,38 @@ $tab-border-width: $standard-border-width;
 $tab-border-color: $color-stratos;
 $field-element-border-color: $color-dodger-blue;
 
-.contact-page-content {
+.contact-form-section {
   position: relative;
-  padding: $site-padding;
+  padding: $mobile-padding;
+
+  @include for-tablet-portrait-up {
+    padding: $tablet-padding;
+  }
+
+  @include for-tablet-landscape-up {
+    padding: $site-padding;
+  }
 }
 
-.tab:focus,
-.tab:hover {
-  background-color: darken($color-white, 10%);
+.contact-form-section-content {
+  @extend %section-content;
 }
 
-.tab-label {
-  position: relative;
-  z-index: 1;
-  display: inline-block;
-  margin: 0 0 (-$tab-border-width);
-  padding: 0.5rem 1rem;
+.tabs {
+  align-items: stretch;
+  display: flex;
+  flex-basis: 50%;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.tab {
   color: $text-color-dark;
+  display: inline-block;
   font-family: "Oswald";
-  font-size: 1.5rem;
+  font-size: 1.2rem;
+  margin: 0 0 (-$tab-border-width);
+  white-space: normal;
 
   &:hover {
     cursor: pointer;
@@ -34,13 +47,29 @@ $field-element-border-color: $color-dodger-blue;
     background-color: $color-white;
   }
 
-  a:hover {
-    color: $text-color-dark;
-  }
-}
+  a {
+    box-sizing: border-box;
+    display: block;
+    height: 100%;
+    width: 100%;
 
-.tab-label-icon {
-  font-size: 0.9em;
+    &:hover {
+      color: $text-color-dark;
+    }
+
+    @include for-mobile-only {
+      padding: 1rem;
+    }
+  }
+
+  @include for-mobile-only {
+    width: 50%;
+  }
+
+  @include for-tablet-portrait-up {
+    font-size: 1.5rem;
+    padding: 0.5rem 1rem;
+  }
 }
 
 .tab-label-text {
@@ -48,29 +77,49 @@ $field-element-border-color: $color-dodger-blue;
 }
 
 .tab-content {
+  border-top: $tab-border-width solid $tab-border-color;
+  padding: 1em 0 0;
   position: relative;
   z-index: 2;
-  padding: 1.5em 0 0;
-  border-top: $tab-border-width solid $tab-border-color;
+
+  @include for-tablet-portrait-up {
+    padding: 1.5em 0 0;
+  }
 }
 
 .contact-tab {
   $tab-border-color: $color-dodger-blue;
-  margin-right: 1rem;
-  border-top: $tab-border-width solid $tab-border-color;
-  border-left: $tab-border-width solid $tab-border-color;
-  border-bottom: none;
-  border-right: $tab-border-width solid $tab-border-color;
+
   background-color: $tab-border-color;
+
+  span {
+    @include icon-contact-us-form();
+  }
+
+  @include for-tablet-portrait-up {
+    margin-right: 1rem;
+    border-top: $tab-border-width solid $tab-border-color;
+    border-left: $tab-border-width solid $tab-border-color;
+    border-bottom: none;
+    border-right: $tab-border-width solid $tab-border-color;
+  }
 }
 
 .resource-tab {
   $tab-border-color: $color-saffron;
-  border-top: $tab-border-width solid $tab-border-color;
-  border-left: $tab-border-width solid $tab-border-color;
-  border-bottom: none;
-  border-right: $tab-border-width solid $tab-border-color;
+
   background-color: $tab-border-color;
+
+  span {
+    @include icon-submit-resource-form();
+  }
+
+  @include for-tablet-portrait-up {
+    border-top: $tab-border-width solid $tab-border-color;
+    border-left: $tab-border-width solid $tab-border-color;
+    border-bottom: none;
+    border-right: $tab-border-width solid $tab-border-color;
+  }
 }
 
 
@@ -130,8 +179,13 @@ $field-element-border-color: $color-dodger-blue;
 
 .contact-form-intro-header,
 .contact-form-thank-you-header {
-  padding: 1.5rem 0 0.75rem 0;
-  font-size: 1.5rem;
+  padding: 0.75rem 0;
+  font-size: 1.25rem;
+
+  @include for-tablet-portrait-up {
+    padding: 1.5rem 0 0.75rem 0;
+    font-size: 1.5rem;
+  }
 }
 
 .contact-form-intro-subtext,
@@ -183,26 +237,38 @@ $field-element-border-color: $color-dodger-blue;
 }
 
 .name-fieldset {
-  margin-left: -2%;
+  @include for-tablet-portrait-up {
+    margin-left: -2%;
+  }
 }
 
 .topics-fieldset {
   .checkbox-set {
-    column-count: 3;
+    column-count: 2;
+
+    @include for-tablet-portrait-up {
+      column-count: 3;
+    }
   }
 }
 
 .name-field, .email-field {
-  margin-left: 2%;
-  float: left;
-
   input[type=text] {
     margin-bottom: 0.375em;
+  }
+
+  @include for-tablet-portrait-up {
+    float: left;
+    margin-left: 2%;
   }
 }
 
 .name-field {
-  width: 48%;
+  width: 100%;
+
+  @include for-tablet-portrait-up {
+    width: 48%;
+  }
 }
 
 .email-field {

@@ -13,7 +13,7 @@
   <ul class="news-feed">
     <li class="news-list-item" v-for="(news, index) in newsfeed">
       <article class="news-card">
-        <h1 class="news-header">
+        <h1 class="news-heading">
           <a :href="(( news.url ))" target="_blank">{{ news.title }}</a>
         </h1>
         <span class="news-date">{{ news.created_at }}</span>

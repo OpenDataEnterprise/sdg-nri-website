@@ -2,7 +2,7 @@
   display: none !important;
 }
 
-.search-directory {
+.resource-search-section {
   @extend %clearfix;
 
   position: relative;
@@ -15,6 +15,10 @@
   @include for-tablet-landscape-up {
     padding: $site-padding;
   }
+}
+
+.resource-search-section-content {
+  @extend %section-content;
 }
 
 .resource-list-toggle {

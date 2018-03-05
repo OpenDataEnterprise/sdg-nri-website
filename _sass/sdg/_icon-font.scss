@@ -23,36 +23,84 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-@mixin icon-explore-topics-mobile() {
+@mixin icon-explore-topics-nav() {
   &:before {
     @include icon;
+
     content: "\e908\A";
-    color: #34a8fc;
+    color: $color-dodger-blue;
+    font-size: 1.5em;
     white-space: pre;
   }
 }
-@mixin icon-search-resources-mobile() {
+
+@mixin dropdown-explore-topics-nav() {
+  &:after {
+    @include icon;
+
+    content: "\00a0\e906";
+    color: $color-dodger-blue;
+    font-size: 0.7em;
+  }
+}
+
+@mixin icon-search-resources-nav() {
   &:before {
     @include icon;
     content: "\e90f\A";
-    color: #34a8fc;
+    color: $color-dodger-blue;
+    font-size: 1.5em;
     white-space: pre;
   }
 }
-@mixin icon-news-and-events-mobile() {
+
+@mixin icon-news-and-events-nav() {
   &:before {
     @include icon;
+
     content: "\e90b\A";
-    color: #34a8fc;
+    color: $color-dodger-blue;
+    font-size: 1.5em;
     white-space: pre;
   }
 }
-@mixin icon-contact-us-mobile() {
+
+@mixin icon-contact-us-nav() {
   &:before {
     @include icon;
+
     content: "\e905\A";
-    color: #34a8fc;
+    color: $color-dodger-blue;
+    font-size: 1.5em;
     white-space: pre;
+  }
+}
+
+@mixin icon-contact-us-form() {
+  &:before {
+    @include icon;
+
+    content: "\e905\00a0";
+    color: $text-color-dark;
+    font-size: 0.8em;
+
+    @include for-mobile-only {
+      content: "";
+    }
+  }
+}
+
+@mixin icon-submit-resource-form() {
+  &:before {
+    @include icon;
+
+    content: "\e90c\00a0";
+    color: $text-color-dark;
+    font-size: 0.8em;
+
+    @include for-mobile-only {
+      content: "";
+    }
   }
 }
 

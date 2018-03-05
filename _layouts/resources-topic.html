@@ -18,81 +18,85 @@ topic-js: true
 
 </section>
 
-<div id="directory" class="topic-page-wrapper">
+<section class="topic-page">
 
   <img class="white-wave" src="/assets/img/white-wave.png" alt="" role="img" aria-hidden="true">
 
-  {% assign currentTopic = site.data.topics | where: 'tag', page.topic-tag | first %}
+  <div id="directory" class="topic-page-wrapper">
 
-  <nav class="topic-nav-sidebar">
+    {% assign currentTopic = site.data.topics | where: 'tag', page.topic-tag | first %}
 
-    <ul>
+    <nav class="topic-nav-sidebar">
 
+      <ul>
+
+        {% for topic in site.data.topics %}
+        {% if topic.path contains "." %}
+        <li class="nav-subtopic">
+          {% if topic.tag == currentTopic.tag %}
+          <h2 class="nav-subtopic-heading active-nav-topic">
+          {% else %}
+          <h2 class="nav-subtopic-heading">
+          {% endif %}
+            <a href="/topic/{{ topic.tag }}">{{ topic.label }}</a>
+          </h2>
+        </li>
+
+        {% else %}
+        <li class="nav-topic">
+          {% if topic.tag == currentTopic.tag %}
+          <h1 class="nav-topic-heading active-nav-topic">
+          {% else %}
+          <h1 class="nav-topic-heading">
+          {% endif %}
+            <a href="/topic/{{ topic.tag }}">{{ topic.label }}</a>
+          </h1>
+        </li>
+        {% endif %}
+        {% endfor %}
+
+      </ul>
+
+    </nav>
+
+    <div class="topic-page-content">
+
+      <h1 class="topic-page-main-heading">{{ currentTopic.label }}</h1>
+
+      <div class="topic-description">
+        {{ content }}
+      </div>
+
+      <div class="topic-page-section-heading">{{ 'Resources' | upcase }}</div>
+      <ul class="topic-resources" is="resource-list"
+        :resources="resources"
+        :total-results="pagination.totalResults"></ul>
+
+      <pagination
+        v-bind:current-page="pagination.currentPage"
+        v-bind:items-per-page="pagination.resultsPerPage"
+        v-bind:total-items="pagination.totalResults"
+        v-on:page-changed="refresh">
+      </pagination>
+
+      {% assign nextTopic = '' %}
       {% for topic in site.data.topics %}
-      {% if topic.path contains "." %}
-      <li class="nav-subtopic">
-        {% if topic.tag == currentTopic.tag %}
-        <h2 class="nav-subtopic-heading active-nav-topic">
-        {% else %}
-        <h2 class="nav-subtopic-heading">
-        {% endif %}
-          <a href="/topic/{{ topic.tag }}">{{ topic.label }}</a>
-        </h2>
-      </li>
-
-      {% else %}
-      <li class="nav-topic">
-        {% if topic.tag == currentTopic.tag %}
-        <h1 class="nav-topic-heading active-nav-topic">
-        {% else %}
-        <h1 class="nav-topic-heading">
-        {% endif %}
-          <a href="/topic/{{ topic.tag }}">{{ topic.label }}</a>
-        </h1>
-      </li>
+      {% if topic.label == currentTopic.label %}
+      {% if forloop.index != site.data.topics.size %}
+      {% assign nextTopic = site.data.topics[forloop.index] %}
+      {% endif %}
       {% endif %}
       {% endfor %}
+      {% if nextTopic != '' %}
+      <div class="topic-page-section-heading">{{ 'Next Section' | upcase }}</div>
+      <a class="next-section-link" href="/topic/{{ nextTopic.tag }}">
+        <span>{{ nextTopic.label }}</span>
+        <span class="icon-blue-arrow" aria-hidden="true"></span>
+      </a>
+      {% endif %}
 
-    </ul>
-
-  </nav>
-
-  <section class="topic-page-content">
-
-    <h1 class="topic-page-main-heading">{{ currentTopic.label }}</h1>
-
-    <div class="topic-description">
-      {{ content }}
     </div>
 
-    <div class="topic-page-section-heading">{{ 'Resources' | upcase }}</div>
-    <ul class="topic-resources" is="resource-list"
-      :resources="resources"
-      :total-results="pagination.totalResults"></ul>
+  </div>
 
-    <pagination
-      v-bind:current-page="pagination.currentPage"
-      v-bind:items-per-page="pagination.resultsPerPage"
-      v-bind:total-items="pagination.totalResults"
-      v-on:page-changed="refresh">
-    </pagination>
-
-    {% assign nextTopic = '' %}
-    {% for topic in site.data.topics %}
-    {% if topic.label == currentTopic.label %}
-    {% if forloop.index != site.data.topics.size %}
-    {% assign nextTopic = site.data.topics[forloop.index] %}
-    {% endif %}
-    {% endif %}
-    {% endfor %}
-    {% if nextTopic != '' %}
-    <div class="topic-page-section-heading">{{ 'Next Section' | upcase }}</div>
-    <a class="next-section-link" href="/topic/{{ nextTopic.tag }}">
-      <span>{{ nextTopic.label }}</span>
-      <span class="icon-blue-arrow" aria-hidden="true"></span>
-    </a>
-    {% endif %}
-
-  </section>
-
-</div>
+</section>

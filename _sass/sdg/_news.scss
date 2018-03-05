@@ -28,14 +28,33 @@ $news-border-color: $color-stratos;
 /**
  * News Section
  */
-.news-wrapper {
+.news-section {
   position: relative;
-  padding: 5em 10em;
+  padding: $mobile-padding;
+
+  @include for-tablet-portrait-up {
+    padding: $tablet-padding;
+  }
+
+  @include for-desktop-up {
+    padding: $site-padding;
+  }
 }
 
-.news-section {
+.news-section-content {
+  @extend %section-content;
+}
+
+.news-wrapper {
   display: inline-block;
-  width: 65%;
+
+  @include for-mobile-only {
+    margin-bottom: 2rem;
+  }
+
+  @include for-tablet-portrait-up {
+    width: 65%;
+  }
 }
 
 .news-filters {
@@ -93,8 +112,12 @@ $news-border-color: $color-stratos;
   opacity: 0;
 }
 
-.news-header {
-  font-size: 1.5rem;
+.news-heading {
+  font-size: 1.25rem;
+
+  @include for-tablet-portrait-up {
+    font-size: 1.5rem;
+  }
 }
 
 .news-count {
@@ -115,13 +138,32 @@ $news-border-color: $color-stratos;
 /**
  * Event Section
  */
+.events-section {
+  display: inline-block;
+  vertical-align: top;
+
+  @include for-tablet-portrait-up {
+    width: 30%;
+    margin-left: 4%;
+  }
+}
+
+.events-heading {
+  @include for-mobile-only {
+    width: 100%;
+    border-bottom: $news-border-width solid $news-border-color;
+  }
+}
+
 .event {
   box-sizing: border-box;
   border-bottom: 1px solid $color-alto;
   padding: 2rem 0;
 
-  &:first-child {
-    padding: 1rem 0 2rem;
+  @include for-tablet-portrait-up {
+    &:first-child {
+      padding: 1rem 0 2rem;
+    }
   }
 
   &:last-child {
@@ -143,15 +185,12 @@ $news-border-color: $color-stratos;
   }
 }
 
-.events-section {
-  display: inline-block;
-  width: 30%;
-  margin-left: 4%;
-  vertical-align: top;
-}
-
 .event-heading {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
+
+  @include for-tablet-portrait-up {
+    font-size: 1.5rem;
+  }
 }
 
 .news-header,

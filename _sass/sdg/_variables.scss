@@ -1,6 +1,6 @@
 // Define defaults for each variable.
 
-$mobile-padding: 2.5rem;
+$mobile-padding: 2.5rem 3rem;
 $tablet-padding: 3rem 5rem;
 $site-padding: 6rem 10rem;
 
@@ -74,6 +74,10 @@ $desktop-width: 1200px;
 
 @mixin for-tablet-portrait-up {
   @media (min-width: $tablet-portrait-width) { @content; }
+}
+
+@mixin for-tablet-portrait-down {
+  @media (max-width: ($tablet-landscape-width - 1)) { @content; }	
 }
 
 @mixin for-tablet-landscape-up {

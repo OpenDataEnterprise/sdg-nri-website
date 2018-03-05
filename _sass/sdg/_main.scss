@@ -20,6 +20,11 @@
   }
 }
 
+%section-content {
+  margin: 0 auto;
+  max-width: $content-width;
+}
+
 
 
 /**
@@ -221,6 +226,8 @@ $checkbox-border-color: $color-dodger-blue;
 }
 
 .hero-body {
+  @extend %section-content;
+
   position: relative;
   top: 50%;
   transform: translateY(-60%);
@@ -287,9 +294,13 @@ $checkbox-border-color: $color-dodger-blue;
   }
 }
 
+.intro-section-content {
+  @extend %section-content;
+}
+
 .intro-text {
   margin-bottom: 1.8rem;
-  font-size: 1.25rem;
+  font-size: 1.3rem;
   color: $text-color-dark;
 
   @include for-tablet-portrait-up {
@@ -299,7 +310,7 @@ $checkbox-border-color: $color-dodger-blue;
 }
 
 .feature-list {
-  max-width: $content-width;
+  max-width: 60rem;
   margin: 0 auto 1.2rem;
   text-align: left;
 }
@@ -329,9 +340,13 @@ $checkbox-border-color: $color-dodger-blue;
   margin-bottom: 0.5rem;
   color: $text-color-dark;
   font-family: Oswald;
-  font-size: 2em;
+  font-size: 1.5rem;
   font-weight: 500;
   text-transform: uppercase;
+
+  @include for-tablet-portrait-up {
+    font-size: 2rem;
+  }
 }
 
 .feature-image {
@@ -396,6 +411,10 @@ $checkbox-border-color: $color-dodger-blue;
   }
 }
 
+.who-we-serve-section-content {
+  @extend %section-content;
+}
+
 .who-we-serve-section,
 .submit-resource-section {
   @include background-2x('/assets/img/blue-texture-background', 'png', 100px, 100px, center center, repeat);
@@ -422,7 +441,7 @@ $checkbox-border-color: $color-dodger-blue;
   margin-bottom: 1rem;
 }
 
-.who-we-serve-section-content {
+.who-we-serve-section-text {
   font-size: 1.75rem;
 
   a {
@@ -436,13 +455,10 @@ $checkbox-border-color: $color-dodger-blue;
 }
 
 .who-we-serve-list {
-  margin: 0 1rem;
-  text-align: left;
   font-weight: 300;
-
-  @include for-tablet-portrait-up {
-    margin: 0 4rem;
-  }
+  margin: 0 auto;
+  max-width: 50rem;
+  text-align: left;
 }
 
 .who-we-serve-item {
@@ -476,7 +492,11 @@ $checkbox-border-color: $color-dodger-blue;
   position: relative;
 }
 
-.submit-resource-content {
+.submit-resource-section-content {
+  @extend %section-content;
+}
+
+.submit-resource-text {
   font-weight: $light-font-weight;
 }
 
@@ -494,8 +514,8 @@ $checkbox-border-color: $color-dodger-blue;
   font-weight: $light-font-weight;
 }
 
-.who-we-serve-section-content,
-.submit-resource-content,
+.who-we-serve-section-text,
+.submit-resource-text,
 .who-we-serve-section-subtext {
   margin-bottom: 2rem;
 }
