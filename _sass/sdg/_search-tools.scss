@@ -4,9 +4,10 @@
 .search-bar {
   margin: 0 auto;
   max-width: 50em;
+  padding: 0 3rem;
 
-  @include for-mobile-only {
-    padding: 0 3rem;
+  @include for-tablet-landscape-up {
+    padding: 0;
   }
 }
 
