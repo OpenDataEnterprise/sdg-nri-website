@@ -83,6 +83,8 @@ news-js: true
         @page-changed="refresh">
       </pagination>
 
+      {% include noscript-warning.html %}
+
     </div>
 
     <event-feed :events="events"></event-feed>
