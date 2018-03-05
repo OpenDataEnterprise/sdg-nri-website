@@ -3,7 +3,7 @@ $accent-border-color: $color-dodger-blue;
 /**
  * Topic Page
  */
-.topic-page {
+.topic-section {
   box-sizing: border-box;
   padding: $mobile-padding;
   position: relative;
@@ -17,7 +17,7 @@ $accent-border-color: $color-dodger-blue;
   }
 }
 
-.topic-page-wrapper {
+.topic-section-container {
   @extend %section-content;
   @extend %clearfix;
 }
@@ -26,7 +26,7 @@ $accent-border-color: $color-dodger-blue;
   margin-bottom: 1.6rem;
 }
 
-.topic-page-content {
+.topic-section-content {
   border-top: ($standard-border-width * 2) solid $accent-border-color;
 
   > h2 {
@@ -39,7 +39,7 @@ $accent-border-color: $color-dodger-blue;
   }
 }
 
-.topic-page-main-heading {
+.topic-section-main-heading {
   font-size: 2rem;
   font-weight: 700;
   line-height: 1.2em;
@@ -51,7 +51,7 @@ $accent-border-color: $color-dodger-blue;
   }
 }
 
-.topic-page-section-heading {
+.topic-section-heading {
   color: $text-color-dark;
   font-family: Oswald;
   font-size: 2.5rem;

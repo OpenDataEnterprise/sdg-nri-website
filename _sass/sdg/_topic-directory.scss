@@ -23,6 +23,7 @@
 
 .topic-directory-header {
   @extend .color-bar-heading;
+
   font-family: Oswald;
   font-size: 1.3rem;
   margin-bottom: 2em;
@@ -56,7 +57,7 @@
   }
 
   @include for-tablet-portrait-up {
-    max-width: 60rem;
+    max-width: $content-width;
     column-count: 2;
     column-gap: 5rem;
   }

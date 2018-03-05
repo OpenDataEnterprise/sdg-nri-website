@@ -1,17 +1,23 @@
 <nav class="topic-directory">
+
   <div class="topic-directory-header">
     <img class="heading-color-bar" src="/assets/img/color-bar.svg" role="img" aria-hidden="true">
     <h1 class="topic-directory-heading">Explore Resources by Topic</h1>
   </div>
+
   <div class="topic-directory-body">
+
     <ul class="topic-list">
+
       {% for topic in site.data.nested_topics %}
       <li class="topic-directory-topic">
+
         <h2 class="topic-heading">
           <a href="/topic/{{ topic.tag }}">
             <span>{{ topic.label }}&nbsp;<span class="icon-blue-arrow" aria-hidden="true"></span></span>
           </a>
         </h2>
+
         {% if topic.subtopics %}
         <ul>
           {% for subtopic in topic.subtopics %}
@@ -21,12 +27,17 @@
           {% endfor %}
         </ul>
         {% endif %}
+
       </li>
       {% endfor %}
+
     </ul>
+
     <a class="submit-resource-button button" href="/submit-resource/">
       <span class="icon-paperclip" aria-hidden="true"></span>
       <span>SUBMIT A RESOURCE</span>
     </a>
+
   </div>
+
 </nav>

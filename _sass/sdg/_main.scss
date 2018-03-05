@@ -251,6 +251,7 @@ $checkbox-border-color: $color-dodger-blue;
   line-height: 1.4em;
   padding: 1rem;
   position: relative;
+  text-align: center;
   text-shadow: 0.08em 0.08em 0 rgba(2, 11, 79, 0.5);
 
   @include for-tablet-portrait-up {
@@ -264,13 +265,8 @@ $checkbox-border-color: $color-dodger-blue;
   }
 }
 
-.directory-banner,
-.topics-banner {
-  position: relative;
-
-  .banner-heading {
-    margin-bottom: 0.2rem;
-  }
+.main-banner-body {
+  @extend %section-content;
 }
 
 .banner-search {
@@ -319,7 +315,7 @@ $checkbox-border-color: $color-dodger-blue;
 }
 
 .feature-list {
-  max-width: 60rem;
+  max-width: $on-laptop;
   margin: 0 auto 1.2rem;
   text-align: left;
 }
@@ -460,13 +456,11 @@ $checkbox-border-color: $color-dodger-blue;
 
 .who-we-serve-section-subtext {
   font-size: 1.25rem;
-  font-weight: 300;
 }
 
 .who-we-serve-list {
-  font-weight: 300;
   margin: 0 auto;
-  max-width: 50rem;
+  max-width: $on-laptop;
   text-align: left;
 }
 
@@ -477,6 +471,7 @@ $checkbox-border-color: $color-dodger-blue;
 .who-we-serve-item-heading {
   font-family: Oswald;
   font-size: 1.5rem;
+  font-weight: 500;
   letter-spacing: 0.0625rem;
 }
 
