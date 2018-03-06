@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "compress-images": "node compress-images.js",
+    "prebuild": "npm run compress-images",
     "build:production": "NODE_ENV=production webpack --config webpack.config.js",
     "build:staging": "NODE_ENV=staging webpack --config webpack.config.js --env.NODE_ENV=\"staging\" --display-error-details; jekyll build --config _config.yml,_config-staging.yml",
     "build:development": "webpack --config webpack.config.js --env.NODE_ENV=\"development\" --display-error-details; jekyll build --config _config.yml,_config-development.yml"
@@ -19,6 +21,7 @@
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
+    "compress-images": "^1.1.8",
     "css-loader": "^0.28.7",
     "vue-loader": "^13.6.1",
     "vue-template-compiler": "^2.5.13",
