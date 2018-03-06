@@ -3,7 +3,7 @@ layout: default
 topic-js: true
 ---
 
-<section class="hero-section">
+<section class="hero-section explore-topics-hero">
 
   <div class="hero-body">
 
@@ -18,7 +18,7 @@ topic-js: true
 
 </section>
 
-<section class="topic-section">
+<section id="top" class="topic-section">
 
   <img class="white-wave" src="/assets/img/white-wave.png" alt="" role="img" aria-hidden="true">
 
@@ -38,7 +38,7 @@ topic-js: true
           {% else %}
           <h2 class="nav-subtopic-heading">
           {% endif %}
-            <a href="/topic/{{ topic.tag }}">{{ topic.label }}</a>
+            <a href="/topic/{{ topic.tag }}/#top">{{ topic.label }}</a>
           </h2>
         </li>
 
@@ -49,7 +49,7 @@ topic-js: true
           {% else %}
           <h1 class="nav-topic-heading">
           {% endif %}
-            <a href="/topic/{{ topic.tag }}">{{ topic.label }}</a>
+            <a href="/topic/{{ topic.tag }}/#top">{{ topic.label }}</a>
           </h1>
         </li>
         {% endif %}
@@ -89,7 +89,7 @@ topic-js: true
       {% endfor %}
       {% if nextTopic != '' %}
       <div class="topic-section-heading">{{ 'Next Section' | upcase }}</div>
-      <a class="next-section-link" href="/topic/{{ nextTopic.tag }}">
+      <a class="next-section-link" href="/topic/{{ nextTopic.tag }}/#top">
         <span>{{ nextTopic.label }}</span>
         <span class="icon-blue-arrow" aria-hidden="true"></span>
       </a>
