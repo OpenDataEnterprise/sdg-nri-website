@@ -1,14 +1,13 @@
 ---
 title: Contact Us
-permalink: /submit-resource/
+permalink: "/submit-resource/"
 layout: submit-resource-form
 ---
-
 <div id="submit-resource" class="contact-form-container">
 
   <p class="contact-form-intro-header">Do you know of a resource that we haven't listed?</p>
 
-  <p class="contact-form-intro-subtext">Help us by submitting resources we haven't discovered. Submissions wireviewed for accuracy.</p>
+  <p class="contact-form-intro-subtext">Help us by submitting resources we haven't discovered. Submissions will be reviewed for accuracy.</p>
 
   <form id="contact-form" method="post" action="{{ site.api_url }}/submission-form">
 
@@ -17,135 +16,135 @@ layout: submit-resource-form
     <legend class="field-label">Name <span class="required">*</span></legend>
     <fieldset class="name-fieldset">
       <div class="name-field">
-      <input name="first-name" type="text" class="field-element" required>
+      <input name="first-name" class="field-element" required="" type="text">
       <label class="field-label" for="first-name">First Name</label>
       </div>
       <div class="name-field">
-      <input name="last-name" type="text" class="field-element" required>
+      <input name="last-name" class="field-element" required="" type="text">
       <label class="field-label" for="last-name">Last Name</label>
       </div>
     </fieldset>
 
     <label class="field-label" for="email">Email Address <span class="required">*</span></label>
-    <input name="email" type="text" class="field-element" required>
+    <input name="email" class="field-element" required="" type="text">
 
     <label class="field-label" for="organization">Organization <span class="required">*</span></label>
-    <input name="organization" type="text" class="field-element" required>
+    <input name="organization" class="field-element" required="" type="text">
 
     <label class="field-label" for="title">Professional Title <span class="required">*</span></label>
-    <input name="title" type="text" class="field-element" required>
+    <input name="title" class="field-element" required="" type="text">
 
     <label class="field-label" for="country">Country <span class="required">*</span></label>
     <div class="select-container">
-      <select name="country" class="field-element" required>
-        <option class="initial-option" disabled="disabled" selected="selected" value="" hidden>Please select a country</  option>
+      <select name="country" class="field-element" required="">
+        <option class="initial-option" disabled="disabled" selected="selected" value="" hidden="">Please select a country<!--  option-->
         {% for country in site.data.countries %}
-        <option value="{{ country.iso_alpha3 }}">{{ country.name }}</option>
+        </option><option value="{{ country.iso_alpha3 }}">{{ country.name }}</option>
         {% endfor %}
       </select>
     </div>
 
     <label class="field-label" for="city">City <span class="required">*</span></label>
-    <input name="city" type="text" class="field-element" required>
+    <input name="city" class="field-element" required="" type="text">
 
     <h1 class="contact-form-heading">Resource Information</h1>
 
     <label class="field-label" for="title">Resource Title <span class="required">*</span></label>
-    <input name="resource-title" type="text" class="field-element" required>
+    <input name="resource-title" class="field-element" required="" type="text">
 
     <label class="field-label" for="organization">Author <span class="required">*</span></label>
-    <input name="resource-organization" type="text" class="field-element" required>
+    <input name="resource-organization" class="field-element" required="" type="text">
 
     <label class="field-label" for="link">URL <span class="required">*</span></label>
-    <input name="resource-link" type="text" class="field-element" required>
+    <input name="resource-link" class="field-element" required="" type="text">
 
     <label class="field-label" for="description">Brief Description <span class="required">*</span></label>
-    <textarea name="resource-description" class="field-element description-text-input" required></textarea>
+    <textarea name="resource-description" class="field-element description-text-input" required=""></textarea>
 
     <fieldset class="topics-fieldset">
       <label class="field-label" for="resource-topics">Tags <span class="required">*</span></label>
       <ul class="checkbox-set">
         <li>
           <label class="form-checkbox-label">
-            <input class="checkbox" name="resource-topics" type="checkbox" value="SDG Reporting">
+            <input class="checkbox" name="resource-topics" value="SDG Reporting" type="checkbox">
             <span>SDG Reporting</span>
           </label>
         </li>
         <li>
           <label class="form-checkbox-label">
-            <input class="checkbox" name="resource-topics" type="checkbox" value="Indicators">
+            <input class="checkbox" name="resource-topics" value="Indicators" type="checkbox">
             <span>Indicators</span>
           </label>
         </li>
         <li>
           <label class="form-checkbox-label">
-            <input class="checkbox" name="resource-topics" type="checkbox" value="Technology">
+            <input class="checkbox" name="resource-topics" value="Technology" type="checkbox">
             <span>Technology</span>
           </label>
         </li>
         <li>
           <label class="form-checkbox-label">
-            <input class="checkbox" name="resource-topics" type="checkbox" value="Features">
+            <input class="checkbox" name="resource-topics" value="Features" type="checkbox">
             <span>Features</span>
           </label>
         </li>
         <li>
           <label class="form-checkbox-label">
-            <input class="checkbox" name="resource-topics" type="checkbox" value="Country">
+            <input class="checkbox" name="resource-topics" value="Country" type="checkbox">
             <span>Country</span>
           </label>
         </li>
         <li>
           <label class="form-checkbox-label">
-            <input class="checkbox" name="resource-topics" type="checkbox" value="Standards">
+            <input class="checkbox" name="resource-topics" value="Standards" type="checkbox">
             <span>Standards</span>
           </label>
         </li>
         <li>
           <label class="form-checkbox-label">
-            <input class="checkbox" name="resource-topics" type="checkbox" value="Open data">
+            <input class="checkbox" name="resource-topics" value="Open data" type="checkbox">
             <span>Open data</span>
           </label>
         </li>
         <li>
           <label class="form-checkbox-label">
-            <input class="checkbox" name="resource-topics" type="checkbox" value="Privacy">
+            <input class="checkbox" name="resource-topics" value="Privacy" type="checkbox">
             <span>Privacy</span>
           </label>
         </li>
         <li>
           <label class="form-checkbox-label">
-            <input class="checkbox" name="resource-topics" type="checkbox" value="Security">
+            <input class="checkbox" name="resource-topics" value="Security" type="checkbox">
             <span>Security</span>
           </label>
         </li>
         <li>
           <label class="form-checkbox-label">
-            <input class="checkbox" name="resource-topics" type="checkbox" value="Open source">
+            <input class="checkbox" name="resource-topics" value="Open source" type="checkbox">
             <span>Open source</span>
           </label>
         </li>
         <li>
           <label class="form-checkbox-label">
-            <input class="checkbox" name="resource-topics" type="checkbox" value="Policy">
+            <input class="checkbox" name="resource-topics" value="Policy" type="checkbox">
             <span>Policy</span>
           </label>
         </li>
         <li>
           <label class="form-checkbox-label">
-            <input class="checkbox" name="resource-topics" type="checkbox" value="Engagement">
+            <input class="checkbox" name="resource-topics" value="Engagement" type="checkbox">
             <span>Engagement</span>
           </label>
         </li>
         <li>
           <label class="form-checkbox-label">
-            <input class="checkbox" name="resource-topics" type="checkbox" value="Capacity">
+            <input class="checkbox" name="resource-topics" value="Capacity" type="checkbox">
             <span>Capacity</span>
           </label>
         </li>
         <li>
           <label class="form-checkbox-label">
-            <input class="checkbox" name="resource-topics" type="checkbox" value="Financing">
+            <input class="checkbox" name="resource-topics" value="Financing" type="checkbox">
             <span>Financing</span>
           </label>
         </li>
@@ -155,7 +154,7 @@ layout: submit-resource-form
     <label class="field-label" for="additional-info">Additional Information</label>
     <textarea name="resource-additional-info" class="field-element additional-info-text-input"></textarea>
 
-    <input class="button" type="submit" value="Submit Resource">
+    <input class="button" value="Submit Resource" type="submit">
 
   </form>
 
