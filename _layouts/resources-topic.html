@@ -1,5 +1,6 @@
 ---
 layout: default
+show-resources: true
 topic-js: true
 ---
 
@@ -67,6 +68,7 @@ topic-js: true
         {{ content }}
       </div>
 
+      {% if page.show-resources %}
       <div class="topic-section-heading">{{ 'Resources' | upcase }}</div>
       <ul class="topic-resources" is="resource-list"
         :resources="resources"
@@ -78,6 +80,7 @@ topic-js: true
         v-bind:total-items="pagination.totalResults"
         v-on:page-changed="refresh">
       </pagination>
+      {% endif %}
 
       {% assign nextTopic = '' %}
       {% for topic in site.data.topics %}

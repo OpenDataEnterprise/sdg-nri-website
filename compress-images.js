@@ -1,5 +1,5 @@
 var compress_images = require('compress-images'), INPUT_path_to_your_images, OUTPUT_path;
- 
+
 INPUT_path_to_your_images = '_app/images/**/*.{jpg,JPG,jpeg,JPEG,png,svg,gif}';
 OUTPUT_path = 'assets/img/';
 

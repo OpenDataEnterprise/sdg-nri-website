@@ -12,7 +12,7 @@ CREATE SCHEMA sdg;
 
 CREATE TABLE sdg.topic (
     id SERIAL PRIMARY KEY,
-    tag TEXT NOT NULL,
+    topic TEXT UNIQUE NOT NULL,
     path LTREE UNIQUE NOT NULL,
     label TEXT NOT NULL,
     ordering LTREE UNIQUE NOT NULL
@@ -49,6 +49,7 @@ CREATE TABLE sdg.tag (
 
 CREATE TABLE sdg.resource (
     uuid UUID PRIMARY KEY DEFAULT uuid_generate_v1mc(),
+    content_type_id INTEGER REFERENCES sdg.content_type (id) ON UPDATE CASCADE,
     country_id CHARACTER(3) REFERENCES sdg.country (iso_alpha3) ON UPDATE CASCADE,
     title TEXT NOT NULL,
     organization TEXT,
@@ -56,7 +57,6 @@ CREATE TABLE sdg.resource (
     date_published TIMESTAMPTZ,
     image_url TEXT,
     description TEXT,
-    type TEXT,
     tags TEXT[],
     publish BOOLEAN DEFAULT FALSE,
     tsv TSVECTOR,
@@ -66,7 +66,7 @@ CREATE TABLE sdg.resource (
 
 CREATE TABLE sdg.submission_status (
     id SERIAL PRIMARY KEY,
-    status TEXT
+    status TEXT NOT NULL
 );
 
 CREATE TABLE sdg.submission (
@@ -112,9 +112,9 @@ CREATE TABLE sdg.event (
 /**
  * Create associative tables.
  */
-CREATE TABLE sdg.topic_resources (
-    topic_id INTEGER REFERENCES sdg.topic (id) ON UPDATE CASCADE ON DELETE CASCADE,
+CREATE TABLE sdg.resource_topics (
     resource_id UUID REFERENCES sdg.resource (uuid) ON UPDATE CASCADE ON DELETE CASCADE,
+    topic_id INTEGER REFERENCES sdg.topic (id) ON UPDATE CASCADE ON DELETE CASCADE,
     PRIMARY KEY (topic_id, resource_id)
 );
 

@@ -8,10 +8,6 @@
   background-position: bottom;
   text-align: center;
 
-  .submit-resource-button {
-    box-shadow: 0.15rem 0.15rem 0 0 #020B4F;
-  }
-
   @include for-tablet-portrait-up {
     padding: $tablet-padding;
   }

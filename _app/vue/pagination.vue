@@ -1,20 +1,19 @@
 <template>
 <div class="pagination" v-if="lastPage > 1">
   <ul>
-    <li v-if="currentPage > 2">
+    <!--<li v-if="currentPage > 2">
       <button type="button"
         aria-label="First page of results"
         v-on:click.prevent="pageChanged(1)">
         <span>&laquo;</span>
       </button>
-    </li>
+    </li>-->
     <li v-if="currentPage > 1">
       <button class="prev-page-button"
         type="button"
         aria-label="Previous page of results"
         v-on:click.prevent="pageChanged(currentPage - 1)">
-        <span class="icon-arrow-reverse" aria-hidden="true"></span>
-        <span>Previous</span>
+        <span class="icon-arrow-reverse" aria-hidden="true"></span>&nbsp;<span>Previous</span>
       </button>
     </li>
     <li v-for="n in paginationRange">
@@ -30,17 +29,16 @@
         type="button"
         aria-label="Next page of results"
         v-on:click.prevent="pageChanged(currentPage + 1)">
-        <span>Next</span>
-        <span class="icon-arrow" aria-hidden="true"></span>
+        <span>Next</span>&nbsp;<span class="icon-arrow" aria-hidden="true"></span>
       </button>
     </li>
-    <li v-if="currentPage < (lastPage - 1)">
+    <!--<li v-if="currentPage < (lastPage - 1)">
       <button type="button"
         aria-label="Last page of results"
         v-on:click.prevent="pageChanged(lastPage)">
         <span>&raquo;</span>
       </button>
-    </li>
+    </li>-->
   </ul>
 </div>
 </template>

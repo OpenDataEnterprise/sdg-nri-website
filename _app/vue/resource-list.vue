@@ -26,8 +26,12 @@
           <a :href="(( resource.url ))" target="_blank">{{ resource.title }}</a>
         </h1>
         <span class="resource-organization">{{ resource.organization }}</span>
-        <span class="info-divider">|</span>
-        <span class="resource-publication-date">{{ resource.date_published }}</span>
+        <span class="info-divider"
+          v-if="resource.date_published">|</span>
+        <span class="resource-publication-date"
+          v-if="resource.date_published">
+          {{ resource.date_published }}
+        </span>
         <div class="resource-description">{{ resource.description }}</div>
         <div class="resource-tags" v-if="hasTags(resource)">
           <ul class="resource-tags-list">

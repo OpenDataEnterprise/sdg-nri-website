@@ -1,27 +1,27 @@
 BEGIN;
 
-INSERT INTO sdg.topic (tag, path, label, ordering) VALUES
-('sdg', 'sdg', 'Why SDG Reporting?', '1'),
-('intro', 'sdg.intro', 'What are SDGs and the Data Revolution?', '1.1'),
-('reporting', 'sdg.reporting', 'What is SDG Reporting?', '1.2'),
-('indicators', 'sdg.indicators', 'Global SDG Indicators', '1.3'),
-('approaches', 'approaches', 'Current Approaches to SDG Reporting', '2'),
-('assessment', 'assessment', 'Assessing Reporting Priorities and Needs', '3'),
-('policy', 'assessment.policy', 'Policy Considerations', '3.1'),
-('engagement', 'assessment.engagement', 'Stakeholder Engagement', '3.2'),
-('financing', 'assessment.financing', 'Financing SDG Reporting', '3.3'),
-('capacity', 'assessment.capacity', 'Capacity Building', '3.4'),
-('data', 'data', 'Data and Technical', '4'),
-('sourcing', 'data.sourcing', 'Identifying Data Sources and Gaps', '4.1'),
-('standards', 'data.standards', 'Data and Metadata Standards', '4.2'),
-('technology', 'data.technology', 'Types of Technology', '4.3'),
-('features', 'data.features', 'Features and Functionality', '4.4'),
-('opensource', 'opensource', 'Open Source Solutions', '5'),
-('examples', 'opensource.examples', 'Current Open-Source Examples', '5.1'),
-('versioncontrol', 'opensource.versioncontrol', 'Introduction to Version Control', '5.2'),
-('forking', 'opensource.forking', 'Forking an Open-Source Platform', '5.3'),
-('formats', 'opensource.formats', 'Adding Data to a Platform', '5.4'),
-('customization', 'opensource.customization', 'Customization and Additional Features', '5.5'),
+INSERT INTO sdg.topic (topic, path, label, ordering) VALUES
+('sdg', 'sdg', 'Why SDG reporting?', '1'),
+('intro', 'sdg.intro', 'What are the SDGs and the Data Revolution?', '1.1'),
+('reporting', 'sdg.reporting', 'What is SDG reporting?', '1.2'),
+('indicators', 'sdg.indicators', 'The global SDG indicators', '1.3'),
+('approaches', 'approaches', 'Current approaches to SDG reporting', '2'),
+('priorities', 'priorities', 'Assessing reporting priorities and needs', '3'),
+('policy', 'priorities.policy', 'Policy considerations', '3.1'),
+('engagement', 'priorities.engagement', 'Stakeholder engagement', '3.2'),
+('financing', 'priorities.financing', 'Financing and sustainability', '3.3'),
+('capacity', 'priorities.capacity', 'Capacity-building', '3.4'),
+('data', 'data', 'Data and technical', '4'),
+('assessment', 'data.assessment', 'Identifying data sources and gaps', '4.1'),
+('standards', 'data.standards', 'Open data, metadata, and standards', '4.2'),
+('technology', 'data.technology', 'Types of technology', '4.3'),
+('features', 'data.features', 'Features and functionality', '4.4'),
+('opensource', 'opensource', 'Open-source solutions', '5'),
+('platforms', 'opensource.platforms', 'Open-source reporting platforms', '5.1'),
+('versioncontrol', 'opensource.versioncontrol', 'Introduction to version control', '5.2'),
+('forking', 'opensource.forking', 'Forking an open-source platform', '5.3'),
+('addingdata', 'opensource.addingdata', 'Adding data to a platform', '5.4'),
+('customization', 'opensource.customization', 'Customization and additional features', '5.5'),
 ('countries', 'countries', 'Country Experiences', '6');
 
 COMMIT;
@@ -303,80 +303,16 @@ INSERT INTO sdg.content_type (id, name) VALUES
 (5, 'Webinar'),
 (6, 'Presentation'),
 (7, 'Website'),
-(8, 'Conference Proceedings');
+(8, 'Conference Proceedings'),
+(9, 'Repository');
 
 COMMIT;
 
 BEGIN;
 
-INSERT INTO sdg.submission_status (status) VALUES
-('Unreviewed'),
-('Under review'),
-('Accepted');
-
-COMMIT;
-
-/* DEVELOPMENT TESTING DATA */
-
-/* Resource Data */
-
-BEGIN;
-
-INSERT INTO sdg.resource (title, organization, date_published, url, description, tags, publish) VALUES
-('SDG COUNTRY REPORTING GUIDELINES', 'UN Development Group', '2017-03-01 00:00+00', 'https://unstats.un.org/sdgs/files/meetings/sdg-inter-agency-meeting-2017/8.UNDG%20WG%20on%20SD-SDG%20Country%20Reporting%20Guidelines.pdf', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras in nibh et est porta auctor sed ac nunc. Fusce magna arcu, euismod quis urna elementum, semper maximus elit. Nullam molestie eros efficitur semper suscipit. Curabitur eleifend velit orci, sed posuere enim fermentum eget.', '{"SDG Reporting"}', true),
-('Data Tools for the California Bay Area: Actionable Intelligence for Cities to Support SDG Achievement', 'SDSN / Stanford University', '2017-08-01 00:00+00', 'http://unsdsn.org/resources/publications/data-tools-for-the-california-bay-area-actionable-intelligence-for-cities-to-support-sdg-achievement/', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras in nibh et est porta auctor sed ac nunc. Fusce magna arcu, euismod quis urna elementum, semper maximus elit. Nullam molestie eros efficitur semper suscipit. Curabitur eleifend velit orci, sed posuere enim fermentum eget.', '{"subnational", "cities"}', true),
-('Hacking the Sustainable Development Goals: Can US Cities Measure Up?', 'Urban Institute', '2017-09-01 00:00+00', 'https://www.urban.org/research/publication/hacking-sustainable-development-goals/view/full_report', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras in nibh et est porta auctor sed ac nunc. Fusce magna arcu, euismod quis urna elementum, semper maximus elit. Nullam molestie eros efficitur semper suscipit. Curabitur eleifend velit orci, sed posuere enim fermentum eget.', '{"subnational", "cities"}', true),
-('Handbook on Major Statistical Data Management Platforms', 'UNECA', '2011-10-01 00:00+00', 'http://nsdsguidelines.paris21.org/sites/default/files/EDITED_Handbook_SDMS_final_2-edited-clean.doc', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras in nibh et est porta auctor sed ac nunc. Fusce magna arcu, euismod quis urna elementum, semper maximus elit. Nullam molestie eros efficitur semper suscipit. Curabitur eleifend velit orci, sed posuere enim fermentum eget.', '{"data management", "platforms", "Africa"}', true),
-('Development Co-operation Report 2017', 'OECD', '2017-10-01 00:00+00', 'http://www.oecd.org/dac/development-co-operation-report-20747721.htm', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras in nibh et est porta auctor sed ac nunc. Fusce magna arcu, euismod quis urna elementum, semper maximus elit. Nullam molestie eros efficitur semper suscipit. Curabitur eleifend velit orci, sed posuere enim fermentum eget.', '{"big data", "internet of things"}', true),
-('A World That Counts: Mobilising the Data Revolution for Sustainable Development', 'UN Independent Expert Advisory Group on a Data Revolution for Sustainable Development (IAEG-SDGs)', '2014-11-01 00:00+00', 'http://www.undatarevolution.org/wp-content/uploads/2014/11/A-World-That-Counts.pdf', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras in nibh et est porta auctor sed ac nunc. Fusce magna arcu, euismod quis urna elementum, semper maximus elit. Nullam molestie eros efficitur semper suscipit. Curabitur eleifend velit orci, sed posuere enim fermentum eget.', '{"UN"}', true),
-('Cape Town Global Action Plan for Sustainable Development Data (CTGAP)', 'UN STATS', '2017-01-01 00:00+00', 'https://unstats.un.org/sdgs/hlg/Cape-Town-Global-Action-Plan/', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras in nibh et est porta auctor sed ac nunc. Fusce magna arcu, euismod quis urna elementum, semper maximus elit. Nullam molestie eros efficitur semper suscipit. Curabitur eleifend velit orci, sed posuere enim fermentum eget.','{"roadmap", "UN"}', true),
-('Localizing the Sustainable Development Goals for San Jose & the Bay Area', 'SDSN / Stanford University', '2017-08-01 00:00+00', 'https://docs.google.com/presentation/d/18W8ksej9cj-ZQ3TwckFPZjZ2HrvkcWsolfBAiPp82_w/edit', 'Nullam consectetur orci non magna maximus, non egestas tellus elementum. Mauris nibh ipsum, mattis eu massa sed, dignissim gravida diam. Maecenas ut justo non quam hendrerit vulputate eget quis turpis. Phasellus non urna velit.', '{"subnational", "US"}', true),
-('Guidelines for National SDG Indicators Reporting Mechanisms', 'UNECE, Task Force on Reporting SDG Indicators Using National Reporting Platforms', '2017-10-01 00:00+00', '', 'Quisque tristique nisi erat, et tincidunt odio accumsan sed. Nullam et finibus orci. Sed ultricies tortor ut lectus ornare, eu pulvinar ligula facilisis. Sed euismod condimentum augue tempor tempus. Vestibulum euismod felis quis volutpat sollicitudin. Morbi odio lectus, porta sit amet mauris et, ultricies suscipit eros.', '{}', true),
-('SDG Indicators Global Database', 'UNSD', '2017-09-12 00:00+00', 'https://unstats.un.org/sdgs/indicators/database/', 'Nunc posuere aliquam urna. Donec finibus suscipit justo. Morbi ligula lacus, molestie sit amet sem sed, suscipit tempus ipsum. Donec feugiat sollicitudin aliquet. Sed gravida lectus volutpat, condimentum neque ut, placerat turpis. Vivamus vehicula arcu vel tincidunt volutpat.', '{}', true),
-('Strategic and managerial issues of official statistics', 'UNECE', '2014-11-01 00:00+00', 'https://statswiki.unece.org/display/train/5.+Strategic+and+managerial+issues+of+official+statistics#expand-Statisticalprogrammescoordinationwithinstatisticalsystems', 'Quisque tristique nisi erat, et tincidunt odio accumsan sed. Nullam et finibus orci. Sed ultricies tortor ut lectus ornare, eu pulvinar ligula facilisis. Sed euismod condimentum augue tempor tempus. Vestibulum euismod felis quis volutpat sollicitudin. Morbi odio lectus, porta sit amet mauris et, ultricies suscipit eros.', '{}', true),
-('Data for Development: A Needs Assessment for SDG Monitoring and Statistical Capacity Development', 'SDSN', '2015-04-01 00:00+00', 'http://unsdsn.org/resources/publications/a-needs-assessment-for-sdg-monitoring-and-statistical-capacity-development/', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eleifend vitae mi nec sodales. Etiam id sem id augue ornare vehicula. Quisque lacinia sem a accumsan faucibus. Nullam feugiat mi ligula, cursus accumsan tortor pharetra sit amet. Curabitur sed vestibulum ex. Suspendisse accumsan, tellus id faucibus fringilla, neque quam tempor quam, non rutrum libero erat eu dui.','{"capacity", "subnational"}', true),
-('Declaration on the role of national statistical offices in measuring and monitoring the Sustainable Development Goals', 'UNECE', '2015-06-01 00:00+00', 'http://www.unece.org/fileadmin/DAM/stats/documents/ece/ces/2015/CES_89_Add.1-E.pdf', 'Ut interdum eu risus et euismod. Aenean commodo, orci et consectetur mattis, elit ex vehicula lacus, vitae hendrerit leo ante ut mi. Cras accumsan nisl non diam tempor, nec auctor lectus vestibulum. Aenean ut mauris elementum, ullamcorper metus ut, commodo enim. Praesent placerat ligula urna, vel fermentum velit condimentum eget. Fusce malesuada enim nec commodo pretium. Duis dignissim, eros vel maximus aliquet, ipsum nulla iaculis elit, eu lobortis neque felis eget justo.', '{}', true),
-('Value of official statistics: Recommendations on promoting, measuring and communicating the value of official statistics', 'UNECE, Task Force on the Value of Official Statistics', '2017-06-01 00:00+00', 'http://www.unece.org/statistics/statstos/task-force-on-the-value-of-official-statistics.html', 'Vestibulum vel lectus ligula. Etiam congue erat vel orci accumsan ornare. Phasellus lobortis pellentesque aliquam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Cras eu quam at sapien vehicula euismod a at nulla. Fusce laoreet quam in tortor pulvinar, et vestibulum tellus ullamcorper. Morbi auctor a risus vel pellentesque. Sed dolor enim, auctor id tincidunt vel, pretium suscipit elit.', '{"NSO"}', true),
-('Self-assessment template for countries on availability of global SDG indicators', 'UNECE', '2017-09-12 00:00+00', 'https://statswiki.unece.org/display/SFSDG/Assessments+on+readiness+to+report', 'Curabitur rutrum commodo lacus, id tristique lorem blandit lobortis. Nunc eu viverra lorem, sed consectetur lorem. Ut pretium ex ac dignissim condimentum. Vestibulum id lectus sit amet eros sodales faucibus. Etiam vestibulum ac purus nec venenatis.', '{}', true),
-('Technical Assessment of Open Data Platforms for NSOs', 'World Bank Group', '2014-10-01 00:00+00', 'http://documents.worldbank.org/curated/en/744241468334210686/Technical-assessment-of-open-data-platforms-for-national-statistical-organisations', 'Duis id eros vel nulla pellentesque tempus. Quisque pulvinar dolor et ante varius, eu bibendum quam mattis. Nunc eu lacinia mi.','{"open data", "NSO", "platforms"}', true),
-('Making Data Portals work for SDGs: A view on deployment, design and technology', 'Paris21', '2016-04-01 00:00+00', 'https://www.paris21.org/sites/default/files/Paper_on_Data_Portals%20wcover_WEB.pdf', 'Nunc eu viverra lorem, sed consectetur lorem. Ut pretium ex ac dignissim condimentum. Vestibulum id lectus sit amet eros sodales faucibus. Etiam vestibulum ac purus nec venenatis. In scelerisque maximus dolor sed viverra. Proin aliquet magna eget metus lobortis, laoreet dignissim metus tempor.', '{"portals", "platforms"}', true),
-('Description of National Reporting Platforms', 'UNECE, Task Force on Reporting SDG Indicators Using National Reporting Platforms', '2017-10-01 00:00+00', '', 'Vivamus quis ex odio. Aenean et ligula sit amet orci blandit molestie. Aenean tempor tincidunt libero at elementum. Nam nec dignissim nisi.', '{}', true),
-('Getting to grips with platforms', 'European Data Portal', '2015-07-15 00:00+00', 'https://www.europeandataportal.eu/elearning/en/module8/#/id/co-01', 'Fusce malesuada enim nec commodo pretium. Duis dignissim, eros vel maximus aliquet, ipsum nulla iaculis elit, eu lobortis neque felis eget justo. Vestibulum vel lectus ligula. Etiam congue erat vel orci accumsan ornare. Phasellus lobortis pellentesque aliquam.', '{}', true),
-('Conference of European Statisticians’ Road Map on Statistics for Sustainable Development Goals, First Edition', 'UNECE, Steering Group on Statistics for SDGs', '2017-06-01 00:00+00', 'https://statswiki.unece.org/display/SFSDG/Statistics+for+SDGs+Home?preview=/127666441/141230208/CES%20Road%20Map%20for%20SDGs_First%20Edition_final.pdf', 'Suspendisse gravida lacus ut ante pulvinar, non eleifend augue porta. Praesent dui arcu, fermentum pretium iaculis ut, pretium non lacus. Suspendisse placerat nunc vel eros viverra porttitor. Ut tempor tellus at massa posuere eleifend.', '{}', true);
-
-COMMIT;
-
-BEGIN;
-
-/* Populates all resources with English as a default language. */
-
-INSERT INTO sdg.resource_languages (resource_id, language_id)
-SELECT uuid, 'en' as language_id
-FROM sdg.resource;
-
-/* Populate a record with foreign languages. */
-
-INSERT INTO sdg.resource_languages(resource_id, language_id)
-SELECT uuid, unnest(ARRAY['ar', 'zh', 'en', 'fr', 'ru', 'es']) AS language_id
-FROM sdg.resource
-WHERE title ~ 'Cape Town Global Action Plan for Sustainable Development Data (CTGAP)';
-
-COMMIT;
-
-/* News Data */
-
-BEGIN;
-
-INSERT INTO sdg.news (title, organization, url, description, tags) VALUES
-('Sustainable Development Goals: progress and possibilities: November 2017',
-'UK Office of National Statistics',
-'https://www.ons.gov.uk/economy/environmentalaccounts/articles/sustainabledevelopmentgoalstakingstockprogressandpossibilities/november2017',
-'Publication of the first report on progress made towards measuring the global Sustainable Development Goal indicators in the UK.',
-'{UK,"open source","progress update"}'),
-('Announcing the SDG National Reporting Initiative',
-'Center for Open Data Enterprise',
-'https://www.huffingtonpost.com/entry/59c04fb8e4b082fd4205b948',
-'Launch of the SDG National Reporting Initiative to support government reporting on the SDGs for data-driven policymaking.',
-'{"SDG National Reporting Initiative","open source"}');
+INSERT INTO sdg.submission_status (id, status) VALUES
+(1, 'Unreviewed'),
+(2, 'Under review'),
+(3, 'Accepted');
 
 COMMIT;

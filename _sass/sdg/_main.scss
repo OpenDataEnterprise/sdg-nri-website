@@ -130,14 +130,11 @@ $checkbox-border-color: $color-dodger-blue;
 /**
  * Buttons
  */
-.button {
-  $button-background-color: lighten($color-dodger-blue, 5%);
-
+%button {
   display: inline-block;
   z-index: 10;
   border: none;
   padding: 0.5rem 1rem;
-  background-color: $button-background-color;
   text-align: center;
   color: $text-color-dark;
   font-family: Oswald;
@@ -146,6 +143,14 @@ $checkbox-border-color: $color-dodger-blue;
   letter-spacing: .03rem;
   text-transform: uppercase;
   cursor: pointer;
+}
+
+.button {
+  @extend %button;
+
+  $button-background-color: lighten($color-dodger-blue, 5%);
+
+  background-color: $button-background-color;
 
   &:hover {
     background-color: lighten($button-background-color, 10%);
@@ -153,11 +158,13 @@ $checkbox-border-color: $color-dodger-blue;
 }
 
 .cta-button {
+  @extend button;
+
   $button-background-color: $color-saffron;
 
-  margin: 0 auto;
   background-color: $button-background-color;
   color: $text-color-dark;
+  margin: 0 auto;
 
   &:hover {
     background-color: $color-anzac;
@@ -165,12 +172,18 @@ $checkbox-border-color: $color-dodger-blue;
   }
 }
 
+.submit-resource-button {
+  @extend .cta-button;
+
+  box-shadow: 0.15rem 0.15rem 0 0 #020B4F;
+}
+
 .hero-cta-button {
-  position: absolute;
+  @extend .cta-button;
+
   bottom: 0;
   left: 0;
-
-  @extend .cta-button;
+  position: absolute;
 }
 
 
@@ -334,9 +347,9 @@ $checkbox-border-color: $color-dodger-blue;
 }
 
 .intro-text {
-  margin-bottom: 1.8rem;
-  font-size: 1.3rem;
   color: $text-color-dark;
+  font-size: 1.3rem;
+  margin-bottom: 1.8rem;
 
   @include for-tablet-portrait-up {
     font-size: 1.8rem;
@@ -344,10 +357,29 @@ $checkbox-border-color: $color-dodger-blue;
   }
 }
 
+%feature-header {
+  color: $text-color-dark;
+  font-family: Oswald;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
 .feature-list {
-  max-width: $on-laptop;
   margin: 0 auto 1.2rem;
+  max-width: $on-laptop;
   text-align: left;
+}
+
+.feature-list-header {
+  @extend %feature-header;
+
+  font-size: 1.8rem;
+  margin-bottom: 1.8rem;
+
+  @include for-tablet-portrait-up {
+    font-size: 2.25rem;
+    margin-bottom: 3rem;
+  }
 }
 
 .feature {
@@ -372,15 +404,13 @@ $checkbox-border-color: $color-dodger-blue;
 }
 
 .feature-description-header {
-  margin-bottom: 0.5rem;
-  color: $text-color-dark;
-  font-family: Oswald;
-  font-size: 1.5rem;
-  font-weight: 500;
-  text-transform: uppercase;
+  @extend %feature-header;
 
-  @include for-tablet-portrait-up {
-    font-size: 2rem;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+
+  @include for-tablet-landscape-up {
+    font-size: 1.7rem;
   }
 }
 
@@ -393,8 +423,8 @@ $checkbox-border-color: $color-dodger-blue;
     flex-grow: 0;
     flex-basis: fit-content;
     margin-left: 3rem;
-    width: 11rem;
-    height: 11rem;
+    width: 10rem;
+    height: 10rem;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -458,10 +488,6 @@ $checkbox-border-color: $color-dodger-blue;
   background-color: rgba(22, 45, 122, 1);
   text-align: center;
   color: rgb(255, 255, 255);
-
-  .submit-resource-button {
-    box-shadow: 0.15rem 0.15rem 0 0 #020B4F;
-  }
 
   @include for-tablet-portrait-up {
     padding: $tablet-padding;
