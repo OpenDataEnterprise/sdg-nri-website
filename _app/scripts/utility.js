@@ -104,7 +104,7 @@ function formatResults (results, fields, includeDay) {
         const field = fields[j];
 
         if (field in results[i]) {
-          if (typeof results[i][field] !== 'undefined') {
+          if (results[i][field]) {
             const date = new Date(results[i][field]);
 
             if (date !== 'Invalid Date') {
