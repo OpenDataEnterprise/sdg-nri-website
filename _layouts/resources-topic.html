@@ -25,7 +25,7 @@ topic-js: true
 
   <div id="directory" class="topic-section-container">
 
-    {% assign currentTopic = site.data.topics | where: 'tag', page.topic-tag | first %}
+    {% assign currentTopic = site.data.topics | where: 'topic', page.topic-tag | first %}
 
     <nav class="topic-nav-sidebar">
 
@@ -34,23 +34,23 @@ topic-js: true
         {% for topic in site.data.topics %}
         {% if topic.path contains "." %}
         <li class="nav-subtopic">
-          {% if topic.tag == currentTopic.tag %}
+          {% if topic.topic == currentTopic.topic %}
           <h2 class="nav-subtopic-heading active-nav-topic">
           {% else %}
           <h2 class="nav-subtopic-heading">
           {% endif %}
-            <a href="/topic/{{ topic.tag }}/#top">{{ topic.label }}</a>
+            <a href="/topic/{{ topic.topic }}/#top">{{ topic.label }}</a>
           </h2>
         </li>
 
         {% else %}
         <li class="nav-topic">
-          {% if topic.tag == currentTopic.tag %}
+          {% if topic.topic == currentTopic.topic %}
           <h1 class="nav-topic-heading active-nav-topic">
           {% else %}
           <h1 class="nav-topic-heading">
           {% endif %}
-            <a href="/topic/{{ topic.tag }}/#top">{{ topic.label }}</a>
+            <a href="/topic/{{ topic.topic }}/#top">{{ topic.label }}</a>
           </h1>
         </li>
         {% endif %}
@@ -92,7 +92,7 @@ topic-js: true
       {% endfor %}
       {% if nextTopic != '' %}
       <div class="topic-section-heading">{{ 'Next Section' | upcase }}</div>
-      <a class="next-section-link" href="/topic/{{ nextTopic.tag }}/#top">
+      <a class="next-section-link" href="/topic/{{ nextTopic.topic }}/#top">
         <span>{{ nextTopic.label }}</span>
         <span class="icon-blue-arrow" aria-hidden="true"></span>
       </a>

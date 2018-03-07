@@ -20,7 +20,7 @@
         <span class="info-divider">|</span>
         <span class="news-author">{{ news.organization }}</span>
         <div class="news-description">{{ news.description }}</div>
-        <div class="resource-tags" v-if="news.tags.length > 0">
+        <div class="resource-tags" v-if="'tags' in news">
           <ul class="resource-tags-list">
             <li class="subject-tag"
               v-for="tag in news.tags"

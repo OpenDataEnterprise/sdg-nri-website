@@ -3,14 +3,14 @@
     {% for topic in site.data.nested_topics %}
     <li class="nav-topic">
       <h1 class="nav-topic-heading">
-        <a href="/topic/{{ topic.tag }}">{{ topic.label }}</a>
+        <a href="/topic/{{ topic.topic }}">{{ topic.label }}</a>
       </h1>
       {% if topic.subtopics.size > 0 %}
       <ul>
         {% for subtopic in topic.subtopics %}
         <li class="nav-subtopic">
           <h2 class="nav-subtopic-heading">
-            <a href="/topic/{{ subtopic.tag }}">{{ subtopic.label }}</a>
+            <a href="/topic/{{ subtopic.topic }}">{{ subtopic.label }}</a>
           </h2>
         </li>
         {% endfor %}

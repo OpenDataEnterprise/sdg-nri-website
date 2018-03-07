@@ -68,13 +68,13 @@ news-js: true
 
       </div>
 
-      <newsfeed
+      <news-feed
         :newsfeed="news"
         :filter-tags="filterTags"
         :total-results="pagination.totalResults"
         @select-filter-tag="addTag"
         @deselect-filter-tag="removeTag">
-      </newsfeed>
+      </news-feed>
 
       <pagination
         :current-page="pagination.currentPage"
