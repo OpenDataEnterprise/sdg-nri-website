@@ -42,10 +42,10 @@ CREATE TABLE sdg.content_type (
     name TEXT NOT NULL
 );
 
-CREATE TABLE sdg.tag {
+CREATE TABLE sdg.tag (
     uuid UUID PRIMARY KEY,
     name TEXT NOT NULL
-};
+);
 
 CREATE TABLE sdg.resource (
     uuid UUID PRIMARY KEY DEFAULT uuid_generate_v1mc(),
