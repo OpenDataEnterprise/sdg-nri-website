@@ -5,7 +5,7 @@
     <li class="event" v-for="event in filteredEvents">
       <article class="event-card">
         <div class="event-heading">
-          <a v-bind:href="event.link" target="_blank">{{ event.title }}</a>
+          <a v-bind:href="event.url" target="_blank">{{ event.title }}</a>
         </div>
         <div class="event-dates">
           <span class="event-start">
