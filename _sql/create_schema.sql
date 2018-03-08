@@ -144,7 +144,7 @@ CREATE FUNCTION resource_tsv_update_trigger() RETURNS trigger AS $$
 BEGIN
   NEW.tsv :=
     setweight(to_tsvector('english', COALESCE(NEW.title,'')), 'A') ||
-    setweight(to_tsvector('english', COALESCE(NEW.description,'')), 'B') ||
+    setweight(to_tsvector('english', COALESCE(NEW.organization,'')), 'B') ||
     setweight(to_tsvector('english', COALESCE(NEW.description,'')), 'C');
   RETURN NEW;
 END

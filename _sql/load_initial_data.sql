@@ -304,7 +304,8 @@ INSERT INTO sdg.content_type (id, name) VALUES
 (6, 'Presentation'),
 (7, 'Website'),
 (8, 'Conference Proceedings'),
-(9, 'Repository');
+(9, 'Repository'),
+(10, 'Video');
 
 COMMIT;
 
