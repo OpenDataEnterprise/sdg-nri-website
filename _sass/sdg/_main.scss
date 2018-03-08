@@ -352,7 +352,7 @@ $checkbox-border-color: $color-dodger-blue;
   margin-bottom: 1.8rem;
 
   @include for-tablet-portrait-up {
-    font-size: 1.8rem;
+    font-size: 1.65rem;
     margin-bottom: 3rem;
   }
 }
@@ -503,7 +503,7 @@ $checkbox-border-color: $color-dodger-blue;
 }
 
 .who-we-serve-section-text {
-  font-size: 1.75rem;
+  font-size: 1.65rem;
 
   a {
     text-decoration: underline;
