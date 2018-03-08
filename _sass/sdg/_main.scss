@@ -273,12 +273,13 @@ $checkbox-border-color: $color-dodger-blue;
 
   @include for-tablet-portrait-up {
     height: 42rem;
-    padding: 8rem;
-    font-size: 2.5rem;
+    padding: $tablet-padding;
+    font-size: 2.25rem;
   }
 
   @include for-tablet-landscape-up {
     font-size: 3rem;
+    padding: $site-padding;
   }
 }
 
