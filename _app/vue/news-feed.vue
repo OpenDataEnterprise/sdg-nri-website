@@ -14,7 +14,7 @@
     </li>
   </ul>
   <div v-if="newsfeed.length === 0">
-    <div class="no-results-message">No events found.</div>
+    <div class="no-results-message">No news items found.</div>
   </div>
   <ul class="news-feed" v-else>
     <li class="news-list-item" v-for="(news, index) in newsfeed">
