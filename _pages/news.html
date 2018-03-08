@@ -69,17 +69,18 @@ news-js: true
       </div>
 
       <news-feed
-        :newsfeed="news"
-        :filter-tags="filterTags"
-        :total-results="pagination.totalResults"
+        v-bind:newsfeed="news"
+        v-bind:filter-tags="filterTags"
+        v-bind:total-results="pagination.totalResults"
+        v-bind:is-loading="isLoading"
         @select-filter-tag="addTag"
         @deselect-filter-tag="removeTag">
       </news-feed>
 
       <pagination
-        :current-page="pagination.currentPage"
-        :items-per-page="pagination.resultsPerPage"
-        :total-items="pagination.totalResults"
+        v-bind:current-page="pagination.currentPage"
+        v-bind:items-per-page="pagination.resultsPerPage"
+        v-bind:total-items="pagination.totalResults"
         @page-changed="refresh">
       </pagination>
 
@@ -87,7 +88,16 @@ news-js: true
 
     </div>
 
-    <event-feed :events="events"></event-feed>
+    <div class="events-wrapper">
+
+      <h2 class="events-heading">Events</h2>
+
+      <event-feed
+        v-bind:events="events"
+        v-bind:is-loading="isLoading">
+      </event-feed>
+
+    </div>
 
   </div>
 

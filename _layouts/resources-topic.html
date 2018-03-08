@@ -71,8 +71,9 @@ topic-js: true
       {% if page.show-resources %}
       <div class="topic-section-heading">{{ 'Resources' | upcase }}</div>
       <ul class="topic-resources" is="resource-list"
-        :resources="resources"
-        :total-results="pagination.totalResults"></ul>
+        v-bind:resources="resources"
+        v-bind:total-results="pagination.totalResults"
+        v-bind:is-loading="isLoading"></ul>
 
       <pagination
         v-bind:current-page="pagination.currentPage"

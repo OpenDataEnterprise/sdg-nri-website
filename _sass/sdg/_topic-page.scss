@@ -47,14 +47,14 @@ $accent-border-color: $color-dodger-blue;
   padding-top: 0.5rem;
 
   @include for-tablet-portrait-up {
-    font-size: 3.375rem;
+    font-size: 2.8rem;
   }
 }
 
 .topic-section-heading {
   color: $text-color-dark;
   font-family: Oswald;
-  font-size: 2.5rem;
+  font-size: 2.3rem;
 }
 
 .next-section-link {
@@ -82,7 +82,7 @@ $accent-border-color: $color-dodger-blue;
 }
 
 .topic-description-intro {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
 }
 
 /**

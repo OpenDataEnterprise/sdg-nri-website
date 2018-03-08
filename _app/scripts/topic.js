@@ -29,6 +29,7 @@ import Pagination from 'vue/pagination.vue';
           resultsPerPage: 5,
           totalResults: 0,
         },
+        isLoading: true,
       };
     },
     methods: {
@@ -55,6 +56,8 @@ import Pagination from 'vue/pagination.vue';
             false);
 
           Vue.set(self, 'resources', resources);
+        }).finally(() => {
+          self.isLoading = false;
         });
 
         Vue.set(self.pagination, 'currentPage', pageNumber);
@@ -81,6 +84,8 @@ import Pagination from 'vue/pagination.vue';
           resourceResults.rows,
           ['date_published'],
           false);
+      }).finally(() => {
+        self.isLoading = false;
       });
     },
     delimiters: ["((", "))"],

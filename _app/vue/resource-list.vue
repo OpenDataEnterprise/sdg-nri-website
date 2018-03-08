@@ -1,6 +1,11 @@
 <template>
-<div>
-  <div class="results-counter" v-if="isFilterable">Showing {{ resources.length }} of {{ totalResults }} resources</div>
+<div class="resources-list-component" v-if="isLoading">
+  <div class="loader">Loading...</div>
+</div>
+<div class="resources-list-component" v-else>
+  <div class="results-counter" v-if="(isFilterable && this.resources.length > 0)">
+    Showing results <b>{{ firstResultIndex }} - {{ lastResultIndex }}</b> out of <b>{{ totalResults }}</b>
+  </div>
   <ul class="resource-tags" v-if="Object.keys(tags).length > 0">
     <li class="subject-tag"
       v-for="(item, tag) in tags"
@@ -13,10 +18,10 @@
     <div class="no-results-heading">No results.</div>
     <div class="no-results-message">Try narrowing your search or <span class="reset-resource-list" v-on:click="viewAll">view all resources</span>.</div>
   </div>
-  <div v-if="isFilterable !== true && resources.length === 0">
+  <div v-else-if="isFilterable !== true && resources.length === 0">
     <div class="no-results-message">There are no resources available for this topic. Please help us by <a href="submit-resource">contributing a resource</a>.</div>
   </div>
-  <ul class="resource-list">
+  <ul class="resource-list" v-else>
     <li class="resource-list-item" v-for="(resource, index) in resources">
       <article class="resource-card">
         <img class="resource-image"
@@ -68,14 +73,39 @@ export default {
       type: Number,
       required: true,
     },
+    currentPage: {
+      type: Number,
+    },
+    resultsPerPage: {
+      type: Number,
+    },
     isFilterable: {
       type: Boolean,
       default: false,
-    }
+    },
+    isLoading: {
+      type: Boolean,
+      default: true,
+    },
   },
   watch: {
     tags: function (val) {
       this.tags = val;
+    },
+  },
+  computed: {
+    firstResultIndex: function () {
+      if (this.resources.length > 0) {
+        return ((this.currentPage - 1) * this.resultsPerPage) + 1;
+      }
+
+      return 0;
+    },
+    lastResultIndex: function () {
+      let lastIndex = (this.firstResultIndex + this.resources.length) - 1;
+
+      // Return a minimum of 0.
+      return Math.max(lastIndex, 0);
     },
   },
   methods: {

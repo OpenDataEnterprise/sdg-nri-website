@@ -21,6 +21,7 @@ import Pagination from 'vue/pagination.vue';
           resultsPerPage: 5,
           totalResults: 0,
         },
+        isLoading: true,
       };
     },
     methods: {
@@ -70,6 +71,8 @@ import Pagination from 'vue/pagination.vue';
             true);
 
           self.news = news;
+        }).finally(() => {
+          self.isLoading = false;
         });
 
         self.pagination.currentPage = pageNumber;
@@ -118,6 +121,8 @@ import Pagination from 'vue/pagination.vue';
         self.news = news;
         self.events = events;
         self.tags = tags;
+      }).finally(() => {
+        self.isLoading = false;
       });
     },
     delimiters: ["((", "))"],

@@ -26,7 +26,7 @@ $news-border-color: $color-stratos;
 
 
 /**
- * News Section
+ * News Feed
  */
 .news-section {
   position: relative;
@@ -136,9 +136,9 @@ $news-border-color: $color-stratos;
 
 
 /**
- * Event Section
+ * Events Feed
  */
-.events-section {
+.events-wrapper {
   display: inline-block;
   vertical-align: top;
 

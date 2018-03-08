@@ -40,7 +40,10 @@ resources-js: true
           v-bind:resources="resources"
           v-bind:tags="selectedFilters.tags"
           v-bind:total-results="pagination.totalResults"
+          v-bind:current-page="pagination.currentPage"
+          v-bind:results-per-page="pagination.resultsPerPage"
           v-bind:is-filterable="true"
+          v-bind:is-loading="isLoading"
           v-on:select-filter-tag="addTag"
           v-on:deselect-filter-tag="removeTag"
           v-on:view-all="clearAllFilters">

@@ -105,6 +105,8 @@ Vue.component('search-bar', SearchBar);
 
         const query = apiPath + 'resources' + self.getQueryString(pageNumber);
 
+        self.isLoading = true;
+
         Utility.loadJSON(query).then((results) => {
           Vue.set(self.pagination, 'totalResults', results.count);
 
@@ -114,9 +116,10 @@ Vue.component('search-bar', SearchBar);
             false);
 
           Vue.set(self, 'resources', resources);
+          Vue.set(self.pagination, 'currentPage', pageNumber);
+        }).finally(() => {
+          self.isLoading = false;
         });
-
-        Vue.set(self.pagination, 'currentPage', pageNumber);
       },
       clearAllFilters: function () {
         this.$store.commit('clearAllFilters');
@@ -159,9 +162,9 @@ Vue.component('search-bar', SearchBar);
         Vue.set(self.filterOptions, 'language', languages);
         Vue.set(self.filterOptions, 'topic', topics);
         Vue.set(self.filterOptions, 'type', content_types);
+      }).finally(() => {
+        self.isLoading = false;
       });
-
-      self.isLoading = false;
     },
   });
 })();

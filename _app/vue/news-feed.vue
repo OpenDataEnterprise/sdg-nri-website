@@ -1,5 +1,8 @@
 <template>
-<div>
+<div class="news-feed-component" v-if="isLoading">
+  <div class="loader">Loading...</div>
+</div>
+<div class="news-feed-component" v-else>
   <div class="results-counter">Showing {{ newsfeed.length }} of {{ totalResults }} news items</div>
   <ul class="news-tags" v-if="Object.keys(filterTags).length > 0">
     <li
@@ -10,7 +13,10 @@
       <span>{{ tag }}</span>
     </li>
   </ul>
-  <ul class="news-feed">
+  <div v-if="newsfeed.length === 0">
+    <div class="no-results-message">No events found.</div>
+  </div>
+  <ul class="news-feed" v-else>
     <li class="news-list-item" v-for="(news, index) in newsfeed">
       <article class="news-card">
         <h1 class="news-heading">
@@ -38,9 +44,20 @@
 <script>
 export default {
   props: {
-    newsfeed: Array,
-    filterTags: Object,
-    totalResults: Number,
+    newsfeed: {
+      type: Array,
+    },
+    filterTags: {
+      type: Object,
+    },
+    totalResults: {
+      type: Number,
+      required: true,
+    },
+    isLoading: {
+      type: Boolean,
+      default: true,
+    },
   },
   methods: {
     tagSelect: function (tag, event) {

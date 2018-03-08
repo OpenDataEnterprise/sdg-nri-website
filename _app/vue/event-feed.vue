@@ -1,7 +1,12 @@
 <template>
-<section class="events-section">
-  <h2 class="events-heading">Events</h2>
-  <ul>
+<div class="events-feed-component" v-if="isLoading">
+  <div class="loader">Loading...</div>
+</div>
+<div class="events-feed-component" v-else>
+  <div v-if="events.length === 0">
+    <div class="no-results-message">No events found.</div>
+  </div>
+  <ul v-else>
     <li class="event" v-for="event in filteredEvents">
       <article class="event-card">
         <div class="event-heading">
@@ -28,7 +33,7 @@
     <span class="more-events-button-text">More Events</span>
     <span class="icon-plus-for-buttons"></span>
   </button>
-</section>
+</div>
 </template>
 
 <script>
@@ -37,6 +42,10 @@ export default {
     events: {
       type: Array,
       required: true,
+    },
+    isLoading: {
+      type: Boolean,
+      default: true,
     },
   },
   data: function () {
