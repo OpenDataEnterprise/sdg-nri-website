@@ -91,7 +91,6 @@ Vue.component('search-bar', SearchBar);
 
         Vue.set(this.selectedFilters.tags, tag, true);
 
-        console.log(this.selectedFilters.tags);
         this.refresh();
       },
       removeTag: function (tag) {
@@ -155,7 +154,6 @@ Vue.component('search-bar', SearchBar);
           false);
 
         Vue.set(self, 'resources', resources);
-        console.log(resources);
         Vue.set(self.pagination, 'totalResults', resourceCount);
         Vue.set(self.filterOptions, 'country', countries);
         Vue.set(self.filterOptions, 'language', languages);
