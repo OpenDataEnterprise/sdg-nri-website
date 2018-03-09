@@ -1,5 +1,5 @@
 <template>
-<div class="pagination" v-if="lastPage > 1">
+<div class="pagination-component" v-if="lastPage > 1">
   <ul>
     <!--<li v-if="currentPage > 2">
       <button type="button"

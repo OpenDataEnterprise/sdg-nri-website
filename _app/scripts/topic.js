@@ -80,10 +80,14 @@ import Pagination from 'vue/pagination.vue';
       Promise.all(requestPromises).then(function (results) {
         const resourceResults = results[0];
 
-        self.resources = Utility.formatResults(
+        const resourceCount = resourceResults.count;
+        const resources = Utility.formatResults(
           resourceResults.rows,
           ['date_published'],
           false);
+
+        Vue.set(self, 'resources', resources);
+        Vue.set(self.pagination, 'totalResults', resourceCount);
       }).finally(() => {
         self.isLoading = false;
       });

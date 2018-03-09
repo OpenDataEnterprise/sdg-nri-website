@@ -34,6 +34,14 @@ $accent-border-color: $color-dodger-blue;
     font-size: 1.5rem;
   }
 
+  .resources-list-component {
+    margin-top: 2rem;
+  }
+
+  .pagination-component {
+    margin-bottom: 2rem;
+  }
+
   @include for-tablet-portrait-up {
     @include grid-column(2, $col-3);
   }
@@ -112,7 +120,7 @@ $accent-border-color: $color-dodger-blue;
 
 .nav-topic {
   &:not(:first-child) {
-    margin-top: 2rem;
+    margin-top: 1rem;
   }
 }
 

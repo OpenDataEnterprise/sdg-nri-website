@@ -186,7 +186,7 @@ $field-element-border-color: $color-dodger-blue;
 
   @include for-tablet-portrait-up {
     padding: 1.5rem 0 0.75rem 0;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
   }
 }
 
@@ -210,7 +210,7 @@ $field-element-border-color: $color-dodger-blue;
 .name-fieldset,
 .interests-fieldset,
 .topics-fieldset {
-  margin: 0 0 1.5em 0;
+  margin: 0 0 1rem 0;
   border: none;
   padding: 0;
 }

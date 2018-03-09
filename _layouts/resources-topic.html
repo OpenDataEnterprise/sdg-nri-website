@@ -23,7 +23,7 @@ topic-js: true
 
   <img class="white-wave" src="/assets/img/white-wave.png" alt="" role="img" aria-hidden="true">
 
-  <div id="directory" class="topic-section-container">
+  <div class="topic-section-container">
 
     {% assign currentTopic = site.data.topics | where: 'topic', page.topic-tag | first %}
 
@@ -60,7 +60,7 @@ topic-js: true
 
     </nav>
 
-    <div class="topic-section-content">
+    <div id="directory" class="topic-section-content">
 
       <h1 class="topic-section-main-heading">{{ currentTopic.label }}</h1>
 
@@ -70,10 +70,11 @@ topic-js: true
 
       {% if page.show-resources %}
       <div class="topic-section-heading">{{ 'Resources' | upcase }}</div>
-      <ul class="topic-resources" is="resource-list"
+      <resource-list
         v-bind:resources="resources"
         v-bind:total-results="pagination.totalResults"
-        v-bind:is-loading="isLoading"></ul>
+        v-bind:is-loading="isLoading">
+      </resource-list>
 
       <pagination
         v-bind:current-page="pagination.currentPage"
