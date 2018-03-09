@@ -1,0 +1,66 @@
+/**
+ * Topic Sidebar
+ */
+.topic-nav-sidebar {
+  border-right: 1px solid $color-alto;
+  color: $text-color-dark;
+  padding-right: 1rem;
+
+  a {
+    cursor: pointer;
+
+    &:hover {
+      color: $link-color-hover;
+    }
+  }
+
+  @include for-mobile-only {
+    display: none;
+  }
+
+  @include for-tablet-portrait-up {
+    @include grid-column(1, $col-3);
+  }
+}
+
+.nav-topic {
+  &:not(:first-child) {
+    margin-top: 1rem;
+  }
+}
+
+.nav-topic-heading,
+.nav-subtopic-heading {
+  font-weight: 200;
+}
+
+.topic-heading {
+  color: $text-color-dark;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.nav-topic-heading {
+  padding: 0.3rem 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.topic-directory-subtopic,
+.nav-subtopic {
+  padding: 0.3rem 0 0.3rem 1rem;
+}
+
+.nav-subtopic-heading {
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.active-nav-topic {
+  margin: 0 -1rem;
+  border-right-width: ($standard-border-width * 2);
+  border-right-style: solid;
+  border-right-color: $accent-border-color;
+  padding: 0.3rem 0 0.3rem 1rem;
+  background-color: $color-pattens-blue;
+}

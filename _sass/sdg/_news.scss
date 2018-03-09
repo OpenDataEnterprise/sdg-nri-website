@@ -114,6 +114,7 @@ $news-border-color: $color-stratos;
 
 .news-heading {
   font-size: 1.25rem;
+  margin-bottom: 0.5rem;
 
   @include for-tablet-portrait-up {
     font-size: 1.5rem;
@@ -125,7 +126,7 @@ $news-border-color: $color-stratos;
 }
 
 .news-card {
-  padding: 2rem 0;
+  padding: 1.5rem 0;
   border-bottom: 1px solid $color-alto;
 }
 
@@ -187,10 +188,6 @@ $news-border-color: $color-stratos;
 
 .event-heading {
   font-size: 1.25rem;
-
-  @include for-tablet-portrait-up {
-    font-size: 1.5rem;
-  }
 }
 
 .news-header,

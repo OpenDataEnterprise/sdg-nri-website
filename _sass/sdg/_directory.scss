@@ -40,10 +40,6 @@
   cursor: pointer;
 }
 
-.results-counter {
-  margin-bottom: 1rem;
-}
-
 .reset-resource-list {
   text-decoration: underline;
   cursor: pointer;
@@ -104,12 +100,8 @@
 
   .resource-list-item,
   .resource-list-group-head {
-    padding: 2rem 0;
+    padding: 1.5rem 0;
     font-size: 1rem;
-  }
-
-  .resource-list-item:first-child {
-    padding: 0 0 2rem 0;
   }
 }
 

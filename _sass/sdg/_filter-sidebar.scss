@@ -1,0 +1,161 @@
+$filter-bottom-padding: 0.4rem;
+$filter-child-offset: 1.8rem;
+
+/**
+ * Filter Sidebar
+ */
+.filters {
+  @include for-desktop-up {
+    flex-direction: row;
+  }
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.filter-sidebar {
+  @include grid-column(1, $col-3);
+
+  @include for-mobile-only {
+    @include grid-collapse;
+
+    margin-bottom: 2.5rem;
+  }
+}
+
+.filters {
+  margin-bottom: 2em;
+}
+
+.filters-heading {
+  padding-bottom: 0.75em;
+  border-bottom: 1px solid $color-alto;
+  font-family: Oswald;
+}
+
+.filter {
+  @include for-desktop-up {
+    margin-bottom: 0;
+
+    &:first-child {
+      margin: 0 0.2em 0 0;
+    }
+
+    &:last-child {
+      margin: 0 0 0 0.2em;
+    }
+  }
+}
+
+.filter-clear-all {
+  width: 100%;
+  margin-top: 2.5rem;
+  border: 1px solid $color-dodger-blue;
+  padding: 0.75em;
+  text-align: center;
+  color: $text-color-dark;
+  font-family: Oswald;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+
+  &:hover {
+    background-color: darken($color-white, 5%);
+    transition-duration: 0.1s;
+  }
+}
+
+.filter-update {
+  margin-top: 2rem;
+  border: 1px solid rgba(52, 168, 252, 1);
+  background-color: rgba(52, 168, 252, 1);
+  color: #fff;
+}
+
+.item {
+  margin-left: 1em;
+}
+
+.filter-handle {
+  box-sizing: border-box;
+  border-bottom: 1px solid $color-alto;
+  padding: 0.75rem 0;
+  transition: border-color;
+  cursor: pointer;
+
+  &:after {
+    float: right;
+    color: $color-dodger-blue;
+    font-family: "SDG NRI Icons";
+    font-size: 0.85rem;
+    content: "\e90e";
+    transform: translateY(30%);
+  }
+
+  &.active {
+    border-bottom: none;
+  }
+
+  &.active:after {
+    content: "\e90a";
+  }
+}
+
+.filter-label {
+  display: inline;
+  color: $text-color-dark;
+  font-size: 1.5rem;
+  font-weight: $bold-font-weight;
+}
+
+.filter-list {
+  margin: 0;
+
+  & .filter-list {
+    margin-left: $filter-child-offset;
+  }
+}
+
+.filter-expansion-indicator {
+  float: right;
+}
+
+.filter-option {
+  padding-bottom: $filter-bottom-padding;
+  color: $text-color-dark;
+}
+
+.filter-option-label {
+  @extend .checkbox-label;
+
+  span {
+    font-size: 1rem;
+  }
+}
+
+.filter-option-expandable-label {
+  margin-bottom: $filter-bottom-padding;
+  font-weight: $bold-font-weight;
+
+  @extend .checkbox-label;
+
+  span {
+    font-size: 1.25rem;
+  }
+}
+
+.close-icon {
+  height: 0.7rem;
+  width: 0.7rem;
+}
+
+.hide-options {
+  margin-bottom: 0;
+
+  .filter-list,
+  .filter-clear {
+    display: none;
+  }
+}

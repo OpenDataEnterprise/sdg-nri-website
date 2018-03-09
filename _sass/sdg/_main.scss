@@ -222,7 +222,7 @@ $checkbox-border-color: $color-dodger-blue;
  */
 %hero-background {
   background-size: cover;
-  background-position: top;
+  background-position: center;
   background-repeat: no-repeat;
 }
 
@@ -258,8 +258,7 @@ $checkbox-border-color: $color-dodger-blue;
 
 .main-banner {
   @extend %hero-background;
-  background-image: url('/assets/img/banner_background.jpg');
-  background-position: center;
+  background-image: url('/assets/img/banner-background.jpg');
   color: $text-color-light;
   font-size: 1.75rem;
   font-weight: 400;
@@ -271,14 +270,14 @@ $checkbox-border-color: $color-dodger-blue;
   text-shadow: 0.08em 0.08em 0 rgba(2, 11, 79, 0.5);
 
   @include for-tablet-portrait-up {
-    height: 42rem;
-    padding: $tablet-padding;
+    height: 24rem;
+    padding: 3rem 10rem;
     font-size: 2.25rem;
   }
 
   @include for-tablet-landscape-up {
     font-size: 3rem;
-    padding: $site-padding;
+    padding: 3rem 10rem;
   }
 }
 
@@ -289,26 +288,26 @@ $checkbox-border-color: $color-dodger-blue;
 .resources-hero {
   @extend %hero-background;
 
-  background-image: url('/assets/img/search-resources-1000px.jpg');
+  background-image: url('/assets/img/search-resources-500px.jpg');
 }
 
 .explore-topics-hero {
   @extend %hero-background;
 
-  background-image: url('/assets/img/explore-topics-1000px.jpg');
+  background-image: url('/assets/img/explore-topics-500px.jpg');
 }
 
 .news-and-events-hero {
   @extend %hero-background;
 
-  background-image: url('/assets/img/news-and-events-1000px.jpg');
+  background-image: url('/assets/img/news-and-events-500px.jpg');
 
 }
 
 .contact-us-hero {
   @extend %hero-background;
 
-  background-image: url('/assets/img/contact-us-1000px.jpg');
+  background-image: url('/assets/img/contact-us-500px.jpg');
 }
 
 .banner-search {
