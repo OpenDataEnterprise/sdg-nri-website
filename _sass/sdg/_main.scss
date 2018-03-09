@@ -258,8 +258,8 @@ $checkbox-border-color: $color-dodger-blue;
 
 .main-banner {
   @extend %hero-background;
-
   background-image: url('/assets/img/banner_background.jpg');
+  background-position: center;
   color: $text-color-light;
   font-size: 1.75rem;
   font-weight: 400;
