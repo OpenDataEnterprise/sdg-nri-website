@@ -3,9 +3,9 @@ const path = require('path');
 module.exports = (env) => {
   return {
     entry: {
-      'resources': path.resolve(__dirname, './_app/scripts/resources.js'),
-      'news': path.resolve(__dirname, './_app/scripts/news.js'),
-      'topic': path.resolve(__dirname, './_app/scripts/topic.js')
+      'resources': ['core-js/fn/promise', path.resolve(__dirname, './_app/scripts/resources.js')],
+      'news': ['core-js/fn/promise', path.resolve(__dirname, './_app/scripts/news.js')],
+      'topic': ['core-js/fn/promise', path.resolve(__dirname, './_app/scripts/topic.js')]
     },
     output: {
       path: path.resolve(__dirname, './assets/js'),
