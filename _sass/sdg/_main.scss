@@ -25,6 +25,12 @@
   max-width: $content-width;
 }
 
+%section-heading {
+  font-family: Oswald;
+  font-size: 2.25rem;
+  font-weight: $light-font-weight;
+  text-align: center;
+}
 
 
 /**
@@ -344,6 +350,13 @@ $checkbox-border-color: $color-dodger-blue;
   @extend %section-content;
 }
 
+.intro-section-heading {
+  @extend %section-heading;
+
+  color: $text-color-dark;
+  margin-bottom: 2.5rem;
+}
+
 .intro-text {
   color: $text-color-dark;
   font-size: 1.3rem;
@@ -563,13 +576,13 @@ $checkbox-border-color: $color-dodger-blue;
 /**
  * Shared Styles
  */
+
 .who-we-serve-section-heading,
 .submit-resource-heading {
-  margin-bottom: 1rem;
+  @extend %section-heading;
+
   color: $text-color-light;
-  font-family: Oswald;
-  font-size: 2.25rem;
-  font-weight: $light-font-weight;
+  margin-bottom: 1rem;
 }
 
 .who-we-serve-section-text,
