@@ -227,7 +227,6 @@ $checkbox-border-color: $color-dodger-blue;
 }
 
 .hero-section {
-  background-color: $color-silver;
   box-sizing: border-box;
   height: 26rem;
   position: relative;
@@ -290,26 +289,26 @@ $checkbox-border-color: $color-dodger-blue;
 .resources-hero {
   @extend %hero-background;
 
-  background-image: url('/assets/img/search-resources.jpg');
+  background-image: url('/assets/img/search-resources-1000px.jpg');
 }
 
 .explore-topics-hero {
   @extend %hero-background;
 
-  background-image: url('/assets/img/explore-topics.jpg');
+  background-image: url('/assets/img/explore-topics-1000px.jpg');
 }
 
 .news-and-events-hero {
   @extend %hero-background;
 
-  background-image: url('/assets/img/news-and-events.jpg');
+  background-image: url('/assets/img/news-and-events-1000px.jpg');
 
 }
 
 .contact-us-hero {
   @extend %hero-background;
 
-  background-image: url('/assets/img/contact-us.jpg');
+  background-image: url('/assets/img/contact-us-1000px.jpg');
 }
 
 .banner-search {
