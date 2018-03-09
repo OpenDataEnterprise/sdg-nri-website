@@ -13,7 +13,7 @@
       <li class="topic-directory-topic">
 
         <h2 class="topic-heading">
-          <a href="/topic/{{ topic.tag }}">
+          <a href="/topic/{{ topic.topic }}">
             <span>{{ topic.label }}&nbsp;<span class="icon-blue-arrow" aria-hidden="true"></span></span>
           </a>
         </h2>
@@ -22,7 +22,7 @@
         <ul>
           {% for subtopic in topic.subtopics %}
           <li class="topic-directory-subtopic">
-            <a href="/topic/{{ subtopic.tag }}">{{ subtopic.label }}</a>
+            <a href="/topic/{{ subtopic.topic }}">{{ subtopic.label }}</a>
           </li>
           {% endfor %}
         </ul>
