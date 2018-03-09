@@ -1,0 +1,25 @@
+.error-container {
+  padding: $mobile-padding;
+  margin: 0 auto;
+  max-width: $on-laptop;
+  text-align: center;
+
+  a {
+    text-decoration: underline;
+  }
+
+  @include for-tablet-portrait-up {
+    padding: $tablet-padding;
+  }
+}
+
+.error-code {
+  font-size: 4rem;
+  letter-spacing: -1px;
+  line-height: 1;
+  margin-bottom: 1.875rem;
+}
+
+.error-details {
+  margin-bottom: 1.875rem;
+}
