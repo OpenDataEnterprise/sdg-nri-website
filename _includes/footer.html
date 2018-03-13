@@ -2,7 +2,7 @@
 
   <div class="wrapper">
 
-    <div class="footer-col-wrapper footer-top">
+    <div class="footer-top">
 
       <address class="contact-info">
         {% if site.ode_email %}
@@ -19,12 +19,20 @@
       </address>
 
       <div class="sponsors">
-        <img class="footer-img" src="/assets/img/opendata_enterprise_and_hewlett_foundation_logos.png" alt="Side-by-side logos for the Center for Open Data Enterprise and the William and Flora Hewlett Foundation">
+        <a href="http://opendataenterprise.org/">
+          <img class="footer-img"
+            srcset="/assets/img/opendata_enterprise_logo.png,
+              /assets/img/opendata_enterprise_logo@2x.png 2x"
+            sizes="100px,
+              100px"
+            src="/assets/img/opendata_enterprise_logo.png"
+            alt="Logo for the Center for Open Data Enterprise">
+        </a>
       </div>
 
     </div>
 
-    <div class="footer-col-wrapper footer-bottom">
+    <div class="footer-bottom">
 
       <div class="footer-links-wrapper">
         <div class="footer-npo-line">The Center for Open Data Enterprise is an independent 501(c)(3) nonprofit organization based in Washington, DC.<br>The mission of the Center for Open Data Enterprise is to maximize the value of government data as a public resource, by focusing on data users.</div>
@@ -42,7 +50,9 @@
       </div>
 
       <div class="cc-icon">
-        <img class="footer-img" src="/assets/img/cc-by_icon.png" alt="Creative Commons attribution license logo">
+        <a href="https://creativecommons.org/licenses/by/4.0/">
+          <img class="footer-img" src="/assets/img/cc-by_icon.png" alt="Creative Commons Attribution 4.0 license logo">
+        </a>
       </div>
 
     </div>

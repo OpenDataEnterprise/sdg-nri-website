@@ -235,6 +235,19 @@
 /**
  * Site footer
  */
+%footer-text-links {
+  a {
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: rgba(255, 255, 255, 0.3);
+  }
+
+  a:hover {
+    color: rgba(255, 255, 255, 0.6);
+    border-color: rgba(255, 255, 255, 0.15);
+  }
+}
+
 .site-footer {
   border-top: 1px solid $color-alto;
   padding: $mobile-padding;
@@ -244,16 +257,8 @@
   font-weight: 300;
 
   a {
-    border-bottom-width: 1px;
-    border-bottom-style: solid;
-    border-bottom-color: rgba(255, 255, 255, 0.3);
     color: #fff;
     text-decoration: none;
-  }
-
-  a:hover {
-    color: rgba(255, 255, 255, 0.6);
-    border-color: rgba(255, 255, 255, 0.15);
   }
 
   @include for-tablet-portrait-up {
@@ -262,7 +267,7 @@
   }
 
   @include for-tablet-landscape-up {
-    padding: 4rem 10rem;
+    padding: 2rem 10rem;
   }
 }
 
@@ -271,56 +276,27 @@
 }
 
 .footer-img {
-  @include for-tablet-portrait-up {
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 100%;
-  }
-}
-
-.footer-col-wrapper {
-  @include for-tablet-portrait-up {
-    display: flex;
-  }
-}
-
-.footer-col {
-  float: left;
-  padding-left: $spacing-unit / 2;
-}
-
-.footer-col-1 {
-  width: -webkit-calc(60% - (#{$spacing-unit} / 2));
-  width:         calc(60% - (#{$spacing-unit} / 2));
-}
-
-.footer-col-2 {
-  width: -webkit-calc(40% - (#{$spacing-unit} / 2));
-  width:         calc(40% - (#{$spacing-unit} / 2));
 }
 
 .footer-top {
   border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  display: flex;
+  justify-content: space-between;
   padding-bottom: 1rem;
 }
 
 .footer-bottom {
+  display: flex;
+  justify-content: space-between;
   margin-top: 1rem;
 }
 
 .contact-info {
-  width: 100%;
   font-style: normal;
   list-style: none;
 
   @include for-mobile-only {
     margin-bottom: 1rem;
-  }
-
-  @include for-tablet-portrait-up {
-    width: 60%;
-    margin-right: 2rem;
   }
 }
 
@@ -329,15 +305,18 @@
 }
 
 .sponsors {
-  @include for-tablet-portrait-up {
-    width: 40%;
+  img {
+    /* Hack for broken handling in Firefox. */
+    width: 200px;
   }
 }
 
 .footer-links-wrapper {
-  width: 90%;
+  @extend %footer-text-links;
+
   margin-right: 2rem;
   opacity: 0.8;
+  width: 90%;
 }
 
 .footer-links {
