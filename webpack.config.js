@@ -32,16 +32,19 @@ module.exports = (env) => {
         {
           test: /\.js$/,
           use: {
-            loader: 'babel-loader'
-          }
+            loader: 'babel-loader',
+            query: {
+              presets: ['env'],
+            },
+          },
         },
         {
           test: /\.vue$/,
           use: {
-            loader: 'vue-loader'
-          }
-        }
-      ]
+            loader: 'vue-loader',
+          },
+        },
+      ],
     },
     plugins: [
       new ExtractTextPlugin({ filename:'[name].css'}),
