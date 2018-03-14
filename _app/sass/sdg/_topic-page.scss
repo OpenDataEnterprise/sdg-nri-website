@@ -78,8 +78,11 @@ $accent-border-color: $color-dodger-blue;
   }
 
   a {
-    color: $link-color-hover;
     text-decoration: underline;
+
+    &:hover {
+      color: $link-color-hover;
+    }
   }
 
   ol {
