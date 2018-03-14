@@ -26,7 +26,7 @@
   @include for-tablet-landscape-up {
     display: flex;
     justify-content: flex-end;
-    margin-right: 2.5rem;
+    margin-right: $site-header-padding;
   }
 }
 
@@ -81,7 +81,7 @@
 
     // Gaps between nav items, but not on the last one
     &:not(:last-child) {
-      margin-right: 1.25em;
+      margin-right: 1.25rem;
     }
   }
 }
@@ -155,6 +155,10 @@
   justify-content: center;
   margin: 1.5rem;
   
+  img {
+    width: 350px;
+  }
+
   @include for-tablet-landscape-up {
     justify-content: flex-start;
     width: 100%;
