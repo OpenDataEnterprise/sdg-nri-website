@@ -13,7 +13,7 @@
     "prebuild:production": "yarn run compress-images && yarn run compile-sass && yarn run compile-js:production",
     "prebuild:staging": "yarn run compress-images && yarn run compile-sass && yarn run compile-js:staging",
     "prebuild:development": "yarn run compress-images && yarn run compile-sass && yarn run compile-js:development",
-    "build:production": "jekyll build --config _config.yml,_config-production.yml",
+    "build:production": "JEKYLL_ENV=production jekyll build --config _config.yml,_config-production.yml",
     "build:staging": "jekyll build --config _config.yml,_config-staging.yml",
     "build:development": "jekyll build --config _config.yml,_config-development.yml"
   },
