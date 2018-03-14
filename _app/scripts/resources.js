@@ -18,6 +18,10 @@ Vue.use(VueAnalytics, {
 (function () {
   const apiPath = Config.apiPath;
 
+  Vue.use(VueAnalytics, {
+    id: Config.analyticsID,
+  });
+
   new Vue({
     store,
     el: '#directory',
