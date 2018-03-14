@@ -133,7 +133,7 @@ export default {
       this.$ga.query('send', 'event', 'resources', 'click', url, {
         transport: 'beacon',
       });
-    }
+    },
   },
 };
 </script>
