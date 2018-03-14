@@ -249,12 +249,12 @@
 }
 
 .site-footer {
-  border-top: 1px solid $color-alto;
-  padding: $mobile-padding;
   background-color: #020b4f;
+  border-top: 1px solid $color-alto;
   color: $text-color-light;
   font-size: 0.9em;
   font-weight: 300;
+  padding: $mobile-padding;
 
   a {
     color: #fff;
@@ -262,20 +262,21 @@
   }
 
   @include for-tablet-portrait-up {
-    display: flex;
-    padding: $tablet-padding;
-  }
-
-  @include for-tablet-landscape-up {
     padding: 2rem 10rem;
   }
+}
+
+.footer-wrapper {
+  @extend %section-content;
 }
 
 .footer-heading {
   margin-bottom: $spacing-unit / 2;
 }
 
-.footer-img {
+.footer-logo {
+  /* Hack for broken handling in Firefox. */
+  width: 200px;
 }
 
 .footer-top {
@@ -302,13 +303,6 @@
 
 .contact-website {
   padding: 1.5em 0;
-}
-
-.sponsors {
-  img {
-    /* Hack for broken handling in Firefox. */
-    width: 200px;
-  }
 }
 
 .footer-links-wrapper {
