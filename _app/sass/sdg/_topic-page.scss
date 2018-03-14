@@ -49,20 +49,16 @@ $accent-border-color: $color-dodger-blue;
   line-height: 1.2em;
   margin-bottom: 1.5rem;
   padding-top: 0.5rem;
-
-  @include for-tablet-portrait-up {
-    font-size: 2.4rem;
-  }
 }
 
 .topic-section-heading {
   color: $text-color-dark;
   font-family: Oswald;
-  font-size: 2.25rem;
+  font-size: 2rem;
 }
 
 .next-section-link {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   color: $text-color-dark;
 
   &:hover {
