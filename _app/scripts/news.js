@@ -14,8 +14,6 @@ import Pagination from 'vue/pagination.vue';
       return {
         news: [],
         events: [],
-        tags: [],
-        filterTags: {},
         pagination: {
           currentPage: 1,
           resultsPerPage: 5,
@@ -25,31 +23,6 @@ import Pagination from 'vue/pagination.vue';
       };
     },
     methods: {
-      addTag: function (tag) {
-        if (tag in this.filterTags) {
-          return false;
-        }
-
-        Vue.set(this.filterTags, tag, true);
-        this.refresh();
-        return true;
-      },
-      removeTag: function (tag) {
-        if (!(tag in this.filterTags)) {
-          return false;
-        }
-
-        Vue.delete(this.filterTags, tag);
-        this.refresh();
-        return true;
-      },
-      checkTag: function (tag, event) {
-        if (tag in this.filterTags) {
-          return this.removeTag(tag);
-        } else {
-          return this.addTag(tag);
-        }
-      },
       refresh: function (pageNumber = 1) {
         let self = this;
 
@@ -57,10 +30,6 @@ import Pagination from 'vue/pagination.vue';
         let query = apiPath + 'news' +
           '?limit=' + self.pagination.resultsPerPage +
           '&offset=' + offset;
-
-        if (Object.keys(self.filterTags).length > 0) {
-          query = query + '&tags=' + Object.keys(self.filterTags);
-        }
 
         Utility.loadJSON(query).then(function (results) {
           self.pagination.totalResults = results.count;
@@ -92,18 +61,12 @@ import Pagination from 'vue/pagination.vue';
       let newsQuery = 'news' +
         '?limit=' + self.pagination.resultsPerPage;
 
-      if (Object.keys(self.filterTags).length > 0) {
-        newsQuery = newsQuery + '&tags=' + Object.keys(self.filterTags);
-      }
-
       requestPromises.push(Utility.loadJSON(apiPath + newsQuery));
       requestPromises.push(Utility.loadJSON(apiPath + 'events'));
-      requestPromises.push(Utility.loadJSON(apiPath + 'tags/news'));
       
       Promise.all(requestPromises).then(function (results) {
         const newsResults = results[0];
         const eventsResults = results[1];
-        const tags = results[2];
 
         const news = Utility.formatResults(
           newsResults.rows,
@@ -120,7 +83,6 @@ import Pagination from 'vue/pagination.vue';
         self.pagination.totalResults = newsResults.count;
         self.news = news;
         self.events = events;
-        self.tags = tags;
       }).finally(() => {
         self.isLoading = false;
       });

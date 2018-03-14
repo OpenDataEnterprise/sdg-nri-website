@@ -29,52 +29,12 @@ news-js: true
 
         <div class="news-filters-heading">News</div>
 
-        <div class="news-filters-controls">
-
-          <div class="news-filter">
-
-            <div class="news-filter-control" tabindex="0">
-
-              <div class="news-filter-control-label">
-                <span>Filter by Tag</span>
-                <span class="icon-dropdown" aria-hidden="true"></span>
-              </div>
-
-              <ul class="news-filter-options">
-
-                <li class="news-filter-option" v-for="tag in tags">
-                  <div class="subject-tag"
-                    v-if="!(tag in filterTags)"
-                    v-on:click="checkTag(tag)">
-                    (( tag ))
-                  </div>
-                </li>
-
-                <span v-if="tags.length === 0">
-                  No tags available.
-                </span>
-
-                <span v-else-if="tags.length === Object.keys(filterTags).length">
-                  All tags have been selected.
-                </span>
-
-              </ul>
-
-            </div>
-
-          </div>
-
-        </div>
-
       </div>
 
       <news-feed
         v-bind:newsfeed="news"
-        v-bind:filter-tags="filterTags"
         v-bind:total-results="pagination.totalResults"
-        v-bind:is-loading="isLoading"
-        @select-filter-tag="addTag"
-        @deselect-filter-tag="removeTag">
+        v-bind:is-loading="isLoading">
       </news-feed>
 
       <pagination
