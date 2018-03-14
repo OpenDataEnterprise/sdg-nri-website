@@ -106,7 +106,7 @@ $filter-child-offset: 1.8rem;
 .filter-label {
   display: inline;
   color: $text-color-dark;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-weight: $bold-font-weight;
 }
 
@@ -142,7 +142,7 @@ $filter-child-offset: 1.8rem;
   @extend .checkbox-label;
 
   span {
-    font-size: 1.25rem;
+    font-size: 1.15rem;
   }
 }
 
