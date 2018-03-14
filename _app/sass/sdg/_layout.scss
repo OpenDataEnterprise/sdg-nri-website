@@ -178,7 +178,6 @@
   white-space: normal;
   width: 100%;
 
-
   nav > ul > li {
     padding-bottom: 1rem;
   }
@@ -207,7 +206,7 @@
   break-inside: avoid;
 
   &:not(:last-child) {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.2rem;
   }
 }
 
@@ -217,13 +216,13 @@
   margin-bottom: 1rem;
 
   @include for-tablet-portrait-up {
-    margin-bottom: 0.2rem;
+    margin-bottom: 0.1rem;
   }
 }
 
 .topics-dropdown-subtopic-heading {
   font-size: 1rem;
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.1rem;
 
   @include for-tablet-portrait-up {
     margin-left: 0.7rem;
