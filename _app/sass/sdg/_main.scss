@@ -59,9 +59,9 @@ $checkbox-border-color: $color-dodger-blue;
 
 .heading-color-bar {
   display: block;
-  min-width: 100%;
   height: $color-bar-height;
   margin-bottom: 0.5rem;
+  min-width: 100%;
 
   @include for-tablet-portrait-up {
     margin-bottom: 1rem;
@@ -368,11 +368,31 @@ $checkbox-border-color: $color-dodger-blue;
   }
 }
 
+/**
+ * Feature List
+ */
 %feature-header {
   color: $text-color-dark;
   font-family: Oswald;
   font-weight: 500;
   text-transform: uppercase;
+}
+
+%feature-image {
+  display: none;
+
+  @include for-tablet-portrait-up {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    display: inline-block;
+    flex-basis: fit-content;
+    flex-grow: 0;
+    flex-shrink: 0;
+    height: 8rem;
+    margin-left: 3rem;
+    width: 8rem;
+  }
 }
 
 .feature-list {
@@ -425,29 +445,12 @@ $checkbox-border-color: $color-dodger-blue;
   }
 }
 
-.feature-image {
-  display: none;
-
-  @include for-tablet-portrait-up {
-    display: inline-block;
-    flex-shrink: 0;
-    flex-grow: 0;
-    flex-basis: fit-content;
-    margin-left: 3rem;
-    width: 10rem;
-    height: 10rem;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-  }
-}
-
 .feature-opportunity-copy {
-  @extend .feature-copy;
+  @extend %feature-copy;
 }
 
 .feature-opportunity-image {
-  @extend .feature-image;
+  @extend %feature-image;
 
   @include for-tablet-portrait-up {
     background-image: url('/assets/img/an-unprecedented-opportunity-icon@2x.png');
@@ -455,7 +458,7 @@ $checkbox-border-color: $color-dodger-blue;
 }
 
 .feature-challenges-image {
-  @extend .feature-image;
+  @extend %feature-image;
 
   @include for-tablet-portrait-up {
     background-image: url('/assets/img/reporting-challenges-icon@2x.png');
@@ -463,7 +466,7 @@ $checkbox-border-color: $color-dodger-blue;
 }
 
 .feature-here-to-help-image {
-  @extend .feature-image;
+  @extend %feature-image;
 
   @include for-tablet-portrait-up {
     background-image: url('/assets/img/were-here-to-help-icon@2x.png');
