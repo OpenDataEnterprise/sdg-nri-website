@@ -1,5 +1,6 @@
 import Config from 'config'; // Aliased via WebPack.
 import Vue from 'vue';
+import VueAnalytics from 'vue-analytics';
 import VueRouter from 'vue-router';
 import * as Utility from 'scripts/utility';
 import ResourceList from 'vue/resource-list.vue';
@@ -7,6 +8,11 @@ import Pagination from 'vue/pagination.vue';
 
 (function () {
   Vue.use(VueRouter);
+
+  Vue.use(VueAnalytics, {
+    id: Config.analyticsID,
+    checkDuplicatedScript: true,
+  });
       
   const apiPath = Config.apiPath;
 

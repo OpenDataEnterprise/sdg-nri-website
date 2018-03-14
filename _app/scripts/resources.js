@@ -1,5 +1,6 @@
 import Config from 'config'; // Aliased via WebPack.
 import Vue from 'vue';
+import VueAnalytics from 'vue-analytics';
 import { store } from 'scripts/global-store';
 import * as Utility from 'scripts/utility';
 import ResourceList from 'vue/resource-list.vue';
@@ -8,6 +9,11 @@ import Pagination from 'vue/pagination.vue';
 import SearchBar from 'vue/search-bar.vue';
 
 Vue.component('search-bar', SearchBar);
+
+Vue.use(VueAnalytics, {
+  id: Config.analyticsID,
+  checkDuplicatedScript: true,
+});
 
 (function () {
   const apiPath = Config.apiPath;

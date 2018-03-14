@@ -25,10 +25,14 @@
     <li class="resource-list-item" v-for="(resource, index) in resources">
       <article class="resource-card">
         <img class="resource-image"
-          :src="resource.image_url"
+          v-bind:src="resource.image_url"
           v-if="resource.image_url">
         <h1 class="resource-title">
-          <a :href="(( resource.url ))" target="_blank">{{ resource.title }}</a>
+          <a target="_blank"
+            v-bind:href="resource.url"
+            v-on:click="trackResource(resource.url)">
+            {{ resource.title }}
+          </a>
         </h1>
         <span class="resource-organization">{{ resource.organization }}</span>
         <span class="info-divider"
@@ -124,6 +128,11 @@ export default {
     },
     viewAll: function () {
       this.$emit('view-all');
+    },
+    trackResource: function (url, event) {
+      this.$ga.query('send', 'event', 'resources', 'click', url, {
+        transport: 'beacon',
+      });
     }
   },
 };
