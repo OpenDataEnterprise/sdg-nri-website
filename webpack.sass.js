@@ -15,9 +15,16 @@ module.exports = (env) => {
         {
           test: /\.(s*)css$/,
           use: ExtractTextPlugin.extract([
-            'css-loader',
-            'postcss-loader',
-            'sass-loader',
+            {
+              loader: 'css-loader',
+              options: { minimize: true },
+            },
+            {
+              loader: 'postcss-loader',
+            },
+            {
+              loader: 'sass-loader',
+            },
           ]),
         },
         {
