@@ -75,7 +75,7 @@ $field-element-border-color: $color-dodger-blue;
 }
 
 .tab-label-text {
-  font-weight: 500;
+  font-weight: $semibold-font-weight;
 }
 
 .tab-content {
