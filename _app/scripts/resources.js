@@ -133,6 +133,11 @@ Vue.component('search-bar', SearchBar);
         this.$store.commit('clearAllFilters');
         this.refresh();
       },
+      viewAll: function () {
+        this.$store.commit('clearAllFilters');
+        this.searchQuery = '';
+        this.refresh();
+      },
     },
     components: {
       'resource-list': ResourceList,
