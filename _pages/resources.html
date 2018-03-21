@@ -46,7 +46,7 @@ resources-js: true
           v-bind:is-loading="isLoading"
           v-on:select-filter-tag="addTag"
           v-on:deselect-filter-tag="removeTag"
-          v-on:view-all="clearAllFilters">
+          v-on:view-all="viewAll">
         </resource-list>
 
         <pagination
