@@ -145,7 +145,7 @@ $checkbox-border-color: $color-dodger-blue;
   color: $text-color-dark;
   font-family: Oswald;
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: $semibold-font-weight;
   letter-spacing: .03rem;
   text-transform: uppercase;
   cursor: pointer;
@@ -354,6 +354,7 @@ $checkbox-border-color: $color-dodger-blue;
   @extend %section-heading;
 
   color: $text-color-dark;
+  font-weight: $semibold-font-weight;
   margin-bottom: 2.5rem;
 }
 
@@ -374,7 +375,7 @@ $checkbox-border-color: $color-dodger-blue;
 %feature-heading {
   color: $text-color-dark;
   font-family: Oswald;
-  font-weight: 500;
+  font-weight: $semibold-font-weight;
   text-transform: uppercase;
 }
 
@@ -525,7 +526,7 @@ $checkbox-border-color: $color-dodger-blue;
 .who-we-serve-item-heading {
   font-family: Oswald;
   font-size: 1.5rem;
-  font-weight: 500;
+  font-weight: $semibold-font-weight;
   letter-spacing: 0.0625rem;
 }
 
