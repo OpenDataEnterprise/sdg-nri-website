@@ -9,11 +9,13 @@ import Pagination from 'vue/pagination.vue';
 (function () {
   Vue.use(VueRouter);
 
-  Vue.use(VueAnalytics, {
-    id: Config.analyticsID,
-    checkDuplicatedScript: true,
-  });
-      
+  if ('analyticsID' in Config) {
+    Vue.use(VueAnalytics, {
+      id: Config.analyticsID,
+      checkDuplicatedScript: true,
+    });
+  }
+
   const apiPath = Config.apiPath;
 
   const router = new VueRouter({
