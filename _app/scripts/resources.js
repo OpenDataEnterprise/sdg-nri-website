@@ -10,17 +10,15 @@ import SearchBar from 'vue/search-bar.vue';
 
 Vue.component('search-bar', SearchBar);
 
-Vue.use(VueAnalytics, {
-  id: Config.analyticsID,
-  checkDuplicatedScript: true,
-});
-
 (function () {
-  const apiPath = Config.apiPath;
+  if ('analyticsID' in Config) {
+    Vue.use(VueAnalytics, {
+      id: Config.analyticsID,
+      checkDuplicatedScript: true,
+    });
+  }
 
-  Vue.use(VueAnalytics, {
-    id: Config.analyticsID,
-  });
+  const apiPath = Config.apiPath;
 
   new Vue({
     store,

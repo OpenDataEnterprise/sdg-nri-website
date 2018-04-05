@@ -91,6 +91,10 @@ export default {
       type: Boolean,
       default: true,
     },
+    trackLinks: {
+      type: Boolean,
+      default: false,
+    },
   },
   watch: {
     tags: function (val) {
@@ -130,9 +134,11 @@ export default {
       this.$emit('view-all');
     },
     trackResource: function (url, event) {
-      this.$ga.query('send', 'event', 'resources', 'click', url, {
-        transport: 'beacon',
-      });
+      if (this.trackLinks) {
+        this.$ga.query('send', 'event', 'resources', 'click', url, {
+          transport: 'beacon',
+        });
+      }
     },
   },
 };
