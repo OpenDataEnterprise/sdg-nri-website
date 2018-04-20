@@ -36,7 +36,7 @@ import Pagination from 'vue/pagination.vue';
 
           const news = Utility.formatResults(
             results.rows,
-            ['created_at'],
+            ['published_at'],
             true);
 
           self.news = news;
@@ -70,7 +70,7 @@ import Pagination from 'vue/pagination.vue';
 
         const news = Utility.formatResults(
           newsResults.rows,
-          ['created_at'],
+          ['published_at'],
           true
         );
 
