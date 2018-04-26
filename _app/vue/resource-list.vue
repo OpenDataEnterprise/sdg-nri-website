@@ -45,7 +45,7 @@
         <div class="resource-tags" v-if="hasTags(resource)">
           <ul class="resource-tags-list">
             <li class="subject-tag"
-              v-for="tag in resource.tags"
+              v-for="tag in resource.assigned_tags"
               v-on:click="tagSelect(tag)">
               {{ tag }}
             </li>
@@ -124,8 +124,8 @@ export default {
       this.$emit('deselect-filter-tag', tag);
     },
     hasTags: function (resource) {
-      if (Array.isArray(resource.tags)) {
-        return resource.tags.length > 0;
+      if (Array.isArray(resource.assigned_tags)) {
+        return resource.assigned_tags.length > 0;
       } else {
         return false;
       }
