@@ -13,7 +13,7 @@
         <h1 class="news-heading">
           <a :href="(( news.url ))" target="_blank">{{ news.title }}</a>
         </h1>
-        <span class="news-date">{{ news.created_at }}</span>
+        <span class="news-date">{{ news.published_at }}</span>
         <span class="info-divider">|</span>
         <span class="news-author">{{ news.organization }}</span>
         <div class="news-description">{{ news.description }}</div>
