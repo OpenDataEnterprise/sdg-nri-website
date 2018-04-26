@@ -5,13 +5,14 @@ $tablet-padding: 3rem 5rem;
 $site-padding: 4rem 10rem;
 $site-header-padding: 1.75rem;
 
-$base-font-family:   "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif !default;
-$base-font-size:     16px !default;
-$base-font-weight:   400 !default;
-$light-font-weight:  200 !default;
-$bold-font-weight:   700 !default;
-$small-font-size:    $base-font-size * 0.875 !default;
-$base-line-height:   1.5 !default;
+$base-font-family:     "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$base-font-size:       16px !default;
+$base-font-weight:     400 !default;
+$light-font-weight:    200 !default;
+$semibold-font-weight: 500 !default;
+$bold-font-weight:     700 !default;
+$small-font-size:      $base-font-size * 0.875 !default;
+$base-line-height:     1.5 !default;
 
 $standard-border-width:    2px;
 $active-link-border-width: 3px;
