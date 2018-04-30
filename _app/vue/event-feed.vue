@@ -22,7 +22,14 @@
         <p class="event-description">{{ event.description }}</p>
         <span class="icon-location" aria-hidden="true"></span>
         <ul class="event-locations">
-          <li class="event-location" v-for="location in event.locations">{{ location }}</li>
+          <li class="event-location" v-for="(location, index) in event.assigned_locations">
+            <span v-if="index < event.assigned_locations.length - 1">
+              {{ location }},
+            </span>
+            <span v-else>
+              {{ location }}
+            </span>
+          </li>
         </ul>
       </article>
     </li>
