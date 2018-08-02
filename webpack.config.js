@@ -5,6 +5,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 module.exports = (env) => {
   return {
     entry: {
+      'analytics-only': ['core-js/fn/promise', path.resolve(__dirname, './_app/scripts/analytics-only.js')],
       'resources': ['core-js/fn/promise', path.resolve(__dirname, './_app/scripts/resources.js')],
       'news': ['core-js/fn/promise', path.resolve(__dirname, './_app/scripts/news.js')],
       'topic': ['core-js/fn/promise', path.resolve(__dirname, './_app/scripts/topic.js')],
