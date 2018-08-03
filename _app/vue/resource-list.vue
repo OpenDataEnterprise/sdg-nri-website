@@ -93,7 +93,7 @@ export default {
     },
     trackLinks: {
       type: Boolean,
-      default: false,
+      default: true,
     },
   },
   watch: {
