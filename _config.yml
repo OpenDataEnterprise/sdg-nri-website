@@ -17,9 +17,7 @@ title: SDG National Reporting Initiative
 ode_email: Contact@ODEnterprise.org
 ode_website: http://opendataenterprise.org/
 description: >- # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+  The SDG National Reporting Initiative facilitates greater information-sharing for reporting on the UN Sustainable Development Goals (SDGs).
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 
