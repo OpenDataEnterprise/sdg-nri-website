@@ -5,8 +5,13 @@ admin_path:
 webhook_url: 
 sections:
 - type: jekyll-pages
-  label: Pages
+  label: Base Pages
   create: all
+- type: directory
+  path: _pages
+  label: Page Templates
+  create: all
+  match: "**/*"
 - type: directory
   path: _layouts
   label: Layouts
