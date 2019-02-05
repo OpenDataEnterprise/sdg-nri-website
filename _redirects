@@ -1,0 +1,2 @@
+# Redirect errors.
+/error  /500.html   200
