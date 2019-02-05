@@ -7,19 +7,18 @@ sections:
 - type: jekyll-pages
   label: Base Pages
   create: all
-  match: "**/*"
 - type: directory
   path: _pages
   label: Pages
   create: all
   match: "**/*.html"
-  new_doc_ext: ".html"
+  new_doc_ext: html
 - type: directory
   path: _layouts
   label: Page Layouts
   create: all
   match: "**/*.html"
-  new_doc_ext: ".html"
+  new_doc_ext: html
 - type: directory
   path: _includes
   label: Include Sections
