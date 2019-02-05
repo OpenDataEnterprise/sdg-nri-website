@@ -9,19 +9,26 @@ sections:
   create: all
 - type: directory
   path: _pages
-  label: Page Templates
+  label: Pages
   create: all
-  match: "**/*"
+  match: "**/*.html"
+  new_doc_ext: html
 - type: directory
   path: _layouts
-  label: Layouts
+  label: Page Layouts
   create: all
-  match: "**/*"
+  match: "**/*.html"
+  new_doc_ext: html
 - type: directory
   path: _includes
-  label: Includes
+  label: Include Sections
   create: all
-  match: "**/*"
+  match: "**/*.html"
+- type: directory
+  path: _data
+  label: Data
+  create: none
+  match: "**/*.{json,yaml,yml}"
 upload_dir: uploads
 public_path: "/uploads"
 front_matter_path: "/uploads"
